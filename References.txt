@@ -1,4 +1,0 @@
-Files within the folder "Mobile Paint" belong to Mgear. Available at: https://www.assetstore.unity3d.com/#!/content/19803?aid=1101lGti (Accessed:27 April 2020)
-
-
-Files within the folder "Tobii" belong to Tobii. Available at: https://gaming.tobii.com/getstarted/ (Accessed:27 April 2020)
