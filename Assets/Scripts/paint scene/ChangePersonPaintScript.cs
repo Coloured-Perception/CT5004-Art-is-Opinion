@@ -12,6 +12,6 @@ public class ChangePersonPaintScript : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		personImage.sprite = ChangePerson.personInstance.myImageComponent.sprite;
+		personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 	}
 }

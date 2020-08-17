@@ -60,11 +60,11 @@ public class LoadImageScript : MonoBehaviour {
 
 				if (uwr.isNetworkError || uwr.isHttpError) {
 					loadedTexture = null;
-					Debug.Log("Error loading texture.");
+//					Debug.Log("Error loading texture.");
 					Debug.Log(uwr.error);
 				} else {
 					loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-					Debug.Log("Succesfully loaded texture!");
+	//				Debug.Log("Succesfully loaded texture!");
 				}
 				paintings[i].texture = loadedTexture;
 			}

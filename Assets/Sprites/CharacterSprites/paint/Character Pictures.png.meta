@@ -4,43 +4,43 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -6611926007050098498
-    second: Character Pictures_0
+    second: A Dog 1
   - first:
       213: -1324413293701510411
-    second: Character Pictures_1
+    second: S Polly Collins
   - first:
       213: -7150095830990012538
-    second: Character Pictures_2
+    second: S Gretta McGee
   - first:
       213: 4796904324757462811
-    second: Character Pictures_3
+    second: F 1
   - first:
       213: 8274106561137116301
-    second: Character Pictures_4
+    second: M 1
   - first:
       213: 2258013657099800263
-    second: Character Pictures_5
+    second: F 2
   - first:
       213: 2079406161724443261
-    second: Character Pictures_6
+    second: S Kane Adams
   - first:
       213: 2525776171139032800
-    second: Character Pictures_7
+    second: S Jade West
   - first:
       213: 3540782432644232922
-    second: Character Pictures_8
+    second: S Yung Gregg
   - first:
       213: 304100866832851014
-    second: Character Pictures_9
+    second: Mr 1
   - first:
       213: 4536872500780957915
-    second: Character Pictures_10
+    second: Mr 2
   - first:
       213: -8727920057493872851
-    second: Character Pictures_11
+    second: M 2
   - first:
       213: -4651958157657034063
-    second: Character Pictures_12
+    second: Ms 1
   - first:
       213: 7029772028006881406
     second: Character Pictures_13
@@ -138,7 +138,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character Pictures_0
+      name: A Dog 1
       rect:
         serializedVersion: 2
         x: 0
@@ -159,12 +159,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_1
+      name: S Polly Collins
       rect:
         serializedVersion: 2
-        x: 700
+        x: 695
         y: 2745
-        width: 700.6
+        width: 701
         height: 915
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_2
+      name: S Gretta McGee
       rect:
         serializedVersion: 2
         x: 1400
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_3
+      name: F 1
       rect:
         serializedVersion: 2
         x: 2100
@@ -222,12 +222,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_4
+      name: M 1
       rect:
         serializedVersion: 2
-        x: 2800
+        x: 2802
         y: 2745
-        width: 700.6
+        width: 701
         height: 915
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_5
+      name: F 2
       rect:
         serializedVersion: 2
         x: 0
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_6
+      name: S Kane Adams
       rect:
         serializedVersion: 2
         x: 700
@@ -285,12 +285,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_7
+      name: S Jade West
       rect:
         serializedVersion: 2
-        x: 1400
+        x: 1405
         y: 1830
-        width: 700.6
+        width: 701
         height: 915
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_8
+      name: S Yung Gregg
       rect:
         serializedVersion: 2
         x: 2100
@@ -327,12 +327,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_9
+      name: Mr 1
       rect:
         serializedVersion: 2
         x: 0
         y: 915
-        width: 700.6
+        width: 701
         height: 915
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_10
+      name: Mr 2
       rect:
         serializedVersion: 2
         x: 700
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_11
+      name: M 2
       rect:
         serializedVersion: 2
         x: 1400
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_12
+      name: Ms 1
       rect:
         serializedVersion: 2
         x: 2100
@@ -411,90 +411,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_13
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 700.6
-        height: 915
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da9e166f204cc024cacf285a7e9bb1c8
-      internalID: 7029772028006881406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character Pictures_14
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 0
-        width: 700.6
-        height: 915
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 337fc20651f301c499b39a812ec54ced
-      internalID: 1725023662883316240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character Pictures_15
-      rect:
-        serializedVersion: 2
-        x: 1400
-        y: 0
-        width: 700.6
-        height: 915
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4519a1558ef7f4c4c87b240564e805d9
-      internalID: 8505027554404784953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character Pictures_16
-      rect:
-        serializedVersion: 2
-        x: 2100
-        y: 0
-        width: 700.6
-        height: 915
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27079f7eab9440a42928cc4427d99a02
-      internalID: -7343692073498277705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Character Pictures_17
       rect:
         serializedVersion: 2
@@ -503,7 +419,7 @@ TextureImporter:
         width: 701
         height: 915
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
