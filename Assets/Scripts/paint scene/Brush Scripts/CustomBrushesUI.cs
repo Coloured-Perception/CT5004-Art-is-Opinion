@@ -10,6 +10,7 @@ namespace unitycoder_MobilePaint {
 	/// this class controls the custom brush ui
 	/// </summary>
 	public class CustomBrushesUI : MonoBehaviour {
+
 		public MobilePaint mobilePaint;
 		public Button buttonTemplate;
 		public BrushSizeScript brushSizeScript;
@@ -30,6 +31,8 @@ namespace unitycoder_MobilePaint {
 		Vector2 filteredPoint;
 
 		[SerializeField] private int padding = 8;
+		
+
 
 		void Start() {
 			timeBeforeClick = timeBetweenClicks;
@@ -39,10 +42,13 @@ namespace unitycoder_MobilePaint {
 		}
 
 		private void Update() {
+
 			// Coral
 			// this tests wether the brush has changed size and so new custom brushes are needed
 			// the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
+
+
 				for (int i = transform.childCount - 1; i >= 0; --i) {
 					var child = transform.GetChild(i).gameObject;
 					Destroy(child);
@@ -115,23 +121,18 @@ namespace unitycoder_MobilePaint {
 		public void SetCustomBrush(int index) {
 			mobilePaint.selectedBrush = index;
 			mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
-			mobilePaint.SetDrawModeShapes();
-
 			//CloseCustomBrushPanel();
-			gameObject.SetActive(false);
 		}
 
-		//public void CloseCustomBrushPanel()
-		//{
-		//	//if (transform.childCount > 0)
-		//	//{
-		//	//	GameObject.Destroy(transform.GetChild(0));
-		//	//}
+		//public void CloseCustomBrushPanel() {
+
+		//		if (transform.childCount >0) {
+		//		GameObject.Destroy(transform.GetChild(0));
+		//	}
 		//	gameObject.SetActive(false);
 		//}
 
-		//public void OpenCustomBrushPanel()
-		//{
+		//public void OpenCustomBrushPanel() {
 		//	gameObject.SetActive(true);
 		//}
 

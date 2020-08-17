@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 123615568}
   - component: {fileID: 123615567}
   m_Layer: 5
-  m_Name: SaveConfirmation
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -708,8 +708,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.018426, y: 1, z: 1}
-  m_Children:
-  - {fileID: 683020185}
+  m_Children: []
   m_Father: {fileID: 1076385138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -861,7 +860,7 @@ RectTransform:
   m_LocalScale: {x: 0.91989434, y: 0.91989434, z: 0.91989434}
   m_Children: []
   m_Father: {fileID: 1076385138}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -1303,7 +1302,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 679784046}
+        m_MethodName: PanelShow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -2065,6 +2075,7 @@ MonoBehaviour:
   brushSizeScript: {fileID: 1350818534}
   panel: {fileID: 679784042}
   padding: 30
+  customBrushPanel: {fileID: 679784042}
 --- !u!1 &683020184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2088,7 @@ GameObject:
   - component: {fileID: 683020187}
   - component: {fileID: 683020186}
   m_Layer: 5
-  m_Name: SaveConfirmText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2092,14 +2103,14 @@ RectTransform:
   m_GameObject: {fileID: 683020184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.24885367, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 123615566}
-  m_RootOrder: 0
+  m_Father: {fileID: 1076385138}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 49.502304, y: 3}
+  m_AnchoredPosition: {x: -139, y: 127}
   m_SizeDelta: {x: 338, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &683020186
@@ -2683,6 +2694,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123615566}
+  - {fileID: 683020185}
   - {fileID: 1757921794}
   - {fileID: 288863936}
   m_Father: {fileID: 353257475}
@@ -3493,7 +3505,7 @@ RectTransform:
   m_LocalScale: {x: 0.91989434, y: 0.91989434, z: 0.91989434}
   m_Children: []
   m_Father: {fileID: 1076385138}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -4543,6 +4555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084494064}
   - component: {fileID: 2084494063}
+  - component: {fileID: 2084494062}
   - component: {fileID: 2084494065}
   m_Layer: 0
   m_Name: SaveCamera
@@ -4551,6 +4564,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &2084494062
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084494061}
+  m_Enabled: 0
 --- !u!20 &2084494063
 Camera:
   m_ObjectHideFlags: 0
@@ -4824,6 +4845,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 115009137}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:

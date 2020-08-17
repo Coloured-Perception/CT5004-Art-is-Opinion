@@ -67,7 +67,7 @@ namespace unitycoder_MobilePaint {
 
 				customSize += 1;
 			}
-
+			
 		}
 	}
 }

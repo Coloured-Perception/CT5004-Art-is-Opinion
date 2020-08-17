@@ -19,7 +19,6 @@ public class MenuButtonScript : MonoBehaviour {
 	void Update() {
 		if (timeWait > 0) {
 			timeWait -= Time.deltaTime;
-
 			if (timeWait <= 0) {
 				MenuUI.transform.gameObject.SetActive(true);
 				Street.transform.gameObject.SetActive(false);
