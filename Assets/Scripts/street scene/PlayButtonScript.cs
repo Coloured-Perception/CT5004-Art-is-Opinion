@@ -19,6 +19,7 @@ public class PlayButtonScript : MonoBehaviour {
 	void Update() {
 		if (timeWait > 0) {
 			timeWait -= Time.deltaTime;
+
 			if (timeWait <= 0) {
 				MenuUI.transform.gameObject.SetActive(false);
 				Street.transform.gameObject.SetActive(true);
