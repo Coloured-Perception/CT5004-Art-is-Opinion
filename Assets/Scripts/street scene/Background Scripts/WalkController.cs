@@ -6,7 +6,6 @@ using UnityEngine;
 /// this class manages the menu and street uis
 /// </summary>
 public class WalkController : MonoBehaviour {
-	
 	float timeWaitPeople = 0.2f;
 	float timeWaitClouds = 0.2f;
 	int location;
@@ -43,7 +42,7 @@ public class WalkController : MonoBehaviour {
 			if (timeWaitPeople <= 0) {
 
 				z = Random.Range(160, 210);
-				if  (z > 185) {
+				if (z > 185) {
 					z += 85;
 				}
 

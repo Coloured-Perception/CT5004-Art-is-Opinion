@@ -18,8 +18,9 @@ public class ColorPicker : MonoBehaviour {
 					Renderer rend = hit.transform.GetComponent<Renderer>();
 					MeshCollider meshCollider = hit.collider as MeshCollider;
 
-					if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
+					if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null) {
 						return;
+					}
 
 					Texture2D tex = rend.material.mainTexture as Texture2D;
 					Vector2 pixelUV = hit.textureCoord;

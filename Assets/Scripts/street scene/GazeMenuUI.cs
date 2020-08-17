@@ -9,7 +9,9 @@ public class GazeMenuUI : MonoBehaviour {
 	public Button ExitButton;
 	public Button GalleryMenuButton;
 	public Button StreetMenuButton;
+
 	public Camera mainCam;
+
 	public GameObject dialogueManager;
 	public GameObject menuUI;
 	public GameObject galleryUI;
@@ -17,18 +19,21 @@ public class GazeMenuUI : MonoBehaviour {
 	public GameObject image;
 	public GameObject yesNoButton;
 	public GameObject cameraShutterClose;
+
 	Vector3 PlayPos;
 	Vector3 DrawPos;
 	Vector3 GalleryPos;
 	Vector3 ExitPos;
 	Vector3 GalleryMenuPos;
 	Vector3 StreetMenuPos;
+
 	Rect PlayRect;
 	Rect DrawRect;
 	Rect GalleryRect;
 	Rect ExitRect;
 	Rect GalleryMenuRect;
 	Rect StreetMenuRect;
+
 	float PlayXMin;
 	float PlayXMax;
 	float PlayYMin;
