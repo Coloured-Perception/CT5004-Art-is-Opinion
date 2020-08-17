@@ -56,7 +56,7 @@ namespace unitycoder_MobilePaint
 		public void SetCustomPattern(int index)
 		{
 			mobilePaint.selectedPattern = index;
-			mobilePaint.ReadCurrentCustomPattern(); // tell mobile paint to read custom brush pixel data
+
 			ClosePanel();
 		}
 		

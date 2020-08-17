@@ -373,7 +373,7 @@ namespace unitycoder_MobilePaint {
 				lockMaskPixels = new byte[texWidth * texHeight * 4];
 			}
 
-			if (customPatterns != null && customPatterns.Length > 0) ReadCurrentCustomPattern();
+ 
 
 			// grid for line shapes
 			gridSize = texWidth / gridResolution;
@@ -401,7 +401,6 @@ namespace unitycoder_MobilePaint {
 
 			if (isGazing) {
 				// TEST: Undo key for desktop
-				if (undoEnabled && Input.GetKeyDown("u")) DoUndo();
 
 				// mouse is over UI element? then dont paint
 				if (eventSystem.IsPointerOverGameObject()) return;
@@ -437,11 +436,9 @@ namespace unitycoder_MobilePaint {
 					// lets paint where we hit
 					switch (drawMode) {
 						case DrawMode.Default: // brush
-							DrawCircle((int)pixelUV.x, (int)pixelUV.y);
 							break;
 
 						case DrawMode.Pattern:
-							DrawPatternCircle((int)pixelUV.x, (int)pixelUV.y);
 							break;
 
 						case DrawMode.CustomBrush:
@@ -451,22 +448,19 @@ namespace unitycoder_MobilePaint {
 						case DrawMode.FloodFill:
 							if (pixelUVOld == pixelUV) break;
 
-							CallFloodFill((int)pixelUV.x, (int)pixelUV.y);
+
 							break;
 
 						case DrawMode.ShapeLines:
 							if (snapLinesToGrid) {
-								DrawShapeLinePreview(SnapToGrid((int)pixelUV.x), SnapToGrid((int)pixelUV.y));
 							} else {
-								DrawShapeLinePreview((int)pixelUV.x, (int)pixelUV.y);
 							}
 							break;
 
 						case DrawMode.Eraser:
 							if (eraserMode == EraserMode.Default) {
-								EraseWithImage((int)pixelUV.x, (int)pixelUV.y);
 							} else {
-								EraseWithBackgroundColor((int)pixelUV.x, (int)pixelUV.y);
+
 							}
 							break;
 
@@ -489,7 +483,6 @@ namespace unitycoder_MobilePaint {
 				if (connectBrushStokes && textureNeedsUpdate) {
 					switch (drawMode) {
 						case DrawMode.Default: // drawing
-							DrawLine(pixelUVOld, pixelUV);
 							break;
 
 						case DrawMode.CustomBrush:
@@ -497,14 +490,11 @@ namespace unitycoder_MobilePaint {
 							break;
 
 						case DrawMode.Pattern:
-							DrawLineWithPattern(pixelUVOld, pixelUV);
 							break;
 
 						case DrawMode.Eraser:
 							if (eraserMode == EraserMode.Default) {
-								EraseWithImageLine(pixelUVOld, pixelUV);
 							} else {
-								EraseWithBackgroundColorLine(pixelUVOld, pixelUV);
 							}
 							break;
 
@@ -519,7 +509,6 @@ namespace unitycoder_MobilePaint {
 				if (Input.GetKeyDown("space")) {
 					// calculate area size
 					if (getAreaSize && useLockArea && useMaskLayerOnly && drawMode != DrawMode.FloodFill) {
-						LockAreaFillWithThresholdMaskOnlyGetArea(initialX, initialY, true);
 					}
 
 					// end shape line here
@@ -535,16 +524,14 @@ namespace unitycoder_MobilePaint {
 						// draw actual line from start to current pos
 						if (snapLinesToGrid) {
 							Vector2 extendLine = (pixelUV - new Vector2((float)firstClickX, (float)firstClickY)).normalized * (brushSize * 0.25f);
-							DrawLine(firstClickX - (int)extendLine.x, firstClickY - (int)extendLine.y, SnapToGrid((int)pixelUV.x + (int)extendLine.x), SnapToGrid((int)pixelUV.y + (int)extendLine.y));
 						} else {
 							// need to extend line to avoid too short start/end
 							Vector2 extendLine = (pixelUV - new Vector2((float)firstClickX, (float)firstClickY)).normalized * (brushSize * 0.25f);
-							DrawLine(firstClickX - (int)extendLine.x, firstClickY - (int)extendLine.y, (int)pixelUV.x + (int)extendLine.x, (int)pixelUV.y + (int)extendLine.y);
 						}
 						textureNeedsUpdate = true;
 					}
 
-					if (hideUIWhilePainting && !isUIVisible) ShowUI(); // show UI since we stopped drawing
+
 				}
 			}
 		}
@@ -569,28 +556,8 @@ namespace unitycoder_MobilePaint {
 
 		// handle mouse events
 		void MousePaint() {
-			// TEST: Undo key for desktop
-			if (undoEnabled && Input.GetKeyDown("u")) DoUndo();
-
-			// mouse is over UI element? then dont paint
-			if (eventSystem.IsPointerOverGameObject()) return;
-			if (eventSystem.currentSelectedGameObject != null) return;
-
-			// catch first mousedown
-			if (Input.GetKeyDown("space")) {
-				if (hideUIWhilePainting && isUIVisible) HideUI();
-
-				// when starting, grab undo buffer first
-				if (undoEnabled) GrabUndoBufferNow();
-
-				// if lock area is used, we need to take full area before painting starts
-				if (useLockArea) {
-					if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) return;
-
-					CreateAreaLockMask((int)(hit.textureCoord.x * texWidth), (int)(hit.textureCoord.y * texHeight));
-				}
-			}
-
+		
+		
 			// left button is held down, draw
 			if (Input.GetKey("space")) {
 				// Only if we hit something, then we continue
@@ -606,11 +573,9 @@ namespace unitycoder_MobilePaint {
 				// lets paint where we hit
 				switch (drawMode) {
 					case DrawMode.Default: // brush
-						DrawCircle((int)pixelUV.x, (int)pixelUV.y);
 						break;
 
 					case DrawMode.Pattern:
-						DrawPatternCircle((int)pixelUV.x, (int)pixelUV.y);
 						break;
 
 					case DrawMode.CustomBrush:
@@ -620,23 +585,19 @@ namespace unitycoder_MobilePaint {
 					case DrawMode.FloodFill:
 						if (pixelUVOld == pixelUV) break;
 
-						CallFloodFill((int)pixelUV.x, (int)pixelUV.y);
+
 						break;
 
 					case DrawMode.ShapeLines:
 						if (snapLinesToGrid) {
-							DrawShapeLinePreview(SnapToGrid((int)pixelUV.x), SnapToGrid((int)pixelUV.y));
 						} else {
 
-							DrawShapeLinePreview((int)pixelUV.x, (int)pixelUV.y);
 						}
 						break;
 
 					case DrawMode.Eraser:
 						if (eraserMode == EraserMode.Default) {
-							EraseWithImage((int)pixelUV.x, (int)pixelUV.y);
 						} else {
-							EraseWithBackgroundColor((int)pixelUV.x, (int)pixelUV.y);
 						}
 						break;
 
@@ -659,7 +620,6 @@ namespace unitycoder_MobilePaint {
 			if (connectBrushStokes && textureNeedsUpdate) {
 				switch (drawMode) {
 					case DrawMode.Default: // drawing
-						DrawLine(pixelUVOld, pixelUV);
 						break;
 
 					case DrawMode.CustomBrush:
@@ -667,14 +627,11 @@ namespace unitycoder_MobilePaint {
 						break;
 
 					case DrawMode.Pattern:
-						DrawLineWithPattern(pixelUVOld, pixelUV);
 						break;
 
 					case DrawMode.Eraser:
 						if (eraserMode == EraserMode.Default) {
-							EraseWithImageLine(pixelUVOld, pixelUV);
 						} else {
-							EraseWithBackgroundColorLine(pixelUVOld, pixelUV);
 						}
 						break;
 
@@ -689,7 +646,6 @@ namespace unitycoder_MobilePaint {
 			if (Input.GetKeyDown("space")) {
 				// calculate area size
 				if (getAreaSize && useLockArea && useMaskLayerOnly && drawMode != DrawMode.FloodFill) {
-					LockAreaFillWithThresholdMaskOnlyGetArea(initialX, initialY, true);
 				}
 
 				// end shape line here
@@ -705,29 +661,17 @@ namespace unitycoder_MobilePaint {
 					// draw actual line from start to current pos
 					if (snapLinesToGrid) {
 						Vector2 extendLine = (pixelUV - new Vector2((float)firstClickX, (float)firstClickY)).normalized * (brushSize * 0.25f);
-						DrawLine(firstClickX - (int)extendLine.x, firstClickY - (int)extendLine.y, SnapToGrid((int)pixelUV.x + (int)extendLine.x), SnapToGrid((int)pixelUV.y + (int)extendLine.y));
 					} else {
 						// need to extend line to avoid too short start/end
 						Vector2 extendLine = (pixelUV - new Vector2((float)firstClickX, (float)firstClickY)).normalized * (brushSize * 0.25f);
-						DrawLine(firstClickX - (int)extendLine.x, firstClickY - (int)extendLine.y, (int)pixelUV.x + (int)extendLine.x, (int)pixelUV.y + (int)extendLine.y);
 					}
 					textureNeedsUpdate = true;
 				}
 
-				if (hideUIWhilePainting && !isUIVisible) ShowUI(); // show UI since we stopped drawing
 			}
 		}
 
-		public virtual void HideUI() {
-			isUIVisible = false;
-			userInterface.SetActive(isUIVisible);
-		}
-
-		public virtual void ShowUI() {
-			isUIVisible = true;
-			userInterface.SetActive(isUIVisible);
-		}
-
+		
 		void UpdateTexture() {
 			textureNeedsUpdate = false;
 			drawingTexture.LoadRawTextureData(pixels);
@@ -741,129 +685,18 @@ namespace unitycoder_MobilePaint {
 			if (useThreshold) {
 				if (useMaskLayerOnly) {
 					if (getAreaSize) {
-						LockAreaFillWithThresholdMaskOnlyGetArea(x, y, false);
 					} else {
-						LockAreaFillWithThresholdMaskOnly(x, y);
 					}
 				} else {
-					LockMaskFillWithThreshold(x, y);
 				}
 			} else { // no threshold
 				if (useMaskLayerOnly) {
-					LockAreaFillMaskOnly(x, y);
+
 				} else {
-					LockAreaFill(x, y);
 				}
 			}
 		}
 
-		public void DrawShapeLinePreview(int x, int y) {
-			Vector3 worldPixelPos = PixelToWorld(x, y);
-
-			// just started
-			if (!haveStartedLine) {
-				haveStartedLine = true;
-
-				firstClickX = x;
-				firstClickY = y;
-
-				lineRenderer.SetPosition(0, worldPixelPos);
-				previewLineCircleStart.position = worldPixelPos;
-			} else { // button is kept down
-
-				// draw preview from start to current pos
-				lineRenderer.SetPosition(1, worldPixelPos);
-				previewLineCircleEnd.position = worldPixelPos;
-			}
-			// add rounded linerenderer ends
-		}
-
-		// main painting function, modified from http://stackoverflow.com/b/24453110
-		public void DrawCircle(int x, int y) {
-			int pixel = 0;
-
-			for (int i = 0; i < brushSizeX4; i++) {
-				int tx = (i % brushSizeX1) - brushSize;
-				int ty = (i / brushSizeX1) - brushSize;
-
-				if (tx * tx + ty * ty > brushSizeXbrushSize) continue;
-				if (x + tx < 0 || y + ty < 0 || x + tx >= texWidth || y + ty >= texHeight) continue; // temporary fix for corner painting
-
-				pixel = (texWidth * (y + ty) + x + tx) << 2;
-
-				if (useAdditiveColors) {
-					if (!useLockArea || (useLockArea && lockMaskPixels[pixel] == 1)) {
-						pixels[pixel] = ByteLerp(pixels[pixel], paintColor.r, alphaLerpVal);
-						pixels[pixel + 1] = ByteLerp(pixels[pixel + 1], paintColor.g, alphaLerpVal);
-						pixels[pixel + 2] = ByteLerp(pixels[pixel + 2], paintColor.b, alphaLerpVal);
-						pixels[pixel + 3] = ByteLerp(pixels[pixel + 3], paintColor.a, alphaLerpVal);
-					}
-				} else { // no additive, just paint my color
-					if (!useLockArea || (useLockArea && lockMaskPixels[pixel] == 1)) {
-						pixels[pixel] = paintColor.r;
-						pixels[pixel + 1] = paintColor.g;
-						pixels[pixel + 2] = paintColor.b;
-						pixels[pixel + 3] = paintColor.a;
-					}
-				} // if additive
-			} // for area
-		} // DrawCircle()
-
-		// Temporary basic eraser tool
-		public void EraseWithBackgroundColor(int x, int y) {
-			var origColor = paintColor;
-			paintColor = clearColor;
-
-			DrawCircle(x, y);
-
-			paintColor = origColor;
-		}
-
-		public void EraseWithImage(int x, int y) {
-			int pixel = 0;
-			for (int i = 0; i < brushSizeX4; i++) {
-				int tx = (i % brushSizeX1) - brushSize;
-				int ty = (i / brushSizeX1) - brushSize;
-
-				if (tx * tx + ty * ty > brushSizeXbrushSize) continue;
-				if (x + tx < 0 || y + ty < 0 || x + tx >= texWidth || y + ty >= texHeight) continue; // temporary fix for corner painting
-
-				pixel = (texWidth * (y + ty) + x + tx) << 2;
-
-				float xx = Mathf.Repeat(y + ty, texHeight);
-				float yy = Mathf.Repeat(x + tx, texWidth);
-				int pixel2 = (int)Mathf.Repeat((texWidth * xx + yy) * 4, clearPixels.Length);
-
-				pixels[pixel] = clearPixels[pixel2];
-				pixels[pixel + 1] = clearPixels[pixel2 + 1];
-				pixels[pixel + 2] = clearPixels[pixel2 + 2];
-				pixels[pixel + 3] = clearPixels[pixel2 + 3];
-			}
-		}
-
-		public void DrawPatternCircle(int x, int y) {
-			int pixel = 0;
-			for (int i = 0; i < brushSizeX4; i++) {
-				int tx = (i % brushSizeX1) - brushSize;
-				int ty = (i / brushSizeX1) - brushSize;
-
-				if (tx * tx + ty * ty > brushSizeXbrushSize) continue;
-				if (x + tx < 0 || y + ty < 0 || x + tx >= texWidth || y + ty >= texHeight) continue; // temporary fix for corner painting
-
-				pixel = (texWidth * (y + ty) + x + tx) << 2;
-
-				if (!useLockArea || (useLockArea && lockMaskPixels[pixel] == 1)) {
-					float yy = Mathf.Repeat(y + ty, customPatternWidth);
-					float xx = Mathf.Repeat(x + tx, customPatternWidth);
-					int pixel2 = (int)Mathf.Repeat((customPatternWidth * xx + yy) * 4, patternBrushBytes.Length);
-
-					pixels[pixel] = patternBrushBytes[pixel2];
-					pixels[pixel + 1] = patternBrushBytes[pixel2 + 1];
-					pixels[pixel + 2] = patternBrushBytes[pixel2 + 2];
-					pixels[pixel + 3] = patternBrushBytes[pixel2 + 3];
-				}
-			} // for area
-		} // DrawPatternCircle()
 
 		// actual custom brush painting function
 		void DrawCustomBrush(int px, int py) {
@@ -952,537 +785,11 @@ namespace unitycoder_MobilePaint {
 				pixel = (texWidth * (startY == 0 ? 1 : startY + y) + startX + 1) * 4;
 			} // for y
 		} // DrawCustomBrush
+		
 
-		void FloodFillMaskOnly(int x, int y) {
-			// get canvas hit color
-			byte hitColorR = maskPixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = maskPixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = maskPixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = maskPixels[((texWidth * (y) + x) * 4) + 3];
+		
 
-			if (!canDrawOnBlack) {
-				if (hitColorA == 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-					if (lockMaskPixels[pixel] == 0
-						&& maskPixels[pixel + 0] == hitColorR
-						&& maskPixels[pixel + 1] == hitColorG
-						&& maskPixels[pixel + 2] == hitColorB
-						&& maskPixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& maskPixels[pixel + 0] == hitColorR
-						&& maskPixels[pixel + 1] == hitColorG
-						&& maskPixels[pixel + 2] == hitColorB
-						&& maskPixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& maskPixels[pixel + 0] == hitColorR
-						&& maskPixels[pixel + 1] == hitColorG
-						&& maskPixels[pixel + 2] == hitColorB
-						&& maskPixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& maskPixels[pixel + 0] == hitColorR
-						&& maskPixels[pixel + 1] == hitColorG
-						&& maskPixels[pixel + 2] == hitColorB
-						&& maskPixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // floodfill
-
-		void CallFloodFill(int x, int y) {
-			if (useThreshold) {
-				if (useMaskLayerOnly) {
-					FloodFillMaskOnlyWithThreshold(x, y);
-				} else {
-					FloodFillWithTreshold(x, y);
-				}
-			} else { // no threshold
-				if (useMaskLayerOnly) {
-					FloodFillMaskOnly(x, y);
-				} else {
-					FloodFill(x, y);
-				}
-			}
-		}
-
-		// basic floodfill
-		void FloodFill(int x, int y) {
-			// get canvas hit color
-			byte hitColorR = pixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = pixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = pixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = pixels[((texWidth * (y) + x) * 4) + 3];
-
-			// early exit if its same color already
-			if (paintColor.r == hitColorR && paintColor.g == hitColorG && paintColor.b == hitColorB && paintColor.a == hitColorA) return;
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-					if (pixels[pixel + 0] == hitColorR
-						&& pixels[pixel + 1] == hitColorG
-						&& pixels[pixel + 2] == hitColorB
-						&& pixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-
-						DrawPoint(pixel);
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (pixels[pixel + 0] == hitColorR
-						&& pixels[pixel + 1] == hitColorG
-						&& pixels[pixel + 2] == hitColorB
-						&& pixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (pixels[pixel + 0] == hitColorR
-						&& pixels[pixel + 1] == hitColorG
-						&& pixels[pixel + 2] == hitColorB
-						&& pixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (pixels[pixel + 0] == hitColorR
-						&& pixels[pixel + 1] == hitColorG
-						&& pixels[pixel + 2] == hitColorB
-						&& pixels[pixel + 3] == hitColorA) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-
-						DrawPoint(pixel);
-					}
-				}
-			}
-		} // floodfill
-
-		void FloodFillMaskOnlyWithThreshold(int x, int y) {
-			//Debug.Log("hits");
-			// get canvas hit color
-			byte hitColorR = maskPixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = maskPixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = maskPixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = maskPixels[((texWidth * (y) + x) * 4) + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorA != 0) return;
-			}
-
-			// early exit if outside threshold?
-			if (paintColor.r == hitColorR && paintColor.g == hitColorG && paintColor.b == hitColorB && paintColor.a == hitColorA) return;
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(maskPixels[pixel + 0], hitColorR)
-						&& CompareThreshold(maskPixels[pixel + 1], hitColorG)
-						&& CompareThreshold(maskPixels[pixel + 2], hitColorB)
-						&& CompareThreshold(maskPixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(maskPixels[pixel + 0], hitColorR)
-						&& CompareThreshold(maskPixels[pixel + 1], hitColorG)
-						&& CompareThreshold(maskPixels[pixel + 2], hitColorB)
-						&& CompareThreshold(maskPixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(maskPixels[pixel + 0], hitColorR)
-						&& CompareThreshold(maskPixels[pixel + 1], hitColorG)
-						&& CompareThreshold(maskPixels[pixel + 2], hitColorB)
-						&& CompareThreshold(maskPixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(maskPixels[pixel + 0], hitColorR)
-						&& CompareThreshold(maskPixels[pixel + 1], hitColorG)
-						&& CompareThreshold(maskPixels[pixel + 2], hitColorB)
-						&& CompareThreshold(maskPixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // floodfillWithTreshold
-
-		void FloodFillWithTreshold(int x, int y) {
-			// get canvas hit color
-			byte hitColorR = pixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = pixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = pixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = pixels[((texWidth * (y) + x) * 4) + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			// early exit if outside threshold
-			if (paintColor.r == hitColorR && paintColor.g == hitColorG && paintColor.b == hitColorB && paintColor.a == hitColorA) return;
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(pixels[pixel + 0], hitColorR)
-						&& CompareThreshold(pixels[pixel + 1], hitColorG)
-						&& CompareThreshold(pixels[pixel + 2], hitColorB)
-						&& CompareThreshold(pixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(pixels[pixel + 0], hitColorR)
-						&& CompareThreshold(pixels[pixel + 1], hitColorG)
-						&& CompareThreshold(pixels[pixel + 2], hitColorB)
-						&& CompareThreshold(pixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(pixels[pixel + 0], hitColorR)
-						&& CompareThreshold(pixels[pixel + 1], hitColorG)
-						&& CompareThreshold(pixels[pixel + 2], hitColorB)
-						&& CompareThreshold(pixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& CompareThreshold(pixels[pixel + 0], hitColorR)
-						&& CompareThreshold(pixels[pixel + 1], hitColorG)
-						&& CompareThreshold(pixels[pixel + 2], hitColorB)
-						&& CompareThreshold(pixels[pixel + 3], hitColorA)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-
-						DrawPoint(pixel);
-
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // floodfillWithTreshold
-
-		void LockAreaFill(int x, int y) {
-			byte hitColorR = pixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = pixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = pixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = pixels[((texWidth * (y) + x) * 4) + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-
-					if (lockMaskPixels[pixel] == 0
-						&& (pixels[pixel + 0] == hitColorR || pixels[pixel + 0] == paintColor.r)
-						&& (pixels[pixel + 1] == hitColorG || pixels[pixel + 1] == paintColor.g)
-						&& (pixels[pixel + 2] == hitColorB || pixels[pixel + 2] == paintColor.b)
-						&& (pixels[pixel + 3] == hitColorA || pixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& (pixels[pixel + 0] == hitColorR || pixels[pixel + 0] == paintColor.r)
-						&& (pixels[pixel + 1] == hitColorG || pixels[pixel + 1] == paintColor.g)
-						&& (pixels[pixel + 2] == hitColorB || pixels[pixel + 2] == paintColor.b)
-						&& (pixels[pixel + 3] == hitColorA || pixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& (pixels[pixel + 0] == hitColorR || pixels[pixel + 0] == paintColor.r)
-						&& (pixels[pixel + 1] == hitColorG || pixels[pixel + 1] == paintColor.g)
-						&& (pixels[pixel + 2] == hitColorB || pixels[pixel + 2] == paintColor.b)
-						&& (pixels[pixel + 3] == hitColorA || pixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& (pixels[pixel + 0] == hitColorR || pixels[pixel + 0] == paintColor.r)
-						&& (pixels[pixel + 1] == hitColorG || pixels[pixel + 1] == paintColor.g)
-						&& (pixels[pixel + 2] == hitColorB || pixels[pixel + 2] == paintColor.b)
-						&& (pixels[pixel + 3] == hitColorA || pixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // LockAreaFill
-
-		void LockAreaFillMaskOnly(int x, int y) {
-			byte hitColorR = maskPixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = maskPixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = maskPixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = maskPixels[((texWidth * (y) + x) * 4) + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-
-					if (lockMaskPixels[pixel] == 0
-						&& (maskPixels[pixel + 0] == hitColorR || maskPixels[pixel + 0] == paintColor.r)
-						&& (maskPixels[pixel + 1] == hitColorG || maskPixels[pixel + 1] == paintColor.g)
-						&& (maskPixels[pixel + 2] == hitColorB || maskPixels[pixel + 2] == paintColor.b)
-						&& (maskPixels[pixel + 3] == hitColorA || maskPixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& (maskPixels[pixel + 0] == hitColorR || maskPixels[pixel + 0] == paintColor.r)
-						&& (maskPixels[pixel + 1] == hitColorG || maskPixels[pixel + 1] == paintColor.g)
-						&& (maskPixels[pixel + 2] == hitColorB || maskPixels[pixel + 2] == paintColor.b)
-						&& (maskPixels[pixel + 3] == hitColorA || maskPixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& (maskPixels[pixel + 0] == hitColorR || maskPixels[pixel + 0] == paintColor.r)
-						&& (maskPixels[pixel + 1] == hitColorG || maskPixels[pixel + 1] == paintColor.g)
-						&& (maskPixels[pixel + 2] == hitColorB || maskPixels[pixel + 2] == paintColor.b)
-						&& (maskPixels[pixel + 3] == hitColorA || maskPixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& (maskPixels[pixel + 0] == hitColorR || maskPixels[pixel + 0] == paintColor.r)
-						&& (maskPixels[pixel + 1] == hitColorG || maskPixels[pixel + 1] == paintColor.g)
-						&& (maskPixels[pixel + 2] == hitColorB || maskPixels[pixel + 2] == paintColor.b)
-						&& (maskPixels[pixel + 3] == hitColorA || maskPixels[pixel + 3] == paintColor.a)) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // LockAreaFillMaskOnly
+		
 
 		// compares if two values are below threshold
 		bool CompareThreshold(byte a, byte b) {
@@ -1490,279 +797,14 @@ namespace unitycoder_MobilePaint {
 			return (a - b) <= paintThreshold;
 		}
 
-		// create locking mask floodfill, using threshold, checking pixels from mask only
-		void LockAreaFillWithThresholdMaskOnly(int x, int y) {
-			// get canvas color from this point
-			byte hitColorR = maskPixels[(texWidth * y + x) * 4 + 0];
-			byte hitColorG = maskPixels[(texWidth * y + x) * 4 + 1];
-			byte hitColorB = maskPixels[(texWidth * y + x) * 4 + 2];
-			byte hitColorA = maskPixels[(texWidth * y + x) * 4 + 3];
+		
 
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-
-					if (lockMaskPixels[pixel] == 0 // this pixel is not used yet
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // LockAreaFillWithThresholdMaskOnly
-
-		void LockAreaFillWithThresholdMaskOnlyGetArea(int x, int y, bool getArea) {
-			// temporary fix for IOS notification center pulldown crash
-			if (x >= texWidth) x = texWidth - 1;
-			if (y >= texHeight) y = texHeight - 1;
-
-			int fullArea = 0;
-			int alreadyFilled = 0;
-
-			// get canvas color from this point
-			byte hitColorR = maskPixels[(texWidth * y + x) * 4 + 0];
-			byte hitColorG = maskPixels[(texWidth * y + x) * 4 + 1];
-			byte hitColorB = maskPixels[(texWidth * y + x) * 4 + 2];
-			byte hitColorA = maskPixels[(texWidth * y + x) * 4 + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-
-					if (lockMaskPixels[pixel] == 0 // this pixel is not used yet
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-						lockMaskPixels[pixel] = 1;
-						fullArea++;
-
-						if (IsSameColor(paintColor, pixels[pixel + 0], pixels[pixel + 1], pixels[pixel + 2])) {
-							alreadyFilled++;
-						}
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-						fullArea++;
-						if (IsSameColor(paintColor, pixels[pixel + 0], pixels[pixel + 1], pixels[pixel + 2])) {
-							alreadyFilled++;
-						}
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-						fullArea++;
-						if (IsSameColor(paintColor, pixels[pixel + 0], pixels[pixel + 1], pixels[pixel + 2])) {
-							alreadyFilled++;
-						}
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(maskPixels[pixel + 0], hitColorR))
-						&& (CompareThreshold(maskPixels[pixel + 1], hitColorG))
-						&& (CompareThreshold(maskPixels[pixel + 2], hitColorB))
-						&& (CompareThreshold(maskPixels[pixel + 3], hitColorA))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-						lockMaskPixels[pixel] = 1;
-						fullArea++;
-						if (IsSameColor(paintColor, pixels[pixel + 0], pixels[pixel + 1], pixels[pixel + 2])) {
-							alreadyFilled++;
-						}
-					}
-				}
-			} // while
-
-			if (getArea) {
-				if (AreaPaintedEvent != null) AreaPaintedEvent(fullArea, alreadyFilled, alreadyFilled / (float)fullArea * 100f, PixelToWorld(x, y));
-			}
-		} // void
 
 		bool IsSameColor(Color32 a, byte r, byte g, byte b) {
 			return (a.r == r && a.g == g && a.b == b);
 		}
 
-		// create locking mask floodfill, using threshold
-		void LockMaskFillWithThreshold(int x, int y) {
-			// get canvas color from this point
-			byte hitColorR = pixels[((texWidth * (y) + x) * 4) + 0];
-			byte hitColorG = pixels[((texWidth * (y) + x) * 4) + 1];
-			byte hitColorB = pixels[((texWidth * (y) + x) * 4) + 2];
-			byte hitColorA = pixels[((texWidth * (y) + x) * 4) + 3];
-
-			if (!canDrawOnBlack) {
-				if (hitColorR == 0 && hitColorG == 0 && hitColorB == 0 && hitColorA != 0) return;
-			}
-
-			Queue<int> fillPointX = new Queue<int>();
-			Queue<int> fillPointY = new Queue<int>();
-			fillPointX.Enqueue(x);
-			fillPointY.Enqueue(y);
-
-			int ptsx, ptsy;
-			int pixel = 0;
-
-			lockMaskPixels = new byte[texWidth * texHeight * 4];
-
-			while (fillPointX.Count > 0) {
-				ptsx = fillPointX.Dequeue();
-				ptsy = fillPointY.Dequeue();
-
-				if (ptsy - 1 > -1) {
-					pixel = (texWidth * (ptsy - 1) + ptsx) * 4; // down
-
-					if (lockMaskPixels[pixel] == 0 // this pixel is not used yet
-						&& (CompareThreshold(pixels[pixel + 0], hitColorR) || CompareThreshold(pixels[pixel + 0], paintColor.r)) // if pixel is same as hit color OR same as paint color
-						&& (CompareThreshold(pixels[pixel + 1], hitColorG) || CompareThreshold(pixels[pixel + 1], paintColor.g))
-						&& (CompareThreshold(pixels[pixel + 2], hitColorB) || CompareThreshold(pixels[pixel + 2], paintColor.b))
-						&& (CompareThreshold(pixels[pixel + 3], hitColorA) || CompareThreshold(pixels[pixel + 3], paintColor.a))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy - 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx + 1 < texWidth) {
-					pixel = (texWidth * ptsy + ptsx + 1) * 4; // right
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(pixels[pixel + 0], hitColorR) || CompareThreshold(pixels[pixel + 0], paintColor.r)) // if pixel is same as hit color OR same as paint color
-						&& (CompareThreshold(pixels[pixel + 1], hitColorG) || CompareThreshold(pixels[pixel + 1], paintColor.g))
-						&& (CompareThreshold(pixels[pixel + 2], hitColorB) || CompareThreshold(pixels[pixel + 2], paintColor.b))
-						&& (CompareThreshold(pixels[pixel + 3], hitColorA) || CompareThreshold(pixels[pixel + 3], paintColor.a))) {
-						fillPointX.Enqueue(ptsx + 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsx - 1 > -1) {
-					pixel = (texWidth * ptsy + ptsx - 1) * 4; // left
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(pixels[pixel + 0], hitColorR) || CompareThreshold(pixels[pixel + 0], paintColor.r)) // if pixel is same as hit color OR same as paint color
-						&& (CompareThreshold(pixels[pixel + 1], hitColorG) || CompareThreshold(pixels[pixel + 1], paintColor.g))
-						&& (CompareThreshold(pixels[pixel + 2], hitColorB) || CompareThreshold(pixels[pixel + 2], paintColor.b))
-						&& (CompareThreshold(pixels[pixel + 3], hitColorA) || CompareThreshold(pixels[pixel + 3], paintColor.a))) {
-						fillPointX.Enqueue(ptsx - 1);
-						fillPointY.Enqueue(ptsy);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-
-				if (ptsy + 1 < texHeight) {
-					pixel = (texWidth * (ptsy + 1) + ptsx) * 4; // up
-					if (lockMaskPixels[pixel] == 0
-						&& (CompareThreshold(pixels[pixel + 0], hitColorR) || CompareThreshold(pixels[pixel + 0], paintColor.r)) // if pixel is same as hit color OR same as paint color
-						&& (CompareThreshold(pixels[pixel + 1], hitColorG) || CompareThreshold(pixels[pixel + 1], paintColor.g))
-						&& (CompareThreshold(pixels[pixel + 2], hitColorB) || CompareThreshold(pixels[pixel + 2], paintColor.b))
-						&& (CompareThreshold(pixels[pixel + 3], hitColorA) || CompareThreshold(pixels[pixel + 3], paintColor.a))) {
-						fillPointX.Enqueue(ptsx);
-						fillPointY.Enqueue(ptsy + 1);
-						lockMaskPixels[pixel] = 1;
-					}
-				}
-			}
-		} // LockMaskFillWithTreshold
+		
 
 		// get custom brush texture into custombrushpixels array, this needs to be called if custom brush is changed
 		public void ReadCurrentCustomBrush() {
@@ -1789,28 +831,7 @@ namespace unitycoder_MobilePaint {
 			texHeightMinusCustomBrushHeight = texHeight - customBrushHeight;
 		}
 
-		// reads current texture pattern into pixel array, NOTE: only works with square textures
-		public void ReadCurrentCustomPattern() {
-			if (customPatterns == null || customPatterns.Length == 0 || customPatterns[selectedPattern] == null) { Debug.LogError("Problem: No custom patterns assigned on " + gameObject.name); return; }
 
-			customPatternWidth = customPatterns[selectedPattern].width;
-			customPatternHeight = customPatterns[selectedPattern].height;
-			patternBrushBytes = new byte[customPatternWidth * customPatternHeight * 4];
-
-			int pixel = 0;
-			Color32[] brushPixel = customPatterns[selectedPattern].GetPixels32();
-
-			for (int x = 0; x < customPatternWidth; x++) {
-				for (int y = 0; y < customPatternHeight; y++) {
-					patternBrushBytes[pixel] = brushPixel[x + y * customPatternWidth].r;
-					patternBrushBytes[pixel + 1] = brushPixel[x + y * customPatternWidth].g;
-					patternBrushBytes[pixel + 2] = brushPixel[x + y * customPatternWidth].b;
-					patternBrushBytes[pixel + 3] = brushPixel[x + y * customPatternWidth].a;
-
-					pixel += 4;
-				}
-			}
-		}
 
 		// draws single point to this pixel coordinate, with current paint color
 		public void DrawPoint(int x, int y) {
@@ -1829,50 +850,12 @@ namespace unitycoder_MobilePaint {
 			pixels[pixel + 3] = paintColor.a;
 		}
 
-		// draw line between 2 points (if moved too far/fast)
-		// http://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
-		public void DrawLine(int startX, int startY, int endX, int endY) {
-			int x1 = endX;
-			int y1 = endY;
-			int tempVal = x1 - startX;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
-			tempVal = y1 - startY;
-			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
-
-			int sx = startX < x1 ? 1 : -1;
-			int sy = startY < y1 ? 1 : -1;
-			int err = dx - dy;
-			int pixelCount = 0;
-			int e2;
-			for (; ; ) // endless loop
-			{
-				if (hiQualityBrush) {
-					DrawCircle(startX, startY);
-				} else {
-					pixelCount++;
-					if (pixelCount > brushSizeDiv4) // might have small gaps if this is used, but its alot(tm) faster to skip few pixels
-					{
-						pixelCount = 0;
-
-						DrawCircle(startX, startY);
-					}
-				}
-
-				if (startX == x1 && startY == y1) break;
-				e2 = 2 * err;
-				if (e2 > -dy) {
-					err = err - dy;
-					startX = startX + sx;
-				} else if (e2 < dx) {
-					err = err + dx;
-					startY = startY + sy;
-				}
-			}
-		} // drawline
-
-		public void DrawLine(Vector2 start, Vector2 end) {
-			DrawLine((int)start.x, (int)start.y, (int)end.x, (int)end.y);
-		}
+			
+		/// <summary>
+		/// ///////////////////////////////////////////////////////////////////needed otherwise the lines are patchy
+		/// </summary>
+		/// <param name="start"></param>
+		/// <param name="end"></param>
 
 		void DrawLineWithBrush(Vector2 start, Vector2 end) {
 			int x0 = (int)start.x;
@@ -1912,145 +895,10 @@ namespace unitycoder_MobilePaint {
 			}
 		}
 
-		void DrawLineWithPattern(Vector2 start, Vector2 end) {
-			int x0 = (int)start.x;
-			int y0 = (int)start.y;
-			int x1 = (int)end.x;
-			int y1 = (int)end.y;
-			int tempVal = x1 - x0;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
-			tempVal = y1 - y0;
-			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
-			int sx = x0 < x1 ? 1 : -1;
-			int sy = y0 < y1 ? 1 : -1;
-			int err = dx - dy;
-			int pixelCount = 0;
-			int e2;
-			for (; ; )
-			{
-				if (hiQualityBrush) {
-					DrawPatternCircle(x0, y0);
-				} else {
-					pixelCount++;
-					if (pixelCount > brushSizeDiv4) {
-						pixelCount = 0;
+		
+		
+		
 
-						DrawPatternCircle(x0, y0);
-					}
-				}
-
-				if ((x0 == x1) && (y0 == y1)) break;
-				e2 = 2 * err;
-				if (e2 > -dy) {
-					err = err - dy;
-					x0 = x0 + sx;
-				} else if (e2 < dx) {
-					err = err + dx;
-					y0 = y0 + sy;
-				}
-			}
-		}
-
-		void EraseWithImageLine(Vector2 start, Vector2 end) {
-			int x0 = (int)start.x;
-			int y0 = (int)start.y;
-			int x1 = (int)end.x;
-			int y1 = (int)end.y;
-			int tempVal = x1 - x0;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
-			tempVal = y1 - y0;
-			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
-			int sx = x0 < x1 ? 1 : -1;
-			int sy = y0 < y1 ? 1 : -1;
-			int err = dx - dy;
-			int pixelCount = 0;
-			int e2;
-			for (; ; )
-			{
-				if (hiQualityBrush) {
-					EraseWithImage(x0, y0);
-				} else {
-					pixelCount++;
-					if (pixelCount > brushSizeDiv4) {
-						pixelCount = 0;
-
-						EraseWithImage(x0, y0);
-					}
-				}
-
-				if ((x0 == x1) && (y0 == y1)) break;
-				e2 = 2 * err;
-				if (e2 > -dy) {
-					err = err - dy;
-					x0 = x0 + sx;
-				} else if (e2 < dx) {
-					err = err + dx;
-					y0 = y0 + sy;
-				}
-			}
-		}
-
-		void EraseWithBackgroundColorLine(Vector2 start, Vector2 end) {
-			int x0 = (int)start.x;
-			int y0 = (int)start.y;
-			int x1 = (int)end.x;
-			int y1 = (int)end.y;
-			int tempVal = x1 - x0;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
-			tempVal = y1 - y0;
-			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
-			int sx = x0 < x1 ? 1 : -1;
-			int sy = y0 < y1 ? 1 : -1;
-			int err = dx - dy;
-			int pixelCount = 0;
-			int e2;
-			for (; ; )
-			{
-				if (hiQualityBrush) {
-					EraseWithBackgroundColor(x0, y0);
-				} else {
-					pixelCount++;
-					if (pixelCount > brushSizeDiv4) {
-						pixelCount = 0;
-
-						EraseWithBackgroundColor(x0, y0);
-					}
-				}
-
-				if ((x0 == x1) && (y0 == y1)) break;
-				e2 = 2 * err;
-				if (e2 > -dy) {
-					err = err - dy;
-					x0 = x0 + sx;
-				} else if (e2 < dx) {
-					err = err + dx;
-					y0 = y0 + sy;
-				}
-			}
-		}
-
-		// Basic undo function, copies original array (before drawing) into the image and applies it
-		public void DoUndo() {
-			if (undoEnabled) {
-				if (undoPixels.Count > 0) {
-					System.Array.Copy(undoPixels[undoPixels.Count - 1], pixels, undoPixels[undoPixels.Count - 1].Length);
-					drawingTexture.LoadRawTextureData(undoPixels[undoPixels.Count - 1]);
-					drawingTexture.Apply(false);
-
-					undoPixels.RemoveAt(undoPixels.Count - 1);
-				} // else, no undo available
-			}
-		}
-
-		public void GrabUndoBufferNow() {
-			// TODO: remove oldest item, if too many buffers
-			if (undoPixels.Count >= maxUndoBuffers) {
-				undoPixels.RemoveAt(0);
-			}
-
-			undoPixels.Add(new byte[texWidth * texHeight * 4]); // TODO: need to reset size, if image size changes
-			System.Array.Copy(pixels, undoPixels[undoPixels.Count - 1], pixels.Length);
-		}
 
 		// if this is called, undo buffer gets updated
 		public void ClearImage() {
@@ -2060,7 +908,6 @@ namespace unitycoder_MobilePaint {
 		// this override can be called with bool, to disable undo buffer grab
 		public void ClearImage(bool updateUndoBuffer) {
 			if (undoEnabled && updateUndoBuffer) {
-				GrabUndoBufferNow();
 			}
 
 			if (usingClearingImage) {
@@ -2197,7 +1044,6 @@ namespace unitycoder_MobilePaint {
 
 		// returns screenshot as Texture2D
 		public Texture2D GetScreenshot() {
-			HideUI();
 
 			cam.Render();
 			Mesh go_Mesh = GetComponent<MeshFilter>().mesh;
@@ -2208,7 +1054,6 @@ namespace unitycoder_MobilePaint {
 			image.ReadPixels(new Rect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y), 0, 0);
 			image.Apply(false);
 
-			ShowUI();
 
 			return image;
 		}
