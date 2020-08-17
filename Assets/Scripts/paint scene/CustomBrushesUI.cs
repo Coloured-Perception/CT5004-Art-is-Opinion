@@ -22,6 +22,7 @@ namespace unitycoder_MobilePaint {
 		float[] XMax;
 		float[] YMin;
 		float[] YMax;
+		GameObject[] children;
 
 		float timeBeforeClick;
 		float timeBetweenClicks = 1;
@@ -30,6 +31,8 @@ namespace unitycoder_MobilePaint {
 		Vector2 filteredPoint;
 
 		[SerializeField] private int padding = 8;
+		
+
 
 		void Start() {
 			timeBeforeClick = timeBetweenClicks;
@@ -45,8 +48,15 @@ namespace unitycoder_MobilePaint {
 			// the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
 
+
+				for (int i = transform.childCount - 1; i >= 0; --i) {
+					var child = transform.GetChild(i).gameObject;
+					Destroy(child);
+				}
+
 				Vector2 newPos = new Vector2(padding, -padding * 4);
 				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
+					Debug.Log(i);
 
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
 					newButton[i] = Instantiate(buttonTemplate, Vector3.zero, rot) as Button;
@@ -99,19 +109,33 @@ namespace unitycoder_MobilePaint {
 			}
 		}
 
+		//Coral
+
+		/// <summary>
+		/// KANE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		/// if we can set the prieview image to the pattern chosen and get it to scale the same way ive got the menu images to scale 
+		/// then we can get mobile paint script to change the brush to whatever the preview looks like whenever the menu or arrows are pressed
+		/// </summary>
+		/// <param name="index"></param>
 		// send current brush index to mobilepaint
 		public void SetCustomBrush(int index) {
 			mobilePaint.selectedBrush = index;
 			mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
-			CloseCustomBrushPanel();
+			//CloseCustomBrushPanel();
 		}
 
-		public void CloseCustomBrushPanel() {
-			gameObject.SetActive(false);
-		}
+		//public void CloseCustomBrushPanel() {
 
-		public void OpenCustomBrushPanel() {
-			gameObject.SetActive(true);
-		}
+		//		if (transform.childCount >0) {
+		//		GameObject.Destroy(transform.GetChild(0));
+		//	}
+		//	gameObject.SetActive(false);
+		//}
+
+		//public void OpenCustomBrushPanel() {
+		//	gameObject.SetActive(true);
+		//}
+
+		//Coral
 	}
 }

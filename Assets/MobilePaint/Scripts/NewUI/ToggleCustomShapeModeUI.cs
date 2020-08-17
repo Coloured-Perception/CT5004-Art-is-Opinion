@@ -33,7 +33,8 @@ namespace unitycoder_MobilePaint
 			{
 				customBrushPanel.SetActive(true);
 				mobilePaint.SetDrawModeShapes();
-			}else{
+			} else {
+				
 				customBrushPanel.SetActive(false);
 			}
 

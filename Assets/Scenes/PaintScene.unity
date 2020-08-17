@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 3191613913559943885, guid: a5d208549b192134b91f9f463abe4e07,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3191613913559943884, guid: a5d208549b192134b91f9f463abe4e07,
         type: 3}
@@ -2075,6 +2075,7 @@ MonoBehaviour:
   brushSizeScript: {fileID: 1350818534}
   panel: {fileID: 679784042}
   padding: 30
+  customBrushPanel: {fileID: 679784042}
 --- !u!1 &683020184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2
@@ -4136,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2

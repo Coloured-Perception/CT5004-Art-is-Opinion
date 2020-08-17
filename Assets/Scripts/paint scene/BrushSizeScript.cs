@@ -8,7 +8,7 @@ namespace unitycoder_MobilePaint {
 
 		// Size boundaries for brush
 		int minBrushSize = 10;
-		int maxBrushSize = 64;
+		int maxBrushSize = 35;
 
 		// Size boundaries for brush preview
 		float maxPreviewSize = 2f;
@@ -67,9 +67,7 @@ namespace unitycoder_MobilePaint {
 
 				customSize += 1;
 			}
-			if (customSize < 4) {
-				customSize += 1;
-			}
+			
 		}
 	}
 }
