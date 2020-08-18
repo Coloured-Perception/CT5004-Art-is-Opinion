@@ -292,8 +292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29.100037, y: -41.4}
-  m_SizeDelta: {x: 415.8, y: 151}
+  m_AnchoredPosition: {x: -6.025, y: -41.4}
+  m_SizeDelta: {x: 461.95, y: 151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118338817
 MonoBehaviour:
@@ -317,7 +317,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2938,6 +2938,7 @@ GameObject:
   - component: {fileID: 1202375070}
   - component: {fileID: 1202375069}
   - component: {fileID: 1202375071}
+  - component: {fileID: 1202375072}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -2983,51 +2984,7 @@ MonoBehaviour:
     type: 3}
   myImageComponent: {fileID: 432747090}
   changewait: 0
-  dogNames:
-  - Dexter
-  - Turbo
-  - Perrtio
-  femaleFirstNames:
-  - Sharon
-  - Maize
-  - Bethany
-  - Claire
-  - Amy
-  - Jannett
-  - Sara
-  - Abby
-  - Nia
-  - Zula
-  maleFirstNames:
-  - Dan
-  - Steve
-  - Newman
-  - Tom
-  - Sam
-  - Faraji
-  - Hamid
-  - Al
-  - Paul
-  - Wade
-  surnames:
-  - Beck
-  - Allan
-  - Chase
-  - Haims
-  - Johnson
-  - Ivers
-  - Lindon
-  - Mills
-  - Otieno
-  - Steed
-  sentenses:
-  - Hi, could you draw my picture?
-  - Hello, would you mind drawing me?
-  - Hey, can I have my picture done?
-  - Wadup! could you draw me?
-  - Hello, would you draw me please?
-  - Hi, can you draw me?
-  - Hey, could you draw my portrait?
+  dialogList: {fileID: 1202375072}
 --- !u!4 &1202375070
 Transform:
   m_ObjectHideFlags: 0
@@ -3060,6 +3017,26 @@ MonoBehaviour:
     - ' '
   anim: {fileID: 904126170}
   Canvas: {fileID: 1938997459}
+--- !u!114 &1202375072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202375068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08d11cd9ae23224fb05599c6bc25c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogNames: []
+  femaleFirstNames: []
+  maleFirstNames: []
+  surnames: []
+  greeting: []
+  speech: []
+  request: []
+  dogSpeech: []
 --- !u!1 &1238478244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,8 +3071,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.799988, y: 71}
-  m_SizeDelta: {x: 487.5, y: 48.3}
+  m_AnchoredPosition: {x: 4.7, y: 71}
+  m_SizeDelta: {x: 534.4, y: 48.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238478246
 MonoBehaviour:

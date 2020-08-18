@@ -43,14 +43,13 @@ public class DialogueManager : MonoBehaviour {
 	public float changewait;
 	public static DialogueManager personInstance;
 
-	public List<string> dogNames;
-	public List<string> femaleFirstNames;
-	public List<string> maleFirstNames;
-	public List<string> surnames;
-	public List<string> sentenses;
+
 	int randomNameNumber;
 	int randomSurnameNumber;
-	int randomSentenceNumber;
+	int randomGreetingNumber;
+	int randomSpeechNumber;
+	int randomRequestNumber;
+	int randomDogSpeechNumber;
 	string randomName;
 	string randomSurname;
 	string randomSentence;
@@ -64,6 +63,8 @@ public class DialogueManager : MonoBehaviour {
 	private string ImageName;
 
 	bool down = false;
+
+	public DialogList dialogList;
 
 
 	//Coral
@@ -100,8 +101,10 @@ public class DialogueManager : MonoBehaviour {
 		dialogueText.text = " ";
 		nameText.text = " ";
 
-		randomSentenceNumber = Random.Range(0, sentenses.Count);
-		randomSentence = sentenses[randomSentenceNumber];
+		randomGreetingNumber = Random.Range(0, dialogList.greeting.Count);
+		randomSpeechNumber = Random.Range(0, dialogList.speech.Count);
+		randomRequestNumber = Random.Range(0, dialogList.request.Count);
+		randomSentence = dialogList.greeting[randomGreetingNumber] + " " + dialogList.speech[randomSpeechNumber] + " " + dialogList.request[randomRequestNumber];
 
 
 		ImageName = image.transform.GetComponent<Image>().sprite.name;
@@ -109,40 +112,39 @@ public class DialogueManager : MonoBehaviour {
 		if (ImageName.StartsWith(Special)) {
 			dialogue.name = ImageName.Replace(Special, "");
 		} else if (ImageName.StartsWith(Male)) {
-			randomNameNumber = Random.Range(0, maleFirstNames.Count);
-			randomSurnameNumber = Random.Range(0, surnames.Count);
-			randomName = maleFirstNames[randomNameNumber];
-			randomSurname = surnames[randomSurnameNumber];
+			randomNameNumber = Random.Range(0, dialogList.maleFirstNames.Count);
+			randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
+			randomName = dialogList.maleFirstNames[randomNameNumber];
+			randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Female)) {
-			randomNameNumber = Random.Range(0, femaleFirstNames.Count);
-			randomSurnameNumber = Random.Range(0, surnames.Count);
-			randomName = femaleFirstNames[randomNameNumber];
-			randomSurname = surnames[randomSurnameNumber];
+			randomNameNumber = Random.Range(0, dialogList.femaleFirstNames.Count);
+			randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
+			randomName = dialogList.femaleFirstNames[randomNameNumber];
+			randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Mr)) {
-			randomSurnameNumber = Random.Range(0, surnames.Count);
-			randomSurname = surnames[randomSurnameNumber];
+			randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
+			randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = "Mr. " + randomSurname;
 		} else if (ImageName.StartsWith(Ms)) {
-			randomSurnameNumber = Random.Range(0, surnames.Count);
-			randomSurname = surnames[randomSurnameNumber];
+			randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
+			randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = "Ms. " + randomSurname;
 		} else if (ImageName.StartsWith(Animal)) {
 			if (ImageName.StartsWith("A Dog ")) {
-				randomNameNumber = Random.Range(0, dogNames.Count);
-				randomName = dogNames[randomNameNumber];
+				randomNameNumber = Random.Range(0, dialogList.dogNames.Count);
+				randomName = dialogList.dogNames[randomNameNumber];
 				dialogue.name = randomName;
-				speech.Enqueue("Woof Woof ruff");
+				randomSentence = dialogList.dogSpeech[randomDogSpeechNumber];
 			}
 		}
 
 
 		nameText.text = dialogue.name;
 
-		if (ImageName.StartsWith(Animal) == false) {
 			speech.Enqueue(randomSentence);
-		}
+	
 		DisplayNextSentence();
 	}
 	//Coral
