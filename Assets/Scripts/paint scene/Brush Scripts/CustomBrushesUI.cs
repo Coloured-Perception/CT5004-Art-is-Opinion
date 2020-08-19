@@ -25,11 +25,15 @@ namespace unitycoder_MobilePaint {
 
 		float timeBeforeClick;
 		float timeBetweenClicks = 1;
-		int brushSizeLast = 0;
+		int brushSizeLast = 100; // any number that cant actually be the size 
 
 		Vector2 filteredPoint;
 
 		[SerializeField] private int padding = 8;
+
+		public GameObject brushPreview;
+		public int sizeReference;
+
 
 		void Start() {
 			timeBeforeClick = timeBetweenClicks;
@@ -43,6 +47,10 @@ namespace unitycoder_MobilePaint {
 			// this tests wether the brush has changed size and so new custom brushes are needed
 			// the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
+
+
+			//	Debug.Log(brushSizeLast + "    " + brushSizeScript.customSize);
+
 				for (int i = transform.childCount - 1; i >= 0; --i) {
 					var child = transform.GetChild(i).gameObject;
 					Destroy(child);
@@ -50,7 +58,8 @@ namespace unitycoder_MobilePaint {
 
 				Vector2 newPos = new Vector2(padding, -padding * 4);
 				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
-					Debug.Log(i);
+					Debug.Log(i + "    i");
+
 
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
 					newButton[i] = Instantiate(buttonTemplate, Vector3.zero, rot) as Button;
@@ -119,6 +128,12 @@ namespace unitycoder_MobilePaint {
 
 			//CloseCustomBrushPanel();
 			gameObject.SetActive(false);
+
+			Debug.Log(index);
+			sizeReference = index;
+
+
+			brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[index];
 		}
 
 		//public void CloseCustomBrushPanel()

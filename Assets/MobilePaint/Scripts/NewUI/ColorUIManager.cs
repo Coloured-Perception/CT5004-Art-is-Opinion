@@ -18,7 +18,7 @@ namespace unitycoder_MobilePaint
         //public float defaultOffset=-46;
         //public float moveOffsetX=-24;
 
-        [HideInInspector] public Image currentColorImage;
+        [HideInInspector] public RawImage currentColorImage;
 
 
         void Awake()
@@ -28,7 +28,7 @@ namespace unitycoder_MobilePaint
             if (mobilePaint == null) Debug.LogError("No MobilePaint assigned at " + transform.name, gameObject);
             if (colorpickers.Length < 1) Debug.LogWarning("No colorpickers assigned at " + transform.name, gameObject);
 
-            currentColorImage = GetComponent<Image>();
+            currentColorImage = GetComponent<RawImage>();
             if (currentColorImage == null) Debug.LogError("No image component founded at " + transform.name, gameObject);
 
 
@@ -47,7 +47,7 @@ namespace unitycoder_MobilePaint
         // some button was clicked, lets take color from it and send to mobilepaint canvas 
         public void SetCurrentColor(Button button)
         {
-            Color newColor = button.gameObject.GetComponent<Image>().color;
+            Color newColor = button.gameObject.GetComponent<RawImage>().color;
 
             currentColorImage.color = newColor; // set current color image
 
