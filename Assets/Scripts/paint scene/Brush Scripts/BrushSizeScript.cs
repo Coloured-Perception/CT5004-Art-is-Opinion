@@ -8,8 +8,8 @@ namespace unitycoder_MobilePaint {
 		int currentBrushSize;
 
 		// Size boundaries for brush
-		int minBrushSize = 10;
-		int maxBrushSize = 35;
+		int minDifference = 3;
+		int maxDifference = 2;
 
 		//// Size boundaries for brush preview
 		//float maxPreviewSize = 2f;
@@ -22,6 +22,7 @@ namespace unitycoder_MobilePaint {
 
 		MobilePaint mobilePaint;
 		public CustomBrushesUI customBrushesUI;
+		int sizeDifference;
 
 		// Start is called before the first frame update
 		void Start() {
@@ -36,12 +37,15 @@ namespace unitycoder_MobilePaint {
 			//brushPreview.transform.localScale = new Vector2(brushPreviewSize, brushPreviewSize);
 
 			customSize = 3;
+			Debug.Log(customSize);
+
 		}
 
 		// Changes the size of the brush by 5
 		public void IncreaseBrushSize() {
+			Debug.Log(customSize);
 			// If the new size is bigger than the maxBrushSize, it won't change size
-			if (currentBrushSize <= maxBrushSize - 5) {
+			if (sizeDifference >= maxDifference - 1) {
 				// Increase brush size
 				currentBrushSize += 5;
 				mobilePaint.SetBrushSize(currentBrushSize);
@@ -50,20 +54,24 @@ namespace unitycoder_MobilePaint {
 				//brushPreviewSize += 0.05f;
 				//brushPreview.transform.localScale = new Vector2(brushPreviewSize, brushPreviewSize);
 
-				Debug.Log(customBrushesUI.sizeReference + 1);
 
-				brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[customBrushesUI.sizeReference + 1];
+				sizeDifference -= 1;
+
+				brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[customBrushesUI.sizeReference + sizeDifference];
 
 			}
-			if (customSize > 0) {
+			
 				customSize -= 1;
-			}
+			Debug.Log(customSize);
+
 		}
 
 		// Changes the size of the brush by -5
 		public void DecreaseBrushSize() {
+			Debug.Log(customSize);
+
 			// If the new size is smaller than the minBrushSize, it won't change size
-			if (currentBrushSize >= minBrushSize + 5) {
+			if (sizeDifference <= minDifference + 1) {
 				// Decrease brush size
 				currentBrushSize -= 5;
 				mobilePaint.SetBrushSize(currentBrushSize);
@@ -71,13 +79,14 @@ namespace unitycoder_MobilePaint {
 				//// Decrease preview
 				//brushPreviewSize -= 0.05f;
 				//brushPreview.transform.localScale = new Vector2(brushPreviewSize, brushPreviewSize);
-				Debug.Log(customBrushesUI.sizeReference - 1);
 
-				/////////////////////////////////////////////////////////////////////////// need to be able to increase the size in a different way to +/- 1
-				brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[customBrushesUI.sizeReference - 1];
+				sizeDifference += 1;
+
+				brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[customBrushesUI.sizeReference + sizeDifference];
 
 				customSize += 1;
 			}
+			Debug.Log(customSize);
 
 		}
 	}

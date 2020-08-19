@@ -32,7 +32,7 @@ namespace unitycoder_MobilePaint {
 		[SerializeField] private int padding = 8;
 
 		public GameObject brushPreview;
-		public int sizeReference;
+		public int sizeReference = 3;
 
 
 		void Start() {
