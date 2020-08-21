@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace unitycoder_MobilePaint {
 	public class BrushSizeScript : MonoBehaviour {
-	
+
 		// Size boundaries for brush
 		int maxDifference = 3;
 		int minDifference = -2;
@@ -20,7 +20,7 @@ namespace unitycoder_MobilePaint {
 
 		void Start() {
 			mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager
-					customSize = 2;
+			customSize = 2;
 		}
 
 		public void DecreaseBrushSize() {
@@ -41,6 +41,10 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
 				} else if (PreviewName.StartsWith("Dots")) {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+				} else if (PreviewName.StartsWith("Angled Splat")) {
+					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+				} else if (PreviewName.StartsWith("Sharp Stones")) {
+					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize -= 1;
 			}
@@ -64,6 +68,10 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
 				} else if (PreviewName.StartsWith("Dots")) {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+				} else if (PreviewName.StartsWith("Angled Splat")) {
+					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+				} else if (PreviewName.StartsWith("Sharp Stones")) {
+					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize += 1;
 			}
