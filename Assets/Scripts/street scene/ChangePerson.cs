@@ -28,14 +28,14 @@ public class ChangePerson : MonoBehaviour {
 	///// </summary>
 	//void Start() {
 	//	myImageComponent = GetComponent<Image>();
-	//	ChangeImage();
+	//	//ChangeImage();
 	//}
 
-	//public void ChangeImage() {
+	////public void ChangeImage() {
 
-	//	rand = Random.Range(0, images.Count);
-	//	myImageComponent.sprite = images[rand];
-	//}
+	////	rand = Random.Range(0, images.Count);
+	////	myImageComponent.sprite = images[rand];
+	////}
 
 	//public void Drawclicked() {
 	//	myImageComponent.sprite = transparent;
