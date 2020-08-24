@@ -55,7 +55,7 @@ TextureImporter:
     second: Character Pictures_16
   - first:
       213: -830769646576685204
-    second: Character Pictures_17
+    second: Transparent
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Pictures_17
+      name: Transparent
       rect:
         serializedVersion: 2
         x: 2802

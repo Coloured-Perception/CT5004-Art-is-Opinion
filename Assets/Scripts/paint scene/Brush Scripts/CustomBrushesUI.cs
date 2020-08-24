@@ -58,7 +58,7 @@ namespace unitycoder_MobilePaint {
 
 				Vector2 newPos = new Vector2(padding, -padding * 4);
 				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
-					Debug.Log(i + "    i");
+
 
 
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
@@ -129,9 +129,7 @@ namespace unitycoder_MobilePaint {
 			//CloseCustomBrushPanel();
 			gameObject.SetActive(false);
 
-			Debug.Log(index);
 			sizeReference = index;
-
 
 			brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[index];
 		}

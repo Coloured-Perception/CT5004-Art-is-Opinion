@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
+  m_Color: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 0.5019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4430,7 +4430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004714592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -4558,7 +4558,7 @@ MonoBehaviour:
   - {fileID: 741941387}
   - {fileID: 421540246}
   offsetSelected: 0
-  currentColorImage: {fileID: 0}
+  preview: {fileID: 2028367486}
 --- !u!114 &2028367491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4611,7 +4611,7 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 396123012}
+  m_TargetGraphic: {fileID: 2028367488}
   toggleTransition: 1
   graphic: {fileID: 0}
   m_Group: {fileID: 0}

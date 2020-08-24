@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogList : MonoBehaviour
-{
+public class DialogList : MonoBehaviour {
 	public List<string> dogNames;
 	public List<string> femaleFirstNames;
 	public List<string> maleFirstNames;
@@ -21,10 +20,11 @@ public class DialogList : MonoBehaviour
 	/// </summary>
 
 	private void Awake() {
-		string[] dogs = { "Dexter", "Turbo", "Perrtio"};
+		string[] dogs = { "Dexter", "Turbo", "Perrtio" };
 		dogNames.AddRange(dogs);
 
-		string[] women = { "Sharon", "Maize", "Bethany", "Claire", "Amy", "Jannett", "Sara", "Abby", "Nia", "Zula" };
+		string[] women = { "Sharon", "Maize", "Bethany", "Claire", "Amy", "Jannett", "Sara", "Abby", "Nia", "Zula",
+		"Sofia", "Justine", "Ellie", "Linda", "Ava", "Lucy", "Jasmine", "Holly", "Amahle", "Mary" };
 		femaleFirstNames.AddRange(women);
 
 		string[] men = { "Dan", "Steve", "Newman", "Tom", "Sam", "Faraji", "Hamid", "Al", "Paul", "Wade" };
@@ -33,6 +33,7 @@ public class DialogList : MonoBehaviour
 		string[] lastNames = { "Beck", "Allan", "Chase", "Haims", "Johnson", "Ivers", "Lindon", "Mills", "Otieno", "Steed" };
 		surnames.AddRange(lastNames);
 
+		//	string[] greet = { "Æ¾ѾٻḖ₥╢ﬗﻹ!" };
 		string[] greet = { "Hi.", "Hello.", "Hey.", "Wadup!", "Ooh.", "Yo.", "Greetings.", "Salutations.", "Um...", "Feast your eyes on my being!" };
 		greeting.AddRange(greet);
 
