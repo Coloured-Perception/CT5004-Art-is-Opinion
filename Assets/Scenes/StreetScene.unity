@@ -2684,9 +2684,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027018083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f5235069eb0444a9d02295ddb867d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuUI: {fileID: 0}
+  StreetUI: {fileID: 0}
+  OptionsUI: {fileID: 0}
+  transparent: {fileID: 0}
+  myImageComponent: {fileID: 0}
 --- !u!1 &1051686865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,19 +3272,20 @@ MonoBehaviour:
   image: {fileID: 432747088}
   changePerson: {fileID: 432747092}
   images:
-  - {fileID: -6611926007050098498, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: -1324413293701510411, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: -7150095830990012538, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   - {fileID: 4796904324757462811, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: 8274106561137116301, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   - {fileID: 2258013657099800263, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: 2079406161724443261, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: 2525776171139032800, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: 3540782432644232922, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: 8274106561137116301, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: -8727920057493872851, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   - {fileID: 304100866832851014, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   - {fileID: 4536872500780957915, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
-  - {fileID: -8727920057493872851, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   - {fileID: -4651958157657034063, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  specialImages:
+  - {fileID: -6611926007050098498, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: -7150095830990012538, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: 2525776171139032800, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: 2079406161724443261, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: -1324413293701510411, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
+  - {fileID: 3540782432644232922, guid: c64d821acc92ccd4f9b83393bd4c20c2, type: 3}
   transparent: {fileID: -830769646576685204, guid: c64d821acc92ccd4f9b83393bd4c20c2,
     type: 3}
   myImageComponent: {fileID: 432747090}

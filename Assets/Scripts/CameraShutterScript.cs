@@ -24,7 +24,6 @@ public class CameraShutterScript : MonoBehaviour {
 			timeWait -= Time.deltaTime;
 			if (timeWait <= 0) {
 				if (this != cameraShutterOpen) {
-
 					cameraShutterOpen.transform.gameObject.SetActive(true);
 					CameraShutterScriptOpen.timeWait = 2;
 					timeWait = 2;

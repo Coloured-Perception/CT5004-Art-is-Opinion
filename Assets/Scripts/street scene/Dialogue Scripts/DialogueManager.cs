@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour {
 	public ChangePerson changePerson;
 
 	public List<Sprite> images;
+	public List<Sprite> specialImages;
 	public Sprite transparent;
 	int numImages;
 	public Image myImageComponent;
@@ -80,7 +81,12 @@ public class DialogueManager : MonoBehaviour {
 
 	public void ChangeImage() {
 		rand = Random.Range(0, images.Count);
-		myImageComponent.sprite = images[rand];
+		if (rand == 0) {
+			rand = Random.Range(0, specialImages.Count);
+			myImageComponent.sprite = specialImages[rand];
+		} else {
+			myImageComponent.sprite = images[rand];
+		}
 	}
 
 	public void Drawclicked() {

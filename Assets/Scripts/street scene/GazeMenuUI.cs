@@ -120,7 +120,7 @@ public class GazeMenuUI : MonoBehaviour {
 			//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
 			if (menuUI.activeInHierarchy) {
 				if ((PlayPos.x + PlayXMin) < filteredPoint.x && filteredPoint.x < (PlayPos.x + PlayXMax) && (PlayPos.y + PlayYMin) < filteredPoint.y && filteredPoint.y < (PlayPos.y + PlayYMax) && timeBetweenClicks <= 0) {
-					PlayButton.GetComponent<PlayButtonScript>().ButtonClicked();
+					PlayButton.GetComponent<MenuButtonScript>().ButtonClicked();
 					dialogueManager.GetComponent<DialogueTrigger>().StartDialog();
 					timeBeforeClick = timeBetweenClicks;
 				}

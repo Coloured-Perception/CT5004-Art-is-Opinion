@@ -5,9 +5,10 @@ namespace unitycoder_MobilePaint {
 	public class BrushSizeScript : MonoBehaviour {
 
 		// Size boundaries for brush
-		int maxDifference = 3;
-		int minDifference = -2;
-
+		private int maxDifference = 3;
+		private int minDifference = -2;
+		private int sizeDifference;
+		private string PreviewName;
 		public int customSize;
 
 		[SerializeField]
@@ -15,8 +16,6 @@ namespace unitycoder_MobilePaint {
 
 		MobilePaint mobilePaint;
 		public CustomBrushesUI customBrushesUI;
-		int sizeDifference;
-		string PreviewName;
 
 		void Start() {
 			mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager

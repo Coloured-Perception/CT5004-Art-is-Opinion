@@ -48,9 +48,6 @@ namespace unitycoder_MobilePaint {
 			// the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
 
-
-			//	Debug.Log(brushSizeLast + "    " + brushSizeScript.customSize);
-
 				for (int i = transform.childCount - 1; i >= 0; --i) {
 					var child = transform.GetChild(i).gameObject;
 					Destroy(child);
@@ -58,8 +55,6 @@ namespace unitycoder_MobilePaint {
 
 				Vector2 newPos = new Vector2(padding, -padding * 4);
 				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
-
-
 
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
 					newButton[i] = Instantiate(buttonTemplate, Vector3.zero, rot) as Button;

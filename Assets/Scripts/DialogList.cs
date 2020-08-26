@@ -11,14 +11,12 @@ public class DialogList : MonoBehaviour {
 	public List<string> request;
 	public List<string> dogSpeech;
 
-
 	/// <summary>
 	/// add whatever you like here 
 	/// put end of sentence punctuation at the end of every addition unless theyre names
 	/// do not put spaces after the punctuation
 	/// search the code in case its already there
 	/// </summary>
-
 	private void Awake() {
 		string[] dogs = { "Dexter", "Turbo", "Perrtio" };
 		dogNames.AddRange(dogs);
