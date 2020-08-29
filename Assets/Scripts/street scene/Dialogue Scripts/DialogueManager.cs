@@ -37,7 +37,6 @@ public class DialogueManager : MonoBehaviour {
 
 	public List<Sprite> images;
 	public List<Sprite> specialImages;
-	public Sprite transparent;
 	int numImages;
 	public Image myImageComponent;
 	int rand;
@@ -55,12 +54,12 @@ public class DialogueManager : MonoBehaviour {
 	string randomSurname;
 	string randomSentence;
 
-	private string Special = "S ";
-	private string Animal = "A ";
-	private string Male = "M ";
-	private string Female = "F ";
-	private string Mr = "Mr ";
-	private string Ms = "Ms ";
+	private string Special = "S_";
+	private string Animal = "A_";
+	private string Male = "M_";
+	private string Female = "F_";
+	private string Mr = "Mr_";
+	private string Ms = "Ms_";
 	private string ImageName;
 
 	bool down = false;
@@ -90,7 +89,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void Drawclicked() {
-		myImageComponent.sprite = transparent;
+		myImageComponent.sprite = images[0];
 	}
 
 
@@ -138,7 +137,7 @@ public class DialogueManager : MonoBehaviour {
 			randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = "Ms. " + randomSurname;
 		} else if (ImageName.StartsWith(Animal)) {
-			if (ImageName.StartsWith("A Dog ")) {
+			if (ImageName.StartsWith("A_Dog_")) {
 				randomNameNumber = Random.Range(0, dialogList.dogNames.Count);
 				randomName = dialogList.dogNames[randomNameNumber];
 				dialogue.name = randomName;
