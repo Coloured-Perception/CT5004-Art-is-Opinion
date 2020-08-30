@@ -86,6 +86,8 @@ public class DialogueManager : MonoBehaviour {
 		} else {
 			myImageComponent.sprite = images[rand];
 		}
+		myImageComponent.sprite = specialImages[7];
+
 	}
 
 	public void Drawclicked() {

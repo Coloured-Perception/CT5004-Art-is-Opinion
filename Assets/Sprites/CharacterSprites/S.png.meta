@@ -20,6 +20,14 @@ TextureImporter:
   - first:
       213: -1835304658440169179
     second: Transparent
+  - first:
+      213: -1182827721247122346
+    second: "S_\u02E8\u0353\u0334\u0336\u0353\u0334\u0336 \u0334\u02ED\u0337\u0338\u033A\u033C\u033B\u0360\u035B\u02D5\u02D1\u033F\u033A\u0337
+      \u0352\u033C\u02EB\u031A\u0334\u0338\u0347\u0336\u02FA\u0336\u02EA\u0335\u030F\u02F3\u0335\u030F\u035A\u0334\u02F8\u0310\u02F1\u031A\u0321\u0334\u0333\u0334\u02D6\u0336\u02E4"
+  - first:
+      213: -1995881384004316761
+    second: "S_\u02F9\u0305\u0316J\u032B\u032C\u02F8\u031A\u031Ea\u0314\u032D\u0336d\u032E\u033F\u0338\u0348\u0353\u0353\u0353e\u034D\u0334\u0353
+      W\u0332\u0346\u0343\u033F\u0336e\u030A\u030F\u0348\u0318s\u0318\u0327\u032B\u0333\u0338\u033C\u034Ct\u035A\u02BF"
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -226,7 +234,7 @@ TextureImporter:
         width: 701
         height: 915
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,6 +242,50 @@ TextureImporter:
       bones: []
       spriteID: 2743264d91f9b604496e2e1384083dcc
       internalID: -1835304658440169179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "S_\u02E8\u0353\u0334\u0336\u0353\u0334\u0336 \u0334\u02ED\u0337\u0338\u033A\u033C\u033B\u0360\u035B\u02D5\u02D1\u033F\u033A\u0337
+        \u0352\u033C\u02EB\u031A\u0334\u0338\u0347\u0336\u02FA\u0336\u02EA\u0335\u030F\u02F3\u0335\u030F\u035A\u0334\u02F8\u0310\u02F1\u031A\u0321\u0334\u0333\u0334\u02D6\u0336\u02E4"
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1830
+        width: 701
+        height: 915
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e132964351a37474f8bc323d53eb8d53
+      internalID: -1182827721247122346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "S_\u02F9\u0305\u0316J\u032B\u032C\u02F8\u031A\u031Ea\u0314\u032D\u0336d\u032E\u033F\u0338\u0348\u0353\u0353\u0353e\u034D\u0334\u0353
+        W\u0332\u0346\u0343\u033F\u0336e\u030A\u030F\u0348\u0318s\u0318\u0327\u032B\u0333\u0338\u033C\u034Ct\u035A\u02BF"
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1830
+        width: 701
+        height: 915
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8969877f62c5e5346a530a07723730e5
+      internalID: -1995881384004316761
       vertices: []
       indices: 
       edges: []
