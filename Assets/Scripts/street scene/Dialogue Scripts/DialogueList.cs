@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogList : MonoBehaviour {
+public class DialogueList : MonoBehaviour {
 	public List<string> dogNames;
 	public List<string> femaleFirstNames;
 	public List<string> maleFirstNames;
@@ -18,7 +18,7 @@ public class DialogList : MonoBehaviour {
 	/// search the code in case its already there
 	/// </summary>
 	private void Awake() {
-		string[] dogs = { "Dexter", "Turbo", "Perrtio" };
+		string[] dogs = { "Dexter", "Turbo", "Perrtio", "Kira" };
 		dogNames.AddRange(dogs);
 
 		string[] women = { "Sharon", "Maize", "Bethany", "Claire", "Amy", "Jannett", "Sara", "Abby", "Nia", "Zula",

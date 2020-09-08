@@ -1570,7 +1570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -28.99997, y: 18.000034}
+  m_AnchoredPosition: {x: -29, y: 18.000034}
   m_SizeDelta: {x: 303.2, y: 405.40002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432747090
@@ -1824,7 +1824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 481517233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
@@ -2380,14 +2380,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 568100840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
   StreetUI: {fileID: 1009284757}
   OptionsUI: {fileID: 949936216}
-  transparent: {fileID: -830769646576685204, guid: c64d821acc92ccd4f9b83393bd4c20c2,
-    type: 3}
+  transparent: {fileID: 0}
   myImageComponent: {fileID: 432747090}
 --- !u!1 &657710719
 GameObject:
@@ -3974,7 +3973,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027018083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 0}
@@ -4136,7 +4135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1051686865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
@@ -4519,7 +4518,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130950542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
@@ -4823,7 +4822,7 @@ MonoBehaviour:
   - {fileID: -1995881384004316761, guid: 8ada61ba7028f2b4591760fb74b65412, type: 3}
   myImageComponent: {fileID: 432747090}
   changewait: 0
-  dialogList: {fileID: 1202375072}
+  dialogueList: {fileID: 1202375072}
 --- !u!4 &1202375070
 Transform:
   m_ObjectHideFlags: 0
@@ -5003,7 +5002,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253917416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
