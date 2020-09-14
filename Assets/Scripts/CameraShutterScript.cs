@@ -7,12 +7,31 @@
 public class CameraShutterScript : MonoBehaviour {
 
 	float timeWait;
-	public GameObject cameraShutterOpen;
-	public CameraShutterScript CameraShutterScriptOpen;
+	GameObject cameraOpen;
+	GameObject cameraClose;
+	GameObject cameraBoth;
+
+	private void Awake() {
+		cameraOpen = GameObject.Find("Camera Shutter Open");
+		cameraClose = GameObject.Find("Camera Shutter Close");
+		cameraBoth = GameObject.Find("Camera Shutter Both");
+	}
 
 	private void Start() {
-		timeWait = 2;
+		cameraClose.gameObject.SetActive(false);
+		cameraBoth.gameObject.SetActive(false);
+		timeWait = 3;
 	}
+
+	public void CameraClose() {
+		cameraClose.gameObject.SetActive(true);
+		timeWait = 3;
+	}
+	public void CameraBoth() {
+		cameraBoth.gameObject.SetActive(true);
+		timeWait = 3;
+	}
+
 
 	/// <summary>
 	/// after 2 seconds, camera shutter close finishes its animation and activates camera shutter open
@@ -22,13 +41,14 @@ public class CameraShutterScript : MonoBehaviour {
 
 		if (timeWait > 0) {
 			timeWait -= Time.deltaTime;
+			if (timeWait <= 2) {
+				cameraOpen.gameObject.SetActive(false);
+			}
+			if (timeWait <= 1) {
+				cameraClose.gameObject.SetActive(false);
+			}
 			if (timeWait <= 0) {
-				if (this != cameraShutterOpen) {
-					cameraShutterOpen.transform.gameObject.SetActive(true);
-					CameraShutterScriptOpen.timeWait = 2;
-					timeWait = 2;
-				}
-				transform.gameObject.SetActive(false);
+				cameraBoth.gameObject.SetActive(false);
 			}
 		}
 	}

@@ -29,6 +29,14 @@ public class YesScript : MonoBehaviour {
 	float timeBetweenClicks = 1;
 	Vector2 filteredPoint;
 
+
+	CameraShutterScript cameraShutterScript;
+
+	private void Awake() {
+		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
+
+	}
+
 	private void Update() {
 		if (sceneChangeWait > 0) {
 			sceneChangeWait -= Time.deltaTime;
@@ -87,5 +95,7 @@ public class YesScript : MonoBehaviour {
 	public void YesButton() {
 			//	FindObjectOfType<DialogueTrigger>().Yes();
 			sceneChangeWait = 2;
+		cameraShutterScript.CameraClose();
+
 	}
 }

@@ -18,6 +18,12 @@ public class SaveImageScript : MonoBehaviour {
 
 	float sceneChangeWait; // Time to wait before scene change, Coral
 
+	CameraShutterScript cameraShutterScript;
+
+	private void Awake() {
+		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
+	}
+
 	// Start is called before the first frame update
 	public void Start() {
 		numOfPNGs = 1;
@@ -40,6 +46,8 @@ public class SaveImageScript : MonoBehaviour {
 	/// </summary>
 	public void Save() {
 		sceneChangeWait = 2;
+		cameraShutterScript.CameraClose();
+
 		StartCoroutine(CoSave());
 	}
 
