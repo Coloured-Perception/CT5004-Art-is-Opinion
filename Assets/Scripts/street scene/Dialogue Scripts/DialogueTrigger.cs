@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class DialogueTrigger : MonoBehaviour {
 	public Dialogue dialogue;
 	float timeWait;
-	float sceneChangeWait;
+	//float sceneChangeWait;
 	public Animator anim;
 	public GameObject Canvas;
 
@@ -15,12 +15,12 @@ public class DialogueTrigger : MonoBehaviour {
 				TriggerDialogue();
 			}
 		}
-		if (sceneChangeWait > 0) {
-			sceneChangeWait -= Time.deltaTime;
-			if (sceneChangeWait <= 0) {
-				SceneManager.LoadScene("PaintScene");
-			}
-		}
+		//if (sceneChangeWait > 0) {
+		//	sceneChangeWait -= Time.deltaTime;
+		//	if (sceneChangeWait <= 0) {
+		//		SceneManager.LoadScene("PaintScene");
+		//	}
+		//}
 	}
 
 	public void StartDialog() {
@@ -39,9 +39,9 @@ public class DialogueTrigger : MonoBehaviour {
 		timeWait = Random.Range(2, 4);
 	}
 
-	public void Yes() {
-		sceneChangeWait = 2;
-	}
+	//public void Yes() {
+	//	sceneChangeWait = 2;
+	//}
 
 	public void TriggerDialogue() {
 		FindObjectOfType<DialogueManager>().StartDialogue(dialogue);

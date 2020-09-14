@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Created by Coral
@@ -8,8 +9,9 @@ using UnityEngine.UI;
 public class MenuButtonScript : MonoBehaviour {
 	float timeWait;
 	public GameObject MenuUI;
-	public GameObject StreetUI;
 	public GameObject OptionsUI;
+	public GameObject SelectUI;
+	public GameObject SelectObjects;
 	public static MenuButtonScript personInstance;
 	public Sprite transparent;
 	public Image myImageComponent;
@@ -23,9 +25,15 @@ public class MenuButtonScript : MonoBehaviour {
 		timeWait = 2;
 	}
 
-	public void Drawclicked() {
-		myImageComponent.sprite = transparent;
-		ButtonClicked();
+	public void StillLifeClicked() {
+		SceneManager.LoadScene("StillLifePaintScene");
+	}
+	public void PortraitClicked() {
+		SceneManager.LoadScene("StreetScene");
+	}
+	public void DrawClicked() {
+	//	myImageComponent.sprite = transparent;
+		SceneManager.LoadScene("PortraitPaintScene");
 	}
 
 	public void Exit() {
@@ -43,11 +51,18 @@ public class MenuButtonScript : MonoBehaviour {
 
 				if (name == "Play Button") {
 					MenuUI.transform.gameObject.SetActive(false);
-					StreetUI.transform.gameObject.SetActive(true);
+					SelectUI.transform.gameObject.SetActive(true);
+					if (SelectObjects != null) {
+						SelectObjects.transform.gameObject.SetActive(true);
+					}
+
 				} else if (name == "Menu Button") {
 					MenuUI.transform.gameObject.SetActive(true);
-					StreetUI.transform.gameObject.SetActive(false);
 					OptionsUI.transform.gameObject.SetActive(false);
+					SelectUI.transform.gameObject.SetActive(false);
+					if (SelectObjects != null) {
+						SelectObjects.transform.gameObject.SetActive(false);
+					}
 				} else if (name == "Options Button") {
 					MenuUI.transform.gameObject.SetActive(false);
 					OptionsUI.transform.gameObject.SetActive(true);

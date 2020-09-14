@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
 
 /// <summary>
 /// Created by Coral
@@ -13,7 +16,12 @@ public class CameraScript : MonoBehaviour {
 	public Vector3 GalleryCanvas;
 
 	private void Awake() {
-		transform.position = new Vector3(0, 44, 0);
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
+			transform.position = new Vector3(0, 44, 0);
+		}
+		else if (SceneManager.GetActiveScene().name == "TableScene") {
+			transform.position = new Vector3(0, 0, -1.6f);
+		}
 	}
 
 	/// <summary>

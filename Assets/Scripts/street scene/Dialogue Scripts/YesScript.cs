@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Tobii.Gaming;
+using UnityEngine.SceneManagement;
+
 
 public class YesScript : MonoBehaviour {
+
+	float sceneChangeWait;
+
 	//MattP
 	public Button yesButton;
 	public Button noButton;
@@ -25,6 +30,19 @@ public class YesScript : MonoBehaviour {
 	Vector2 filteredPoint;
 
 	private void Update() {
+		if (sceneChangeWait > 0) {
+			sceneChangeWait -= Time.deltaTime;
+			if (sceneChangeWait <= 0) {
+				if (SceneManager.GetActiveScene().name == "StreetScene") {
+					SceneManager.LoadScene("PortraitPaintScene");
+				}
+				else if (SceneManager.GetActiveScene().name == "TableScene") {
+					SceneManager.LoadScene("StillLifePaintScene");
+				}
+			}
+		}
+
+
 		//Only click buttons if spacebar is down
 		if (Input.GetKey("space")) {
 			timeBetweenClicks -= Time.deltaTime;
@@ -61,10 +79,13 @@ public class YesScript : MonoBehaviour {
 	}
 
 	public void NoButton() {
-		FindObjectOfType<DialogueTrigger>().No();
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
+			FindObjectOfType<DialogueTrigger>().No();
+		}
 	}
 
 	public void YesButton() {
-		FindObjectOfType<DialogueTrigger>().Yes();
+			//	FindObjectOfType<DialogueTrigger>().Yes();
+			sceneChangeWait = 2;
 	}
 }

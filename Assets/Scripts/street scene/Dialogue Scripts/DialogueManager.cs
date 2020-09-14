@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour {
 	public GameObject dialogueBox;
 	public GameObject image;
 	Vector3 startPos;
-	public ChangePerson changePerson;
+	public ChangePerson changePerson; 
 
 	public List<Sprite> images;
 	public List<Sprite> specialImages;

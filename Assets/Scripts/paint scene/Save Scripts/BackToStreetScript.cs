@@ -21,7 +21,11 @@ public class BackToStreetScript : MonoBehaviour {
 		if (sceneChangeWait > 0) {
 			sceneChangeWait -= Time.deltaTime;
 			if (sceneChangeWait <= 0) {
-				SceneManager.LoadScene("StreetScene");
+				if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
+					SceneManager.LoadScene("TableScene");
+				} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+					SceneManager.LoadScene("StreetScene");
+				}
 			}
 		}
 	}
