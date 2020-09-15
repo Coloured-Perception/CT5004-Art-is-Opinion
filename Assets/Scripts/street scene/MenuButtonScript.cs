@@ -23,24 +23,14 @@ public class MenuButtonScript : MonoBehaviour {
 		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
 	}
 
-	private void Start() {
-		if (name == "Play UI") {
-
-		}
-	}
-
 	public void ButtonClicked() {
-
-
 		if (name == "Play Button" || name == "Menu Button" || name == "Options Button") {
 			cameraShutterScript.CameraBoth();
 			timeWait = 1;
 
-
 		} else if (name == "Main Button" || name == "Still Life Button" || name == "Portrait Button" || name == "Draw Button" || name == "Exit Button") {
 			cameraShutterScript.CameraClose();
 			timeWait = 1;
-
 		}
 	}
 

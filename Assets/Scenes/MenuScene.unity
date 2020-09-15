@@ -172,12 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &10858493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,9 +296,9 @@ RectTransform:
   m_Children:
   - {fileID: 1498792443}
   - {fileID: 1345728541}
-  - {fileID: 1027018084}
   - {fileID: 1051686866}
   - {fileID: 2099824100}
+  - {fileID: 1027018084}
   m_Father: {fileID: 1938997463}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1488,12 +1482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &481517236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,13 +1989,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: -830769646576685204, guid: c64d821acc92ccd4f9b83393bd4c20c2,
-    type: 3}
-  myImageComponent: {fileID: 0}
 --- !u!1 &599734724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,12 +2040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 661948935}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &599734727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3297,7 +3272,7 @@ RectTransform:
   m_LocalScale: {x: 0.5474146, y: 0.5474146, z: 0.5474146}
   m_Children: []
   m_Father: {fileID: 26753281}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3348,7 +3323,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1027018088}
-        m_MethodName: Exit
+        m_MethodName: ButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3407,12 +3382,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027018083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 0}
-  OptionsUI: {fileID: 0}
-  SelectUI: {fileID: 0}
+  MenuUI: {fileID: 26753280}
+  OptionsUI: {fileID: 949936216}
+  SelectUI: {fileID: 661948935}
   SelectObjects: {fileID: 0}
   transparent: {fileID: 0}
   myImageComponent: {fileID: 0}
@@ -3449,7 +3424,7 @@ RectTransform:
   m_Children:
   - {fileID: 1810091081}
   m_Father: {fileID: 26753281}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3570,12 +3545,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1051686865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
   OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
+  SelectUI: {fileID: 661948935}
   SelectObjects: {fileID: 0}
   transparent: {fileID: 0}
   myImageComponent: {fileID: 0}
@@ -4071,12 +4046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 661948935}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &1253917419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7139,7 +7108,7 @@ RectTransform:
   m_Children:
   - {fileID: 1723102287}
   m_Father: {fileID: 26753281}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7248,7 +7217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099824099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
+  m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
