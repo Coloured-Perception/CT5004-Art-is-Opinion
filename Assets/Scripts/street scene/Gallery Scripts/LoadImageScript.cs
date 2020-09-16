@@ -51,22 +51,24 @@ public class LoadImageScript : MonoBehaviour {
 		}
 		PNGImages.Reverse();    // Reverses array have last object loaded first
 
-		// For every image frame, a savedImage is loaded
-		for (int i = 0; i < numOfImages; i++) {
-			individualFilePath = PNGImages[i];
+		if (numOfPNGs != 0) {
+			// For every image frame, a savedImage is loaded
+			for (int i = 0; i < numOfImages; i++) {
+				individualFilePath = PNGImages[i];
 
-			using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(individualFilePath)) {
-				yield return uwr.SendWebRequest();
+				using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(individualFilePath)) {
+					yield return uwr.SendWebRequest();
 
-				if (uwr.isNetworkError || uwr.isHttpError) {
-					loadedTexture = null;
-//					Debug.Log("Error loading texture.");
-					Debug.Log(uwr.error);
-				} else {
-					loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-	//				Debug.Log("Succesfully loaded texture!");
+					if (uwr.isNetworkError || uwr.isHttpError) {
+						loadedTexture = null;
+						Debug.Log("Error loading texture.");
+						Debug.Log(uwr.error);
+					} else {
+						loadedTexture = DownloadHandlerTexture.GetContent(uwr);
+						Debug.Log("Succesfully loaded texture!");
+					}
+					paintings[i].texture = loadedTexture;
 				}
-				paintings[i].texture = loadedTexture;
 			}
 		}
 	}
