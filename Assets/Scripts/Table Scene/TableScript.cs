@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// sprite shader found here https://forum.unity.com/threads/shader-for-sprites-to-cast-shadows-and-take-normal-maps.218251/
+/// </summary>
+
+
+
+
 public class TableScript : MonoBehaviour {
 
 
@@ -25,8 +32,8 @@ public class TableScript : MonoBehaviour {
 		if (tag == "Table") {
 
 			fruitSprite = this.GetComponentInChildren<SpriteRenderer>();
-			fruitSprite.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-			Debug.Log(fruitSprite.shadowCastingMode);
+			//fruitSprite.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+			//Debug.Log(fruitSprite.shadowCastingMode);
 			ChangeImage();
 
 		}
