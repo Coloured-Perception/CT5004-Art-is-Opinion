@@ -4,18 +4,15 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Created by Coral
-/// this class manages the menu and street uis
+/// This class manages the UIs and their effects in all menu scenes
 /// </summary>
 public class MenuButtonScript : MonoBehaviour {
-	float timeWait;
-	public GameObject MenuUI;
-	public GameObject OptionsUI;
-	public GameObject SelectUI;
-	public GameObject SelectObjects;
+	public GameObject MenuUI, OptionsUI, SelectUI, SelectObjects;
 	public static MenuButtonScript personInstance;
 	public Sprite transparent;
 	public Image myImageComponent;
 	CameraShutterScript cameraShutterScript;
+	float timeWait;
 
 	private void Awake() {
 		personInstance = this;
@@ -23,20 +20,23 @@ public class MenuButtonScript : MonoBehaviour {
 		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
 	}
 
+	/// <summary>
+	/// Plays the full camera aniamation to cover up changes within the scene
+	/// or plays the camera close animation for a seamless scene transition 
+	/// </summary>
 	public void ButtonClicked() {
 		if (name == "Play Button" || name == "Menu Button" || name == "Options Button") {
 			cameraShutterScript.CameraBoth();
-			timeWait = 1;
-
 		} else if (name == "Main Button" || name == "Still Life Button" || name == "Portrait Button" || name == "Draw Button" || name == "Exit Button") {
 			cameraShutterScript.CameraClose();
-			timeWait = 1;
 		}
+		timeWait = 1;
 	}
-
-
+	
 	/// <summary>
-	/// waits 2 seconds for the camera shutter animation to play to have a seamless transition but is not dependent on it 
+	/// Changes the scene or the scene layot while the camerashutter is closed
+	/// may change this to happen once the animation has stopped 
+	/// or is half way through insted of using timings 
 	/// </summary>
 	void Update() {
 		if (timeWait > 0) {

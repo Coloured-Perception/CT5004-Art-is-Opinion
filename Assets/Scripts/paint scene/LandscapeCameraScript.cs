@@ -1,6 +1,11 @@
 ﻿
 using UnityEngine;
 
+/// <summary>
+/// This class plays the animations that move the camera 
+/// in and out in landscape painting scenes
+/// </summary>
+
 public class LandscapeCameraScript : MonoBehaviour {
 
 	private Animator anim;

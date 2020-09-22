@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using Tobii.Gaming;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// This class controlls what happens after a character is accepted or rejected 
+/// </summary>
 public class YesScript : MonoBehaviour {
 
 	float sceneChangeWait;
@@ -29,12 +31,10 @@ public class YesScript : MonoBehaviour {
 	float timeBetweenClicks = 1;
 	Vector2 filteredPoint;
 
-
 	CameraShutterScript cameraShutterScript;
 
 	private void Awake() {
 		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
-
 	}
 
 	private void Update() {
@@ -43,13 +43,11 @@ public class YesScript : MonoBehaviour {
 			if (sceneChangeWait <= 0) {
 				if (SceneManager.GetActiveScene().name == "StreetScene") {
 					SceneManager.LoadScene("PortraitPaintScene");
-				}
-				else if (SceneManager.GetActiveScene().name == "TableScene") {
+				} else if (SceneManager.GetActiveScene().name == "TableScene") {
 					SceneManager.LoadScene("StillLifePaintScene");
 				}
 			}
 		}
-
 
 		//Only click buttons if spacebar is down
 		if (Input.GetKey("space")) {
@@ -93,9 +91,7 @@ public class YesScript : MonoBehaviour {
 	}
 
 	public void YesButton() {
-			//	FindObjectOfType<DialogueTrigger>().Yes();
-			sceneChangeWait = 2;
+		sceneChangeWait = 2;
 		cameraShutterScript.CameraClose();
-
 	}
 }

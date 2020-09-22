@@ -1407,7 +1407,6 @@ GameObject:
   - component: {fileID: 432747089}
   - component: {fileID: 432747091}
   - component: {fileID: 432747090}
-  - component: {fileID: 432747092}
   m_Layer: 5
   m_Name: personImage
   m_TagString: Untagged
@@ -1424,14 +1423,14 @@ RectTransform:
   m_GameObject: {fileID: 432747088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1045, y: 0.86782956, z: 1}
+  m_LocalScale: {x: 1.5667332, y: 1.2310162, z: 1.4185}
   m_Children: []
   m_Father: {fileID: 904126167}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: 18.000034}
+  m_AnchoredPosition: {x: -121, y: -51}
   m_SizeDelta: {x: 303.2, y: 405.40002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432747090
@@ -1472,18 +1471,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432747088}
   m_CullTransparentMesh: 0
---- !u!114 &432747092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432747088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142c0e366e63595469e9c68821bc4215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &437412417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,12 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 1009284757}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &481517236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,13 +2204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: -830769646576685204, guid: c64d821acc92ccd4f9b83393bd4c20c2,
-    type: 3}
-  myImageComponent: {fileID: 432747090}
 --- !u!1 &657710719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &793192175
 Transform:
   m_ObjectHideFlags: 0
@@ -3259,7 +3233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 47.515, y: -400}
+  m_AnchoredPosition: {x: 178, y: -400}
   m_SizeDelta: {x: 153.20001, y: 282.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904126168
@@ -3841,12 +3815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 0}
-  OptionsUI: {fileID: 0}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!1 &1051686865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,12 +3961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!1 &1088053365
 GameObject:
   m_ObjectHideFlags: 0
@@ -4366,12 +4328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 1009284757}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!1 &1137192762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,7 +4596,7 @@ MonoBehaviour:
   continueButton: {fileID: 852595614}
   dialogueBox: {fileID: 904126166}
   image: {fileID: 432747088}
-  changePerson: {fileID: 432747092}
+  changePerson: {fileID: 0}
   images:
   - {fileID: -1835304658440169179, guid: 8ada61ba7028f2b4591760fb74b65412, type: 3}
   - {fileID: -1285648635154595981, guid: 6086f11a9def3c845bc68d8b67a76b9b, type: 3}
@@ -4655,7 +4611,6 @@ MonoBehaviour:
   - {fileID: 279447671177366794, guid: 3de6d7ab6c37ba74bb6596ee4220c0ab, type: 3}
   - {fileID: 9196261937861039639, guid: 3de6d7ab6c37ba74bb6596ee4220c0ab, type: 3}
   - {fileID: 3229122314543174330, guid: 3de6d7ab6c37ba74bb6596ee4220c0ab, type: 3}
-  - {fileID: -6185808005794703468, guid: 3de6d7ab6c37ba74bb6596ee4220c0ab, type: 3}
   - {fileID: 2933357488248629739, guid: 6086f11a9def3c845bc68d8b67a76b9b, type: 3}
   specialImages:
   - {fileID: 4240220511655738080, guid: 8ada61ba7028f2b4591760fb74b65412, type: 3}
@@ -5006,12 +4961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58373d0884e1cb842bd2f5611f20b8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 0}
-  SelectObjects: {fileID: 0}
-  transparent: {fileID: 0}
-  myImageComponent: {fileID: 0}
 --- !u!114 &1253917419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6264,7 +6213,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 7e00db10439bfed4ea841049e5cfc8e4, type: 3}
 --- !u!224 &1619925479 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6222765250289421844, guid: 7e00db10439bfed4ea841049e5cfc8e4,
+  m_CorrespondingSourceObject: {fileID: 3539873351962388098, guid: 7e00db10439bfed4ea841049e5cfc8e4,
     type: 3}
   m_PrefabInstance: {fileID: 1619925478}
   m_PrefabAsset: {fileID: 0}
@@ -13000,16 +12949,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: cameraShutterOpen
-      value: 
-      objectReference: {fileID: 1509455246}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: CameraShutterScriptOpen
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3191613913559943883, guid: a5d208549b192134b91f9f463abe4e07,
         type: 3}
       propertyPath: m_Controller
@@ -13021,6 +12960,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4473559050501258657, guid: 424e8f9746366284f8da6a4f1a535aea,
         type: 3}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: cameraShutterOpen
+      value: 
+      objectReference: {fileID: 1509455246}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: CameraShutterScriptOpen
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a5d208549b192134b91f9f463abe4e07, type: 3}

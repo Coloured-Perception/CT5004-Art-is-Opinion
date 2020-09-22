@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
 /// <summary>
 /// Created by Coral
+/// This class controlls the camera movements in menu scenes 
 /// </summary>
 public class CameraScript : MonoBehaviour {
 	bool gallery = false;
@@ -25,7 +24,7 @@ public class CameraScript : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Gallery() and Menu() set the camera to spin and controlls the gallery and menu uis
+	/// Gallery() and Menu() set the camera to spin and controls the gallery and menu uis
 	/// </summary>
 	public void Gallery() {
 		if (menu == false) {
@@ -46,7 +45,9 @@ public class CameraScript : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// this spins the camera and makes sure that it has stopped moving before its moved again
+	/// This spins the camera and makes sure that it has stopped moving before its moved again
+	/// Will change this to an animation to be more accurate
+	/// May change the uis to slide in with the camera turn instaed of just appearing 
 	/// </summary>
 	private void Update() {
 		if (gallery == true) {

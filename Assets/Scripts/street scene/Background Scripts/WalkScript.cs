@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Created by Coral
-/// this class controls the people in the background
+/// This class controls the people in the background
 /// </summary>
 public class WalkScript : MonoBehaviour {
 
@@ -11,8 +11,8 @@ public class WalkScript : MonoBehaviour {
 	public GameObject prefabChild;
 
 	/// <summary>
-	/// this flips the sprits in the prefab and sets them walking in the furthest direction
-	/// the parent is given a random colour value to change the colour of some clothes
+	/// This flips the sprite and sets the speed in the direction it has furthest to travel
+	/// The parent is given a random colour value to change the colour of some clothes
 	/// </summary>
 	private void Start() {
 		SpriteRenderer parentSpriteRender = GetComponent<SpriteRenderer>();
@@ -31,7 +31,8 @@ public class WalkScript : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// once the person has reached the other side they are destroyed
+	/// Moves the sprite along. direction can also be changeged for different movement speeds
+	/// Once the person has reached the other side they are destroyed
 	/// </summary>
 	private void Update() {
 		transform.Translate(direction, 0, 0);

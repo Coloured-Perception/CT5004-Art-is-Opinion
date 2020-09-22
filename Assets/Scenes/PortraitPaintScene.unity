@@ -632,9 +632,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 288863935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a316ff6cdf3b6154ba7fd5eb9db81d87, type: 3}
+  m_Script: {fileID: 11500000, guid: 08d8de5941e32884a883db88ff24f9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveTexture: {fileID: 0}
 --- !u!114 &288863938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,16 +1537,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: cameraShutterOpen
-      value: 
-      objectReference: {fileID: 81395211}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: CameraShutterScriptOpen
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3191613913559943883, guid: a5d208549b192134b91f9f463abe4e07,
         type: 3}
       propertyPath: m_Controller
@@ -1557,6 +1548,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4473559050501258657, guid: 424e8f9746366284f8da6a4f1a535aea,
         type: 3}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: cameraShutterOpen
+      value: 
+      objectReference: {fileID: 81395211}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: CameraShutterScriptOpen
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a5d208549b192134b91f9f463abe4e07, type: 3}
@@ -2682,7 +2683,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 7e00db10439bfed4ea841049e5cfc8e4, type: 3}
 --- !u!224 &1029266684 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6222765250289421844, guid: 7e00db10439bfed4ea841049e5cfc8e4,
+  m_CorrespondingSourceObject: {fileID: 3539873351962388098, guid: 7e00db10439bfed4ea841049e5cfc8e4,
     type: 3}
   m_PrefabInstance: {fileID: 1029266683}
   m_PrefabAsset: {fileID: 0}
@@ -4649,7 +4650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 216, y: 222}
+  m_AnchoredPosition: {x: 216, y: 197}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2028367488
@@ -4665,7 +4666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.18823531, b: 0.18823531, a: 1}
+  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

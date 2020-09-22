@@ -299,7 +299,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3787708071038336067, guid: 0ea1663c41fd49244b45e10751500de1,
+  m_Sprite: {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -318,13 +318,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85816272}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.0208, y: -0.019, z: 64.2}
-  m_LocalScale: {x: 0.38367304, y: 0.4318794, z: 2.589247}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0006699674, w: 0.99999976}
+  m_LocalPosition: {x: 0.021, y: -0.17, z: 64.2}
+  m_LocalScale: {x: 0.09507802, y: 0.10702404, z: 0.6416413}
   m_Children: []
   m_Father: {fileID: 1977844137}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.07700001}
 --- !u!1 &115009137
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,8 +570,8 @@ GameObject:
   - component: {fileID: 288863936}
   - component: {fileID: 288863940}
   - component: {fileID: 288863939}
-  - component: {fileID: 288863938}
   - component: {fileID: 288863937}
+  - component: {fileID: 288863938}
   m_Layer: 5
   m_Name: Don't Save button
   m_TagString: Untagged
@@ -607,9 +607,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 288863935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a316ff6cdf3b6154ba7fd5eb9db81d87, type: 3}
+  m_Script: {fileID: 11500000, guid: 08d8de5941e32884a883db88ff24f9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveTexture: {fileID: 0}
 --- !u!114 &288863938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,7 +2485,7 @@ Transform:
   m_LocalScale: {x: 14.802858, y: 14.802858, z: 14.802858}
   m_Children:
   - {fileID: 1297454960}
-  - {fileID: 1532329938}
+  - {fileID: 1291428521}
   - {fileID: 1871618210}
   m_Father: {fileID: 353257475}
   m_RootOrder: 3
@@ -2854,6 +2855,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274681680}
   m_CullTransparentMesh: 0
+--- !u!224 &1291428521 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3539873351962388098, guid: 7e00db10439bfed4ea841049e5cfc8e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532329937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1297454959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3463,12 +3470,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e00db10439bfed4ea841049e5cfc8e4, type: 3}
---- !u!224 &1532329938 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6222765250289421844, guid: 7e00db10439bfed4ea841049e5cfc8e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1532329937}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1560803118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,16 +4297,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: cameraShutterOpen
-      value: 
-      objectReference: {fileID: 1871618211}
-    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
-        type: 3}
-      propertyPath: CameraShutterScriptOpen
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3191613913559943883, guid: a5d208549b192134b91f9f463abe4e07,
         type: 3}
       propertyPath: m_Controller
@@ -4317,6 +4308,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4473559050501258657, guid: 424e8f9746366284f8da6a4f1a535aea,
         type: 3}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: cameraShutterOpen
+      value: 
+      objectReference: {fileID: 1871618211}
+    - target: {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07,
+        type: 3}
+      propertyPath: CameraShutterScriptOpen
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9212178360606355908, guid: a5d208549b192134b91f9f463abe4e07, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a5d208549b192134b91f9f463abe4e07, type: 3}
@@ -4904,7 +4905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.18823531, b: 0.18823531, a: 1}
+  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

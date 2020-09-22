@@ -2,15 +2,14 @@
 
 /// <summary>
 /// Created by Coral
-/// this class controlls the clouds moving in the sky during the street scene
+/// This class controls the clouds moving in the sky during the street scene
 /// </summary>
 public class CloudScript : MonoBehaviour {
 	float timeWait = 300;
-	float direction;
-	float flip;
+	float direction, flip;
 
 	/// <summary>
-	/// randomly flips the sprite and sets the speed in the direction it has furthest to travel
+	/// Randomly flips the sprite and sets the speed in the direction it has furthest to travel
 	/// </summary>
 	private void Start() {
 		flip = Random.Range(0, 2);
@@ -29,7 +28,7 @@ public class CloudScript : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// moves cloud till it clears the screen
+	/// Moves cloud till it clears the screen and destroys it 
 	/// </summary>
 	private void Update() {
 		transform.Translate(direction, 0, 0);

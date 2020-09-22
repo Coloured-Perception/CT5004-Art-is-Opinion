@@ -70,11 +70,23 @@ public class SaveImageScript : MonoBehaviour {
 	}
 
 	// Coral
+	public void DontSave() {
+		cameraShutterScript.CameraClose();
+		sceneChangeWait = 2;
+	}
+	
+	/// <summary>
+	/// gives time for the camera shutter animation to play
+	/// </summary>
 	private void Update() {
 		if (sceneChangeWait > 0) {
 			sceneChangeWait -= Time.deltaTime;
 			if (sceneChangeWait <= 0) {
-				SceneManager.LoadScene("StreetScene");
+				if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
+					SceneManager.LoadScene("TableScene");
+				} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+					SceneManager.LoadScene("StreetScene");
+				}
 			}
 		}
 	}

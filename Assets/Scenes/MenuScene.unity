@@ -1832,17 +1832,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eae47ca82cab55489b7297d5ffb4793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  galleryBoard: {fileID: 1355327046}
-  painting1: {fileID: 993430400}
-  painting2: {fileID: 1752208513}
-  painting3: {fileID: 430979653}
-  painting4: {fileID: 162182154}
-  painting5: {fileID: 1382940748}
-  painting6: {fileID: 1347782918}
-  painting7: {fileID: 156085989}
-  painting8: {fileID: 1343658679}
-  painting9: {fileID: 1379026243}
-  painting10: {fileID: 84371126}
+  galleryBoard: {fileID: 0}
+  painting1: {fileID: 0}
+  painting2: {fileID: 0}
+  painting3: {fileID: 0}
+  painting4: {fileID: 0}
+  painting5: {fileID: 0}
+  painting6: {fileID: 0}
+  painting7: {fileID: 0}
+  painting8: {fileID: 0}
+  painting9: {fileID: 0}
+  painting10: {fileID: 0}
 --- !u!1 &568100840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,8 +3165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de267ea119d58546b92e52fa1431e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  GalleryUI: {fileID: 150815066}
+  MenuUI: {fileID: 0}
+  GalleryUI: {fileID: 0}
   GalleryCanvas: {x: 0, y: 0, z: 0}
 --- !u!1 &993430398
 GameObject:
@@ -3385,9 +3385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 661948935}
+  MenuUI: {fileID: 0}
+  OptionsUI: {fileID: 0}
+  SelectUI: {fileID: 0}
   SelectObjects: {fileID: 0}
   transparent: {fileID: 0}
   myImageComponent: {fileID: 0}
@@ -3548,9 +3548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 661948935}
+  MenuUI: {fileID: 0}
+  OptionsUI: {fileID: 0}
+  SelectUI: {fileID: 0}
   SelectObjects: {fileID: 0}
   transparent: {fileID: 0}
   myImageComponent: {fileID: 0}
@@ -3662,20 +3662,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65127242e4261764caf91de951611196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayButton: {fileID: 481517236}
-  DrawButton: {fileID: 568100842}
-  GalleryButton: {fileID: 1498792444}
-  ExitButton: {fileID: 1027018085}
+  PlayButton: {fileID: 0}
+  DrawButton: {fileID: 0}
+  GalleryButton: {fileID: 0}
+  ExitButton: {fileID: 0}
   GalleryMenuButton: {fileID: 0}
   StreetMenuButton: {fileID: 0}
-  mainCam: {fileID: 963194227}
+  mainCam: {fileID: 0}
   dialogueManager: {fileID: 0}
-  menuUI: {fileID: 26753280}
-  galleryUI: {fileID: 150815066}
+  menuUI: {fileID: 0}
+  galleryUI: {fileID: 0}
   streetUI: {fileID: 0}
   image: {fileID: 0}
   yesNoButton: {fileID: 0}
-  cameraShutterClose: {fileID: 945757280780027389}
+  cameraShutterClose: {fileID: 0}
 --- !u!4 &1089443557
 Transform:
   m_ObjectHideFlags: 0
@@ -7220,9 +7220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd294f520a05dc4ebec9d6795078df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 26753280}
-  OptionsUI: {fileID: 949936216}
-  SelectUI: {fileID: 661948935}
+  MenuUI: {fileID: 0}
+  OptionsUI: {fileID: 0}
+  SelectUI: {fileID: 0}
   SelectObjects: {fileID: 0}
   transparent: {fileID: 0}
   myImageComponent: {fileID: 0}

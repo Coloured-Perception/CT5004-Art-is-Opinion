@@ -161,7 +161,7 @@ namespace unitycoder_MobilePaint {
 						timeBeforeClick = timeBetweenClicks;
 					}
 					if ((notSavePos.x + notSaveXMin) < filteredPoint.x && filteredPoint.x < (notSavePos.x + notSaveXMax) && (notSavePos.y + notSaveYMin) < filteredPoint.y && filteredPoint.y < (notSavePos.y + notSaveYMax) && timeBetweenClicks <= 0) {
-						notSaveButton.GetComponent<BackToStreetScript>().DontSave();
+						saveButton.GetComponent<SaveImageScript>().DontSave();
 						cameraShutterClose.SetActive(true);
 						timeBeforeClick = timeBetweenClicks;
 					}

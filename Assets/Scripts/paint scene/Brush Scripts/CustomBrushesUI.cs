@@ -108,41 +108,15 @@ namespace unitycoder_MobilePaint {
 		}
 
 		//Coral
-
-		/// <summary>
-		/// KANE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		/// if we can set the prieview image to the pattern chosen and get it to scale the same way ive got the menu images to scale 
-		/// then we can get mobile paint script to change the brush to whatever the preview looks like whenever the menu or arrows are pressed
-		/// </summary>
-		/// <param name="index"></param>
+		
 		// send current brush index to mobilepaint
 		public void SetCustomBrush(int index) {
 			mobilePaint.selectedBrush = index;
 			mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
 			mobilePaint.SetDrawModeShapes();
-
-			//CloseCustomBrushPanel();
 			gameObject.SetActive(false);
-
 			sizeReference = index;
-
 			brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[index];
 		}
-
-		//public void CloseCustomBrushPanel()
-		//{
-		//	//if (transform.childCount > 0)
-		//	//{
-		//	//	GameObject.Destroy(transform.GetChild(0));
-		//	//}
-		//	gameObject.SetActive(false);
-		//}
-
-		//public void OpenCustomBrushPanel()
-		//{
-		//	gameObject.SetActive(true);
-		//}
-
-		//Coral
 	}
 }

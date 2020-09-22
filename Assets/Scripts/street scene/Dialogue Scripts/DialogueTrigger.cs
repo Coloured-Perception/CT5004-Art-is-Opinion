@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-//using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class controls how the character pops up
+/// </summary>
 public class DialogueTrigger : MonoBehaviour {
+
 	public Dialogue dialogue;
-	float timeWait;
-	//float sceneChangeWait;
 	public Animator anim;
 	public GameObject Canvas;
+	float timeWait;
 
 	private void Update() {
 		if (timeWait > 0) {
@@ -15,12 +17,6 @@ public class DialogueTrigger : MonoBehaviour {
 				TriggerDialogue();
 			}
 		}
-		//if (sceneChangeWait > 0) {
-		//	sceneChangeWait -= Time.deltaTime;
-		//	if (sceneChangeWait <= 0) {
-		//		SceneManager.LoadScene("PaintScene");
-		//	}
-		//}
 	}
 
 	public void StartDialog() {
@@ -29,19 +25,13 @@ public class DialogueTrigger : MonoBehaviour {
 
 	public void StopDialog() {
 		FindObjectOfType<DialogueManager>().EndDialogue();
-
 		timeWait = 0;
 	}
 
 	public void No() {
 		FindObjectOfType<DialogueManager>().EndDialogue();
-
 		timeWait = Random.Range(2, 4);
 	}
-
-	//public void Yes() {
-	//	sceneChangeWait = 2;
-	//}
 
 	public void TriggerDialogue() {
 		FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
