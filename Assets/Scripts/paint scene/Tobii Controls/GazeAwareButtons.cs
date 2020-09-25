@@ -13,6 +13,7 @@ namespace unitycoder_MobilePaint {
 		public Button saveButton;
 		public Button notSaveButton;
 		public Camera saveCamera;
+        public Camera mainCam;
 		public GameObject cameraShutterClose;
 		Vector3 increasePos;
 		Vector3 decreasePos;
@@ -21,6 +22,7 @@ namespace unitycoder_MobilePaint {
 		Vector3 savePos;
 		Vector3 notSavePos;
 
+        Rect camRect;
 		Rect increaseRect;
 		Rect decreaseRect;
 		Rect clearRect;
@@ -82,10 +84,11 @@ namespace unitycoder_MobilePaint {
 
 		private void Update() {
 			//Only click buttons if spacebar is down
-			if (Input.GetKey("space")) {
+			
 				timeBetweenClicks -= Time.deltaTime;
-				//Find position and size in x and y directions of the buttons
-				increasePos = increaseSizeButton.transform.position;
+                camRect = mainCam.pixelRect;
+                //Find position and size in x and y directions of the buttons
+                increasePos = increaseSizeButton.transform.position;
 				decreasePos = decreaseSizeButton.transform.position;
 				clearPos = clearImageButton.transform.position;
 				finishPos = finishButton.transform.position;
@@ -128,11 +131,15 @@ namespace unitycoder_MobilePaint {
 				notSaveXMax = notSaveRect.xMax;
 				notSaveYMin = notSaveRect.yMin;
 				notSaveYMax = notSaveRect.yMax;
-
-				Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
-				//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
-				if (paintCanvas.activeInHierarchy) {
+            
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x = gazePoint.x * camRect.width;
+                gazePoint.y = gazePoint.y * camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+            if (Input.GetKey("space"))
+            {
+                //Find if buttons are active and whether the eye is looking at them and space is down, do button code.
+                if (paintCanvas.activeInHierarchy) {
 					if ((increasePos.x + increaseXMin) < filteredPoint.x && filteredPoint.x < (increasePos.x + increaseXMax) && (increasePos.y + increaseYMin) < filteredPoint.y && filteredPoint.y < (increasePos.y + increaseYMax) && timeBetweenClicks <= 0) {
 						IncreaseBrushSize();
 						timeBeforeClick = timeBetweenClicks;

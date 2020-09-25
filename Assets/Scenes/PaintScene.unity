@@ -2785,7 +2785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: 1
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2
@@ -3179,6 +3179,7 @@ MonoBehaviour:
   saveButton: {fileID: 1757921791}
   notSaveButton: {fileID: 288863938}
   saveCamera: {fileID: 2084494063}
+  mainCam: {fileID: 75766442}
   cameraShutterClose: {fileID: 1950259625}
 --- !u!114 &1465941356
 MonoBehaviour:
@@ -3193,6 +3194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colourPanel: {fileID: 1943441879}
+  mainCam: {fileID: 916120782}
 --- !u!4 &1465941357
 Transform:
   m_ObjectHideFlags: 0
@@ -4215,7 +4217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: 1
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2

@@ -190,8 +190,8 @@ namespace unitycoder_MobilePaint {
 
 		// zoom pan
 		private bool isZoomingOrPanning = false;
-
-		void Awake() {
+        Rect camRect;
+        void Awake() {
 			// cache components
 			cam = Camera.main;
 			myRenderer = GetComponent<Renderer>();
@@ -538,8 +538,10 @@ namespace unitycoder_MobilePaint {
 
 		// *** MAINLOOP ***
 		void Update() {
-			// Checks to see what type of input the player is using
-			if (isEyeTracker)   // Calls the function for Tobii eye-tracker input
+
+            camRect = cam.pixelRect;
+            // Checks to see what type of input the player is using
+            if (isEyeTracker)   // Calls the function for Tobii eye-tracker input
 			{
 				EyeTracker();
 			} else    // Calls the function for Mouse input

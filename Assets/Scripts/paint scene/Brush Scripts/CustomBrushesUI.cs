@@ -22,8 +22,9 @@ namespace unitycoder_MobilePaint {
 		float[] YMin;
 		float[] YMax;
 		GameObject[] children;
-
-		float timeBeforeClick;
+        public Camera mainCam;
+        Rect camRect;
+        float timeBeforeClick;
 		float timeBetweenClicks = 1;
 		int brushSizeLast = 100; // any number that cant actually be the size 
 
@@ -43,10 +44,12 @@ namespace unitycoder_MobilePaint {
 		}
 
 		private void Update() {
-			// Coral
-			// this tests wether the brush has changed size and so new custom brushes are needed
-			// the brushes needed are decided by the for loop and then instantiated in the right position
-			if (brushSizeLast != brushSizeScript.customSize) {
+
+            camRect = mainCam.pixelRect;
+            // Coral
+            // this tests wether the brush has changed size and so new custom brushes are needed
+            // the brushes needed are decided by the for loop and then instantiated in the right position
+            if (brushSizeLast != brushSizeScript.customSize) {
 
 				for (int i = transform.childCount - 1; i >= 0; --i) {
 					var child = transform.GetChild(i).gameObject;
@@ -84,11 +87,13 @@ namespace unitycoder_MobilePaint {
 			}
 
 			if (Input.GetKey("space")) {
-				Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the er is looking at via the eye-tracker           
-				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x = gazePoint.x * camRect.width;
+                gazePoint.y = gazePoint.y * camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 
-				int loopPos = 0;
+                int loopPos = 0;
 				foreach (Button brush in newButton) {
 					//MattP
 					Positions[loopPos] = newButton[loopPos].transform.position;

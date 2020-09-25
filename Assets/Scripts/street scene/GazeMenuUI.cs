@@ -26,7 +26,9 @@ public class GazeMenuUI : MonoBehaviour {
 	Vector3 ExitPos;
 	Vector3 GalleryMenuPos;
 	Vector3 StreetMenuPos;
-
+    //
+    Rect camRect;
+    //
 	Rect PlayRect;
 	Rect DrawRect;
 	Rect GalleryRect;
@@ -74,54 +76,63 @@ public class GazeMenuUI : MonoBehaviour {
 	}
 
 	private void Update() {
-		//Only click buttons if spacebar is down
-		if (Input.GetKey("space")) {
-			timeBetweenClicks -= Time.deltaTime;
-			//Find position and size in x and y directions of the buttons
-			PlayPos = PlayButton.transform.position;
-			DrawPos = DrawButton.transform.position;
-			GalleryPos = GalleryButton.transform.position;
-			ExitPos = ExitButton.transform.position;
-			GalleryMenuPos = GalleryMenuButton.transform.position;
-			PlayRect = PlayButton.GetComponent<RectTransform>().rect;
-			DrawRect = DrawButton.GetComponent<RectTransform>().rect;
-			GalleryRect = GalleryButton.GetComponent<RectTransform>().rect;
-			ExitRect = ExitButton.GetComponent<RectTransform>().rect;
-			GalleryMenuRect = GalleryMenuButton.GetComponent<RectTransform>().rect;
+        //
+        camRect = mainCam.pixelRect;
+        //
 
-			PlayXMin = PlayRect.xMin;
-			PlayXMax = PlayRect.xMax;
-			PlayYMin = PlayRect.yMin;
-			PlayYMax = PlayRect.yMax;
+        timeBetweenClicks -= Time.deltaTime;
+		//Find position and size in x and y directions of the buttons
+		PlayPos = PlayButton.transform.position;
+		DrawPos = DrawButton.transform.position;
+		GalleryPos = GalleryButton.transform.position;
+		ExitPos = ExitButton.transform.position;
+		GalleryMenuPos = GalleryMenuButton.transform.position;
+		PlayRect = PlayButton.GetComponent<RectTransform>().rect;
+		DrawRect = DrawButton.GetComponent<RectTransform>().rect;
+		GalleryRect = GalleryButton.GetComponent<RectTransform>().rect;
+		ExitRect = ExitButton.GetComponent<RectTransform>().rect;
+		GalleryMenuRect = GalleryMenuButton.GetComponent<RectTransform>().rect;
 
-			DrawXMin = DrawRect.xMin;
-			DrawXMax = DrawRect.xMax;
-			DrawYMin = DrawRect.yMin;
-			DrawYMax = DrawRect.yMax;
+		PlayXMin = PlayRect.xMin;
+		PlayXMax = PlayRect.xMax;
+		PlayYMin = PlayRect.yMin;
+		PlayYMax = PlayRect.yMax;
 
-			GalleryXMin = GalleryRect.xMin;
-			GalleryXMax = GalleryRect.xMax;
-			GalleryYMin = GalleryRect.yMin;
-			GalleryYMax = GalleryRect.yMax;
+		DrawXMin = DrawRect.xMin;
+		DrawXMax = DrawRect.xMax;
+		DrawYMin = DrawRect.yMin;
+		DrawYMax = DrawRect.yMax;
 
-			ExitXMin = ExitRect.xMin;
-			ExitXMax = ExitRect.xMax;
-			ExitYMin = ExitRect.yMin;
-			ExitYMax = ExitRect.yMax;
+		GalleryXMin = GalleryRect.xMin;
+		GalleryXMax = GalleryRect.xMax;
+		GalleryYMin = GalleryRect.yMin;
+		GalleryYMax = GalleryRect.yMax;
 
-			GalleryMenuXMin = GalleryMenuRect.xMin;
-			GalleryMenuXMax = GalleryMenuRect.xMax;
-			GalleryMenuYMin = GalleryMenuRect.yMin;
-			GalleryMenuYMax = GalleryMenuRect.yMax;
+		ExitXMin = ExitRect.xMin;
+		ExitXMax = ExitRect.xMax;
+		ExitYMin = ExitRect.yMin;
+		ExitYMax = ExitRect.yMax;
 
-			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+		GalleryMenuXMin = GalleryMenuRect.xMin;
+		GalleryMenuXMax = GalleryMenuRect.xMax;
+		GalleryMenuYMin = GalleryMenuRect.yMin;
+		GalleryMenuYMax = GalleryMenuRect.yMax;
 
-			//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
-			if (menuUI.activeInHierarchy) {
+        //
+        Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+        gazePoint.x = gazePoint.x * camRect.width;
+        gazePoint.y = gazePoint.y * camRect.height;
+        filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+
+        //
+        if (Input.GetKey("space"))
+        {
+            //Find if buttons are active and whether the eye is looking at them and space is down, do button code.
+            if (menuUI.activeInHierarchy) {
 				if ((PlayPos.x + PlayXMin) < filteredPoint.x && filteredPoint.x < (PlayPos.x + PlayXMax) && (PlayPos.y + PlayYMin) < filteredPoint.y && filteredPoint.y < (PlayPos.y + PlayYMax) && timeBetweenClicks <= 0) {
 					PlayButton.GetComponent<MenuButtonScript>().ButtonClicked();
 					dialogueManager.GetComponent<DialogueTrigger>().StartDialog();
+                    cameraShutterClose.SetActive(true);
 					timeBeforeClick = timeBetweenClicks;
 				}
 

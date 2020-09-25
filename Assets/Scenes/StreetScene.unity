@@ -372,7 +372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 159.8, y: -47.4}
+  m_AnchoredPosition: {x: 159.80078, y: -47.399994}
   m_SizeDelta: {x: -688.7, y: -193.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &118338817
@@ -3372,7 +3372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 47.515, y: -400}
+  m_AnchoredPosition: {x: 47.515625, y: -400}
   m_SizeDelta: {x: 153.20001, y: 282.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904126168
@@ -4019,7 +4019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 294.64, y: 144}
+  m_AnchoredPosition: {x: 294.64062, y: 144}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051686867
@@ -4256,8 +4256,8 @@ MonoBehaviour:
   DrawButton: {fileID: 568100842}
   GalleryButton: {fileID: 1498792444}
   ExitButton: {fileID: 1027018085}
-  GalleryMenuButton: {fileID: 0}
-  StreetMenuButton: {fileID: 0}
+  GalleryMenuButton: {fileID: 1559006481}
+  StreetMenuButton: {fileID: 1130950544}
   mainCam: {fileID: 963194227}
   dialogueManager: {fileID: 1202375068}
   menuUI: {fileID: 26753280}
@@ -4910,7 +4910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 114.7, y: 99.3}
+  m_AnchoredPosition: {x: 114.69922, y: 99.3}
   m_SizeDelta: {x: -610.4, y: -301.3}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1238478246
@@ -6201,7 +6201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.00048828125, y: 135.25003}
+  m_AnchoredPosition: {x: 0, y: 135.25003}
   m_SizeDelta: {x: 194.30005, y: 351.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634648738
