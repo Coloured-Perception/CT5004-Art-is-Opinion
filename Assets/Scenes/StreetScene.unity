@@ -4255,8 +4255,8 @@ MonoBehaviour:
   DrawButton: {fileID: 568100842}
   GalleryButton: {fileID: 1498792444}
   ExitButton: {fileID: 1027018085}
-  GalleryMenuButton: {fileID: 0}
-  StreetMenuButton: {fileID: 0}
+  GalleryMenuButton: {fileID: 1559006481}
+  StreetMenuButton: {fileID: 1130950544}
   mainCam: {fileID: 963194227}
   dialogueManager: {fileID: 1202375068}
   menuUI: {fileID: 26753280}

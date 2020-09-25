@@ -12,6 +12,7 @@ public class GazeMenuUI : MonoBehaviour {
 
 	public Camera mainCam;
 
+    Rect camRect;
 	public GameObject dialogueManager;
 	public GameObject menuUI;
 	public GameObject galleryUI;
@@ -74,9 +75,12 @@ public class GazeMenuUI : MonoBehaviour {
 	}
 
 	private void Update() {
-		//Only click buttons if spacebar is down
-		if (Input.GetKey("space")) {
-			timeBetweenClicks -= Time.deltaTime;
+
+        camRect = mainCam.pixelRect;
+        timeBetweenClicks -= Time.deltaTime;
+        //Only click buttons if spacebar is down
+        if (Input.GetKey("space")) {
+			
 			//Find position and size in x and y directions of the buttons
 			PlayPos = PlayButton.transform.position;
 			DrawPos = DrawButton.transform.position;
@@ -114,8 +118,10 @@ public class GazeMenuUI : MonoBehaviour {
 			GalleryMenuYMin = GalleryMenuRect.yMin;
 			GalleryMenuYMax = GalleryMenuRect.yMax;
 
-			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+			Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+            gazePoint.x *= camRect.width;
+            gazePoint.y *= camRect.height;
+            filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 			//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
 			if (menuUI.activeInHierarchy) {
