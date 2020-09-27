@@ -1,0 +1,20 @@
+Check out displays 1 - 5 while the scene is playing 
+
+1 is just a small room where the camera will be static
+2 is a mirrored corridor with large rooms. The player could walk down and select a room by looking at the signs/entrances. 
+stuck a bench and a bin in there to spice things up a bit. If there's a lot of open space i can make some assets to decorate 
+3 is a large room where players can spin to look around. The rooms basic but it works, and there's a lot of space to show stuff off. 
+The canvases are bigger than in 1 so that + matt's script where you can look closer at a picture will be good. 
+4 is a corridor made from alcoves instead of rooms so instead of entering the room you just turn. 
+Bit more of a dynamic layout for pictures gives it a modern gallery feel. 
+5 is looking at the pictures
+
+I like when you can see pictures from other places, makes it feel more like a proper building. 
+The long corridors means that we can add under construction signs/new rooms for expansions, although they do look boring/weird in their blocky state.
+we could keep to this linear set up and/or make it look very modern as art galleries seem to be, 
+Or I can make the rooms random/weird shapes and join them together without a central accessing point and give the player a map which they use to 
+move about the museum. If they click the portrait bit then they can walk along a spline to the room, through the rest on the shortest route. 
+If we go with that layout then the architecture of the building will probably be a bit more grand. 
+Or we can go with a more circular design like i made for my level design assessment: https://www.artstation.com/artwork/GXRYP4
+And I havent tested out different levels yet but that could be a good way to expand if needed.
+
