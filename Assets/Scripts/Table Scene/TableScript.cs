@@ -29,12 +29,14 @@ public class TableScript : MonoBehaviour {
 		if (tag == "Table") {
 			randFruit = Random.Range(1, 5);
 			for (int i = 0; i < randFruit; i++) {
-				// +5 in either direction is the corners of the table
-				// the more fruit there is, the more spread out the fruit
-				// the less fruit there is, the closer to the centre they are 
-				randX = Random.Range(-randFruit, randFruit);
-				randZ = Random.Range(-randFruit, randFruit);
-				GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x + randX, gameObject.transform.position.y + 5f, gameObject.transform.position.z + randZ), Quaternion.identity) as GameObject;
+                // +5 in either direction is the corners of the table
+                // the more fruit there is, the more spread out the fruit
+                // the less fruit there is, the closer to the centre they are
+                float rand = randFruit;
+				randX = Random.Range(-rand + 2 * i, i);
+				randZ = Random.Range(-rand, rand);
+
+                GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x + randX, gameObject.transform.position.y + 5f, gameObject.transform.position.z + randZ), Quaternion.identity) as GameObject;
 
 				fruit.transform.parent = transform;
 				randscale = Random.Range(0.07f, 0.085f);
