@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// This class stores the text options that appear in StreetScene
 /// </summary>
-public class DialogList : MonoBehaviour {
+public class DialogueList : MonoBehaviour {
 	public List<string> dogNames, femaleFirstNames, maleFirstNames, surnames, greeting, speech, request, dogSpeech;
 
 	/// <summary>
@@ -52,7 +52,7 @@ public class DialogList : MonoBehaviour {
 		request.AddRange(ask);
 
 		// 3
-		string[] dogs = { "Dexter", "Turbo", "Perrtio" };
+		string[] dogs = { "Dexter", "Turbo", "Perrtio", "Kira" };
 		dogNames.AddRange(dogs);
 
 		// 3

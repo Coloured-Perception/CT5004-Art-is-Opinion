@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour {
 	public float changewait;
 	public static DialogueManager personInstance;
 
-	public DialogList dialogList;
+	public DialogueList dialogueList;
 	int rand, numImages;
 	int randomNameNumber, randomSurnameNumber, randomGreetingNumber, randomSpeechNumber, randomRequestNumber, randomDogSpeechNumber;
 	string randomName, randomSurname, randomSentence;
@@ -83,45 +83,45 @@ public class DialogueManager : MonoBehaviour {
 		nameText.text = " ";
 
 		// chooses a random sentence from dialoge list 
-		randomGreetingNumber = Random.Range(0, dialogList.greeting.Count);
-		randomSpeechNumber = Random.Range(0, dialogList.speech.Count);
-		randomRequestNumber = Random.Range(0, dialogList.request.Count);
-		randomSentence = dialogList.greeting[randomGreetingNumber] + " " + dialogList.speech[randomSpeechNumber] + " " + dialogList.request[randomRequestNumber];
+		randomGreetingNumber = Random.Range(0, dialogueList.greeting.Count);
+		randomSpeechNumber = Random.Range(0, dialogueList.speech.Count);
+		randomRequestNumber = Random.Range(0, dialogueList.request.Count);
+		randomSentence = dialogueList.greeting[randomGreetingNumber] + " " + dialogueList.speech[randomSpeechNumber] + " " + dialogueList.request[randomRequestNumber];
 
 		// chooses a name based on the image chosen
 		// if character has a unique sentence, the current oe is replaced 
 		ImageName = image.transform.GetComponent<Image>().sprite.name;
 
-		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-		randomSurname = dialogList.surnames[randomSurnameNumber];
+		randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+		randomSurname = dialogueList.surnames[randomSurnameNumber];
 		if (ImageName.StartsWith(Special)) {
 			dialogue.name = ImageName.Replace(Special, "");
 		} else if (ImageName.StartsWith(Male)) {
-			randomNameNumber = Random.Range(0, dialogList.maleFirstNames.Count);
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			randomName = dialogList.maleFirstNames[randomNameNumber];
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
+			randomNameNumber = Random.Range(0, dialogueList.maleFirstNames.Count);
+			//		randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+			randomName = dialogueList.maleFirstNames[randomNameNumber];
+			//		randomSurname = dialogueList.surnames[randomSurnameNumber];
 			dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Female)) {
-			randomNameNumber = Random.Range(0, dialogList.femaleFirstNames.Count);
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			randomName = dialogList.femaleFirstNames[randomNameNumber];
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
+			randomNameNumber = Random.Range(0, dialogueList.femaleFirstNames.Count);
+			//		randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+			randomName = dialogueList.femaleFirstNames[randomNameNumber];
+			//		randomSurname = dialogueList.surnames[randomSurnameNumber];
 			dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Mr)) {
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
+			//		randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+			//		randomSurname = dialogueList.surnames[randomSurnameNumber];
 			dialogue.name = "Mr. " + randomSurname;
 		} else if (ImageName.StartsWith(Ms)) {
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
+			//		randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+			//		randomSurname = dialogueList.surnames[randomSurnameNumber];
 			dialogue.name = "Ms. " + randomSurname;
 		} else if (ImageName.StartsWith(Animal)) {
 			if (ImageName.StartsWith("A_Dog_")) {
-				randomNameNumber = Random.Range(0, dialogList.dogNames.Count);
-				randomName = dialogList.dogNames[randomNameNumber];
+				randomNameNumber = Random.Range(0, dialogueList.dogNames.Count);
+				randomName = dialogueList.dogNames[randomNameNumber];
 				dialogue.name = randomName;
-				randomSentence = dialogList.dogSpeech[randomDogSpeechNumber];
+				randomSentence = dialogueList.dogSpeech[randomDogSpeechNumber];
 			}
 		}
 		nameText.text = dialogue.name;
