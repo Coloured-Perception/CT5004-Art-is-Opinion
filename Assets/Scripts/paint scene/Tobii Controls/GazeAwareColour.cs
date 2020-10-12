@@ -9,7 +9,7 @@ namespace unitycoder_MobilePaint
 {
     public class GazeAwareColour : MonoBehaviour
     {
-
+        public bool isEyeTracker;
         MobilePaint mobilePaint;
         public Button[] colourPickers;    // colors are taken from these buttons
         public bool offsetSelected = true;  // should we move the pencil when its selected
@@ -49,41 +49,44 @@ namespace unitycoder_MobilePaint
 
         private void Update()
         {
-            camRect = mainCam.pixelRect;
-            timeBeforeClick -= Time.deltaTime;
-
-            Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-            gazePoint.x *= camRect.width;
-            gazePoint.y *= camRect.height;
-            filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
-
-            int loopPos = 0;
-            foreach (Button brush in colours)
+            if(isEyeTracker)
             {
-                Positions[loopPos] = colours[loopPos].gameObject.transform.position;
-                rects[loopPos] = colours[loopPos].GetComponent<RectTransform>().rect;
-                XMin[loopPos] = rects[loopPos].xMin;
-                XMax[loopPos] = rects[loopPos].xMax;
-                YMin[loopPos] = rects[loopPos].yMin;
-                YMax[loopPos] = rects[loopPos].yMax;
+                camRect = mainCam.pixelRect;
+                timeBeforeClick -= Time.deltaTime;
+
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x *= camRect.width;
+                gazePoint.y *= camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+
+                int loopPos = 0;
+                foreach (Button brush in colours)
+                {
+                    Positions[loopPos] = colours[loopPos].gameObject.transform.position;
+                    rects[loopPos] = colours[loopPos].GetComponent<RectTransform>().rect;
+                    XMin[loopPos] = rects[loopPos].xMin;
+                    XMax[loopPos] = rects[loopPos].xMax;
+                    YMin[loopPos] = rects[loopPos].yMin;
+                    YMax[loopPos] = rects[loopPos].yMax;
 
                
-                if (Input.GetKey("space"))
-                {
-                    if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBeforeClick <= 0)
+                    if (Input.GetKey("space"))
                     {
-                        Color newColor = colourPickers[loopPos].GetComponent<Image>().color;
+                        if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBeforeClick <= 0)
+                        {
+                            Color newColor = colourPickers[loopPos].GetComponent<Image>().color;
 
-                        preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
+                            preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
 
-                        // send new color
-                        mobilePaint.SetPaintColor(newColor);
-                        timeBeforeClick = timeBetweenClicks;
+                            // send new color
+                            mobilePaint.SetPaintColor(newColor);
+                            timeBeforeClick = timeBetweenClicks;
+                        }
                     }
+                    loopPos += 1;
                 }
-                loopPos += 1;
             }
-        }
+            }
 
         public void SetCurrentColor(GameObject button)
         {

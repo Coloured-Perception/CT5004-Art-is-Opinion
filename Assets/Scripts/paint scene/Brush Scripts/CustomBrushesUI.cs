@@ -23,6 +23,10 @@ namespace unitycoder_MobilePaint {
 		float[] YMax;
 		GameObject[] children;
 
+        public bool isEyeTracker;
+        public Camera mainCam;
+        Rect camRect;
+
 		float timeBeforeClick;
 		float timeBetweenClicks = 1;
 		int brushSizeLast = 100; // any number that cant actually be the size 
@@ -43,9 +47,9 @@ namespace unitycoder_MobilePaint {
 		}
 
 		private void Update() {
-			// Coral
-			// this tests wether the brush has changed size and so new custom brushes are needed
-			// the brushes needed are decided by the for loop and then instantiated in the right position
+            // Coral
+            // this tests wether the brush has changed size and so new custom brushes are needed
+            // the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
 
 				for (int i = transform.childCount - 1; i >= 0; --i) {
@@ -54,7 +58,8 @@ namespace unitycoder_MobilePaint {
 				}
 
 				Vector2 newPos = new Vector2(padding, -padding * 4);
-				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
+				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6)
+                {
 
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
 					newButton[i] = Instantiate(buttonTemplate, Vector3.zero, rot) as Button;
@@ -63,7 +68,8 @@ namespace unitycoder_MobilePaint {
 					//Coral
 
 					// wrap inside panel width
-					if (newPos.x + rectTrans.rect.width >= GetComponent<RectTransform>().rect.width) {
+					if (newPos.x + rectTrans.rect.width >= GetComponent<RectTransform>().rect.width)
+                    {
 						newPos.x = 0 + padding;
 						newPos.y -= rectTrans.rect.height + padding;
 						// NOTE: maximum Y is not checked..so dont put too many custom brushes.. would need to add paging or scrolling
@@ -81,30 +87,51 @@ namespace unitycoder_MobilePaint {
 					newButton[i].onClick.AddListener(delegate { this.SetCustomBrush(index); });
 				}
 				brushSizeLast = brushSizeScript.customSize;
-			}
 
-			if (Input.GetKey("space")) {
-				Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the er is looking at via the eye-tracker           
-				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+                Positions = new Vector3[newButton.Length];
+                rects = new Rect[newButton.Length];
+                XMin = new float[newButton.Length];
+                XMax = new float[newButton.Length];
+                YMin = new float[newButton.Length];
+                YMax = new float[newButton.Length];
+            }
 
+            if(isEyeTracker)
+            {
+                camRect = mainCam.pixelRect;
+                timeBeforeClick -= Time.deltaTime;
 
-				int loopPos = 0;
-				foreach (Button brush in newButton) {
-					//MattP
-					Positions[loopPos] = newButton[loopPos].transform.position;
-					rects[loopPos] = newButton[loopPos].GetComponent<RectTransform>().rect;
-					XMin[loopPos] = rects[loopPos].xMin;
-					XMax[loopPos] = rects[loopPos].xMax;
-					YMin[loopPos] = rects[loopPos].yMin;
-					YMax[loopPos] = rects[loopPos].yMax;
-					if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBetweenClicks <= 0) {
-						SetCustomBrush(loopPos);
-						timeBeforeClick = timeBetweenClicks;
-						break;
-					}
-					loopPos += 1;
-				}
-			}
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x *= camRect.width;
+                gazePoint.y *= camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+
+                int loopPos = 0;
+                foreach (Button brush in newButton)
+                {
+                    if (brush)
+                    {
+                        //MattP
+                        Positions[loopPos] = newButton[loopPos].transform.position;
+                        rects[loopPos] = newButton[loopPos].GetComponent<RectTransform>().rect;
+                        XMin[loopPos] = rects[loopPos].xMin;
+                        XMax[loopPos] = rects[loopPos].xMax;
+                        YMin[loopPos] = rects[loopPos].yMin;
+                        YMax[loopPos] = rects[loopPos].yMax;
+
+                        if (Input.GetKey("space"))
+                        {
+                            if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBeforeClick <= 0)
+                            {
+                                SetCustomBrush(loopPos);
+                                timeBeforeClick = timeBetweenClicks;
+                                break;
+                            }
+                        }
+                    }
+                    loopPos += 1;
+                }
+            }
 		}
 
 		//Coral

@@ -20,7 +20,10 @@ namespace unitycoder_MobilePaint {
 		void Start() {
 			mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager
 			customSize = 2;
-		}
+            mobilePaint.selectedBrush = 2;
+            mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
+            mobilePaint.SetDrawModeShapes();
+        }
 
 		public void DecreaseBrushSize() {
 
@@ -46,7 +49,10 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize -= 1;
-			}
+                mobilePaint.selectedBrush -= 1;
+                mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
+                mobilePaint.SetDrawModeShapes();
+            }
 		}
 
 		public void IncreaseBrushSize() {
@@ -73,7 +79,10 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize += 1;
-			}
+                mobilePaint.selectedBrush += 1;
+                mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
+                mobilePaint.SetDrawModeShapes();
+            }
 		}
 	}
 }
