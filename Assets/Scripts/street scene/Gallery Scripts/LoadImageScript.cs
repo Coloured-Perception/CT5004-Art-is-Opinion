@@ -11,6 +11,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LoadImageScript : MonoBehaviour {
 	public GameObject galleryBoard;
@@ -29,8 +30,10 @@ public class LoadImageScript : MonoBehaviour {
 
 	// Start is called before the first frame update
 	private IEnumerator Start() {
+		Debug.Log(Application.persistentDataPath);
+
 		int numOfImages = 10;
-		int numOfPNGs = 0;                                  // Used to load the last PNG in the folder (loads "SavedImage" + numOfPNGs)
+		int numOfPNGs = 1;                                  // Used to load the last PNG in the folder (loads "SavedImage" + numOfPNGs)
 		string filePath = Application.persistentDataPath;   // Where the images are stored
 		string individualFilePath;                          // The file directory of a specific image to load
 
@@ -44,11 +47,16 @@ public class LoadImageScript : MonoBehaviour {
 
 		// Goes through each file within he array, if the file extension is a '.png', numOfPNGs increments
 		foreach (FileInfo file in fileInfo) {
-			if (file.Extension == ".png") {
-				numOfPNGs++;
-				PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
-			}
+			PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
+			numOfPNGs++;
 		}
+
+		// After all the player's drawings our added to list, if there are still less than number of required images, add default image to list
+		while (numOfPNGs <= numOfImages) {
+			PNGImages.Add(Application.dataPath + "/CPProfile.png");
+			numOfPNGs++;
+		}
+
 		PNGImages.Reverse();    // Reverses array have last object loaded first
 
 		if (numOfPNGs > 0) {
@@ -61,11 +69,11 @@ public class LoadImageScript : MonoBehaviour {
 
 					if (uwr.isNetworkError || uwr.isHttpError) {
 						loadedTexture = null;
-						//					Debug.Log("Error loading texture.");
+						Debug.Log("Error loading texture.");
 						Debug.Log(uwr.error);
 					} else {
 						loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-						//				Debug.Log("Succesfully loaded texture!");
+						//Debug.Log("Succesfully loaded texture!");
 					}
 					paintings[i].texture = loadedTexture;
 				}
