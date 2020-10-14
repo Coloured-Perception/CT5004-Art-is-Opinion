@@ -52,8 +52,8 @@ public class SaveImageScript : MonoBehaviour {
 
 		RenderTexture.active = SaveTexture;
 
-		Texture2D texture2D = new Texture2D(SaveTexture.width, SaveTexture.height);
-		texture2D.ReadPixels(new Rect(0, 0, SaveTexture.width, SaveTexture.height), 0, 0);
+		Texture2D texture2D = new Texture2D((SaveTexture.width), SaveTexture.height);
+		texture2D.ReadPixels(new Rect(0, 0, (SaveTexture.width), SaveTexture.height), 0, 0);
 		texture2D.Apply();
 
 		byte[] saveData = texture2D.EncodeToPNG();  // Turns the image seen in the SaveCamera to a PNG

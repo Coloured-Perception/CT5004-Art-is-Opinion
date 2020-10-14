@@ -328,7 +328,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &84371127
 CanvasRenderer:
@@ -654,7 +654,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &156085990
 CanvasRenderer:
@@ -726,7 +726,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &162182155
 CanvasRenderer:
@@ -1525,7 +1525,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &430979654
 CanvasRenderer:
@@ -3642,7 +3642,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &993430401
 CanvasRenderer:
@@ -5188,7 +5188,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &1343658680
 CanvasRenderer:
@@ -5299,7 +5299,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &1347782919
 CanvasRenderer:
@@ -5479,7 +5479,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &1379026244
 CanvasRenderer:
@@ -5551,7 +5551,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &1382940749
 CanvasRenderer:
@@ -6691,7 +6691,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.8
     height: 1
 --- !u!222 &1752208514
 CanvasRenderer:
