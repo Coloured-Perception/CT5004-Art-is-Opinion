@@ -188,10 +188,15 @@ namespace unitycoder_MobilePaint {
 		// for checking if UI element is clicked, then dont paint under it
 		EventSystem eventSystem;
 
+		SettingsScript settingsScript;
+
 		// zoom pan
 		private bool isZoomingOrPanning = false;
 
 		void Awake() {
+			//isEyeTracker = settingsScript.isTobii;	// Changes eye-tracking to be same as player picked option
+			isEyeTracker = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
+
 			// cache components
 			cam = Camera.main;
 			myRenderer = GetComponent<Renderer>();

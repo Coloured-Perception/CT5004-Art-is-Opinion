@@ -45,6 +45,8 @@ namespace unitycoder_MobilePaint
             {
                 colours[i] = colourPickers[i];
             }
+
+            isEyeTracker = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
         }
 
         private void Update()

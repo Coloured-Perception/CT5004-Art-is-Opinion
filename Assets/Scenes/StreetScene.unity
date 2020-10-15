@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 31323798}
   - component: {fileID: 31323797}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GlitchText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,8 +826,9 @@ GameObject:
   - component: {fileID: 202650915}
   - component: {fileID: 202650917}
   - component: {fileID: 202650916}
+  - component: {fileID: 202650918}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: UseMouseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,7 +851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320, y: 13.999999}
+  m_AnchoredPosition: {x: 320, y: 14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202650916
@@ -890,6 +891,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202650914}
   m_CullTransparentMesh: 0
+--- !u!114 &202650918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202650914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 202650916}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1938997465}
+        m_MethodName: UseMouseButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &211120056
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +959,7 @@ GameObject:
   - component: {fileID: 211120059}
   - component: {fileID: 211120058}
   m_Layer: 5
-  m_Name: Image
+  m_Name: OptionsPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,9 +975,14 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1839380278}
+  - {fileID: 1153957414}
+  - {fileID: 415916601}
+  - {fileID: 540830674}
+  - {fileID: 1989684272}
   m_Father: {fileID: 949936217}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1161,7 +1223,7 @@ GameObject:
   - component: {fileID: 346408152}
   - component: {fileID: 346408151}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UseMouseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1240,7 +1302,7 @@ GameObject:
   - component: {fileID: 372932738}
   - component: {fileID: 372932737}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: AnimalImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1377,7 @@ GameObject:
   - component: {fileID: 415916603}
   - component: {fileID: 415916602}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: PurchaseBundleSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1334,8 +1396,8 @@ RectTransform:
   m_Children:
   - {fileID: 1972620156}
   - {fileID: 1700042278}
-  m_Father: {fileID: 1989684272}
-  m_RootOrder: 3
+  m_Father: {fileID: 211120057}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1961,7 +2023,7 @@ GameObject:
   - component: {fileID: 540830676}
   - component: {fileID: 540830675}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CollectionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1979,8 +2041,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1911038592}
-  m_Father: {fileID: 1989684272}
-  m_RootOrder: 4
+  m_Father: {fileID: 211120057}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2611,7 +2673,7 @@ GameObject:
   - component: {fileID: 708029395}
   - component: {fileID: 708029394}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: GlitchImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2906,8 +2968,9 @@ GameObject:
   - component: {fileID: 833984949}
   - component: {fileID: 833984951}
   - component: {fileID: 833984950}
+  - component: {fileID: 833984952}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UseTobiiButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2970,6 +3033,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833984948}
   m_CullTransparentMesh: 0
+--- !u!114 &833984952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833984948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 833984950}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1938997465}
+        m_MethodName: UseTobiiButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &843650430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,7 +3384,7 @@ GameObject:
   - component: {fileID: 872325546}
   - component: {fileID: 872325545}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AnimalsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3470,8 +3589,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1253917417}
   - {fileID: 211120057}
-  - {fileID: 1989684272}
   - {fileID: 1445032549}
   m_Father: {fileID: 1938997463}
   m_RootOrder: 3
@@ -4291,7 +4410,7 @@ GameObject:
   - component: {fileID: 1127076798}
   - component: {fileID: 1127076797}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: GlitchImage (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4613,7 +4732,7 @@ GameObject:
   - component: {fileID: 1153957416}
   - component: {fileID: 1153957415}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PaintingMethodSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4632,8 +4751,8 @@ RectTransform:
   m_Children:
   - {fileID: 833984949}
   - {fileID: 202650915}
-  m_Father: {fileID: 1989684272}
-  m_RootOrder: 2
+  m_Father: {fileID: 211120057}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4983,14 +5102,14 @@ RectTransform:
   m_GameObject: {fileID: 1253917416}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.80000424, y: 0.80000424, z: 0.80000293}
+  m_LocalScale: {x: 0.8000052, y: 0.8000052, z: 0.800003}
   m_Children: []
-  m_Father: {fileID: 1989684272}
+  m_Father: {fileID: 949936217}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -282.00858, y: 136.45013}
+  m_AnchoredPosition: {x: -146.67313, y: 136.00018}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1253917418
@@ -6487,7 +6606,7 @@ GameObject:
   - component: {fileID: 1700042280}
   - component: {fileID: 1700042279}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: GlitchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6502,7 +6621,7 @@ RectTransform:
   m_GameObject: {fileID: 1700042277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.77512, y: 1, z: 1}
+  m_LocalScale: {x: 0.77512014, y: 1, z: 1}
   m_Children:
   - {fileID: 708029393}
   - {fileID: 1127076796}
@@ -6512,7 +6631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 324, y: 14}
+  m_AnchoredPosition: {x: 324.00006, y: 14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700042279
@@ -7067,7 +7186,7 @@ GameObject:
   - component: {fileID: 1839380280}
   - component: {fileID: 1839380279}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OptionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7084,8 +7203,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1989684272}
-  m_RootOrder: 1
+  m_Father: {fileID: 211120057}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7225,7 +7344,7 @@ GameObject:
   - component: {fileID: 1911038594}
   - component: {fileID: 1911038593}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: CollectionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7426,6 +7545,7 @@ GameObject:
   - component: {fileID: 1938997461}
   - component: {fileID: 1938997460}
   - component: {fileID: 1938997464}
+  - component: {fileID: 1938997465}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7538,6 +7658,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1938997465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938997459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce830e93cd9ede846a417a9e72d9df91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTobii: 1
 --- !u!1 &1941361497
 GameObject:
   m_ObjectHideFlags: 0
@@ -7550,7 +7683,7 @@ GameObject:
   - component: {fileID: 1941361500}
   - component: {fileID: 1941361499}
   m_Layer: 5
-  m_Name: Image
+  m_Name: AnimalImage (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12351,7 +12484,7 @@ GameObject:
   - component: {fileID: 1972620158}
   - component: {fileID: 1972620157}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: AnimalsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12376,7 +12509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 14.000001}
+  m_AnchoredPosition: {x: 200, y: 14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972620157
@@ -12432,7 +12565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1989684272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12440,17 +12573,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989684271}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1253917417}
-  - {fileID: 1839380278}
-  - {fileID: 1153957414}
-  - {fileID: 415916601}
-  - {fileID: 540830674}
-  m_Father: {fileID: 949936217}
-  m_RootOrder: 1
+  m_Children: []
+  m_Father: {fileID: 211120057}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12687,7 +12815,7 @@ GameObject:
   - component: {fileID: 2036772682}
   - component: {fileID: 2036772681}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UseTobiiText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

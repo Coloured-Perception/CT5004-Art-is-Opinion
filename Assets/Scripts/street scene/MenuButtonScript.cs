@@ -14,10 +14,10 @@ public class MenuButtonScript : MonoBehaviour {
 	public Sprite transparent;
 	public Image myImageComponent;
 
-	private void Awake() {
-		personInstance = this;
-		DontDestroyOnLoad(gameObject);
-	}
+	//private void Awake() {
+	//	personInstance = this;
+	//	DontDestroyOnLoad(gameObject);
+	//}
 
 	public void ButtonClicked() {
 		timeWait = 2;

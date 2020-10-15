@@ -83,6 +83,8 @@ namespace unitycoder_MobilePaint {
 			mobilePaint.SetBrushSize(currentBrushSize);
 
 			timeBeforeClick = timeBetweenClicks;
+
+			isEyeTracker = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
 		}
 
 		private void Update() {

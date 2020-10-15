@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Name:			SaveImageScript.css
+/// Name:			SaveImageScript.cs
 /// Purpose:		To save an image to a folder
 /// Author:			Kane Adams
 /// Date Created:	06/02/2020
@@ -11,12 +11,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SaveImageScript : MonoBehaviour {
+	float sceneChangeWait; // Time to wait before scene change, Coral
 	int numOfPNGs;
 	string filePath;
 
 	public RenderTexture SaveTexture;
-
-	float sceneChangeWait; // Time to wait before scene change, Coral
 
 	// Start is called before the first frame update
 	public void Start() {

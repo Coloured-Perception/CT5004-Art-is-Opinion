@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Name:           LoadImageScript.css
+/// Name:           LoadImageScript.cs
 /// Purpose:        To load .PNG images from resource folder in assets into a scene
 /// Author:         Kane Adams
 /// Date Created:   22/03/2020
