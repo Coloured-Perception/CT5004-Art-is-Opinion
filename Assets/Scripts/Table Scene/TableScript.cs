@@ -33,17 +33,25 @@ public class TableScript : MonoBehaviour {
                 // the more fruit there is, the more spread out the fruit
                 // the less fruit there is, the closer to the centre they are
                 float rand = randFruit;
-				randX = Random.Range(-rand + 2 * i, i);
-				randZ = Random.Range(-rand, rand);
+				randX = Random.Range(-rand + 2 * i, -rand + 2 * i + 2);
+				randZ = Random.Range(-rand/2, rand/2);
+
+                fruitSprite = FruitPreFab.GetComponent<SpriteRenderer>();
+                fruitSprite.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                ChangeImage();
+
+                if(fruitSprite.sprite == specialImages[0])
+                {
+                    randZ = Random.Range(rand / 2 -0.1f, rand / 2);
+                }
 
                 GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x + randX, gameObject.transform.position.y + 5f, gameObject.transform.position.z + randZ), Quaternion.identity) as GameObject;
 
 				fruit.transform.parent = transform;
 				randscale = Random.Range(0.07f, 0.085f);
 				fruit.transform.localScale = new Vector3(randscale, randscale, 1);
-				fruitSprite = FruitPreFab.GetComponent<SpriteRenderer>();
-				fruitSprite.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-				ChangeImage();
+				
+
 			}
 		}
 	}
