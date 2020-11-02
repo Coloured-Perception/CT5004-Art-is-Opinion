@@ -72,7 +72,10 @@ public class GazeMenuUI : MonoBehaviour {
 	// Start is called before the first frame update
 	void Start() {
 		timeBeforeClick = timeBetweenClicks;
-	}
+
+        bool isTobii = true;
+        PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
+    }
 
 	private void Update() {
 
@@ -128,6 +131,7 @@ public class GazeMenuUI : MonoBehaviour {
 				if ((PlayPos.x + PlayXMin) < filteredPoint.x && filteredPoint.x < (PlayPos.x + PlayXMax) && (PlayPos.y + PlayYMin) < filteredPoint.y && filteredPoint.y < (PlayPos.y + PlayYMax) && timeBetweenClicks <= 0) {
 					PlayButton.GetComponent<MenuButtonScript>().ButtonClicked();
 					dialogueManager.GetComponent<DialogueTrigger>().StartDialog();
+                    cameraShutterClose.SetActive(true);
 					timeBeforeClick = timeBetweenClicks;
 				}
 

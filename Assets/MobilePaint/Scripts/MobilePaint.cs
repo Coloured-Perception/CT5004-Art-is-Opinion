@@ -195,7 +195,7 @@ namespace unitycoder_MobilePaint {
 
 		void Awake() {
 			//isEyeTracker = settingsScript.isTobii;	// Changes eye-tracking to be same as player picked option
-			isEyeTracker = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
+			isEyeTracker = PlayerPrefs.GetInt("EyeTracking") == 1 /*? true : false*/;
 
 			// cache components
 			cam = Camera.main;

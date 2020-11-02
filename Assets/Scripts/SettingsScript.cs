@@ -28,12 +28,10 @@ public class SettingsScript : MonoBehaviour {
 	/// </summary>
 	public void UseTobiiButtonClicked() {
 		// if the isTobii boolean is false, turn it true and save to PlayerPrefs
-		if (!isTobii) {
 			isTobii = true;
 			PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
-
 			Debug.Log("You are now using Tobii eye-tracking!");
-		}
+
 	}
 
 	/// <summary>
@@ -41,11 +39,9 @@ public class SettingsScript : MonoBehaviour {
 	/// </summary>
 	public void UseMouseButtonClicked() {
 		// if the isTobii boolean is false, turn it false and save to PlayerPrefs
-		if (isTobii) {
 			isTobii = false;
 			PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
 
 			Debug.Log("You are now using Mouse!");
-		}
 	}
 }

@@ -6,6 +6,7 @@ public class YesScript : MonoBehaviour {
 	//MattP
 	public Button yesButton;
 	public Button noButton;
+    public GameObject cameraShutterClose;
 	Vector3 yesPos;
 	Vector3 noPos;
 	Rect yesRect;
@@ -65,6 +66,7 @@ public class YesScript : MonoBehaviour {
 	}
 
 	public void YesButton() {
+        cameraShutterClose.SetActive(true);
 		FindObjectOfType<DialogueTrigger>().Yes();
-	}
+    }
 }
