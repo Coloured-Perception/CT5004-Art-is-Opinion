@@ -33,6 +33,8 @@ namespace unitycoder_MobilePaint
 
         private void Start()
         {
+            mobilePaint = PaintManager.mobilePaint;
+
             colours = new Button[colourPickers.Length];
             Positions = new Vector3[colourPickers.Length];
             rects = new Rect[colourPickers.Length];
@@ -76,7 +78,7 @@ namespace unitycoder_MobilePaint
                     {
                         if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBeforeClick <= 0)
                         {
-                            Color newColor = colourPickers[loopPos].GetComponent<Image>().color;
+                            Color newColor = colourPickers[loopPos].gameObject.GetComponent<Image>().color;
 
                             preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
 
