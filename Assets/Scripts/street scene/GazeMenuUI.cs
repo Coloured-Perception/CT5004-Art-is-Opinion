@@ -9,36 +9,51 @@ public class GazeMenuUI : MonoBehaviour {
 	public Button ExitButton;
 	public Button GalleryMenuButton;
 	public Button StreetMenuButton;
+    public Button optionsButton;
+    public Button tobiiButton;
+    public Button mouseButton;
+    public Button optionsMenuButton;
 
-	public Camera mainCam;
+    public Camera mainCam;
 
     Rect camRect;
+    public GameObject canvas;
 	public GameObject dialogueManager;
 	public GameObject menuUI;
 	public GameObject galleryUI;
 	public GameObject streetUI;
-	public GameObject image;
+    public GameObject optionsUI;
+    public GameObject image;
 	public GameObject yesNoButton;
 	public GameObject cameraShutterClose;
 
 	Vector3 PlayPos;
 	Vector3 DrawPos;
 	Vector3 GalleryPos;
+    Vector3 optionsPos;
 	Vector3 ExitPos;
 	Vector3 GalleryMenuPos;
 	Vector3 StreetMenuPos;
+    Vector3 tobiiPos;
+    Vector3 mousePos;
+    Vector3 optionsMenuPos;
 
-	Rect PlayRect;
+    Rect PlayRect;
 	Rect DrawRect;
 	Rect GalleryRect;
 	Rect ExitRect;
+    Rect optionsRect;
 	Rect GalleryMenuRect;
 	Rect StreetMenuRect;
+    Rect tobiiRect;
+    Rect mouseRect;
+    Rect optionsMenuRect;
 
-	float PlayXMin;
+    float PlayXMin;
 	float PlayXMax;
 	float PlayYMin;
 	float PlayYMax;
+
 	float DrawXMin;
 	float DrawXMax;
 	float DrawYMin;
@@ -54,7 +69,12 @@ public class GazeMenuUI : MonoBehaviour {
 	float ExitYMin;
 	float ExitYMax;
 
-	float GalleryMenuXMin;
+    float optionsXMin;
+    float optionsXMax;
+    float optionsYMin;
+    float optionsYMax;
+
+    float GalleryMenuXMin;
 	float GalleryMenuXMax;
 	float GalleryMenuYMin;
 	float GalleryMenuYMax;
@@ -64,7 +84,22 @@ public class GazeMenuUI : MonoBehaviour {
 	float StreetMenuYMin;
 	float StreetMenuYMax;
 
-	float timeBeforeClick;
+    float tobiiXMin;
+    float tobiiXMax;
+    float tobiiYMin;
+    float tobiiYMax;
+
+    float mouseXMin;
+    float mouseXMax;
+    float mouseYMin;
+    float mouseYMax;
+
+    float optionsMenuXMin;
+    float optionsMenuXMax;
+    float optionsMenuYMin;
+    float optionsMenuYMax;
+
+    float timeBeforeClick;
 	float timeBetweenClicks = 1;
 
 	Vector2 filteredPoint;
@@ -88,15 +123,22 @@ public class GazeMenuUI : MonoBehaviour {
 			PlayPos = PlayButton.transform.position;
 			DrawPos = DrawButton.transform.position;
 			GalleryPos = GalleryButton.transform.position;
+            optionsPos = optionsButton.transform.position;
 			ExitPos = ExitButton.transform.position;
 			GalleryMenuPos = GalleryMenuButton.transform.position;
+            tobiiPos = tobiiButton.transform.position;
+            mousePos = mouseButton.transform.position;
 			PlayRect = PlayButton.GetComponent<RectTransform>().rect;
 			DrawRect = DrawButton.GetComponent<RectTransform>().rect;
 			GalleryRect = GalleryButton.GetComponent<RectTransform>().rect;
+            optionsRect = optionsButton.GetComponent<RectTransform>().rect;
 			ExitRect = ExitButton.GetComponent<RectTransform>().rect;
 			GalleryMenuRect = GalleryMenuButton.GetComponent<RectTransform>().rect;
+            tobiiRect = tobiiButton.GetComponent<RectTransform>().rect;
+            mouseRect = mouseButton.GetComponent<RectTransform>().rect;
+            optionsMenuRect = optionsMenuButton.GetComponent<RectTransform>().rect;
 
-			PlayXMin = PlayRect.xMin;
+            PlayXMin = PlayRect.xMin;
 			PlayXMax = PlayRect.xMax;
 			PlayYMin = PlayRect.yMin;
 			PlayYMax = PlayRect.yMax;
@@ -116,18 +158,39 @@ public class GazeMenuUI : MonoBehaviour {
 			ExitYMin = ExitRect.yMin;
 			ExitYMax = ExitRect.yMax;
 
-			GalleryMenuXMin = GalleryMenuRect.xMin;
+            optionsXMin = optionsRect.xMin;
+            optionsXMax = optionsRect.xMax;
+            optionsYMin = optionsRect.yMin;
+            optionsYMax = optionsRect.yMax;
+
+            GalleryMenuXMin = GalleryMenuRect.xMin;
 			GalleryMenuXMax = GalleryMenuRect.xMax;
 			GalleryMenuYMin = GalleryMenuRect.yMin;
 			GalleryMenuYMax = GalleryMenuRect.yMax;
 
-			Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+            tobiiXMin = tobiiRect.xMin;
+            tobiiXMax = tobiiRect.xMax;
+            tobiiYMin = tobiiRect.yMin;
+            tobiiYMax = tobiiRect.yMax;
+
+            mouseXMin = mouseRect.xMin;
+            mouseXMax = mouseRect.xMax;
+            mouseYMin = mouseRect.yMin;
+            mouseYMax = mouseRect.yMax;
+
+            optionsMenuXMin = optionsMenuRect.xMin;
+            optionsMenuXMax = optionsMenuRect.xMax;
+            optionsMenuYMin = optionsMenuRect.yMin;
+            optionsMenuYMax = optionsMenuRect.yMax;
+
+            Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
             gazePoint.x *= camRect.width;
             gazePoint.y *= camRect.height;
             filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 			//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
-			if (menuUI.activeInHierarchy) {
+			if (menuUI.activeInHierarchy)
+            {
 				if ((PlayPos.x + PlayXMin) < filteredPoint.x && filteredPoint.x < (PlayPos.x + PlayXMax) && (PlayPos.y + PlayYMin) < filteredPoint.y && filteredPoint.y < (PlayPos.y + PlayYMax) && timeBetweenClicks <= 0) {
 					PlayButton.GetComponent<MenuButtonScript>().ButtonClicked();
 					dialogueManager.GetComponent<DialogueTrigger>().StartDialog();
@@ -151,7 +214,14 @@ public class GazeMenuUI : MonoBehaviour {
 					Application.Quit();
 					timeBeforeClick = timeBetweenClicks;
 				}
-			}
+
+                if ((optionsPos.x + optionsXMin) < filteredPoint.x && filteredPoint.x < (optionsPos.x + optionsXMax) && (optionsPos.y + optionsYMin) < filteredPoint.y && filteredPoint.y < (optionsPos.y + optionsYMax) && timeBetweenClicks <= 0)
+                {
+                    optionsButton.GetComponent<MenuButtonScript>().ButtonClicked();
+                    cameraShutterClose.SetActive(true);
+                    timeBeforeClick = timeBetweenClicks;
+                }
+            }
 			if (galleryUI.activeInHierarchy) {
 				if ((GalleryMenuPos.x + GalleryMenuXMin) < filteredPoint.x && filteredPoint.x < (GalleryMenuPos.x + GalleryMenuXMax) && (GalleryMenuPos.y + GalleryMenuYMin) < filteredPoint.y && filteredPoint.y < (GalleryMenuPos.y + GalleryMenuYMax) && timeBetweenClicks <= 0) {
 					mainCam.GetComponent<CameraScript>().Menu();
@@ -164,6 +234,27 @@ public class GazeMenuUI : MonoBehaviour {
 					timeBeforeClick = timeBetweenClicks;
 				}
 			}
+            if (optionsUI.activeInHierarchy)
+            {
+                if ((tobiiPos.x + tobiiXMin) < filteredPoint.x && filteredPoint.x < (tobiiPos.x + tobiiXMax) && (tobiiPos.y + tobiiYMin) < filteredPoint.y && filteredPoint.y < (tobiiPos.y + tobiiYMax) && timeBetweenClicks <= 0)
+                {
+                    canvas.GetComponent<SettingsScript>().UseTobiiButtonClicked();
+                    timeBeforeClick = timeBetweenClicks;
+                }
+
+                if ((mousePos.x + mouseXMin) < filteredPoint.x && filteredPoint.x < (mousePos.x + mouseXMax) && (mousePos.y + mouseYMin) < filteredPoint.y && filteredPoint.y < (mousePos.y + mouseYMax) && timeBetweenClicks <= 0)
+                {
+                    canvas.GetComponent<SettingsScript>().UseMouseButtonClicked();
+                    timeBeforeClick = timeBetweenClicks;
+                }
+
+                if ((optionsMenuPos.x + optionsMenuXMin) < filteredPoint.x && filteredPoint.x < (optionsMenuPos.x + optionsMenuXMax) && (optionsMenuPos.y + optionsMenuYMin) < filteredPoint.y && filteredPoint.y < (optionsMenuPos.y + optionsMenuYMax) && timeBetweenClicks <= 0)
+                {
+                    optionsMenuButton.GetComponent<MenuButtonScript>().ButtonClicked();
+                    cameraShutterClose.SetActive(true);
+                    timeBeforeClick = timeBetweenClicks;
+                }
+            }
 		}
 	}
 }

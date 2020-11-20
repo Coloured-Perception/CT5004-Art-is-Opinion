@@ -4377,11 +4377,17 @@ MonoBehaviour:
   ExitButton: {fileID: 1027018085}
   GalleryMenuButton: {fileID: 1559006481}
   StreetMenuButton: {fileID: 1130950544}
+  optionsButton: {fileID: 1051686867}
+  tobiiButton: {fileID: 833984952}
+  mouseButton: {fileID: 202650918}
+  optionsMenuButton: {fileID: 1253917419}
   mainCam: {fileID: 963194227}
+  canvas: {fileID: 1938997459}
   dialogueManager: {fileID: 1202375068}
   menuUI: {fileID: 26753280}
   galleryUI: {fileID: 150815066}
   streetUI: {fileID: 1009284757}
+  optionsUI: {fileID: 949936216}
   image: {fileID: 432747088}
   yesNoButton: {fileID: 254769402}
   cameraShutterClose: {fileID: 909068996}
