@@ -11,15 +11,13 @@ public class RotateCamera : MonoBehaviour
     public float responsiveness;
     public float speed;
 
+    public float startX;
+    public float startY;
+
+    Quaternion camRotation;
+
     public Camera cam;
     Vector2 filteredPoint;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,8 +32,49 @@ public class RotateCamera : MonoBehaviour
             Quaternion headPoseAngle = new Quaternion(headPose.x * headGazeContribution, headPose.y * headGazeContribution, 0, headPose.w); 
             Quaternion gazePointAngle = new Quaternion((-filteredPoint.y + 0.5f) * (1 - headGazeContribution), (filteredPoint.x - 0.5f) * (1 - headGazeContribution), 0, headPose.w);
 
-            Quaternion camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+            if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) > maxAngle)
+            {
+                if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
+                {
+                    camRotation = new Quaternion(maxAngle, maxAngle, 0, headPose.w);
+                }
+                else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
+                {
+                    camRotation = new Quaternion(maxAngle, -maxAngle, 0, headPose.w);
+                }
+                else
+                {
+                    camRotation = new Quaternion(maxAngle, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+                }
+            }
+            else if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) < -maxAngle)
+            {
+                if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
+                {
+                    camRotation = new Quaternion(-maxAngle, maxAngle, 0, headPose.w);
+                }
+                else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
+                {
+                    camRotation = new Quaternion(-maxAngle, -maxAngle, 0, headPose.w);
+                }
+                else
+                {
+                    camRotation = new Quaternion(-maxAngle, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+                }
+            }
+            else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
+            {
+                camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, maxAngle, 0, headPose.w);
+            }
+            else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
+            {
+                camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, -maxAngle, 0, headPose.w);
+            }
+            else
+            {
+                camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
 
+            }
             cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, camRotation, Time.time * speed);
         }
         else
