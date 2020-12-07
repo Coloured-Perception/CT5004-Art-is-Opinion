@@ -79,7 +79,7 @@ public class RotateCamera : MonoBehaviour
         }
         else
         {
-            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, new Quaternion(0,0,0,1), Time.time * speed * 0.1f);
+            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, new Quaternion(0,0,0,1), Time.deltaTime * speed);
         }
     }
 }
