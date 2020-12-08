@@ -9,9 +9,22 @@ using UnityEngine;
 
 public class ChangePersonPaintScript : MonoBehaviour {
 	public SpriteRenderer personImage;  // The player image that changes
+	public Sprite Banana;
+	public Sprite Apple;
 
 	// Start is called before the first frame update
 	void Start() {
-		personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+		if (PlayerPrefs.GetInt("intro") == 0) {
+
+			if (TutorialDialogeManager.sentenceNumber < 17) {
+				personImage.sprite = Banana;
+
+			} else {
+				personImage.sprite = Apple;
+
+			}
+		} else {
+			personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+		}
 	}
 }

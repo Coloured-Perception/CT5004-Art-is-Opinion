@@ -45,7 +45,7 @@ public class SaveImageScript : MonoBehaviour {
 	/// Calls the co-routine that saves the image that has been drawn (when save button is clicked)
 	/// </summary>
 	public void Save() {
-		sceneChangeWait = 2;
+	//	sceneChangeWait = 2;
 		cameraShutterScript.CameraClose();
 
 		StartCoroutine(CoSave());
@@ -72,23 +72,23 @@ public class SaveImageScript : MonoBehaviour {
 	// Coral
 	public void DontSave() {
 		cameraShutterScript.CameraClose();
-		sceneChangeWait = 2;
+	//	sceneChangeWait = 2;
 	}
 	
-	/// <summary>
-	/// gives time for the camera shutter animation to play
-	/// </summary>
-	private void Update() {
-		if (sceneChangeWait > 0) {
-			sceneChangeWait -= Time.deltaTime;
-			if (sceneChangeWait <= 0) {
-				if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
-					SceneManager.LoadScene("TableScene");
-				} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-					SceneManager.LoadScene("StreetScene");
-				}
-			}
-		}
-	}
+	///// <summary>
+	///// gives time for the camera shutter animation to play
+	///// </summary>
+	//private void Update() {
+	//	if (sceneChangeWait > 0) {
+	//		sceneChangeWait -= Time.deltaTime;
+	//		if (sceneChangeWait <= 0) {
+	//			if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
+	//				SceneManager.LoadScene("TableScene");
+	//			} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+	//				SceneManager.LoadScene("StreetScene");
+	//			}
+	//		}
+	//	}
+	//}
 	// Coral
 }
