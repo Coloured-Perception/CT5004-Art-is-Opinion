@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingsScript : MonoBehaviour {
-	bool isTobii = true;
+	static bool isTobii = true;
 
 	// Start is called before the first frame update
 	void Start() {
-
+		isTobii = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
 	}
 
 	// Update is called once per frame
@@ -28,10 +28,9 @@ public class SettingsScript : MonoBehaviour {
 	/// </summary>
 	public void UseTobiiButtonClicked() {
 		// if the isTobii boolean is false, turn it true and save to PlayerPrefs
-			isTobii = true;
-			PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
-			Debug.Log("You are now using Tobii eye-tracking!");
-
+		isTobii = true;
+		PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
+		Debug.Log("You are now using Tobii eye-tracking!");
 	}
 
 	/// <summary>
@@ -39,9 +38,9 @@ public class SettingsScript : MonoBehaviour {
 	/// </summary>
 	public void UseMouseButtonClicked() {
 		// if the isTobii boolean is false, turn it false and save to PlayerPrefs
-			isTobii = false;
-			PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
+		isTobii = false;
+		PlayerPrefs.SetInt("EyeTracking", isTobii ? 1 : 0);
 
-			Debug.Log("You are now using Mouse!");
+		Debug.Log("You are now using Mouse!");
 	}
 }

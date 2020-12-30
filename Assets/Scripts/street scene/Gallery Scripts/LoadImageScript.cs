@@ -44,12 +44,26 @@ public class LoadImageScript : MonoBehaviour {
 		// Stores the info on what is saved in the filePath to an array
 		DirectoryInfo info = new DirectoryInfo(filePath);
 		FileInfo[] fileInfo = info.GetFiles();
+		
 
-		// Goes through each file within he array, if the file extension is a '.png', numOfPNGs increments
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// Need to change code so it goes through each individual file and moves all the numbers down
+
+		// Goes through each file within the array, if the file extension is a '.png', numOfPNGs increments
 		foreach (FileInfo file in fileInfo) {
-			PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
-			numOfPNGs++;
+			if (File.Exists(filePath + "/SavedImage" + numOfPNGs + ".png")) {
+				Debug.Log("Yay!");
+				PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
+				numOfPNGs++;
+			} else {
+				Debug.Log("UHOH! Big DUDU!");
+				if (File.Exists(filePath + "/SavedImage" + (numOfPNGs + 1) + ".png")) {
+					File.Move("SavedImage" + (numOfPNGs + 1), "SavedImage" + numOfPNGs);
+				}
+			}
 		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 
 		// After all the player's drawings our added to list, if there are still less than number of required images, add default image to list
 		while (numOfPNGs <= numOfImages) {

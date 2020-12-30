@@ -35,7 +35,7 @@ public class DialogueList : MonoBehaviour {
 		string[] greet = { "Hi.", "Hello.", "Hey.", "Wadup!", "Ooh.", "Yo.", "Greetings.", "Salutations.", "Um...", "Feast your eyes on my being!" };
 		greeting.AddRange(greet);
 
-		string[] talk = { "How you doing?", "Everything ok?", "Death is inevitable.", "I see you Kane.", "You seem nice.", "Isn't it nice today.", "You do paintings?", "I'd make a beautiful muse.", "Did you know dogs have a habit of watching humans while they are on the toilet because when in the wild they watch other dogs going for a pee to watch for predators.", "I saw you staring." };
+		string[] talk = { "How you doing?", "Everything ok?", "You seem nice.", "Isn't it nice today.", "You do paintings?", "I'd make a beautiful muse." };
 		speech.AddRange(talk);
 
 		string[] ask = { "Could you draw my picture?", "Would you mind drawing me?", "Can i have my picture done?", "Could you draw me?", "Would you draw me?", "Can you draw me?", "Could you do my portrait?", "Will you draw my portrait?", "You must complete my portrait.", "Can you paint me?" };
