@@ -14,6 +14,8 @@ public class RotateCamera : MonoBehaviour
     public float startX;
     public float startY;
 
+    public bool contiuousRotate;
+
     Quaternion camRotation;
 
     public Camera cam;
@@ -31,7 +33,7 @@ public class RotateCamera : MonoBehaviour
 
             Quaternion headPoseAngle = new Quaternion(headPose.x * headGazeContribution, headPose.y * headGazeContribution, 0, headPose.w); 
             Quaternion gazePointAngle = new Quaternion((-filteredPoint.y + 0.5f) * (1 - headGazeContribution), (filteredPoint.x - 0.5f) * (1 - headGazeContribution), 0, headPose.w);
-
+            
             if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) > maxAngle)
             {
                 if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
@@ -75,7 +77,15 @@ public class RotateCamera : MonoBehaviour
                 camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
 
             }
-            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, camRotation, Time.time * speed);
+            
+            if(contiuousRotate)
+            {
+                cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, cam.transform.rotation * camRotation, Time.deltaTime * speed);
+            }
+            else
+            {
+                cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, camRotation, Time.deltaTime * speed);
+            }
         }
         else
         {
