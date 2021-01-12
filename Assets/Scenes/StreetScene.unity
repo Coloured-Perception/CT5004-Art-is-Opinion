@@ -338,6 +338,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84371124}
   m_CullTransparentMesh: 0
+--- !u!1 &116260376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116260378}
+  - component: {fileID: 116260377}
+  m_Layer: 0
+  m_Name: ScreenRotate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &116260377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116260376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9fd3cebb7b388b4bafd3c9e58fc6691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headGazeContribution: 0
+  maxAngle: 90
+  sensitivity: 0.5
+  responsiveness: 0.5
+  speed: 5
+  startX: 0
+  startY: 0
+  contiuousRotate: 1
+  cam: {fileID: 963194227}
+--- !u!4 &116260378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116260376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.900227, y: -2.8388023, z: 19.277555}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118338815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,7 +1685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -28.99997, y: 18.000034}
+  m_AnchoredPosition: {x: -29, y: 18.000034}
   m_SizeDelta: {x: 303.2, y: 405.40002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432747090
@@ -5809,11 +5861,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
-        type: 3}
-      propertyPath: m_Name
-      value: Street
-      objectReference: {fileID: 0}
     - target: {fileID: -6828569655720941089, guid: 876d00002b8215a45933f7ffb7df6c33,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -5913,6 +5960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0262
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
+        type: 3}
+      propertyPath: m_Name
+      value: Street
       objectReference: {fileID: 0}
     - target: {fileID: 1527777692240229101, guid: 876d00002b8215a45933f7ffb7df6c33,
         type: 3}

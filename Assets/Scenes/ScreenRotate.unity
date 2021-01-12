@@ -219,11 +219,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headGazeContribution: 1
   maxAngle: 0.6666667
-  sensitivity: 5
+  sensitivity: 3
   responsiveness: 0
-  speed: 0.2
+  speed: 1
+  isTobii: 0
   startX: 0
   startY: 0
+  contiuousRotate: 0
   cam: {fileID: 1518593224}
 --- !u!4 &498557375
 Transform:
@@ -5462,16 +5464,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
-        type: 3}
-      propertyPath: m_Name
-      value: Street
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -6828569655720941089, guid: 876d00002b8215a45933f7ffb7df6c33,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -5571,6 +5563,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0262
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
+        type: 3}
+      propertyPath: m_Name
+      value: Street
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 876d00002b8215a45933f7ffb7df6c33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1527777692240229101, guid: 876d00002b8215a45933f7ffb7df6c33,
         type: 3}
