@@ -34,9 +34,9 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		//PlayerPrefs.SetInt("intro", 0);    // remove later 
-		//PlayerPrefs.SetInt("banana", 0);    // remove later 
-		//PlayerPrefs.SetInt("apple", 0);    // remove later 
+		PlayerPrefs.SetInt("intro", 0);    // remove later 
+		PlayerPrefs.SetInt("banana", 0);    // remove later 
+		PlayerPrefs.SetInt("apple", 0);    // remove later s
 
 		Debug.Log(PlayerPrefs.GetInt("intro") + " i");
 		Debug.Log(PlayerPrefs.GetInt("banana") + " b");
@@ -176,8 +176,10 @@ public class TutorialManager : MonoBehaviour {
 				CuratorAnim.Play("CuratorCToB");
 				LookPrompts.gameObject.SetActive(true);
 				LookPromptsAnim.Play("LeftRightLookPrompt");
+                Camera.GetComponent<Animator>().applyRootMotion = true; // Neccesary for Player to look around
 			} else if (TutorialDialogeManager.sentenceNumber == 5) {
-				CuratorAnim.Play("CuratorBToC");
+                Camera.GetComponent<Animator>().applyRootMotion = false;
+                CuratorAnim.Play("CuratorBToC");
 				LookPrompts.gameObject.SetActive(false);
 			} else if (TutorialDialogeManager.sentenceNumber == 7) {
 				CuratorAnim.Play("NextHYesSNoS");
