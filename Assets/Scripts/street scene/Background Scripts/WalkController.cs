@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// Created by Coral
-/// this class manages the menu and street uis
+/// this class manages the menu and street UIs
 /// </summary>
 public class WalkController : MonoBehaviour {
 	float timeWaitPeople = 0.2f;
@@ -18,7 +18,7 @@ public class WalkController : MonoBehaviour {
 
 	/// <summary>
 	/// this instantiates people and clouds at random positions in the scene to make the street look populated on start up
-	/// startx and z decide the location
+	/// startX and z decide the location
 	/// </summary>
 	private void Start() {
 		startX = Random.Range(-200, 200);

@@ -1,23 +1,22 @@
-﻿/// <summary>
-/// Name:			SaveImageScript.cs
-/// Purpose:		To save an image to a folder
-/// Author:			Kane Adams
-/// Date Created:	06/02/2020
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Saves the image created by player to set filePath so that it can be loaded later.
+/// Author:	Kane Adams
+/// </summary>
 public class SaveImageScript : MonoBehaviour {
-	float sceneChangeWait; // Time to wait before scene change, Coral
+	float sceneChangeWait;  // Time to wait before scene change, Coral
 	int numOfPNGs;
 	string filePath;
 
 	public RenderTexture SaveTexture;
 
-	// Start is called before the first frame update
+	/// <summary>
+	/// Creates filePath and finds previous PNGs
+	/// </summary>
 	public void Start() {
 		numOfPNGs = 1;
 		filePath = Application.persistentDataPath;  // Where the image is to be saved
@@ -45,7 +44,7 @@ public class SaveImageScript : MonoBehaviour {
 	/// <summary>
 	/// Once the current frame ends, the SaveCamera's image is saved to Assets folder
 	/// </summary>
-	/// <returns>Waits until the endd of the rendered frame</returns>
+	/// <returns>Waits until the end of the rendered frame</returns>
 	private IEnumerator CoSave() {
 		yield return new WaitForEndOfFrame();
 
@@ -61,6 +60,9 @@ public class SaveImageScript : MonoBehaviour {
 	}
 
 	// Coral
+	/// <summary>
+	/// Counts down to zero before changing scene
+	/// </summary>
 	private void Update() {
 		if (sceneChangeWait > 0) {
 			sceneChangeWait -= Time.deltaTime;

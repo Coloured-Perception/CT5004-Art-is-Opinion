@@ -10,13 +10,16 @@ public class CameraShutterScript : MonoBehaviour {
 	public GameObject cameraShutterOpen;
 	public CameraShutterScript CameraShutterScriptOpen;
 
+	/// <summary>
+	/// Sets time to count from
+	/// </summary>
 	private void Start() {
 		timeWait = 2;
 	}
 
 	/// <summary>
 	/// after 2 seconds, camera shutter close finishes its animation and activates camera shutter open
-	/// both have to be deactivated to stop interfearing with the ui
+	/// both have to be deactivated to stop interfering with the UI
 	/// </summary>
 	void Update() {
 

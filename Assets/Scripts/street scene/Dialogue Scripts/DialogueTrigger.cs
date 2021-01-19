@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class controls animations for dialogue box
+/// </summary>
 public class DialogueTrigger : MonoBehaviour {
 	public Dialogue dialogue;
 	float timeWait;

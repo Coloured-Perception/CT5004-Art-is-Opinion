@@ -2,6 +2,7 @@
 
 /// <summary>
 /// Created by Coral
+/// this class controls camera and certain UI
 /// </summary>
 public class CameraScript : MonoBehaviour {
 	bool gallery = false;
@@ -12,12 +13,15 @@ public class CameraScript : MonoBehaviour {
 	public GameObject GalleryUI;
 	public Vector3 GalleryCanvas;
 
+	/// <summary>
+	/// Sets camera starting position
+	/// </summary>
 	private void Awake() {
 		transform.position = new Vector3(0, 44, 0);
 	}
 
 	/// <summary>
-	/// Gallery() and Menu() set the camera to spin and controlls the gallery and menu uis
+	/// Gallery() and Menu() set the camera to spin and controls the gallery and menu UIs
 	/// </summary>
 	public void Gallery() {
 		if (menu == false) {
@@ -28,6 +32,9 @@ public class CameraScript : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Closes Gallery UI and opens Menu UI
+	/// </summary>
 	public void Menu() {
 		if (gallery == false) {
 			menu = true;

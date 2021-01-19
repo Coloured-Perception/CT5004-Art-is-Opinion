@@ -1,11 +1,4 @@
-﻿/// <summary>
-/// Name:           LoadImageScript.cs
-/// Purpose:        To load .PNG images from resource folder in assets into a scene
-/// Author:         Kane Adams
-/// Date Created:   22/03/2020
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -13,6 +6,10 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// This class Loads previously saved PNGs/paintings (from select filePath) onto RawImage game objects that act as painting frames.
+/// Author: Kane Adams
+/// </summary>
 public class LoadImageScript : MonoBehaviour {
 	public GameObject galleryBoard;
 
@@ -29,6 +26,10 @@ public class LoadImageScript : MonoBehaviour {
 	public RawImage painting10;
 
 	// Start is called before the first frame update
+	/// <summary>
+	/// Goes through the saved PNGs and loads the most recent ones
+	/// </summary>
+	/// <returns></returns>
 	private IEnumerator Start() {
 		Debug.Log(Application.persistentDataPath);
 
@@ -37,7 +38,7 @@ public class LoadImageScript : MonoBehaviour {
 		string filePath = Application.persistentDataPath;   // Where the images are stored
 		string individualFilePath;                          // The file directory of a specific image to load
 
-		List<string> PNGImages = new List<string>();    // Stores all PNG files
+		List<string> PNGImages = new List<string>();	// Stores all PNG files
 		RawImage[] paintings = { painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10 };
 		Texture loadedTexture;
 

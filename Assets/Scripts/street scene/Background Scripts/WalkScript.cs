@@ -5,7 +5,6 @@
 /// this class controls the people in the background
 /// </summary>
 public class WalkScript : MonoBehaviour {
-
 	private float timeWait = 15;
 	private float direction;
 	public GameObject prefabChild;

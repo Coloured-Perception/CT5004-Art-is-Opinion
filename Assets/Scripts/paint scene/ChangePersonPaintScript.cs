@@ -1,16 +1,15 @@
-﻿/// <summary>
-/// Name:           ChangePersonPaintScript.cs
-/// Purpose:        Changes the character in the Paint scene to match the person in the street scene
-/// Author:         Kane Adams
-/// Date Created:   25/04/2020
+﻿using UnityEngine;
+
+/// <summary>
+/// Changes the character in the Paint scene to match the person in the street scene.
+/// Author:	Kane Adams
 /// </summary>
-
-using UnityEngine;
-
 public class ChangePersonPaintScript : MonoBehaviour {
 	public SpriteRenderer personImage;  // The player image that changes
 
-	// Start is called before the first frame update
+	/// <summary>
+	/// Changes person to draw to be person generated in street scene
+	/// </summary>
 	void Start() {
 		personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 	}

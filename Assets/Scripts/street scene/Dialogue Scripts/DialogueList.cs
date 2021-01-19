@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class contains arrays to what character names and conversations that are randomly generated
+/// </summary>
 public class DialogueList : MonoBehaviour {
 	public List<string> dogNames;
 	public List<string> femaleFirstNames;
@@ -13,7 +16,7 @@ public class DialogueList : MonoBehaviour {
 
 	/// <summary>
 	/// add whatever you like here 
-	/// put end of sentence punctuation at the end of every addition unless theyre names
+	/// put end of sentence punctuation at the end of every addition unless their names
 	/// do not put spaces after the punctuation
 	/// search the code in case its already there
 	/// </summary>

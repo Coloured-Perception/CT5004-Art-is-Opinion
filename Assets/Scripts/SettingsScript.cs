@@ -1,19 +1,18 @@
-﻿/// <summary>
-/// Name:           SettingsScript.cs
-/// Purpose:        Controls settings in option screen
-///					Contains settings to change controls between mouse and Tobii eye-tracking
-/// Author:         Kane Adams
-/// Date Created:   15/10/2020
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class controls setting in option screen.
+/// Author: Kane Adams
+/// </summary>
 public class SettingsScript : MonoBehaviour {
 	static bool isTobii = true;
 
 	// Start is called before the first frame update
+	/// <summary>
+	/// Loads previous setting for controls
+	/// </summary>
 	void Start() {
 		isTobii = PlayerPrefs.GetInt("EyeTracking") == 1 ? true : false;
 	}

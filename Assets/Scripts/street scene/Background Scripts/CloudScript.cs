@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Created by Coral
-/// this class controlls the clouds moving in the sky during the street scene
+/// this class controls the clouds moving in the sky during the street scene
 /// </summary>
 public class CloudScript : MonoBehaviour {
 	float timeWait = 300;

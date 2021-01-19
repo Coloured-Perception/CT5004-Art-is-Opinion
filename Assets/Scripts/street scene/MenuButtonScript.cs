@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Created by Coral
-/// this class manages the menu and street uis
+/// this class manages the menu and street UIs
 /// </summary>
 public class MenuButtonScript : MonoBehaviour {
 	float timeWait;
@@ -28,6 +28,9 @@ public class MenuButtonScript : MonoBehaviour {
 		ButtonClicked();
 	}
 
+	/// <summary>
+	/// Closes game
+	/// </summary>
 	public void Exit() {
 		Application.Quit();
 	}

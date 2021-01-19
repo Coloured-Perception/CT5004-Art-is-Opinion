@@ -2,8 +2,10 @@
 using UnityEngine.UI;
 
 namespace unitycoder_MobilePaint {
+	/// <summary>
+	/// This class is used to change the size of a custom brush and the brush preview
+	/// </summary>
 	public class BrushSizeScript : MonoBehaviour {
-
 		// Size boundaries for brush
 		private int maxDifference = 3;
 		private int minDifference = -2;
@@ -17,16 +19,22 @@ namespace unitycoder_MobilePaint {
 		MobilePaint mobilePaint;
 		public CustomBrushesUI customBrushesUI;
 
+		/// <summary>
+		/// Gets reference to MobilePaint script (and it's methods) through PaintManager.
+		///	Assigns initial values for brush
+		/// </summary>
 		void Start() {
 			mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager
 			customSize = 2;
-            mobilePaint.selectedBrush = 2;
-            mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
-            mobilePaint.SetDrawModeShapes();
-        }
+			mobilePaint.selectedBrush = 2;
+			mobilePaint.ReadCurrentCustomBrush();   // Tell mobile paint to read custom brush pixel data
+			mobilePaint.SetDrawModeShapes();
+		}
 
+		/// <summary>
+		/// When called, custom brush and it's preview will decrease in size by set amount
+		/// </summary>
 		public void DecreaseBrushSize() {
-
 			if (sizeDifference > minDifference) {
 				sizeDifference -= 1;
 				PreviewName = brushPreview.GetComponent<RawImage>().texture.name;
@@ -49,12 +57,15 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize -= 1;
-                mobilePaint.selectedBrush -= 1;
-                mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
-                mobilePaint.SetDrawModeShapes();
-            }
+				mobilePaint.selectedBrush -= 1;
+				mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+				mobilePaint.SetDrawModeShapes();
+			}
 		}
 
+		/// <summary>
+		/// When called, custom brush and it's preview will increase in size by set amount
+		/// </summary>
 		public void IncreaseBrushSize() {
 
 			if (sizeDifference < maxDifference) {
@@ -79,10 +90,10 @@ namespace unitycoder_MobilePaint {
 					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
 				}
 				customSize += 1;
-                mobilePaint.selectedBrush += 1;
-                mobilePaint.ReadCurrentCustomBrush(); // tell mobile paint to read custom brush pixel data
-                mobilePaint.SetDrawModeShapes();
-            }
+				mobilePaint.selectedBrush += 1;
+				mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+				mobilePaint.SetDrawModeShapes();
+			}
 		}
 	}
 }
