@@ -57,6 +57,11 @@ public class SaveImageScript : MonoBehaviour {
 		byte[] saveData = texture2D.EncodeToPNG();  // Turns the image seen in the SaveCamera to a PNG
 
 		File.WriteAllBytes(filePath + "/SavedImage" + numOfPNGs + ".png", saveData);  // Saves the .PNG to the desired directory
+
+		// This saves what scene the player is leaving to activate art reaction script
+		string currentScene = SceneManager.GetActiveScene().name;
+		PlayerPrefs.SetString("LastScene", currentScene);
+		//PlayerPrefs.Save();
 	}
 
 	// Coral
