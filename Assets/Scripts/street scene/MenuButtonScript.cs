@@ -24,38 +24,38 @@ public class MenuButtonScript : MonoBehaviour {
 	///////////////////////////////////////////////////////////////////
 	/// This code is an attempt at returning back to street instead of menu when you leave painting area
 
-	StackTrace stackTrace;
+	//StackTrace stackTrace;
 
-	string lastScene;
+	//string lastScene;
 
-	/// <summary>
-	/// Get's information on what previous scene was
-	/// </summary>
-	private void Awake() {
-		lastScene = PlayerPrefs.GetString("LastScene", null);
-		//PlayerPrefs.SetString("LastScene", null);
+	///// <summary>
+	///// Get's information on what previous scene was
+	///// </summary>
+	//private void Awake() {
+	//	lastScene = PlayerPrefs.GetString("LastScene", null);
+	//	//PlayerPrefs.SetString("LastScene", null);
 
-		if (name == "Play Button") {
-			if (lastScene != null) {
-				if (lastScene == "PaintScene") {
-					UnityEngine.Debug.Log("Reacting");
+	//	if (name == "Play Button") {
+	//		if (lastScene != null) {
+	//			if (lastScene == "PaintScene") {
+	//				UnityEngine.Debug.Log("Reacting");
 
-					ButtonClicked();
-					PlayerPrefs.SetString("LastScene", null);
-					lastScene = null;
-				} else {
-					UnityEngine.Debug.Log("Not Reacting");
+	//				ButtonClicked();
+	//				PlayerPrefs.SetString("LastScene", null);
+	//				lastScene = null;
+	//			} else {
+	//				UnityEngine.Debug.Log("Not Reacting");
 
-					//MenuUI.transform.gameObject.SetActive(true);
-					//StreetUI.transform.gameObject.SetActive(false);
-				}
-			}
-		}
-	}
+	//				//MenuUI.transform.gameObject.SetActive(true);
+	//				//StreetUI.transform.gameObject.SetActive(false);
+	//			}
+	//		}
+	//	}
+	//}
 
-	private void Start() {
+	//private void Start() {
 
-	}
+	//}
 
 	///////////////////////////////////////////////////////////////////
 
@@ -64,13 +64,13 @@ public class MenuButtonScript : MonoBehaviour {
 	/// When a button is clicked in menu screen, a timer is created
 	/// </summary>
 	public void ButtonClicked() {
-		stackTrace = new StackTrace();
-		UnityEngine.Debug.Log(stackTrace.GetFrame(1).GetMethod().Name);
-		if (stackTrace.GetFrame(1).GetMethod().Name == "Awake") {
-			timeWait = 5.0f;
-		} else {
+		//stackTrace = new StackTrace();
+		//UnityEngine.Debug.Log(stackTrace.GetFrame(1).GetMethod().Name);
+		//if (stackTrace.GetFrame(1).GetMethod().Name == "Awake") {
+		//	timeWait = 5.0f;
+		//} else {
 			timeWait = 2;
-		}
+		//}
 	}
 
 	/// <summary>

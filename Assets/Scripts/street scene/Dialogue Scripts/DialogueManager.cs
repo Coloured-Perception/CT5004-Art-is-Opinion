@@ -66,6 +66,9 @@ public class DialogueManager : MonoBehaviour {
 
 	public DialogueList dialogueList;
 
+
+	string lastScene;
+
 	//Coral
 	private void Awake() {
 		personInstance = this;
@@ -100,56 +103,61 @@ public class DialogueManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="dialogue"></param>
 	public void StartDialogue(Dialogue dialogue) {
-		animator.SetBool("IsOpen", true);
-		speech.Clear();
-		dialogueText.text = " ";
-		nameText.text = " ";
+		lastScene = PlayerPrefs.GetString("LastScene", null);
+		if (lastScene == "PaintScene") {
+			ReactionDialogue();
+		} else {
+			animator.SetBool("IsOpen", true);
+			speech.Clear();
+			dialogueText.text = " ";
+			nameText.text = " ";
 
-		randomGreetingNumber = Random.Range(0, dialogueList.greeting.Count);
-		randomSpeechNumber = Random.Range(0, dialogueList.speech.Count);
-		randomRequestNumber = Random.Range(0, dialogueList.request.Count);
-		randomSentence = dialogueList.greeting[randomGreetingNumber] + " " + dialogueList.speech[randomSpeechNumber] + " " + dialogueList.request[randomRequestNumber];
+			randomGreetingNumber = Random.Range(0, dialogueList.greeting.Count);
+			randomSpeechNumber = Random.Range(0, dialogueList.speech.Count);
+			randomRequestNumber = Random.Range(0, dialogueList.request.Count);
+			randomSentence = dialogueList.greeting[randomGreetingNumber] + " " + dialogueList.speech[randomSpeechNumber] + " " + dialogueList.request[randomRequestNumber];
 
 
-		ImageName = image.transform.GetComponent<Image>().sprite.name;
+			ImageName = image.transform.GetComponent<Image>().sprite.name;
 
-		if (ImageName.StartsWith(Special)) {
-			dialogue.name = ImageName.Replace(Special, "");
-		} else if (ImageName.StartsWith(Male)) {
-			randomNameNumber = Random.Range(0, dialogueList.maleFirstNames.Count);
-			randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
-			randomName = dialogueList.maleFirstNames[randomNameNumber];
-			randomSurname = dialogueList.surnames[randomSurnameNumber];
-			dialogue.name = randomName + " " + randomSurname;
-		} else if (ImageName.StartsWith(Female)) {
-			randomNameNumber = Random.Range(0, dialogueList.femaleFirstNames.Count);
-			randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
-			randomName = dialogueList.femaleFirstNames[randomNameNumber];
-			randomSurname = dialogueList.surnames[randomSurnameNumber];
-			dialogue.name = randomName + " " + randomSurname;
-		} else if (ImageName.StartsWith(Mr)) {
-			randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
-			randomSurname = dialogueList.surnames[randomSurnameNumber];
-			dialogue.name = "Mr. " + randomSurname;
-		} else if (ImageName.StartsWith(Ms)) {
-			randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
-			randomSurname = dialogueList.surnames[randomSurnameNumber];
-			dialogue.name = "Ms. " + randomSurname;
-		} else if (ImageName.StartsWith(Animal)) {
-			if (ImageName.StartsWith("A_Dog_")) {
-				randomNameNumber = Random.Range(0, dialogueList.dogNames.Count);
-				randomName = dialogueList.dogNames[randomNameNumber];
-				dialogue.name = randomName;
-				randomSentence = dialogueList.dogSpeech[randomDogSpeechNumber];
+			if (ImageName.StartsWith(Special)) {
+				dialogue.name = ImageName.Replace(Special, "");
+			} else if (ImageName.StartsWith(Male)) {
+				randomNameNumber = Random.Range(0, dialogueList.maleFirstNames.Count);
+				randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+				randomName = dialogueList.maleFirstNames[randomNameNumber];
+				randomSurname = dialogueList.surnames[randomSurnameNumber];
+				dialogue.name = randomName + " " + randomSurname;
+			} else if (ImageName.StartsWith(Female)) {
+				randomNameNumber = Random.Range(0, dialogueList.femaleFirstNames.Count);
+				randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+				randomName = dialogueList.femaleFirstNames[randomNameNumber];
+				randomSurname = dialogueList.surnames[randomSurnameNumber];
+				dialogue.name = randomName + " " + randomSurname;
+			} else if (ImageName.StartsWith(Mr)) {
+				randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+				randomSurname = dialogueList.surnames[randomSurnameNumber];
+				dialogue.name = "Mr. " + randomSurname;
+			} else if (ImageName.StartsWith(Ms)) {
+				randomSurnameNumber = Random.Range(0, dialogueList.surnames.Count);
+				randomSurname = dialogueList.surnames[randomSurnameNumber];
+				dialogue.name = "Ms. " + randomSurname;
+			} else if (ImageName.StartsWith(Animal)) {
+				if (ImageName.StartsWith("A_Dog_")) {
+					randomNameNumber = Random.Range(0, dialogueList.dogNames.Count);
+					randomName = dialogueList.dogNames[randomNameNumber];
+					dialogue.name = randomName;
+					randomSentence = dialogueList.dogSpeech[randomDogSpeechNumber];
+				}
 			}
+
+
+			nameText.text = dialogue.name;
+
+			speech.Enqueue(randomSentence);
+
+			DisplayNextSentence();
 		}
-
-
-		nameText.text = dialogue.name;
-
-		speech.Enqueue(randomSentence);
-
-		DisplayNextSentence();
 	}
 	//Coral
 
@@ -201,6 +209,15 @@ public class DialogueManager : MonoBehaviour {
 			down = false;
 		}
 		// Coral
+	}
+
+	void ReactionDialogue() {
+		//myImageComponent.sprite = personInstance.myImageComponent.sprite;
+
+		Debug.Log("Noice!");
+
+		PlayerPrefs.SetString("LastScene", null);
+		lastScene = null;
 	}
 
 	IEnumerator TypeSentence(string sentence) {

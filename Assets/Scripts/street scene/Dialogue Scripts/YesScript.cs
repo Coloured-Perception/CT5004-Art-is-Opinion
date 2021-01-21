@@ -45,7 +45,7 @@ public class YesScript : MonoBehaviour {
 			noYMin = noRect.yMin;
 			noYMax = noRect.yMax;
 
-			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;	// Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
 			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 			//Find if buttons are active and whether the eye is looking at them and space is down, do button code.

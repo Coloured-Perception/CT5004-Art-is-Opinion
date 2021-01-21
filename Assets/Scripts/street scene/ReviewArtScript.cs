@@ -6,6 +6,8 @@ public class ReviewArtScript : MonoBehaviour {
 	public GameObject MenuUI;
 	public GameObject StreetUI;
 
+	public DialogueTrigger dialogueTrigger;
+
 	string lastScene;
 
 	/// <summary>
@@ -23,13 +25,18 @@ public class ReviewArtScript : MonoBehaviour {
 
 				MenuUI.transform.gameObject.SetActive(false);
 				StreetUI.transform.gameObject.SetActive(true);
-				PlayerPrefs.SetString("LastScene", null);
+				//PlayerPrefs.SetString("LastScene", null);
+				//lastScene = null;
+
+				dialogueTrigger.StartDialog();
 			} else {
 				Debug.Log("Not Reacting");
 
 				MenuUI.transform.gameObject.SetActive(true);
 				StreetUI.transform.gameObject.SetActive(false);
 			}
+		} else {
+			Debug.Log("NULL");
 		}
 	}
 }

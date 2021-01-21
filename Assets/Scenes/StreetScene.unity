@@ -7685,13 +7685,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938997459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52558196556ab914d913d631381bccbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 26753280}
   StreetUI: {fileID: 1009284757}
+  dialogueTrigger: {fileID: 1202375071}
 --- !u!1 &1941361497
 GameObject:
   m_ObjectHideFlags: 0
