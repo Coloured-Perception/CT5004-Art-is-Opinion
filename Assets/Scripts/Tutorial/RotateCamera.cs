@@ -6,13 +6,14 @@ using Tobii.Gaming;
 public class RotateCamera : MonoBehaviour
 {
     public float headGazeContribution;
-    public float maxAngle;
+    public float maxAngleX;
+    public float maxAngleY;
+    public float minAngleX;
+    public float minAngleY;
     public float sensitivity;
     public float responsiveness;
     public float speed;
     public bool isTobii;
-    public float startX;
-    public float startY;
 
     public bool contiuousRotate;
 
@@ -36,59 +37,109 @@ public class RotateCamera : MonoBehaviour
                 Quaternion headPoseAngle = new Quaternion(headPose.x * headGazeContribution, headPose.y * headGazeContribution, 0, headPose.w);
                 Quaternion gazePointAngle = new Quaternion((-filteredPoint.y + 0.5f) * (1 - headGazeContribution), (filteredPoint.x - 0.5f) * (1 - headGazeContribution), 0, headPose.w);
 
-                if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) > maxAngle)
-                {
-                    if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
-                    {
-                        camRotation = new Quaternion(maxAngle, maxAngle, 0, headPose.w);
-                    }
-                    else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
-                    {
-                        camRotation = new Quaternion(maxAngle, -maxAngle, 0, headPose.w);
-                    }
-                    else
-                    {
-                        camRotation = new Quaternion(maxAngle, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
-                    }
-                }
-                else if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) < -maxAngle)
-                {
-                    if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
-                    {
-                        camRotation = new Quaternion(-maxAngle, maxAngle, 0, headPose.w);
-                    }
-                    else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
-                    {
-                        camRotation = new Quaternion(-maxAngle, -maxAngle, 0, headPose.w);
-                    }
-                    else
-                    {
-                        camRotation = new Quaternion(-maxAngle, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
-                    }
-                }
-                else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngle)
-                {
-                    camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, maxAngle, 0, headPose.w);
-                }
-                else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < -maxAngle)
-                {
-                    camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, -maxAngle, 0, headPose.w);
-                }
-                else
-                {
-                    camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
-
-                }
-
                 if (contiuousRotate)
                 {
-                    cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + camRotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y + camRotation.eulerAngles.y, 0);
-                    cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, cam.transform.rotation * camRotation, Time.deltaTime * speed);
+                    float angleX = cam.transform.rotation.eulerAngles.x;
+                    angleX = (angleX > 180) ? angleX - 360 : angleX;
+
+                    float angleY = cam.transform.rotation.eulerAngles.y;
+                    angleY = (angleY > 180) ? angleY - 360 : angleY;
+
+                    float xSpeed = (headPoseAngle.x + gazePointAngle.x) * sensitivity;
+                    float ySpeed = (headPoseAngle.y + gazePointAngle.y) * sensitivity;
+
+                    if (angleX + xSpeed > maxAngleX)
+                    {
+                        if (angleY + ySpeed > maxAngleY)
+                        {
+                            cam.transform.rotation = Quaternion.Euler(maxAngleX, maxAngleY, 0);
+                        }
+                        else if (angleY + ySpeed < minAngleY)
+                        {
+                            cam.transform.rotation = Quaternion.Euler(maxAngleX, minAngleY, 0);
+                        }
+                        else
+                        {
+                            cam.transform.rotation = Quaternion.Euler(maxAngleX, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+                        }
+                    }
+                    else if (angleX + xSpeed < minAngleX)
+                    {
+                        if (angleY + ySpeed > maxAngleY)
+                        {
+                            cam.transform.rotation = Quaternion.Euler(minAngleX, maxAngleY, 0);
+                        }
+                        else if (angleY + ySpeed < minAngleY)
+                        {
+                            cam.transform.rotation = Quaternion.Euler(minAngleX, minAngleY, 0);
+                        }
+                        else
+                        {
+                            cam.transform.rotation = Quaternion.Euler(minAngleX, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+                        }
+                    }
+                    else if (angleY + ySpeed > maxAngleY)
+                    {
+                        cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, maxAngleY, 0);
+                    }
+                    else if (angleY + ySpeed < minAngleY)
+                    {
+                        cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, minAngleY, 0);
+                    }
+                    else
+                    {
+                        cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+                    }
                 }
                 else
                 {
+                    if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) > maxAngleX)
+                    {
+                        if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngleX)
+                        {
+                            camRotation = new Quaternion(maxAngleX, maxAngleY, 0, headPose.w);
+                        }
+                        else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < minAngleY)
+                        {
+                            camRotation = new Quaternion(maxAngleX, minAngleY, 0, headPose.w);
+                        }
+                        else
+                        {
+                            camRotation = new Quaternion(maxAngleX, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+                        }
+                    }
+                    else if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) < minAngleX)
+                    {
+                        if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngleX)
+                        {
+                            camRotation = new Quaternion(minAngleX, maxAngleY, 0, headPose.w);
+                        }
+                        else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < minAngleY)
+                        {
+                            camRotation = new Quaternion(minAngleX, minAngleY, 0, headPose.w);
+                        }
+                        else
+                        {
+                            camRotation = new Quaternion(minAngleX, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+                        }
+                    }
+                    else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) > maxAngleY)
+                    {
+                        camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, maxAngleY, 0, headPose.w);
+                    }
+                    else if (((headPoseAngle.y + gazePointAngle.y) * sensitivity) < minAngleY)
+                    {
+                        camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, minAngleY, 0, headPose.w);
+                    }
+                    else
+                    {
+                        camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
+
+                    }
+
                     cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, camRotation, Time.deltaTime * speed);
                 }
+                
             }
             else
             {
@@ -99,7 +150,6 @@ public class RotateCamera : MonoBehaviour
         {
             float xSpeed = 0;
             float ySpeed = 0;
-
 
             if (Input.GetKey("up"))
             {
@@ -117,8 +167,55 @@ public class RotateCamera : MonoBehaviour
             {
                 ySpeed += 1;
             }
-            camRotation = new Quaternion(xSpeed * sensitivity, ySpeed * sensitivity, 0, 0);
-            cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+
+            float angleX = cam.transform.rotation.eulerAngles.x;
+            angleX = (angleX > 180) ? angleX - 360 : angleX;
+
+            float angleY = cam.transform.rotation.eulerAngles.y;
+            angleY = (angleY > 180) ? angleY - 360 : angleY;
+
+            if (angleX + xSpeed > maxAngleX)
+            {
+                if (angleY + ySpeed > maxAngleY)
+                {
+                    cam.transform.rotation = Quaternion.Euler(maxAngleX, maxAngleY, 0);
+                }
+                else if (angleY + ySpeed < minAngleY)
+                {
+                    cam.transform.rotation = Quaternion.Euler(maxAngleX, minAngleY, 0);
+                }
+                else
+                {
+                    cam.transform.rotation = Quaternion.Euler(maxAngleX, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+                }
+            }
+            else if (angleX + xSpeed < minAngleX)
+            {
+                if (angleY + ySpeed > maxAngleY)
+                {
+                    cam.transform.rotation = Quaternion.Euler(minAngleX, maxAngleY, 0);
+                }
+                else if (angleY + ySpeed < minAngleY)
+                {
+                    cam.transform.rotation = Quaternion.Euler(minAngleX, minAngleY, 0);
+                }
+                else
+                {
+                    cam.transform.rotation = Quaternion.Euler(minAngleX, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+                }
+            }
+            else if (angleY + ySpeed > maxAngleY)
+            {
+                cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, maxAngleY, 0);
+            }
+            else if (angleY + ySpeed < minAngleY)
+            {
+                cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, minAngleY, 0);
+            }
+            else
+            {
+                cam.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x + xSpeed, cam.transform.rotation.eulerAngles.y + ySpeed, 0);
+            }   
         }
     }
 }

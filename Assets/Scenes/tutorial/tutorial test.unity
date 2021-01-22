@@ -5231,6 +5231,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894124958}
   m_CullTransparentMesh: 0
+--- !u!1 &900863958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900863960}
+  - component: {fileID: 900863959}
+  m_Layer: 0
+  m_Name: RotateCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &900863959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900863958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7d6b322058ef946a18a86cdb16b6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headGazeContribution: 0
+  maxAngleX: 45
+  maxAngleY: 135
+  minAngleX: -45
+  minAngleY: 45
+  sensitivity: 5
+  responsiveness: 1
+  speed: 1
+  isTobii: 0
+  startX: 0
+  startY: 0
+  contiuousRotate: 0
+  cam: {fileID: 913380753}
+--- !u!4 &900863960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900863958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.334098, y: -19.248262, z: 11.33652}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913380749
 GameObject:
   m_ObjectHideFlags: 0
@@ -11695,9 +11751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continueButton: {fileID: 894124960}
+  dialogList: {fileID: 2056827686}
   dialogueBox: {fileID: 282235188}
   animator: {fileID: 1035410965}
-  dialogList: {fileID: 2056827686}
   nameText: {fileID: 531632430}
   dialogueText: {fileID: 1018527637}
   textWait: 0
@@ -11728,39 +11784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9fe5497cf2ac44cbb3fdb1eb6dbd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
-  GalleryScene: {fileID: 0}
-  TutorialUI: {fileID: 0}
-  GalleryUI: {fileID: 0}
-  TableUI: {fileID: 0}
-  Camera: {fileID: 0}
-  Blink: {fileID: 0}
-  CameraController: {fileID: 0}
-  CameraOpen: {fileID: 0}
-  CameraClose: {fileID: 0}
-  CameraBoth: {fileID: 0}
-  EntranceCameraPos: {fileID: 0}
-  IntroCameraPos: {fileID: 0}
-  Curator: {fileID: 0}
-  CuratorImage: {fileID: 0}
-  CuratorBox: {fileID: 0}
-  DialogueText: {fileID: 0}
-  NextButton: {fileID: 0}
-  YesButton: {fileID: 0}
-  NoButton: {fileID: 0}
-  LookPrompts: {fileID: 0}
-  PaintUICanvas: {fileID: 0}
-  TutorialObjects: {fileID: 0}
-  Easel: {fileID: 0}
-  Table: {fileID: 0}
-  BeginningDisplay: {fileID: 0}
-  Map: {fileID: 0}
-  MapStill: {fileID: 0}
-  MapStillDraw: {fileID: 0}
-  MapFreeDraw: {fileID: 0}
-  MapOffice: {fileID: 0}
-  tutorialDialogeManager: {fileID: 2056827687}
-  cameraShutterScript: {fileID: 1864905712}
 --- !u!1 &2059974686
 GameObject:
   m_ObjectHideFlags: 0
