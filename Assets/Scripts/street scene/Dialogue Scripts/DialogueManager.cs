@@ -79,22 +79,29 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void ChangeImage() {
-
-		rand = Random.Range(0, images.Count);
-		Debug.Log(rand);
-		if (rand == 0) {
-			rand = Random.Range(0, specialImages.Count);
-			myImageComponent.sprite = specialImages[rand];
-
-			Debug.Log(rand);
-			PlayerPrefs.SetInt("IsSpecialPerson", 1);
-			PlayerPrefs.SetInt("Person", rand);
+		if (lastScene == "PaintScene") {
+			if (PlayerPrefs.GetInt("IsSpecialPerson") == 1) {
+				myImageComponent.sprite = specialImages[PlayerPrefs.GetInt("Person")];
+			} else {
+				myImageComponent.sprite = images[PlayerPrefs.GetInt("Person")];
+			}
 		} else {
-			myImageComponent.sprite = images[rand];
-
+			rand = Random.Range(0, images.Count);
 			Debug.Log(rand);
-			PlayerPrefs.SetInt("IsSpecialPerson", 0);
-			PlayerPrefs.SetInt("Person", rand);
+			if (rand == 0) {
+				rand = Random.Range(0, specialImages.Count);
+				myImageComponent.sprite = specialImages[rand];
+
+				Debug.Log(rand);
+				PlayerPrefs.SetInt("IsSpecialPerson", 1);
+				PlayerPrefs.SetInt("Person", rand);
+			} else {
+				myImageComponent.sprite = images[rand];
+
+				Debug.Log(rand);
+				PlayerPrefs.SetInt("IsSpecialPerson", 0);
+				PlayerPrefs.SetInt("Person", rand);
+			}
 		}
 	}
 
@@ -236,7 +243,7 @@ public class DialogueManager : MonoBehaviour {
 		//	myImageComponent.sprite = images[PlayerPrefs.GetInt("Person")];
 		//}
 
-		//ChangeImage();
+		ChangeImage();
 
 		PlayerPrefs.SetString("LastScene", null);
 		lastScene = null;

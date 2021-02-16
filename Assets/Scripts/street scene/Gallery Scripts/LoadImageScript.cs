@@ -53,7 +53,7 @@ public class LoadImageScript : MonoBehaviour {
 		// Goes through each file within the array, if the file extension is a '.png', numOfPNGs increments
 		foreach (FileInfo file in fileInfo) {
 			if (File.Exists(filePath + "/SavedImage" + numOfPNGs + ".png")) {
-				Debug.Log("Yay!");
+				//Debug.Log("Yay!");
 				PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
 				numOfPNGs++;
 			} else {
