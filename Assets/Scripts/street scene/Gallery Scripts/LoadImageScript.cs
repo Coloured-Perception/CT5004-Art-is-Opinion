@@ -31,7 +31,7 @@ public class LoadImageScript : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	private IEnumerator Start() {
-		Debug.Log(Application.persistentDataPath);
+		//Debug.Log(Application.persistentDataPath);
 
 		int numOfImages = 10;
 		int numOfPNGs = 1;                                  // Used to load the last PNG in the folder (loads "SavedImage" + numOfPNGs)

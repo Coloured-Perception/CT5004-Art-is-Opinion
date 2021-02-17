@@ -15,22 +15,19 @@ public class ReviewArtScript : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 		lastScene = PlayerPrefs.GetString("LastScene", null);
-		//PlayerPrefs.SetString("LastScene", null);
 	}
 
 	private void Start() {
 		if (lastScene != null) {
 			if (lastScene == "PaintScene") {
-				Debug.Log("Reacting");
+				//Debug.Log("Reacting");
 
 				MenuUI.transform.gameObject.SetActive(false);
 				StreetUI.transform.gameObject.SetActive(true);
-				//PlayerPrefs.SetString("LastScene", null);
-				//lastScene = null;
 
 				dialogueTrigger.StartDialog();
 			} else {
-				Debug.Log("Not Reacting");
+				//Debug.Log("Not Reacting");
 
 				MenuUI.transform.gameObject.SetActive(true);
 				StreetUI.transform.gameObject.SetActive(false);

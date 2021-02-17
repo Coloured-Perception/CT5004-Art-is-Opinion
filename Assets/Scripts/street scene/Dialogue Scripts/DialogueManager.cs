@@ -66,11 +66,12 @@ public class DialogueManager : MonoBehaviour {
 
 	public DialogueList dialogueList;
 
-	string lastScene;
+	public string lastScene;
 
 	//Coral
 	private void Awake() {
 		personInstance = this;
+		lastScene = PlayerPrefs.GetString("LastScene");
 	}
 
 	void Start() {
@@ -78,7 +79,12 @@ public class DialogueManager : MonoBehaviour {
 		startPos = dialogueBox.transform.position;
 	}
 
+	/// <summary>
+	/// Selects the image for the character that appears in the street scene
+	/// </summary>
 	public void ChangeImage() {
+		//Debug.Log(lastScene);
+		// If the previous scene was the paint scene, then the previous character is used, otherwise a random character is selected
 		if (lastScene == "PaintScene") {
 			if (PlayerPrefs.GetInt("IsSpecialPerson") == 1) {
 				myImageComponent.sprite = specialImages[PlayerPrefs.GetInt("Person")];
@@ -87,24 +93,27 @@ public class DialogueManager : MonoBehaviour {
 			}
 		} else {
 			rand = Random.Range(0, images.Count);
-			Debug.Log(rand);
+			//Debug.Log(rand);
 			if (rand == 0) {
 				rand = Random.Range(0, specialImages.Count);
 				myImageComponent.sprite = specialImages[rand];
 
-				Debug.Log(rand);
+				//Debug.Log(rand);
 				PlayerPrefs.SetInt("IsSpecialPerson", 1);
 				PlayerPrefs.SetInt("Person", rand);
 			} else {
 				myImageComponent.sprite = images[rand];
 
-				Debug.Log(rand);
+				//Debug.Log(rand);
 				PlayerPrefs.SetInt("IsSpecialPerson", 0);
 				PlayerPrefs.SetInt("Person", rand);
 			}
 		}
 	}
 
+	/// <summary>
+	/// If player chooses to free draw,  no character (image) is selected
+	/// </summary>
 	public void Drawclicked() {
 		myImageComponent.sprite = images[0];
 	}
@@ -117,7 +126,6 @@ public class DialogueManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="dialogue"></param>
 	public void StartDialogue(Dialogue dialogue) {
-		lastScene = PlayerPrefs.GetString("LastScene", null);
 		if (lastScene == "PaintScene") {
 			ReactionDialogue();
 		} else {
@@ -214,8 +222,8 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 		// Coral
-		// this changes the character once when it is out of shot of the camera
 
+		// this changes the character once when it is out of shot of the camera
 		if (lastScene != "PaintScene") {
 			if (dialogueBox.transform.position.y == startPos.y && down == false) {
 				down = true;
@@ -226,30 +234,29 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 		// Coral
+
 	}
 
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/// <summary>
+	/// Sets up dialogue for a character reacting to art drawn
+	/// </summary>
 	void ReactionDialogue() {
-		myImageComponent.sprite = personInstance.myImageComponent.sprite;
-
-		Debug.Log(PlayerPrefs.GetString("PersonName"));
-		Debug.Log(PlayerPrefs.GetInt("IsSpecialPerson"));
-		Debug.Log(PlayerPrefs.GetInt("Person"));
-
-		Debug.Log("Noice!");
-
-		//if (PlayerPrefs.GetInt("IsSpecialPerson") == 1) {
-		//	myImageComponent.sprite = specialImages[PlayerPrefs.GetInt("Person")];
-		//} else {
-		//	myImageComponent.sprite = images[PlayerPrefs.GetInt("Person")];
-		//}
+		//myImageComponent.sprite = personInstance.myImageComponent.sprite;
 
 		ChangeImage();
 
+		//Debug.Log(PlayerPrefs.GetString("PersonName"));
+		//Debug.Log(PlayerPrefs.GetInt("IsSpecialPerson"));
+		//Debug.Log(PlayerPrefs.GetInt("Person"));
+
+		//Debug.Log("Noice!");
+
 		PlayerPrefs.SetString("LastScene", null);
-		lastScene = null;
 
 		nameText.text = PlayerPrefs.GetString("PersonName");
-
 
 		animator.SetBool("IsOpen", true);
 		speech.Clear();
@@ -261,6 +268,9 @@ public class DialogueManager : MonoBehaviour {
 		DisplayNextSentence();
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	
+
 	IEnumerator TypeSentence(string sentence) {
 		dialogueText.text = "";
 
@@ -270,7 +280,11 @@ public class DialogueManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Resets dialogue and previous scene for new character
+	/// </summary>
 	public void EndDialogue() {
 		animator.SetBool("IsOpen", false);
+		lastScene = null;
 	}
 }
