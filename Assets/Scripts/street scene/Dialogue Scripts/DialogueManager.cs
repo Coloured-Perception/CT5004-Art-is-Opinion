@@ -8,13 +8,6 @@ using Tobii.Gaming;
 /// Created by Tom	Edited by Coral and Matt Pe
 /// </summary>
 public class DialogueManager : MonoBehaviour {
-	public Text nameText;
-	public Text dialogueText;
-	public float textWait;
-
-	public Animator animator;
-
-	private Queue<string> speech;
 
 	//MattP
 	public Button continueButton;
@@ -30,14 +23,25 @@ public class DialogueManager : MonoBehaviour {
 	float timeBetweenClicks = 1;
 	Vector2 filteredPoint;
 
-	public GameObject dialogueBox;
-	public GameObject image;
+
+
+	private Image CharacterImage;
+
+	private Text nameText;
+	private Text dialogueText;
+	public Dialogue dialogue;
+
+	private Animator CharacterAnim, TranAnim;
+	private Queue<string> speech;
+
+
+	private CameraShutterScript cameraShutterScript;
+
+
 	Vector3 startPos;
-	public ChangePerson changePerson;
 
 	public List<Sprite> images, specialImages;
 	public Image myImageComponent;
-	public float changewait;
 	public static DialogueManager personInstance;
 
 	public DialogList dialogList;
@@ -48,18 +52,42 @@ public class DialogueManager : MonoBehaviour {
 	private string ImageName;
 	bool down = false;
 
+	private float textWait, appearWait;
+
+	private GameObject TransitionController;
+
+
 	private void Awake() {
-		personInstance = this;
-	}
+		personInstance = this;  // kane do you still need this?
+		TransitionController = GameObject.Find("Transition Controller");
+		TranAnim = TransitionController.GetComponent<Animator>();
 
-	void Start() {
+		CharacterImage = GameObject.Find("Character Image").GetComponent<Image>();
+
+		CharacterAnim = gameObject.GetComponent<Animator>();
+		nameText = GameObject.Find("Name").GetComponent<Text>();
+		dialogueText = GameObject.Find("Dialogue").GetComponent<Text>();
 		speech = new Queue<string>();
-		startPos = dialogueBox.transform.position;
-		ChangeImage();
 	}
 
-	// choses a random character
+	/// <summary>
+	/// if charcter is rejected, reset to reappear 
+	/// </summary>
+	public void NoButton() {
+		CharacterAnim.Play("CharacterOut");
+		appearWait = Random.Range(2, 4);
+	}
+
+	public void YesButton() {
+		TransitionController.gameObject.SetActive(true);
+		TranAnim.Play("Camera Shutter Close Ani");
+	}
+
+	/// <summary>
+	/// choses a random character
+	/// </summary>
 	public void ChangeImage() {
+		/// chooses a random image
 		rand = Random.Range(0, images.Count);
 		if (rand == 0) {
 			rand = Random.Range(0, specialImages.Count);
@@ -67,80 +95,70 @@ public class DialogueManager : MonoBehaviour {
 		} else {
 			myImageComponent.sprite = images[rand];
 		}
-	}
-
-	// changes the character to a transparent sprite for free draw mode
-	public void Drawclicked() {
-		myImageComponent.sprite = images[0];
-	}
-
-	public void StartDialogue(Dialogue dialogue) {
-
-		// deletes the last text
-		animator.SetBool("IsOpen", true);
-		speech.Clear();
+		///clears previous text and sets a new name
 		dialogueText.text = " ";
-		nameText.text = " ";
-
-		// chooses a random sentence from dialoge list 
-		randomGreetingNumber = Random.Range(0, dialogList.greeting.Count);
-		randomSpeechNumber = Random.Range(0, dialogList.speech.Count);
-		randomRequestNumber = Random.Range(0, dialogList.request.Count);
-		randomSentence = dialogList.greeting[randomGreetingNumber] + " " + dialogList.speech[randomSpeechNumber] + " " + dialogList.request[randomRequestNumber];
-
-		// chooses a name based on the image chosen
-		// if character has a unique sentence, the current oe is replaced 
-		ImageName = image.transform.GetComponent<Image>().sprite.name;
-
+		ImageName = CharacterImage.transform.GetComponent<Image>().sprite.name;
+		/// chooses random surname 
 		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-		randomSurname = dialogList.surnames[randomSurnameNumber];
+		randomSurname = dialogList.surnames[randomSurnameNumber]; 
+		/// tests the beginiing of the image name to determine the forname or replace the whole name
 		if (ImageName.StartsWith(Special)) {
 			dialogue.name = ImageName.Replace(Special, "");
 		} else if (ImageName.StartsWith(Male)) {
 			randomNameNumber = Random.Range(0, dialogList.maleFirstNames.Count);
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
 			randomName = dialogList.maleFirstNames[randomNameNumber];
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
-			dialogue.name = randomName + " " + randomSurname;
+					dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Female)) {
 			randomNameNumber = Random.Range(0, dialogList.femaleFirstNames.Count);
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
 			randomName = dialogList.femaleFirstNames[randomNameNumber];
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = randomName + " " + randomSurname;
 		} else if (ImageName.StartsWith(Mr)) {
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = "Mr. " + randomSurname;
 		} else if (ImageName.StartsWith(Ms)) {
-			//		randomSurnameNumber = Random.Range(0, dialogList.surnames.Count);
-			//		randomSurname = dialogList.surnames[randomSurnameNumber];
 			dialogue.name = "Ms. " + randomSurname;
 		} else if (ImageName.StartsWith(Animal)) {
 			if (ImageName.StartsWith("A_Dog_")) {
 				randomNameNumber = Random.Range(0, dialogList.dogNames.Count);
 				randomName = dialogList.dogNames[randomNameNumber];
 				dialogue.name = randomName;
-				randomSentence = dialogList.dogSpeech[randomDogSpeechNumber];
 			}
 		}
 		nameText.text = dialogue.name;
-		speech.Enqueue(randomSentence);
-		DisplayNextSentence();
+		CharacterAnim.Play("CharacterIn");
 	}
 
 	/// <summary>
-	/// dont delete, we may need this for the tutorial 
+	/// animation event called when character is in place
 	/// </summary>
-	public void DisplayNextSentence() {
-		if (speech.Count == 0) {
-			//    EndDialogue();
-			return;
+	public void CharacterInEnd() {
+		StartDialogue();
+	}
+
+	public void StartDialogue() {
+		/// chooses a random sentence from dialoge list 
+		randomGreetingNumber = Random.Range(0, dialogList.greeting.Count);
+		randomSpeechNumber = Random.Range(0, dialogList.speech.Count);
+		randomRequestNumber = Random.Range(0, dialogList.request.Count);
+		randomSentence = dialogList.greeting[randomGreetingNumber] + " " + dialogList.speech[randomSpeechNumber] + " " + dialogList.request[randomRequestNumber];
+
+		ImageName = CharacterImage.transform.GetComponent<Image>().sprite.name;
+		if (ImageName.StartsWith(Animal)) {
+			if (ImageName.StartsWith("A_Dog_")) {
+				randomSentence = dialogList.dogSpeech[randomDogSpeechNumber];
+			}
 		}
-		textWait = 1;
+		speech.Enqueue(randomSentence);
+		textWait = 0.3f;
 	}
 
 	private void Update() {
+		if (appearWait > 0) {
+			appearWait -= Time.deltaTime;
+			if (appearWait <= 0) {
+				ChangeImage();
+			}
+		}
+
 		if (textWait > 0) {
 			textWait -= Time.deltaTime;
 			if (textWait <= 0) {
@@ -165,30 +183,15 @@ public class DialogueManager : MonoBehaviour {
 		filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 		if ((continuePos.x + continueXMin) < filteredPoint.x && filteredPoint.x < (continuePos.x + continueXMax) && (continuePos.y + continueYMin) < filteredPoint.y && filteredPoint.y < (continuePos.y + continueYMax) && timeBetweenClicks <= 0) {
-			DisplayNextSentence();
+			//		DisplayNextSentence();
 			timeBeforeClick = timeBetweenClicks;
-		}
-
-		// This changes the character once when it is out of shot of the camera
-		if (dialogueBox.transform.position.y == startPos.y && down == false) {
-			down = true;
-			ChangeImage();
-
-		} else if (dialogueBox.transform.position.y != startPos.y && down == true) {
-			down = false;
 		}
 	}
 
 	IEnumerator TypeSentence(string sentence) {
-		dialogueText.text = "";
-
 		foreach (char letter in sentence.ToCharArray()) {
 			dialogueText.text += letter;
 			yield return null;
 		}
-	}
-
-	public void EndDialogue() {
-		animator.SetBool("IsOpen", false);
 	}
 }

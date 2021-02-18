@@ -12,7 +12,7 @@ public class AnimationEventsScript : MonoBehaviour {
 	private void Awake() {
 		tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
 		tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
-		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
+		cameraShutterScript = GameObject.Find("Transition Controller").GetComponent<CameraShutterScript>();
 	}
 
 	public void BlinkSleepEnd() {
@@ -38,38 +38,4 @@ public class AnimationEventsScript : MonoBehaviour {
 		cameraShutterScript.CameraClose();
 	}
 
-	public void CameraOpenEnd() {
-		Debug.Log("fasfehgrh");
-		if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("banana") != 0) {
-			tutorialDialogeManager.StartDialogue();
-	
-
-		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene" && PlayerPrefs.GetInt("banana") == 0) {
-			tutorialDialogeManager.StartDialogue();
-		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene" && PlayerPrefs.GetInt("banana") == 1) {
-			TutorialDialogeManager.sentenceNumber -= 1;
-			tutorialDialogeManager.StartDialogue();
-		}
-		gameObject.SetActive(false);
-	}
-
-	public void CameraCloseEnd() {
-		if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
-			SceneManager.LoadScene("TableScene");
-		} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-			SceneManager.LoadScene("StreetScene");
-		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") { 
-			SceneManager.LoadScene("tutorial test");
-		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
-			SceneManager.LoadScene("GalleryScene");
-		}
-	}
-
-	public void CameraBothClosed() {
-
-	}
-
-	public void CameraBothEnd() {
-		gameObject.SetActive(false);
-	}
 }

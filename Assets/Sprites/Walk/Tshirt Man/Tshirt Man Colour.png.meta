@@ -1,0 +1,293 @@
+fileFormatVersion: 2
+guid: 76b3c66ef10f3434194bb9746a7c0367
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -761673729216253052
+    second: Tshirt Man Colour_0
+  - first:
+      213: 951434294938123384
+    second: Tshirt Man Colour_1
+  - first:
+      213: -3513096180778185643
+    second: Tshirt Man Colour_2
+  - first:
+      213: -4983497077956892524
+    second: Tshirt Man Colour_3
+  - first:
+      213: 2305278838394132989
+    second: Tshirt Man Colour_4
+  - first:
+      213: -8050494677567211388
+    second: Tshirt Man Colour_5
+  - first:
+      213: -9004602874359653367
+    second: Tshirt Man Colour_6
+  - first:
+      213: -4331410597700292063
+    second: Tshirt Man Colour_7
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tshirt Man Colour_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 748.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd9bb2790bde7e4aae987051c8cb32f
+      internalID: -761673729216253052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_1
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 748.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d250c47c641fc4d97560011ef53b18
+      internalID: 951434294938123384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_2
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 748.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1776b0897c2e3e24c93072f2e66c9533
+      internalID: -3513096180778185643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_3
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 748.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e277bb159ecce4ea2f0c48e682c197
+      internalID: -4983497077956892524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b241693196d9d4da6d1cdbeca3cfa8
+      internalID: 2305278838394132989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_5
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 0.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e97254df5f64c149aea17055ac0ba35
+      internalID: -8050494677567211388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_6
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 0.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9877ea9796de64392b8bce837d4370
+      internalID: -9004602874359653367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tshirt Man Colour_7
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 0.5
+        width: 476.5
+        height: 748.5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3ef0a22117f1f43869466928c00152
+      internalID: -4331410597700292063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e272df005c41a3446bf739bca6b500aa
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

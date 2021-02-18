@@ -9,7 +9,7 @@ public class DialogList : MonoBehaviour {
 
 	/// <summary>
 	/// add whatever you like here 
-	/// put end of sentence punctuation at the end of every addition unless theyre names
+	/// put punctuation at the end of every addition unless theyre names
 	/// do not put spaces after the punctuation
 	/// search the code in case its already there
 	/// list names in groups of 5 or 10
@@ -76,7 +76,7 @@ public class DialogList : MonoBehaviour {
 		/// Street Sentences -------------------------------------------------------------
 		/// 14 (may change punctuation at random between . and !)
 		string[] greet = { "Hi.", "Hello.", "Hey.", "Wadup!", "Heya!", "Ooh.", "Yo.", "Greetings.", "Salutations.", "Um...",
-			"Feast your eyes on my being!", "Æ¾ѾٻḖ₥╢ﬗﻹ!", "Woah!", "Wow",  };
+			"Feast your eyes on my being!", "Æ¾ѾٻḖ₥╢ﬗﻹ!", "Woah!", "Wow." };
 		greeting.AddRange(greet);
 
 		/// 10
@@ -96,8 +96,8 @@ public class DialogList : MonoBehaviour {
 		/// 3
 		string[] dogTalk = { "Woof woof ruff.", "Grrr wrufff.", "Rrr woof." };
 		dogSpeech.AddRange(dogTalk);
-		
+
 		/// Reactions -------------------------------------------------------------
-		 
+
 	}
 }

@@ -16,12 +16,15 @@ public class SaveImageScript : MonoBehaviour {
 
 	public RenderTexture SaveTexture;
 
-	float sceneChangeWait; // Time to wait before scene change, Coral
-
-	CameraShutterScript cameraShutterScript;
+	private GameObject UICanvas, TransitionController;
+	private Animator TranAnim;
 
 	private void Awake() {
-		cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
+		UICanvas = GameObject.Find("UICanvas");
+
+		TransitionController = GameObject.Find("Transition Controller").gameObject;
+		TranAnim = TransitionController.GetComponent<Animator>();
+
 	}
 
 	// Start is called before the first frame update
@@ -45,9 +48,6 @@ public class SaveImageScript : MonoBehaviour {
 	/// Calls the co-routine that saves the image that has been drawn (when save button is clicked)
 	/// </summary>
 	public void Save() {
-	//	sceneChangeWait = 2;
-		cameraShutterScript.CameraClose();
-
 		StartCoroutine(CoSave());
 	}
 
@@ -67,28 +67,13 @@ public class SaveImageScript : MonoBehaviour {
 		byte[] saveData = texture2D.EncodeToPNG();  // Turns the image seen in the SaveCamera to a PNG
 
 		File.WriteAllBytes(filePath + "/SavedImage" + numOfPNGs + ".png", saveData);  // Saves the .PNG to the desired directory
+
+		ChangeScene();
 	}
 
 	// Coral
-	public void DontSave() {
-		cameraShutterScript.CameraClose();
-	//	sceneChangeWait = 2;
-	}
-	
-	///// <summary>
-	///// gives time for the camera shutter animation to play
-	///// </summary>
-	//private void Update() {
-	//	if (sceneChangeWait > 0) {
-	//		sceneChangeWait -= Time.deltaTime;
-	//		if (sceneChangeWait <= 0) {
-	//			if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
-	//				SceneManager.LoadScene("TableScene");
-	//			} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-	//				SceneManager.LoadScene("StreetScene");
-	//			}
-	//		}
-	//	}
-	//}
-	// Coral
+	public void ChangeScene() {
+		TransitionController.gameObject.SetActive(true);
+		TranAnim.Play("Camera Shutter Close Ani");
+	}	
 }

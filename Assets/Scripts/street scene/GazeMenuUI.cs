@@ -126,8 +126,8 @@ public class GazeMenuUI : MonoBehaviour {
 				}
 
 				if ((DrawPos.x + DrawXMin) < filteredPoint.x && filteredPoint.x < (DrawPos.x + DrawXMax) && (DrawPos.y + DrawYMin) < filteredPoint.y && filteredPoint.y < (DrawPos.y + DrawYMax) && timeBetweenClicks <= 0) {
-					image.GetComponent<DialogueManager>().Drawclicked();
-					yesNoButton.GetComponent<YesScript>().YesButton();
+				//	image.GetComponent<DialogueManager>().Drawclicked();
+					yesNoButton.GetComponent<ChoiceScript>().YesButton();
 					cameraShutterClose.SetActive(true);
 					timeBeforeClick = timeBetweenClicks;
 				}

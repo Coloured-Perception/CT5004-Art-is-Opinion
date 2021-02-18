@@ -8,17 +8,15 @@ using UnityEngine.SceneManagement;
 public class TutorialManager : MonoBehaviour {
 
 	 GameObject Canvas, GalleryScene;
-	 GameObject TutorialUI, GalleryUI, TableUI;
-	 GameObject Camera, Blink, CameraController, CameraOpen, CameraClose, CameraBoth; // Pannel;
-	 GameObject EntranceCameraPos, IntroCameraPos;
+	 GameObject TutorialUI, GalleryUI, TableUI, PaintUICanvas;
+	 GameObject Camera, TransitionController; // Pannel;
 	 GameObject Curator, CuratorImage, CuratorBox, DialogueText;
 	 GameObject NextButton, YesButton, NoButton;
 	 GameObject LookPrompts;
-	 GameObject PaintUICanvas;
 	 GameObject TutorialObjects, Easel, Table, BeginningDisplay;
 	 GameObject Map, MapStill, MapStillDraw, MapFreeDraw, MapOffice;
 
-	private Animator CuratorAnim, CameraAnim, CutAwayAnim, LookPromptsAnim, TutorialObjAnim, PaintCanvasAnim, TableUIAnim, MapAnim;
+	private Animator CuratorAnim, CameraAnim, TranAnim, LookPromptsAnim, TutorialObjAnim, PaintCanvasAnim, TableUIAnim, MapAnim;
 
 	TutorialDialogeManager tutorialDialogeManager;
 	CameraShutterScript cameraShutterScript;
@@ -34,45 +32,36 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		PlayerPrefs.SetInt("intro", 0);    // remove later 
-		PlayerPrefs.SetInt("banana", 0);    // remove later 
-		PlayerPrefs.SetInt("apple", 0);    // remove later s
+		//PlayerPrefs.SetInt("intro", 0);    // remove later 
+		//PlayerPrefs.SetInt("banana", 0);    // remove later 
+		//PlayerPrefs.SetInt("apple", 0);    // remove later
 
-		Debug.Log(PlayerPrefs.GetInt("intro") + " i");
-		Debug.Log(PlayerPrefs.GetInt("banana") + " b");
-		Debug.Log(PlayerPrefs.GetInt("apple") + " a");
+		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
+		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
+		//Debug.Log(PlayerPrefs.GetInt("apple") + " a");
 
 		if (PlayerPrefs.GetInt("intro") == 0) {
-			/// if the intro hasnt been completed yet, do it
+			/// we need a title scene
+
+			///  if the intro and therefore the tutprial has been completed at the begining of the game,
+			///  how do you guys want the recap tutorial to work? do you want it to start again from the point
+			///  the player clicks the cross when he asks "do you know how to paint?" ?
 
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
-			cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
-
+			cameraShutterScript = GameObject.Find("Transition Controller").GetComponent<CameraShutterScript>();
 
 			if (SceneManager.GetActiveScene().name == "tutorial test") {
-
-				Canvas = GameObject.Find("Canvas");
-				CameraController = Canvas.transform.Find("Camera Controller").gameObject;
-				Blink = CameraController.transform.Find("Blink").gameObject;
-				TutorialUI = CameraController.transform.Find("Tutorial UI").gameObject;
-				TableUI = CameraController.transform.Find("Table UI").gameObject;
-				GalleryUI = CameraController.transform.Find("Gallery UI").gameObject;
-				CameraClose = CameraController.transform.Find("Camera Shutter Close").gameObject;
-				CameraBoth = CameraController.transform.Find("Camera Shutter Both").gameObject;
-				CameraOpen = CameraController.transform.Find("Camera Shutter Open").gameObject;
-
+				Canvas = GameObject.Find("Main Canvas");
+				TransitionController = GameObject.Find("Transition Controller").gameObject;
+				TutorialUI = Canvas.transform.Find("Tutorial UI").gameObject;
+				TableUI = Canvas.transform.Find("Table UI").gameObject;
 				GalleryScene = GameObject.Find("Gallery Scene");
 				TutorialObjects = GalleryScene.transform.Find("Tutorial Objects").gameObject;
 				Table = TutorialObjects.transform.Find("Tutorial Table").gameObject;
 				Easel = TutorialObjects.transform.Find("Tutorial Easel").gameObject;
 				BeginningDisplay = TutorialObjects.transform.Find("Beginning Display").gameObject;
-
 				TutorialUI.gameObject.SetActive(true);
-				GalleryUI.gameObject.SetActive(false);
-
 				Camera = GameObject.Find("Main Camera");
-				EntranceCameraPos = GameObject.Find("Entrance Pos");
-				IntroCameraPos = GameObject.Find("Tutorial Pos");
 				Curator = GameObject.Find("Curator");
 				CuratorImage = GameObject.Find("personImage");
 				CuratorBox = GameObject.Find("Box");
@@ -87,22 +76,19 @@ public class TutorialManager : MonoBehaviour {
 				LookPromptsAnim = LookPrompts.gameObject.GetComponent<Animator>();
 				TutorialObjAnim = TutorialObjects.gameObject.GetComponent<Animator>();
 				TableUIAnim = TableUI.gameObject.GetComponent<Animator>();
+				TranAnim = GameObject.Find("Transition Controller").GetComponent<Animator>();
 
 				if (PlayerPrefs.GetInt("banana") == 0) {
 					TutorialObjects.gameObject.SetActive(true);
 					BeginningDisplay.gameObject.SetActive(true);
-					Blink.gameObject.SetActive(true);
 					Curator.gameObject.SetActive(false);
 					CuratorImage.gameObject.SetActive(false);
 					CuratorBox.gameObject.SetActive(false);
 					NextButton.gameObject.SetActive(false);
 					YesButton.gameObject.SetActive(false);
 					NoButton.gameObject.SetActive(false);
-					Camera.transform.position = IntroCameraPos.transform.position;
-
 					CameraAnim.Play("CameraCalmLookAround");
-					cameraShutterScript.BlinkSleep();
-
+					TranAnim.Play("BlinkSleep");
 				} else if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 0) {
 					TutorialObjects.gameObject.SetActive(true);
 					Easel.gameObject.SetActive(true);
@@ -110,44 +96,34 @@ public class TutorialManager : MonoBehaviour {
 					NextButton.gameObject.SetActive(true);
 					YesButton.gameObject.SetActive(false);
 					NoButton.gameObject.SetActive(false);
-					CameraOpen.gameObject.SetActive(true);
-
 					TutorialObjAnim.Play("EaselandTableIn");
 					CameraAnim.Play("CameraTable");
 					CuratorAnim.Play("CuratorB");
-
+					TranAnim.Play("Camera Shutter Open Ani");
 				} else if (PlayerPrefs.GetInt("apple") == 1) {
 					Map = TutorialUI.transform.Find("Map Tutorial").gameObject;
 					MapStill = Map.transform.Find("Map Tutorial Still").gameObject;
 					MapStillDraw = Map.transform.Find("Map Tutorial Still Draw").gameObject;
 					MapFreeDraw = Map.transform.Find("Map Tutorial Free Draw").gameObject;
 					MapOffice = Map.transform.Find("Map Tutorial Office").gameObject;
-
 					MapAnim = Map.gameObject.GetComponent<Animator>();
-
 					TutorialObjAnim.Play("EaselandTable2In");
 					CameraAnim.Play("CameraTable");
 					CuratorAnim.Play("CuratorB");
-
 					YesButton.gameObject.SetActive(false);
 					NoButton.gameObject.SetActive(false);
 				}
 			} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
 
-				cameraShutterScript = GameObject.Find("Camera Controller").GetComponent<CameraShutterScript>();
-				Canvas = GameObject.Find("Canvas");
-				CameraController = Canvas.transform.Find("Camera Controller").gameObject;
-				CameraClose = CameraController.transform.Find("Camera Shutter Close").gameObject;
-				CameraBoth = CameraController.transform.Find("Camera Shutter Both").gameObject;
-				CameraOpen = CameraController.transform.Find("Camera Shutter Open").gameObject;
-				Blink = CameraController.transform.Find("Blink").gameObject;
-
+				Canvas = GameObject.Find("Main Canvas");
+				TransitionController = GameObject.Find("Transition Controller").gameObject;
+				cameraShutterScript = TransitionController.GetComponent<CameraShutterScript>();
 				Camera = GameObject.Find("Main Camera");
 				Curator = GameObject.Find("Curator");
 				PaintUICanvas = GameObject.Find("Paint Canvas");
-
 				CuratorAnim = Curator.gameObject.GetComponent<Animator>();
 				PaintCanvasAnim = PaintUICanvas.gameObject.GetComponent<Animator>();
+				TranAnim = TransitionController.GetComponent<Animator>();
 
 				if (PlayerPrefs.GetInt("banana") == 0) {
 					CuratorAnim.Play("CuratorB");
@@ -158,14 +134,14 @@ public class TutorialManager : MonoBehaviour {
 				}
 			}
 		} else {
-			/// else go straight to the gallery entrance 
-			CameraOpen.gameObject.SetActive(true);
-			Camera.transform.position = EntranceCameraPos.transform.position;
+			/// play the scene from after the player says no to "do you know how to paint"
+			
 		}
+//		Debug.Log(TutorialDialogeManager.sentenceNumber);
 	}
 
 	public void NextButtonClicked() {
-		//Debug.Log("next" + TutorialDialogeManager.sentenceNumber);
+//		Debug.Log("next" + TutorialDialogeManager.sentenceNumber);
 
 		if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("banana") == 0) {
 			if (TutorialDialogeManager.sentenceNumber == 2) {
@@ -187,19 +163,16 @@ public class TutorialManager : MonoBehaviour {
 				/// end intro without tutorial 
 				CuratorAnim.Play("HideToLeft");
 				PlayerPrefs.SetInt("intro", 1);
+				TransitionController.gameObject.SetActive(true);
+				TranAnim.Play("BlinkClose");
 			} else if (TutorialDialogeManager.sentenceNumber == 10) {
-				CuratorAnim.Play("CuratorCToB");
+				CuratorAnim.Play("CuratorCToBNH");
 				Easel.gameObject.SetActive(true);
 				TutorialObjAnim.Play("EaselShowToRight");
-
-			} else if (TutorialDialogeManager.sentenceNumber == 12) {
-				///this should be triggered by clicking the canvas not the next button
-				// play CuratorBHNext
-
-				CameraAnim.Play("CameraEaselToTable");
+		
 			} else if (TutorialDialogeManager.sentenceNumber == 13) {
 				TableUI.gameObject.SetActive(true);
-				CuratorAnim.Play("BoxBHNextH"); /// change so it doesnt hide next
+				CuratorAnim.Play("BoxBHNextH");
 				TableUIAnim.Play("TableUIShow");
 			}
 
@@ -227,6 +200,8 @@ public class TutorialManager : MonoBehaviour {
 				MapAnim.Play("MapTutorialOut");
 			} else if (TutorialDialogeManager.sentenceNumber == 41) {
 				CuratorAnim.Play("CuratorBHideToLeft");
+				TransitionController.gameObject.SetActive(true);
+				TranAnim.Play("BlinkClose");
 			}
 
 		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene" && PlayerPrefs.GetInt("banana") == 0) {
@@ -257,7 +232,7 @@ public class TutorialManager : MonoBehaviour {
 				PaintCanvasAnim.Play("ShowBrushSize");
 				//	CuratorAnim.Play("CuratorTSNext");
 
-			} else if (TutorialDialogeManager.sentenceNumber == 30) {
+			} else if (TutorialDialogeManager.sentenceNumber == 32) {
 				///change the next button to the brush size
 				//	CuratorAnim.Play("CuratorTHNext");
 			} else if (TutorialDialogeManager.sentenceNumber == 33) {
@@ -278,9 +253,11 @@ public class TutorialManager : MonoBehaviour {
 			if (TutorialDialogeManager.sentenceNumber == 8) {
 				CuratorAnim.Play("NextSYesHNoH");
 			} else if (TutorialDialogeManager.sentenceNumber == 14) {
-				SceneManager.LoadScene("StillLifeTutorialPaintScene");
+				TransitionController.gameObject.SetActive(true);
+				TranAnim.Play("Camera Shutter Close Ani");
 			} else if (TutorialDialogeManager.sentenceNumber == 28) {
-				SceneManager.LoadScene("StillLifeTutorialPaintScene");
+				TransitionController.gameObject.SetActive(true);
+				TranAnim.Play("Camera Shutter Close Ani");
 			}
 
 		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
@@ -308,6 +285,14 @@ public class TutorialManager : MonoBehaviour {
 		tutorialDialogeManager.StartDialogue();
 	}
 
+	public void CanvasButtonClick() {
+		if (TutorialDialogeManager.sentenceNumber == 12) {
+			CameraAnim.Play("CameraEaselToTable");
+			CuratorAnim.Play("CuratorBSNext");
+
+		}
+		tutorialDialogeManager.StartDialogue();
+	}
 	public void TopButtonClick() {
 		//Debug.Log("top" + TutorialDialogeManager.sentenceNumber);
 
@@ -318,14 +303,15 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	public void FinishedButtonClick() {
-		//Debug.Log("fin" + TutorialDialogeManager.sentenceNumber);
+		Debug.Log("fin" + TutorialDialogeManager.sentenceNumber);
 
 		if (PlayerPrefs.GetInt("banana") == 0) {
 			PlayerPrefs.SetInt("banana", 1);
 		} else if (PlayerPrefs.GetInt("apple") == 0) {
 			PlayerPrefs.SetInt("apple", 1);
 		}
-		cameraShutterScript.CameraClose();
+		TransitionController.gameObject.SetActive(true);
+		TranAnim.Play("Camera Shutter Close Ani");
 	}
 
 	public void CuratorButtonClick() {
@@ -353,7 +339,7 @@ public class TutorialManager : MonoBehaviour {
 		CuratorImage.gameObject.SetActive(true);
 		CuratorAnim.Play("BoxShowToRight");
 		NextButton.gameObject.SetActive(true);
-		Blink.gameObject.SetActive(false);
+//		Blink.gameObject.SetActive(false);
 	}
 
 	public void MoveTable() {

@@ -21,9 +21,9 @@ public class CloudScript : MonoBehaviour {
 		}
 
 		if (transform.position.x < 0) {
-			direction = Random.Range(0.02f, 0.1f);
+			direction = Random.Range(0.005f, 0.02f);
 		} else {
-			direction = Random.Range(-0.02f, -0.1f);
+			direction = Random.Range(-0.005f, -0.02f);
 		}
 	}
 

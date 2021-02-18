@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 /// <summary>
 /// Created by Coral
@@ -13,14 +14,25 @@ public class CameraScript : MonoBehaviour {
 	public GameObject MenuUI;
 	public GameObject GalleryUI;
 	public Vector3 GalleryCanvas;
+	private Animator CameraAnim, TableUIAnim;
+	DialogueManager dialogueManager;
+	TableControllerScript tableControllerScript;
 
 	private void Awake() {
+
+		CameraAnim = gameObject.GetComponent<Animator>();
+
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
-			transform.position = new Vector3(0, 44, 0);
-		}
-		else if (SceneManager.GetActiveScene().name == "TableScene") {
-			transform.position = new Vector3(0, 0, -1.6f);
-		}
+			dialogueManager = GameObject.Find("Character UI").GetComponent<DialogueManager>();
+			CameraAnim.Play("CameraStreetSceneStart");
+
+		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+			tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
+			TableUIAnim = GameObject.Find("TableUI").GetComponent<Animator>();
+
+			CameraAnim.Play("CameraStreetSceneStart");
+
+		}		
 	}
 
 	/// <summary>
@@ -43,6 +55,33 @@ public class CameraScript : MonoBehaviour {
 			MenuUI.transform.gameObject.SetActive(true);
 		}
 	}
+
+	public void CameraLookEnd() {
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
+			dialogueManager.ChangeImage();
+
+		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+	//		tableControllerScript.ChangeTables();
+			TableUIAnim.Play("ShowTableUI");
+
+		}
+		CameraAnim.enabled = false;
+	}
+	public void CameraReactionEnd() {
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
+
+		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+	//		tableControllerScript.ChangeTables();
+			TableUIAnim.Play("ShowTableUI");
+
+		}
+		CameraAnim.enabled = false;
+	}
+
+	public void NavEnd() {
+		CameraAnim.enabled = false;
+	}
+
 
 	/// <summary>
 	/// This spins the camera and makes sure that it has stopped moving before its moved again

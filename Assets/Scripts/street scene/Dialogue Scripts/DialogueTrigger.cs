@@ -11,29 +11,29 @@ public class DialogueTrigger : MonoBehaviour {
 	float timeWait;
 
 	private void Update() {
-		if (timeWait > 0) {
-			timeWait -= Time.deltaTime;
-			if (timeWait <= 0) {
-				TriggerDialogue();
-			}
-		}
+		//if (timeWait > 0) {
+		//	timeWait -= Time.deltaTime;
+		//	if (timeWait <= 0) {
+		//		TriggerDialogue();
+		//	}
+		//}
 	}
 
 	public void StartDialog() {
-		timeWait = Random.Range(2, 4);
+		//timeWait = Random.Range(2, 4);
 	}
 
 	public void StopDialog() {
-		FindObjectOfType<DialogueManager>().EndDialogue();
-		timeWait = 0;
+		//FindObjectOfType<DialogueManager>().EndDialogue();
+		//timeWait = 0;
 	}
 
-	public void No() {
-		FindObjectOfType<DialogueManager>().EndDialogue();
-		timeWait = Random.Range(2, 4);
-	}
+	//public void No() {
+	//	FindObjectOfType<DialogueManager>().EndDialogue();
+	//	timeWait = Random.Range(2, 4);
+	//}
 
 	public void TriggerDialogue() {
-		FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+	//	FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
 	}
 }

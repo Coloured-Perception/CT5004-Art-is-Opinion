@@ -9,7 +9,7 @@ public class WalkController : MonoBehaviour {
 	float timeWaitPeople = 0.2f;
 	float timeWaitClouds = 0.2f;
 	int location;
-	float startX, z;
+	float startX, z, y;
 	public List<GameObject> peoplePrefabs, cloudPrefabs;
 	GameObject Prefabs = null;
 
@@ -19,18 +19,19 @@ public class WalkController : MonoBehaviour {
 	/// </summary>
 	private void Start() {
 		for (int i = 0; i < 3; i++) {
-			startX = Random.Range(-200, 200);
-			z = Random.Range(160, 210);
-			if (z > 185) {
-				z += 85;
+			startX = Random.Range(-15, 15);
+			z = Random.Range(6.5f, 10.5f);
+			if (z > 8.5f) {
+				z += 3;
 			}
-			Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, 24, z), Quaternion.identity);
+			Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, 0, z), Quaternion.identity);
 		}
 
 		for (int i = 0; i < 6; i++) {
-			startX = Random.Range(-300, 300);
-			z = Random.Range(300, 900);
-			Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, 200, z), Quaternion.identity);
+			startX = Random.Range(-30, 30);
+			z = Random.Range(22, 25);
+			y = Random.Range(5, 15);
+			Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, y, z), Quaternion.identity);
 		}
 	}
 
@@ -42,15 +43,15 @@ public class WalkController : MonoBehaviour {
 			timeWaitPeople -= Time.deltaTime;
 			if (timeWaitPeople <= 0) {
 
-				z = Random.Range(160, 210);
-				if (z > 185) {
-					z += 85;
+				z = Random.Range(6.5f, 10.5f);
+				if (z > 8.5f) {
+					z += 3;
 				}
 				location = Random.Range(0, 2);
 				if (location == 0) {
-					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(-260, 24, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(-15, 0, z), Quaternion.identity);
 				} else {
-					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(260, 24, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(15, 0, z), Quaternion.identity);
 				}
 				timeWaitPeople = Random.Range(1, 3);
 			}
@@ -59,12 +60,13 @@ public class WalkController : MonoBehaviour {
 			timeWaitClouds -= Time.deltaTime;
 			if (timeWaitClouds <= 0) {
 
-				z = Random.Range(300, 900);
+				z = Random.Range(22, 25);
+				y = Random.Range(5, 15);
 				location = Random.Range(0, 2);
 				if (location == 0) {
-					Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, cloudPrefabs.Count)], new Vector3(-400, 200, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, cloudPrefabs.Count)], new Vector3(-30, y, z), Quaternion.identity);
 				} else {
-					Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, cloudPrefabs.Count)], new Vector3(400, 200, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(cloudPrefabs[Random.Range(0, cloudPrefabs.Count)], new Vector3(30, y, z), Quaternion.identity);
 				}
 				timeWaitClouds = Random.Range(10, 30);
 			}

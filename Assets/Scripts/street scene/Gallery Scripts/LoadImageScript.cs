@@ -65,7 +65,7 @@ public class LoadImageScript : MonoBehaviour {
 						Debug.Log(uwr.error);
 					} else {
 						loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-						Debug.Log("Succesfully loaded texture!");
+				//		Debug.Log("Succesfully loaded texture!");
 					}
 					paintings[i].texture = loadedTexture;
 				}

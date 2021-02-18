@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 309887885537966553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: -1.5, z: 1.25}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalScale: {x: 1.1689272, y: 1.3214927, z: 0.66074675}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -128,13 +128,10 @@ MonoBehaviour:
   FruitPreFab: {fileID: 562539062815793491, guid: c6be59db70ef966488be6ef6766d07ec,
     type: 3}
   images:
-  - {fileID: 1817401020750814892, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: 5230399334936925811, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: 1817401020750814892, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: -6625516515408537593, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  specialImages:
   - {fileID: -4297449658967657959, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
-  - {fileID: -2198346170569762702, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
-  - {fileID: 2107098046199501501, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
-  specialImages:
-  - {fileID: -8124117069607775654, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}

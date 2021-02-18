@@ -1,4 +1,1 @@
-the table scenes going to be set in the gallery and may even be partt of the gallery scene like in the tutorial. 
-the table scene should be scaled to be as small as can be with accurate shadows. the gallery scene is currently 
-bigger than nessasary and its making lighting a bit more awquard so once the gallery layout is added to the table 
-scene or vice versa the gallery scene will be scaled to fit.
+the standard canvas size is going to be 80x60
