@@ -32,9 +32,9 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		//PlayerPrefs.SetInt("intro", 0);    // remove later 
-		//PlayerPrefs.SetInt("banana", 0);    // remove later 
-		//PlayerPrefs.SetInt("apple", 0);    // remove later
+		PlayerPrefs.SetInt("intro", 0);    // remove later 
+		PlayerPrefs.SetInt("banana", 0);    // remove later 
+		PlayerPrefs.SetInt("apple", 0);    // remove later
 
 		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
 		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
