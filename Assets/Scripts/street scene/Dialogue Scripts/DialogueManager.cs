@@ -261,10 +261,11 @@ public class DialogueManager : MonoBehaviour {
 		animator.SetBool("IsOpen", true);
 		speech.Clear();
 
-		randomSentence = "Hey, Dat's pretty Gud!";
-
+		string[] sentences = { "Hey, Dat's pretty Gud!", "I like the range of colours used", "You really got my likeness!", "ooh! Pretty!"};
+		randomSentence = sentences[Random.Range(0, sentences.Length)];
+		//Denug.Log(randomSentence);
 		speech.Enqueue(randomSentence);
-
+		
 		DisplayNextSentence();
 	}
 
