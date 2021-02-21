@@ -20,9 +20,9 @@ public class WalkController : MonoBehaviour {
 	private void Start() {
 		for (int i = 0; i < 3; i++) {
 			startX = Random.Range(-15, 15);
-			z = Random.Range(6.5f, 10.5f);
-			if (z > 8.5f) {
-				z += 3;
+			z = Random.Range(5.3f, 8.7f);   
+			if (z > 7f) {
+				z += 5.3f;
 			}
 			Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, 0, z), Quaternion.identity);
 		}
@@ -43,9 +43,9 @@ public class WalkController : MonoBehaviour {
 			timeWaitPeople -= Time.deltaTime;
 			if (timeWaitPeople <= 0) {
 
-				z = Random.Range(6.5f, 10.5f);
-				if (z > 8.5f) {
-					z += 3;
+				z = Random.Range(5.3f, 8.7f);
+				if (z > 7f) {
+					z += 5.3f;
 				}
 				location = Random.Range(0, 2);
 				if (location == 0) {
