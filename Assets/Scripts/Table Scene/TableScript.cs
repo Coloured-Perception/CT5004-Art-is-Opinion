@@ -35,9 +35,12 @@ public class TableScript : MonoBehaviour {
 		if (tag == "Table") {
 			randFruit = Random.Range(1, 5);
 			for (int i = 0; i < randFruit; i++) {
-				
 
-				GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.02f, gameObject.transform.position.z), Quaternion.identity) as GameObject;
+
+                float randX = Random.Range(-randFruit*0.1f + 0.2f * i, -randFruit * 0.1f + 0.2f * i + 0.2f);
+                float randZ = Random.Range(-randFruit * 0.1f / 2, randFruit * 0.1f / 2);
+
+                GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x + randX, gameObject.transform.position.y + 0.65f, gameObject.transform.position.z + randZ), Quaternion.identity) as GameObject;
 
 				fruit.transform.parent = transform;
 				randscale = Random.Range(0.07f, 0.085f);
