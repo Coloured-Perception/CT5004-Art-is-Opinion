@@ -132,6 +132,15 @@ MonoBehaviour:
   - {fileID: 1817401020750814892, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: -6625516515408537593, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
-  specialImages:
   - {fileID: -4297449658967657959, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
   - {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: -8124117069607775654, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: 6991740553843380534, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: 570899503964174263, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: -6539953108516681426, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: 2998219257471201623, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  specialImages:
+  - {fileID: 4787642960887175336, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  - {fileID: -1462364095729580784, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  YesButton: {fileID: 0}
+  NoButton: {fileID: 0}
