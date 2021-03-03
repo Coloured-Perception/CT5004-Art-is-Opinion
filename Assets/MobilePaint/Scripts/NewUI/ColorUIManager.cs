@@ -15,11 +15,11 @@ namespace unitycoder_MobilePaint
         public Button[] colorpickers;       // colors are taken from these buttons
 
         public bool offsetSelected = true;  // should we move the pencil when its selected
-        //public float defaultOffset=-46;
-        //public float moveOffsetX=-24;
+                                            //public float defaultOffset=-46;
+                                            //public float moveOffsetX=-24;
 
-     //   [HideInInspector]
-		public GameObject preview;
+        //   [HideInInspector]
+        public GameObject preview;
 
 
         void Awake()
@@ -40,27 +40,27 @@ namespace unitycoder_MobilePaint
                 if (button != null)
                 {
                     button.onClick.AddListener(delegate { this.SetCurrentColor(button); });
-				}
-			}
+                }
+            }
         }
 
 
         // some button was clicked, lets take color from it and send to mobilepaint canvas 
         public void SetCurrentColor(Button button)
-        {			
-			Color newColor = button.gameObject.GetComponent<Image>().color;
-			
-			preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
+        {
+            Color newColor = button.gameObject.GetComponent<Image>().color;
 
-   //         // send new color
-   //         mobilePaint.SetPaintColor(newColor);
-   //         //mobilePaint.paintColor = newColor;
+            preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
 
-   //         //if (offsetSelected)
-   //         //{
-   //         //    ResetAllOffsets();
-   //         //    SetButtonOffset(button, moveOffsetX);
-   //         //}
+            // send new color
+            mobilePaint.SetPaintColor(newColor);
+            //mobilePaint.paintColor = newColor;
+
+            //if (offsetSelected)
+            //{
+            //    ResetAllOffsets();
+            //    SetButtonOffset(button, moveOffsetX);
+            //}
 
         }
 

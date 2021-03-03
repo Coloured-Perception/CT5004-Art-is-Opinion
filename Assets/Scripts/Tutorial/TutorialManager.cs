@@ -165,7 +165,7 @@ public class TutorialManager : MonoBehaviour {
 				PlayerPrefs.SetInt("intro", 1);
 				TransitionController.gameObject.SetActive(true);
 				TranAnim.Play("BlinkClose");
-			} else if (TutorialDialogeManager.sentenceNumber == 10) {
+            } else if (TutorialDialogeManager.sentenceNumber == 10) {
 				CuratorAnim.Play("CuratorCToBNH");
 				Easel.gameObject.SetActive(true);
 				TutorialObjAnim.Play("EaselShowToRight");

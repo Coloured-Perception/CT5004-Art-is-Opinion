@@ -79,6 +79,7 @@ public class CameraShutterScript : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name == "GalleryScene") {
 			if (PlayerPrefs.GetInt("fromOutside") == 0) {
 				CameraAnim.Play("CameraGallerySceneLook");
+                CameraAnim.applyRootMotion = true;
 			}
 		} else if (SceneManager.GetActiveScene().name == "StreetScene") {
 			CameraAnim.Play("CameraStreetSceneLook");
