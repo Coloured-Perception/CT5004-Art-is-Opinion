@@ -4950,6 +4950,7 @@ MonoBehaviour:
   changewait: 0
   dialogueList: {fileID: 1202375072}
   lastScene: 
+  reactionSentences: []
 --- !u!4 &1202375070
 Transform:
   m_ObjectHideFlags: 0

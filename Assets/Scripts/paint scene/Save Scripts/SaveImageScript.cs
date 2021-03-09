@@ -14,6 +14,9 @@ public class SaveImageScript : MonoBehaviour {
 
 	public RenderTexture SaveTexture;
 
+	[SerializeField]
+	PaintDetailsScript paintTimeScript;
+
 	/// <summary>
 	/// Creates filePath and finds previous PNGs
 	/// </summary>
@@ -37,6 +40,7 @@ public class SaveImageScript : MonoBehaviour {
 	/// Calls the co-routine that saves the image that has been drawn (when save button is clicked)
 	/// </summary>
 	public void Save() {
+		paintTimeScript.SaveTime();
 		sceneChangeWait = 2;
 		StartCoroutine(CoSave());
 	}

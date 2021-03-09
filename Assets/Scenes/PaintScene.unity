@@ -2702,6 +2702,7 @@ GameObject:
   - component: {fileID: 1199865695}
   - component: {fileID: 1199865696}
   - component: {fileID: 1199865697}
+  - component: {fileID: 1199865694}
   m_Layer: 0
   m_Name: DrawingPlaneCanvas
   m_TagString: Untagged
@@ -2723,6 +2724,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1199865694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199865692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9c58ee6cdac9a4c92c9129baa21cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1199865695
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4731,6 +4744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SaveTexture: {fileID: 8400000, guid: 8b8ad900282561a4697386e54c1d667e, type: 2}
+  paintTimeScript: {fileID: 1199865694}
 --- !u!1 &2092938913
 GameObject:
   m_ObjectHideFlags: 0

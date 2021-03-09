@@ -68,6 +68,8 @@ public class DialogueManager : MonoBehaviour {
 
 	public string lastScene;
 
+	public List<string> reactionSentences;
+
 	//Coral
 	private void Awake() {
 		personInstance = this;
@@ -244,15 +246,7 @@ public class DialogueManager : MonoBehaviour {
 	/// Sets up dialogue for a character reacting to art drawn
 	/// </summary>
 	void ReactionDialogue() {
-		//myImageComponent.sprite = personInstance.myImageComponent.sprite;
-
 		ChangeImage();
-
-		//Debug.Log(PlayerPrefs.GetString("PersonName"));
-		//Debug.Log(PlayerPrefs.GetInt("IsSpecialPerson"));
-		//Debug.Log(PlayerPrefs.GetInt("Person"));
-
-		//Debug.Log("Noice!");
 
 		PlayerPrefs.SetString("LastScene", null);
 
@@ -261,16 +255,26 @@ public class DialogueManager : MonoBehaviour {
 		animator.SetBool("IsOpen", true);
 		speech.Clear();
 
-		string[] sentences = { "Hey, Dat's pretty Gud!", "I like the range of colours used", "You really got my likeness!", "ooh! Pretty!"};
-		randomSentence = sentences[Random.Range(0, sentences.Length)];
-		//Denug.Log(randomSentence);
+		string[] defaultSentences = { "Hey, Dat's pretty Gud!", "I like the range of colours used", "You really got my likeness!", "ooh! Pretty!", "I inspire you that much huh?", "That's a perfect representation of how I feel right now.", "Maybe I should learn how to paint too, can't be that hard!", "It really does say a thousand words.", "This says closer to 5 words but alright", "Is that meant to be me?", "I inspire you that much, huh?", "Love the quick sweeping lines", "Theres so much energy in this piece!", "Love the details you added there.", "I see you’ve studied impressionism.", "Watching you work was interesting." };
+		reactionSentences.AddRange(defaultSentences);
+
+		int paintTime = PlayerPrefs.GetInt("PaintTime");
+		if (paintTime >= 300) {
+			string[] longTimeSentences = { "What Took So Long?!?!?!?!", "SlowPoke!", "We done now?", "You really took your time!", "Can't put a time on art.", "Wow, you really put the time into this!", "Thanks for spending the time on this." };
+			reactionSentences.AddRange(longTimeSentences);
+		} else if (paintTime <= 60) {
+			string[] shortTimeSentences = { "That was quick!", "Not much effort here", "You're already done!?", "That wasn't long!", "You finished that in the time it takes for me to finish a sketch!", "You've obviously had a lot of practice to be that quick", "I would have preferred if you put a bit more of an effort in", "It's lacking some details... but still looks cool!" };
+			reactionSentences.AddRange(shortTimeSentences);
+		}
+
+		randomSentence = reactionSentences[Random.Range(0, reactionSentences.Count)];
 		speech.Enqueue(randomSentence);
-		
+
 		DisplayNextSentence();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 
 	IEnumerator TypeSentence(string sentence) {
 		dialogueText.text = "";
