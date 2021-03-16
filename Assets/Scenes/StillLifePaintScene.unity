@@ -655,7 +655,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 288863937}
+      - m_Target: {fileID: 2084494065}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -1915,6 +1915,8 @@ MonoBehaviour:
   buttonTemplate: {fileID: 11400000, guid: 48c213150402ad94183fe2d1a86eefc2, type: 3}
   brushSizeScript: {fileID: 1350818534}
   panel: {fileID: 679784042}
+  isEyeTracker: 0
+  mainCam: {fileID: 0}
   padding: 30
   brushPreview: {fileID: 2028367486}
   sizeReference: 0

@@ -5798,7 +5798,7 @@ GameObject:
   - component: {fileID: 162627881}
   - component: {fileID: 162627880}
   - component: {fileID: 162627879}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7131,7 +7131,7 @@ GameObject:
   - component: {fileID: 373224398}
   - component: {fileID: 373224397}
   - component: {fileID: 373224396}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: StillLifePaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7314,7 +7314,7 @@ Transform:
   m_Children:
   - {fileID: 1037814949}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!1 &376956647
 GameObject:
@@ -7444,7 +7444,7 @@ GameObject:
   - component: {fileID: 527722599}
   - component: {fileID: 527722598}
   - component: {fileID: 527722597}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RtoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7796,7 +7796,7 @@ RectTransform:
   - {fileID: 947983314}
   - {fileID: 825300950}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7934,7 +7934,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590168684
 GameObject:
@@ -13359,7 +13359,7 @@ GameObject:
   - component: {fileID: 641535657}
   - component: {fileID: 641535656}
   - component: {fileID: 641535655}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14035,7 +14035,7 @@ GameObject:
   - component: {fileID: 738273585}
   - component: {fileID: 738273584}
   - component: {fileID: 738273583}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PortraitPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14366,7 +14366,7 @@ GameObject:
   - component: {fileID: 826573347}
   - component: {fileID: 826573346}
   - component: {fileID: 826573349}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14611,7 +14611,7 @@ GameObject:
   - component: {fileID: 850796186}
   - component: {fileID: 850796185}
   - component: {fileID: 850796184}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EtoSL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14945,7 +14945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &875175372
 Animator:
@@ -15758,7 +15758,7 @@ RectTransform:
   - {fileID: 1743826154}
   - {fileID: 527722596}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17159,7 +17159,7 @@ Transform:
   - {fileID: 212646619}
   - {fileID: 1274142975}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031678377
 GameObject:
@@ -17698,7 +17698,7 @@ GameObject:
   - component: {fileID: 1085921225}
   - component: {fileID: 1085921224}
   - component: {fileID: 1085921223}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18159,7 +18159,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 6fed9d2d86233fb45a3553c1f0dcc0fe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6fed9d2d86233fb45a3553c1f0dcc0fe,
         type: 3}
@@ -24292,7 +24292,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 16ca0c9088f178c41abd692e7ba618c7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 16ca0c9088f178c41abd692e7ba618c7,
         type: 3}
@@ -25160,7 +25160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1400106546
 GameObject:
@@ -25438,7 +25438,7 @@ GameObject:
   - component: {fileID: 1466672083}
   - component: {fileID: 1466672082}
   - component: {fileID: 1466672081}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SLtoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26202,7 +26202,7 @@ Transform:
   - {fileID: 1372891381}
   - {fileID: 359418428}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571487809
 GameObject:
@@ -26303,6 +26303,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0.03999996, y: 1.1374993}
   m_SizeDelta: {x: 1.6504, y: 2.2327}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1587845488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587845490}
+  - component: {fileID: 1587845489}
+  m_Layer: 0
+  m_Name: GazeAwareGallery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1587845489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587845488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285f4af8ed54d614288ff394bafd8c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntranceButton: {fileID: 0}
+  TableButton: {fileID: 0}
+  MagazineButton: {fileID: 0}
+  StillLifeButton: {fileID: 0}
+  PortraitButton: {fileID: 0}
+  TutorialButton: {fileID: 0}
+  OptionsButton: {fileID: 0}
+  ShopButton: {fileID: 0}
+  EtoSLButton: {fileID: 0}
+  SLtoEButton: {fileID: 0}
+  EtoRButton: {fileID: 0}
+  RtoEButton: {fileID: 0}
+  transitionController: {fileID: 1085560912}
+  mainCam: {fileID: 875175375}
+--- !u!4 &1587845490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587845488}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 198, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622885341
 GameObject:
   m_ObjectHideFlags: 0
@@ -26599,7 +26656,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 16442aff80b9b164aa42093e2e2b3a7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 16442aff80b9b164aa42093e2e2b3a7c,
         type: 3}
@@ -31679,7 +31736,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 41c5a28421310f34d92bc8a0b3b5d044,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 41c5a28421310f34d92bc8a0b3b5d044,
         type: 3}
@@ -31780,7 +31837,7 @@ Transform:
   - {fileID: 614812089}
   - {fileID: 274438423}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735772745
 GameObject:
@@ -32038,7 +32095,7 @@ GameObject:
   - component: {fileID: 1743826157}
   - component: {fileID: 1743826156}
   - component: {fileID: 1743826155}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EtoR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32182,7 +32239,7 @@ GameObject:
   - component: {fileID: 1756226905}
   - component: {fileID: 1756226904}
   - component: {fileID: 1756226903}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33552,7 +33609,7 @@ GameObject:
   - component: {fileID: 2025957494}
   - component: {fileID: 2025957493}
   - component: {fileID: 2025957492}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34187,7 +34244,7 @@ Transform:
   - {fileID: 1837741525}
   - {fileID: 1527161280}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098740490
 GameObject:
