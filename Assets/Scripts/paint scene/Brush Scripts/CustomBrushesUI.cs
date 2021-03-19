@@ -29,7 +29,7 @@ namespace unitycoder_MobilePaint {
 
 		float timeBeforeClick;
 		float timeBetweenClicks = 1;
-		int brushSizeLast = 100;    // any number that cant actually be the size 
+		int brushSizeLast = 100;	// any number that cant actually be the size 
 
 		Vector2 filteredPoint;
 
@@ -41,8 +41,12 @@ namespace unitycoder_MobilePaint {
 		void Start() {
 			timeBeforeClick = timeBetweenClicks;
 			newButton = new Button[mobilePaint.customBrushes.Length];
-			if (mobilePaint == null) { Debug.LogError("No MobilePaint assigned at " + transform.name); }
-			if (buttonTemplate == null) { Debug.LogError("No buttonTemplate assigned at " + transform.name); }
+			if (mobilePaint == null) {
+				Debug.LogError("No MobilePaint assigned at " + transform.name);
+			}
+			if (buttonTemplate == null) {
+				Debug.LogError("No buttonTemplate assigned at " + transform.name);
+			}
 		}
 
 		private void Update() {
@@ -50,7 +54,6 @@ namespace unitycoder_MobilePaint {
 			// this tests whether the brush has changed size and so new custom brushes are needed
 			// the brushes needed are decided by the for loop and then instantiated in the right position
 			if (brushSizeLast != brushSizeScript.customSize) {
-
 				for (int i = transform.childCount - 1; i >= 0; --i) {
 					var child = transform.GetChild(i).gameObject;
 					Destroy(child);
@@ -58,7 +61,6 @@ namespace unitycoder_MobilePaint {
 
 				Vector2 newPos = new Vector2(padding, -padding * 4);
 				for (int i = brushSizeScript.customSize; i < mobilePaint.customBrushes.Length; i = i + 6) {
-
 					Quaternion rot = Quaternion.Euler(0, 0, 90);
 					newButton[i] = Instantiate(buttonTemplate, Vector3.zero, rot) as Button;
 					newButton[i].transform.SetParent(transform, false);

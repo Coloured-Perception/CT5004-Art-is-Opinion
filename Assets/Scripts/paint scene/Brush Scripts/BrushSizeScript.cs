@@ -58,7 +58,7 @@ namespace unitycoder_MobilePaint {
 				}
 				customSize -= 1;
 				mobilePaint.selectedBrush -= 1;
-				mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+				mobilePaint.ReadCurrentCustomBrush();	// tell mobile paint to read custom brush pixel data
 				mobilePaint.SetDrawModeShapes();
 			}
 		}
@@ -91,7 +91,7 @@ namespace unitycoder_MobilePaint {
 				}
 				customSize += 1;
 				mobilePaint.selectedBrush += 1;
-				mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+				mobilePaint.ReadCurrentCustomBrush();	// tell mobile paint to read custom brush pixel data
 				mobilePaint.SetDrawModeShapes();
 			}
 		}

@@ -9,10 +9,14 @@ public class DialogueList : MonoBehaviour {
 	public List<string> femaleFirstNames;
 	public List<string> maleFirstNames;
 	public List<string> surnames;
+
 	public List<string> greeting;
 	public List<string> speech;
 	public List<string> request;
 	public List<string> dogSpeech;
+
+	public List<string> reactions;
+	public List<string> reviewDescriptions;
 
 	/// <summary>
 	/// add whatever you like here 
@@ -53,19 +57,27 @@ public class DialogueList : MonoBehaviour {
 		dogSpeech.AddRange(dogTalk);
 
 
-		//////////////////////////////////////////////////////////////////////////////////////////////////
-		/// In future, try add a combination of 2 sentences, an initial reaction to completing then the description of the work
-		/// i.e. 
-		/// Reaction:		Let me see!
-		/// Description:	There's so much energy in this piece
+		// Reactions and descriptions
+		string[] defaultReactions = { "Watching you work was interesting.", "We done?", "Let me see!", "You Finished?", "Well just look at that.", "Can I look?", "Hey, Dat's pretty Gud!", "ooh! Pretty!", "I inspire you that much huh?", "Is that meant to be me?", "Watching you paint was weird..." };
+		reactions.AddRange(defaultReactions);
 
-		// Reactions
-		//string[] defaultSentences = { "Hey, Dat's pretty Gud!", "I like the range of colours used", "You really got my likeness!", "ooh! Pretty!", "I inspire you that much huh?", "That's a perfect representation of how I feel right now.", "Maybe I should learn how to paint too, can't be that hard!", "It really does say a thousand words.", "This says closer to 5 words but alright", "Is that meant to be me?", "I inspire you that much, huh?", "Love the quick sweeping lines", "Theres so much energy in this piece!", "Love the details you added there.", "I see you’ve studied impressionism.", "Watching you work was interesting." };
+		string[] defaultDescriptions = { "I like the range of colours used", "That's a perfect representation of how I feel right now.", "Maybe I should learn how to paint too, can't be that hard!", "It really does say a thousand words.", "This says closer to 5 words but alright", "Love the quick sweeping lines.", "Theres so much energy in this piece!", "Love the details you added there.", "I see you’ve studied impressionism.", "You really got my likeness!", "That's a bold style." };
+		reviewDescriptions.AddRange(defaultDescriptions);
 
-		//string[] longTimeSentences = { "What Took So Long?!?!?!?!", "SlowPoke!", "We done now?", "You really took your time!", "Can't put a time on art.", "Wow, you really put the time into this!", "Thanks for spending the time on this." };
+		// More reactions and descriptions added depending on how long player takes in paint scene
+		int paintTime = PlayerPrefs.GetInt("PaintTime");
+		if (paintTime >= 300) {
+			string[] longTimeReactions = { "What Took So Long?!?!?!?!", "SlowPoke!", "We done now?", "Thanks for spending the time on this.", "You really took your time!" };
+			reactions.AddRange(longTimeReactions);
 
-		//string[] shortTimeSentences = { "That was quick!", "Not much effort here", "You're already done!?", "That wasn't long!", "You finished that in the time it takes for me to finish a sketch!", "You've obviously had a lot of practice to be that quick", "I would have preferred if you put a bit more of an effort in", "It's lacking some details... but still looks cool!" };
+			string[] longTimeDescriptions = { "Can't put a time on art.", "love that you spent the time to add detail." };
+			reviewDescriptions.AddRange(longTimeDescriptions);
+		} else if (paintTime <= 60) {
+			string[] shortTimeReactions = { "That was quick!", "You're already done!?", "That wasn't long!" };
+			reactions.AddRange(shortTimeReactions);
 
-		//////////////////////////////////////////////////////////////////////////////////////////////////
+			string[] shortTimeDescriptions = { "Not much effort here", "You finished that in the time it takes for me to finish a sketch!", "You've obviously had a lot of practice to be that quick", "I would have preferred if you put a bit more of an effort in", "It's lacking some details... but still looks cool!" };
+			reviewDescriptions.AddRange(shortTimeDescriptions);
+		}
 	}
 }

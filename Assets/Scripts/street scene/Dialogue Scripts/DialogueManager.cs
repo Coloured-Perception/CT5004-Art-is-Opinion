@@ -50,6 +50,8 @@ public class DialogueManager : MonoBehaviour {
 	int randomSpeechNumber;
 	int randomRequestNumber;
 	int randomDogSpeechNumber;
+	int randomReaction;
+	int randomDescription;
 	string randomName;
 	string randomSurname;
 	string randomSentence;
@@ -68,7 +70,6 @@ public class DialogueManager : MonoBehaviour {
 
 	public string lastScene;
 
-	public List<string> reactionSentences;
 
 	//Coral
 	private void Awake() {
@@ -171,6 +172,7 @@ public class DialogueManager : MonoBehaviour {
 					randomNameNumber = Random.Range(0, dialogueList.dogNames.Count);
 					randomName = dialogueList.dogNames[randomNameNumber];
 					dialogue.name = randomName;
+					randomDogSpeechNumber = Random.Range(0, dialogueList.dogSpeech.Count);
 					randomSentence = dialogueList.dogSpeech[randomDogSpeechNumber];
 				}
 			}
@@ -215,7 +217,7 @@ public class DialogueManager : MonoBehaviour {
 		continueYMin = continueRect.yMin;
 		continueYMax = continueRect.yMax;
 
-		Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+		Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen; // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
 		filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 		if ((continuePos.x + continueXMin) < filteredPoint.x && filteredPoint.x < (continuePos.x + continueXMax) && (continuePos.y + continueYMin) < filteredPoint.y && filteredPoint.y < (continuePos.y + continueYMax) && timeBetweenClicks <= 0) {
@@ -236,7 +238,6 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 		// Coral
-
 	}
 
 
@@ -255,19 +256,10 @@ public class DialogueManager : MonoBehaviour {
 		animator.SetBool("IsOpen", true);
 		speech.Clear();
 
-		string[] defaultSentences = { "Hey, Dat's pretty Gud!", "I like the range of colours used", "You really got my likeness!", "ooh! Pretty!", "I inspire you that much huh?", "That's a perfect representation of how I feel right now.", "Maybe I should learn how to paint too, can't be that hard!", "It really does say a thousand words.", "This says closer to 5 words but alright", "Is that meant to be me?", "I inspire you that much, huh?", "Love the quick sweeping lines", "Theres so much energy in this piece!", "Love the details you added there.", "I see you’ve studied impressionism.", "Watching you work was interesting." };
-		reactionSentences.AddRange(defaultSentences);
+		randomReaction = Random.Range(0, dialogueList.reactions.Count);
+		randomDescription = Random.Range(0, dialogueList.reviewDescriptions.Count);
+		randomSentence = dialogueList.reactions[randomReaction] + " " + dialogueList.reviewDescriptions[randomDescription];
 
-		int paintTime = PlayerPrefs.GetInt("PaintTime");
-		if (paintTime >= 300) {
-			string[] longTimeSentences = { "What Took So Long?!?!?!?!", "SlowPoke!", "We done now?", "You really took your time!", "Can't put a time on art.", "Wow, you really put the time into this!", "Thanks for spending the time on this." };
-			reactionSentences.AddRange(longTimeSentences);
-		} else if (paintTime <= 60) {
-			string[] shortTimeSentences = { "That was quick!", "Not much effort here", "You're already done!?", "That wasn't long!", "You finished that in the time it takes for me to finish a sketch!", "You've obviously had a lot of practice to be that quick", "I would have preferred if you put a bit more of an effort in", "It's lacking some details... but still looks cool!" };
-			reactionSentences.AddRange(shortTimeSentences);
-		}
-
-		randomSentence = reactionSentences[Random.Range(0, reactionSentences.Count)];
 		speech.Enqueue(randomSentence);
 
 		DisplayNextSentence();

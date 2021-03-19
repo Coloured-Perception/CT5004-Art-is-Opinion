@@ -1,55 +1,47 @@
 ﻿// sends picked color to MobilePaint script
-
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+namespace unitycoder_MobilePaint {
+	public class ColorUIManager : MonoBehaviour {
+		MobilePaint mobilePaint;
+		public Button[] colorpickers;   // colors are taken from these buttons
 
-namespace unitycoder_MobilePaint
-{
+		public bool offsetSelected = true;  // should we move the pencil when its selected
+											//public float defaultOffset=-46;
+											//public float moveOffsetX=-24;
 
-    public class ColorUIManager : MonoBehaviour
-    {
-        MobilePaint mobilePaint;
-        public Button[] colorpickers;       // colors are taken from these buttons
-
-        public bool offsetSelected = true;  // should we move the pencil when its selected
-        //public float defaultOffset=-46;
-        //public float moveOffsetX=-24;
-
-     //   [HideInInspector]
+		//   [HideInInspector]
 		public GameObject preview;
 
+		void Awake() {
+			mobilePaint = PaintManager.mobilePaint;
 
-        void Awake()
-        {
-            mobilePaint = PaintManager.mobilePaint;
+			if (mobilePaint == null) {
+				Debug.LogError("No MobilePaint assigned at " + transform.name, gameObject);
+			}
+			if (colorpickers.Length < 1) {
+				Debug.LogWarning("No colorpickers assigned at " + transform.name, gameObject);
+			}
 
-            if (mobilePaint == null) Debug.LogError("No MobilePaint assigned at " + transform.name, gameObject);
-            if (colorpickers.Length < 1) Debug.LogWarning("No colorpickers assigned at " + transform.name, gameObject);
+			//preview = GetComponent<RawImage>();
+			//if (preview == null) Debug.LogError("No image component founded at " + transform.name, gameObject);
 
-            //preview = GetComponent<RawImage>();
-            //if (preview == null) Debug.LogError("No image component founded at " + transform.name, gameObject);
-
-
-            // Add event listeners to pencil buttons
-            for (int i = 0; i < colorpickers.Length; i++)
-            {
-                var button = colorpickers[i];
-                if (button != null)
-                {
-                    button.onClick.AddListener(delegate { this.SetCurrentColor(button); });
+			// Add event listeners to pencil buttons
+			for (int i = 0; i < colorpickers.Length; i++) {
+				var button = colorpickers[i];
+				if (button != null) {
+					button.onClick.AddListener(delegate { this.SetCurrentColor(button); });
 				}
 			}
-        }
+		}
 
-
-        // some button was clicked, lets take color from it and send to mobilepaint canvas 
-        public void SetCurrentColor(Button button)
-        {			
+		// some button was clicked, lets take color from it and send to mobilepaint canvas 
+		public void SetCurrentColor(Button button) {
 			Color newColor = button.gameObject.GetComponent<Image>().color;
-			
+
 			preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
 
 			// send new color
