@@ -5798,6 +5798,7 @@ GameObject:
   - component: {fileID: 162627881}
   - component: {fileID: 162627880}
   - component: {fileID: 162627879}
+  - component: {fileID: 162627883}
   m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
@@ -5952,6 +5953,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162627877}
   m_CullTransparentMesh: 0
+--- !u!65 &162627883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162627877}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.44, y: 3, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &167950803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7131,6 +7145,7 @@ GameObject:
   - component: {fileID: 373224398}
   - component: {fileID: 373224397}
   - component: {fileID: 373224396}
+  - component: {fileID: 373224400}
   m_Layer: 0
   m_Name: StillLifePaint
   m_TagString: Untagged
@@ -7285,6 +7300,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373224394}
   m_CullTransparentMesh: 0
+--- !u!65 &373224400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373224394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 3.05, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &373437619
 GameObject:
   m_ObjectHideFlags: 0
@@ -7444,6 +7472,7 @@ GameObject:
   - component: {fileID: 527722599}
   - component: {fileID: 527722598}
   - component: {fileID: 527722597}
+  - component: {fileID: 527722601}
   m_Layer: 0
   m_Name: RtoE
   m_TagString: Untagged
@@ -7575,6 +7604,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527722595}
   m_CullTransparentMesh: 0
+--- !u!65 &527722601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527722595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &536209741
 GameObject:
   m_ObjectHideFlags: 0
@@ -7911,16 +7953,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7d6b322058ef946a18a86cdb16b6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headGazeContribution: 0
+  headGazeContribution: 1
   maxAngleX: 300
   maxAngleY: 300
   minAngleX: -300
   minAngleY: -300
-  sensitivity: 1
+  sensitivity: 5
   responsiveness: 1
   speed: 1
-  isTobii: 0
-  continuousRotate: 0
+  isTobii: 1
+  continuousRotate: 1
   cam: {fileID: 875175375}
 --- !u!4 &577605462
 Transform:
@@ -13359,6 +13401,7 @@ GameObject:
   - component: {fileID: 641535657}
   - component: {fileID: 641535656}
   - component: {fileID: 641535655}
+  - component: {fileID: 641535659}
   m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
@@ -13513,6 +13556,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641535653}
   m_CullTransparentMesh: 0
+--- !u!65 &641535659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641535653}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.91, y: 1.81, z: 0.12}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &641987804
 GameObject:
   m_ObjectHideFlags: 0
@@ -14035,6 +14091,7 @@ GameObject:
   - component: {fileID: 738273585}
   - component: {fileID: 738273584}
   - component: {fileID: 738273583}
+  - component: {fileID: 738273587}
   m_Layer: 0
   m_Name: PortraitPaint
   m_TagString: Untagged
@@ -14189,6 +14246,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738273581}
   m_CullTransparentMesh: 0
+--- !u!65 &738273587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738273581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 3.05, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &738806239
 GameObject:
   m_ObjectHideFlags: 0
@@ -14366,6 +14436,7 @@ GameObject:
   - component: {fileID: 826573347}
   - component: {fileID: 826573346}
   - component: {fileID: 826573349}
+  - component: {fileID: 826573350}
   m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
@@ -14520,6 +14591,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6412a2142ee3c934088a4b10a7ef9f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &826573350
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826573344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.65, y: 2.38, z: 0.06}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &833539898
 GameObject:
   m_ObjectHideFlags: 0
@@ -14611,6 +14695,7 @@ GameObject:
   - component: {fileID: 850796186}
   - component: {fileID: 850796185}
   - component: {fileID: 850796184}
+  - component: {fileID: 850796188}
   m_Layer: 0
   m_Name: EtoSL
   m_TagString: Untagged
@@ -14742,6 +14827,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850796182}
   m_CullTransparentMesh: 0
+--- !u!65 &850796188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850796182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &851364855
 GameObject:
   m_ObjectHideFlags: 0
@@ -17698,6 +17796,7 @@ GameObject:
   - component: {fileID: 1085921225}
   - component: {fileID: 1085921224}
   - component: {fileID: 1085921223}
+  - component: {fileID: 1085921227}
   m_Layer: 0
   m_Name: Street
   m_TagString: Untagged
@@ -17852,6 +17951,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085921221}
   m_CullTransparentMesh: 0
+--- !u!65 &1085921227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085921221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8, y: 1.6, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1092709443
 GameObject:
   m_ObjectHideFlags: 0
@@ -25121,7 +25233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1389515497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25438,6 +25550,7 @@ GameObject:
   - component: {fileID: 1466672083}
   - component: {fileID: 1466672082}
   - component: {fileID: 1466672081}
+  - component: {fileID: 1466672085}
   m_Layer: 0
   m_Name: SLtoE
   m_TagString: Untagged
@@ -25569,6 +25682,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466672079}
   m_CullTransparentMesh: 0
+--- !u!65 &1466672085
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466672079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1471084356
 GameObject:
   m_ObjectHideFlags: 0
@@ -26332,18 +26458,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285f4af8ed54d614288ff394bafd8c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntranceButton: {fileID: 0}
-  TableButton: {fileID: 0}
-  MagazineButton: {fileID: 0}
-  StillLifeButton: {fileID: 0}
-  PortraitButton: {fileID: 0}
-  TutorialButton: {fileID: 0}
-  OptionsButton: {fileID: 0}
-  ShopButton: {fileID: 0}
-  EtoSLButton: {fileID: 0}
-  SLtoEButton: {fileID: 0}
-  EtoRButton: {fileID: 0}
-  RtoEButton: {fileID: 0}
+  EntranceButton: {fileID: 826573344}
+  TableButton: {fileID: 1756226901}
+  MagazineButton: {fileID: 641535653}
+  StillLifeButton: {fileID: 373224394}
+  PortraitButton: {fileID: 738273581}
+  TutorialButton: {fileID: 162627877}
+  OptionsButton: {fileID: 2025957490}
+  ShopButton: {fileID: 1085921221}
+  EtoSLButton: {fileID: 850796182}
+  SLtoEButton: {fileID: 1466672079}
+  EtoRButton: {fileID: 1743826153}
+  RtoEButton: {fileID: 527722595}
   transitionController: {fileID: 1085560912}
   mainCam: {fileID: 875175375}
 --- !u!4 &1587845490
@@ -32095,6 +32221,7 @@ GameObject:
   - component: {fileID: 1743826157}
   - component: {fileID: 1743826156}
   - component: {fileID: 1743826155}
+  - component: {fileID: 1743826159}
   m_Layer: 0
   m_Name: EtoR
   m_TagString: Untagged
@@ -32226,6 +32353,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743826153}
   m_CullTransparentMesh: 0
+--- !u!65 &1743826159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743826153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1756226901
 GameObject:
   m_ObjectHideFlags: 0
@@ -32239,6 +32379,7 @@ GameObject:
   - component: {fileID: 1756226905}
   - component: {fileID: 1756226904}
   - component: {fileID: 1756226903}
+  - component: {fileID: 1756226907}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -32393,6 +32534,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756226901}
   m_CullTransparentMesh: 0
+--- !u!65 &1756226907
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756226901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.09, y: 3.07, z: 0.06}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1760701781
 GameObject:
   m_ObjectHideFlags: 0
@@ -33609,6 +33763,7 @@ GameObject:
   - component: {fileID: 2025957494}
   - component: {fileID: 2025957493}
   - component: {fileID: 2025957492}
+  - component: {fileID: 2025957496}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -33763,6 +33918,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025957490}
   m_CullTransparentMesh: 0
+--- !u!65 &2025957496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025957490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 1.21, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2029170841
 GameObject:
   m_ObjectHideFlags: 0

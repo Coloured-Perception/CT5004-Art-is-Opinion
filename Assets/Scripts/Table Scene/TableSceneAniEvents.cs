@@ -8,6 +8,7 @@ using UnityEngine;
 public class TableSceneAniEvents : MonoBehaviour
 {
 	private Animator TableUIAnim;
+    public Camera cam;
 
 	private void Awake() {
 		TableUIAnim = GameObject.Find("TableUI").GetComponent<Animator>();
@@ -15,5 +16,6 @@ public class TableSceneAniEvents : MonoBehaviour
 
    public void ShowTableUIEnd() {
 		TableUIAnim.enabled = false;
+        cam.GetComponent<Animator>().applyRootMotion = true;
 	}
 }

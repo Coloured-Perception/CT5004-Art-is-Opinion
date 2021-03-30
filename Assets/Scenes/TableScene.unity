@@ -2874,6 +2874,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346408149}
   m_CullTransparentMesh: 0
+--- !u!1 &357122959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 357122961}
+  - component: {fileID: 357122960}
+  m_Layer: 0
+  m_Name: GazeAwareTable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &357122960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357122959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681f60b15dad3c84e883e308738b36a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gallery: {fileID: 408047578}
+  yesButton: {fileID: 171569894}
+  noButton: {fileID: 1349633869}
+  tableController: {fileID: 1814944991}
+  transitionController: {fileID: 226686521}
+  mainCam: {fileID: 140658143}
+--- !u!4 &357122961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357122959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8658273, y: -0.3309362, z: -6.6689253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372932735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,7 +3235,8 @@ GameObject:
   - component: {fileID: 408047581}
   - component: {fileID: 408047580}
   - component: {fileID: 408047583}
-  m_Layer: 5
+  - component: {fileID: 408047584}
+  m_Layer: 0
   m_Name: Gallery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3339,6 +3389,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6412a2142ee3c934088a4b10a7ef9f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &408047584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408047578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 4.03, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &415916600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5922,6 +5985,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777840955}
   m_CullTransparentMesh: 0
+--- !u!1 &799648799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799648801}
+  - component: {fileID: 799648800}
+  m_Layer: 0
+  m_Name: RotateCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &799648800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799648799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7d6b322058ef946a18a86cdb16b6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headGazeContribution: 1
+  maxAngleX: 90
+  maxAngleY: 360
+  minAngleX: -90
+  minAngleY: -360
+  sensitivity: 5
+  responsiveness: 0
+  speed: 5
+  isTobii: 1
+  continuousRotate: 0
+  cam: {fileID: 140658143}
+--- !u!4 &799648801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799648799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0001516, y: 0.6000843, z: -5.162623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800588576
 GameObject:
   m_ObjectHideFlags: 0
@@ -14184,6 +14301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445b74c62a0107d43bd7d6b287c87234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 140658143}
 --- !u!1 &1833567546
 GameObject:
   m_ObjectHideFlags: 0

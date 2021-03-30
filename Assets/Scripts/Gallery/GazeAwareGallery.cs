@@ -21,7 +21,7 @@ public class GazeAwareGallery : MonoBehaviour
     public GameObject transitionController;
 
     public Camera mainCam;
-    Rect camRect;
+    //Rect camRect;
 
     float timeBeforeClick;
     float timeBetweenClicks = 1;
@@ -37,17 +37,17 @@ public class GazeAwareGallery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeBetweenClicks -= Time.deltaTime;
         if (Input.GetKey("space"))
-        {
-            timeBetweenClicks -= Time.deltaTime;
-            camRect = mainCam.pixelRect;
+        {         
+            //camRect = mainCam.pixelRect;
            
-            Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-            gazePoint.x *= camRect.width;
-            gazePoint.y *= camRect.height;
+            Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+            //gazePoint.x *= camRect.width;
+            //gazePoint.y *= camRect.height;
             filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
-            Ray ray = mainCam.ViewportPointToRay(filteredPoint);
+            Ray ray = mainCam.ScreenPointToRay(filteredPoint);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 objHit = hit.transform.gameObject;
@@ -59,56 +59,56 @@ public class GazeAwareGallery : MonoBehaviour
                 {
                     transitionController.SetActive(true);
                     EntranceButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, TableButton))
                 {
                     transitionController.SetActive(true);
                     TableButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, MagazineButton))
                 {
                     transitionController.SetActive(true);
                     MagazineButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, StillLifeButton))
                 {
                     transitionController.SetActive(true);
                     StillLifeButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, PortraitButton))
                 {
                     transitionController.SetActive(true);
                     PortraitButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, TutorialButton))
                 {
                     transitionController.SetActive(true);
                     TutorialButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, OptionsButton))
                 {
                     transitionController.SetActive(true);
                     OptionsButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, ShopButton))
                 {
                     transitionController.SetActive(true);
                     ShopButton.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("Blink Close");
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     timeBeforeClick = timeBetweenClicks;
                 }
                 else if (GameObject.ReferenceEquals(objHit, EtoSLButton))

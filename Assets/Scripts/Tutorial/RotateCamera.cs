@@ -33,10 +33,7 @@ public class RotateCamera : MonoBehaviour
         if(cam.GetComponent<Animator>().applyRootMotion == true)
         {
             if (isTobii)
-            {
-                UserPresence isPresent = TobiiAPI.GetUserPresence();
-                if (isPresent == UserPresence.Present)
-                {
+            {               
                     Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;
                     filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, (1 - responsiveness));
                     Quaternion headPose = TobiiAPI.GetHeadPose().Rotation;
@@ -44,14 +41,17 @@ public class RotateCamera : MonoBehaviour
                     Quaternion headPoseAngle = new Quaternion(headPose.x * headGazeContribution, headPose.y * headGazeContribution, 0, headPose.w);
                     Quaternion gazePointAngle = new Quaternion((-filteredPoint.y + 0.5f) * (1 - headGazeContribution), (filteredPoint.x - 0.5f) * (1 - headGazeContribution), 0, headPose.w);
 
-                    if (continuousRotate)
-                    {                        
-                        xSpeed = (headPoseAngle.x + gazePointAngle.x) * sensitivity;
-                        ySpeed = (headPoseAngle.y + gazePointAngle.y) * sensitivity;
+                if (continuousRotate)
+                {                        
+                    xSpeed = (headPoseAngle.x + gazePointAngle.x) * sensitivity;
+                    ySpeed = (headPoseAngle.y + gazePointAngle.y) * sensitivity;
 
+                    if (!float.IsNaN(xSpeed) && !float.IsNaN(ySpeed))
                         ContinuousRotate(xSpeed,ySpeed);
-                    }
-                    else
+                }
+                else
+                {
+                    if(!float.IsNaN(headPoseAngle.x) && !float.IsNaN(gazePointAngle.x))
                     {
                         if (((headPoseAngle.x + gazePointAngle.x) * sensitivity) > maxAngleX)
                         {
@@ -94,16 +94,9 @@ public class RotateCamera : MonoBehaviour
                         else
                         {
                             camRotation = new Quaternion((headPoseAngle.x + gazePointAngle.x) * sensitivity, (headPoseAngle.y + gazePointAngle.y) * sensitivity, 0, headPose.w);
-
                         }
-
                         cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, camRotation, Time.deltaTime * speed);
                     }
-                
-                }
-                else
-                {
-                    cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, new Quaternion(0, 0, 0, 1), Time.deltaTime * speed);
                 }
             }
             else
@@ -128,7 +121,8 @@ public class RotateCamera : MonoBehaviour
                     ySpeed += 1;
                 }
 
-                ContinuousRotate(xSpeed, ySpeed);
+                if(xSpeed != 0 || ySpeed != 0)
+                    ContinuousRotate(xSpeed, ySpeed);
             }
         }
     }
@@ -136,11 +130,11 @@ public class RotateCamera : MonoBehaviour
     void ContinuousRotate( float xSpeed, float ySpeed)
     {
 
-        float angleX = cam.transform.rotation.eulerAngles.x;
+        angleX = cam.transform.rotation.eulerAngles.x;
         angleX = (angleX > 180) ? angleX - 360 : angleX;
         angleX = (angleX < -180) ? angleX + 360 : angleX;
 
-        float angleY = cam.transform.rotation.eulerAngles.y;
+        angleY = cam.transform.rotation.eulerAngles.y;
         angleY = (angleY > 180) ? angleY - 360 : angleY;
         angleY = (angleY < -180) ? angleY + 360 : angleY;
 
