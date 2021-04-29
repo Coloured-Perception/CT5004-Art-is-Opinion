@@ -40,6 +40,10 @@ namespace unitycoder_MobilePaint
         public GameObject brushPreview;
         public int sizeReference = 3;
 
+        // Make scale of dots texture look right
+        int previousIndex = 2;
+
+
         void Start()
         {
             timeBeforeClick = timeBetweenClicks;
@@ -87,6 +91,13 @@ namespace unitycoder_MobilePaint
                     // I've read that RawImage causes extra drawcall per drawimage, thats not nice if there are tens of images..
                     newButton[i].GetComponent<RawImage>().texture = mobilePaint.customBrushes[i];
                     var index = i;
+
+                    // Fix dots image to look correct and be in correct position
+                    if (i >= 30 && i <= 35)
+                    {
+                        newButton[i].transform.localScale = new Vector3(newButton[i].transform.localScale.x /5, newButton[i].transform.localScale.y, newButton[i].transform.localScale.z);
+                        newButton[i].transform.position = new Vector3(newButton[i].transform.position.x, newButton[i].transform.position.y + 25, newButton[i].transform.position.z);
+                    }
 
                     // event listener for button clicks, pass custom brush array index number as parameter
                     newButton[i].onClick.AddListener(delegate { this.SetCustomBrush(index); });
@@ -157,6 +168,9 @@ namespace unitycoder_MobilePaint
             sizeReference = index;
 
             brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[index];
+            if ((previousIndex < 30 || previousIndex > 35) && index >= 30 && index <= 35)
+                brushPreview.transform.parent.localScale = new Vector3(brushPreview.transform.parent.localScale.x, brushPreview.transform.parent.localScale.y / 5, brushPreview.transform.parent.localScale.z);
+
         }
 
         //public void CloseCustomBrushPanel()

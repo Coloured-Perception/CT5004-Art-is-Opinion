@@ -47,34 +47,42 @@ namespace unitycoder_MobilePaint
                 if (PreviewName.StartsWith("Circle"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 0 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Square"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 1 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Soft"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 2 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Splater"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 3 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Spoty"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Dots"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Angled Splat"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 else if (PreviewName.StartsWith("Sharp Stones"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale / 1.4f;
                 }
                 customSize -= 1;
                 mobilePaint.selectedBrush -= 1;
@@ -97,34 +105,42 @@ namespace unitycoder_MobilePaint
                 if (PreviewName.StartsWith("Circle"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 0 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Square"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 1 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Soft"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 2 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Splater"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 3 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Spoty"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Dots"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Angled Splat"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 else if (PreviewName.StartsWith("Sharp Stones"))
                 {
                     brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
+                    brushPreview.transform.parent.localScale = brushPreview.transform.parent.localScale * 1.4f;
                 }
                 customSize += 1;
                 mobilePaint.selectedBrush += 1;
