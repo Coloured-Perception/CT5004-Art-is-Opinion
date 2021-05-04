@@ -1,0 +1,1 @@
+the standard canvas size is going to be 80x60

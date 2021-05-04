@@ -1,0 +1,5 @@
+Slice the images 5x4
+But don't do that to the special image (S)
+Otherwise you'll have to re name them and the darkness name is very hard to spell and I can't copy it
+Add new sprite boxes to S manually  
+

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GalleryScene.unity
+    guid: c531cdfb826eeae43a48f0a7101cee33
+  - enabled: 1
+    path: Assets/Scenes/TableScene.unity
+    guid: 5e53dc743e7077f47bef58b4076d4860
+  - enabled: 1
+    path: Assets/Scenes/StillLifePaintScene.unity
+    guid: ff4c45f2ae3e6f942b4eabe7f1e9e58e
+  - enabled: 1
+    path: Assets/Scenes/StreetScene.unity
+    guid: cd6d279c3df0412418bad5bd03c3c11d
+  - enabled: 1
+    path: Assets/Scenes/PortraitPaintScene.unity
+    guid: 1a634260264b4fe4a9bc9935e850dc8e
+  - enabled: 1
+    path: Assets/Scenes/tutorial/tutorial test.unity
+    guid: 4ee5d33d60502c744bb6ec1fdce6f034
+  - enabled: 1
+    path: Assets/Scenes/tutorial/StillLifeTutorialPaintScene.unity
+    guid: f18f0cd740bd15443b3ef823a9aafce7
+  m_configObjects: {}
