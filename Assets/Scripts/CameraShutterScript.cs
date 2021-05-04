@@ -11,8 +11,9 @@ public class CameraShutterScript : MonoBehaviour {
 	public string toScene;
 	Animator TranAnim, CameraAnim;
 	TableControllerScript tableControllerScript;
+	DialogueManager dialogeManager;
 	TutorialDialogeManager tutorialDialogeManager;
-	GameObject Canvas, GalleryModel, Construction, Portrait;
+	GameObject Canvas, CharacterCanvas, GalleryModel, Construction, Portrait;
 
 
 	private void Awake() {
@@ -71,6 +72,10 @@ public class CameraShutterScript : MonoBehaviour {
 		} else if (SceneManager.GetActiveScene().name == "TableScene" || SceneManager.GetActiveScene().name == "StreetScene") {
 			if (SceneManager.GetActiveScene().name == "TableScene") {
 				tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
+			} else {
+				CharacterCanvas = GameObject.Find("Character Canvas");
+
+				dialogeManager = CharacterCanvas.transform.Find("Character UI").GetComponent<DialogueManager>();
 			}
 			if (PlayerPrefs.GetInt("fromGallery") == 1) {
 				TranAnim.Play("BlinkOpen");
@@ -97,8 +102,9 @@ public class CameraShutterScript : MonoBehaviour {
 	/// </summary>
 	/// Blink open is used to change area scenes. resets "from" prefs 
 	public void BlinkOpenEnd() {
-			if (SceneManager.GetActiveScene().name == "StreetScene") {
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			CameraAnim.Play("CameraStreetSceneLook");
+		//	dialogeManager.ChangeImage();
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			CameraAnim.Play("CameraTableSceneLook");
 			tableControllerScript.ChangeTables();
