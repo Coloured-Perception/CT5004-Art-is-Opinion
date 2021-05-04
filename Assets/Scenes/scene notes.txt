@@ -1,1 +1,8 @@
 the standard canvas size is going to be 80x60
+
+if something isnt working check the player preffs at the top of tutorial manager and camera shutter script, 
+set them to what they need to be (probably 0), play the scene then comment them out again.
+
+do not go messing around in turorial manager or the explanation list in dialogue list
+
+and i cant spell dialogue 
