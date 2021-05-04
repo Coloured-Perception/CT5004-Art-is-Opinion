@@ -168,9 +168,15 @@ namespace unitycoder_MobilePaint
             sizeReference = index;
 
             brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[index];
+
+            // Dots texture is not square, so scale of the preview needs to be changed when going to or from it
             if ((previousIndex < 30 || previousIndex > 35) && index >= 30 && index <= 35)
                 brushPreview.transform.parent.localScale = new Vector3(brushPreview.transform.parent.localScale.x, brushPreview.transform.parent.localScale.y / 5, brushPreview.transform.parent.localScale.z);
 
+            if ((index < 30 || index > 35) && previousIndex >= 30 && previousIndex <= 35)
+                brushPreview.transform.parent.localScale = new Vector3(brushPreview.transform.parent.localScale.x, brushPreview.transform.parent.localScale.y * 5, brushPreview.transform.parent.localScale.z);
+
+            previousIndex = index;
         }
 
         //public void CloseCustomBrushPanel()
