@@ -25,10 +25,11 @@ public class NavigationCanvasScript : MonoBehaviour {
 		//Debug.Log(gameObject.name);
 		if (gameObject.name == "SLtoP" && PlayerPrefs.GetInt("portraitLevel") == 0) {
 
+		} else if (gameObject.name == "Street" && PlayerPrefs.GetInt("portraitLevel") == 0) {
+			
 		} else {
 			cameraAnim.enabled = true;
 			cameraAnim.Play(this.gameObject.name);
 		}
 	}
-
 }

@@ -92,8 +92,11 @@ public class DialogueManager : MonoBehaviour {
 		if (rand == 0) {
 			rand = Random.Range(0, specialImages.Count);
 			myImageComponent.sprite = specialImages[rand];
+			///////////////////////////////////////////////// load list of colours for the person selected
+
 		} else {
 			myImageComponent.sprite = images[rand];
+			///////////////////////////////////////////////// load list of colours for the person selected
 		}
 		///clears previous text and sets a new name
 		dialogueText.text = " ";

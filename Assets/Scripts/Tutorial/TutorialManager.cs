@@ -33,11 +33,11 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		PlayerPrefs.SetInt("intro", 0);    // remove later 
-		PlayerPrefs.SetInt("banana", 0);    // remove later 
-		PlayerPrefs.SetInt("apple", 0);    // remove later
+		//PlayerPrefs.SetInt("intro", 0);    // remove later 
+		//PlayerPrefs.SetInt("banana", 0);    // remove later 
+		//PlayerPrefs.SetInt("apple", 0);    // remove later
 
-		//PlayerPrefs.SetInt("portraitLevel", 1);    // remove later
+		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
 		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
 		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
@@ -312,7 +312,7 @@ public class TutorialManager : MonoBehaviour {
 			} else if (TutorialDialogeManager.sentenceNumber == 68) {
 				PaintTutorialAnim.Play("PaintT3");
 			} else if (TutorialDialogeManager.sentenceNumber == 69) {
-				PaintTutorialAnim.Play("PaintT4"); 
+				PaintTutorialAnim.Play("PaintT4");
 			} else if (TutorialDialogeManager.sentenceNumber == 70) {
 				PaintTutorialAnim.Play("PaintT4Out");
 				Map.gameObject.SetActive(true);
@@ -326,10 +326,9 @@ public class TutorialManager : MonoBehaviour {
 			} else if (TutorialDialogeManager.sentenceNumber == 75) {
 				MapAnim.Play("MapPOfficeOut");
 				CuratorAnim.Play("CuratorBHideToLeft");
-
 			}
-			tutorialDialogeManager.StartDialogue();
 		}
+		tutorialDialogeManager.StartDialogue();
 	}
 
 	public void YesButtonClick() {
