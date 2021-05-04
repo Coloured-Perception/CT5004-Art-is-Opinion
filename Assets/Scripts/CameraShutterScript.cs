@@ -9,9 +9,10 @@ public class CameraShutterScript : MonoBehaviour {
 
 	float timeWait;
 	public string toScene;
-	public Animator TranAnim, CameraAnim;
+	Animator TranAnim, CameraAnim;
 	TableControllerScript tableControllerScript;
 	TutorialDialogeManager tutorialDialogeManager;
+	GameObject Canvas, GalleryModel, Construction, Portrait;
 
 
 	private void Awake() {
@@ -27,6 +28,8 @@ public class CameraShutterScript : MonoBehaviour {
 		//Debug.Log(PlayerPrefs.GetInt("fromOutside") + "    Out A");
 		//Debug.Log(PlayerPrefs.GetInt("fromFree") + "    Free A");
 		//Debug.Log(PlayerPrefs.GetInt("fromTutorial") + "    Tu A");
+
+		//PlayerPrefs.SetInt("portraitLevel", 1);    /// remove later   
 
 		TranAnim = gameObject.GetComponent<Animator>();
 		CameraAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -47,6 +50,24 @@ public class CameraShutterScript : MonoBehaviour {
 				CameraAnim.Play("CameraRestrictedStart");
 				TranAnim.Play("BlinkOpen");
 			}
+			if (PlayerPrefs.GetInt("portraitLevel") == 0) {
+				// portrait level block enabled
+			} else if (PlayerPrefs.GetInt("portraitLevel") == 1) {
+				// portrait level block disabled
+				Canvas = GameObject.Find("Main Canvas");
+				tutorialDialogeManager = Canvas.transform.Find("Tutorial UI").GetComponent<TutorialDialogeManager>();
+				GalleryModel = GameObject.Find("Gallery version 6");
+				Construction = GalleryModel.transform.Find("Construction").gameObject;
+				Portrait = Construction.transform.Find("Portrait").gameObject;
+				Portrait.gameObject.SetActive(false);
+			} else {
+				// portrait level block disabled
+				GalleryModel = GameObject.Find("Gallery version 6");
+				Construction = GalleryModel.transform.Find("Construction").gameObject;
+				Portrait = Construction.transform.Find("Portrait").gameObject;
+				Portrait.gameObject.SetActive(false);
+			}
+
 		} else if (SceneManager.GetActiveScene().name == "TableScene" || SceneManager.GetActiveScene().name == "StreetScene") {
 			if (SceneManager.GetActiveScene().name == "TableScene") {
 				tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
@@ -76,17 +97,17 @@ public class CameraShutterScript : MonoBehaviour {
 	/// </summary>
 	/// Blink open is used to change area scenes. resets "from" prefs 
 	public void BlinkOpenEnd() {
-		if (SceneManager.GetActiveScene().name == "GalleryScene") {
-			if (PlayerPrefs.GetInt("fromOutside") == 0) {
-				CameraAnim.Play("CameraGallerySceneLook");
-			}
-		} else if (SceneManager.GetActiveScene().name == "StreetScene") {
+			if (SceneManager.GetActiveScene().name == "StreetScene") {
 			CameraAnim.Play("CameraStreetSceneLook");
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			CameraAnim.Play("CameraTableSceneLook");
 			tableControllerScript.ChangeTables();
+		} else if (SceneManager.GetActiveScene().name == "GalleryScene") {
+			if (PlayerPrefs.GetInt("portraitLevel") == 1) {
+				tutorialDialogeManager.StartDialogue();
+				PlayerPrefs.SetInt("portraitLevel", 2);
+			}
 		}
-		PlayerPrefs.SetInt("fromGallery", 0);
 		PlayerPrefs.SetInt("fromOutside", 0);
 		gameObject.SetActive(false);
 	}
@@ -102,7 +123,8 @@ public class CameraShutterScript : MonoBehaviour {
 			PlayerPrefs.SetInt("fromTutorial", 1);
 			toScene = "Gallery";
 		}
-			SceneManager.LoadScene(toScene + "Scene");
+		//Debug.Log(toScene);
+		SceneManager.LoadScene(toScene + "Scene");
 	}
 
 	public void CameraCloseEnd() {
@@ -203,7 +225,7 @@ public class CameraShutterScript : MonoBehaviour {
 	public void BlinkSleep() {
 		TranAnim.Play("BlinkSleep");
 	}
-	public void BlinkWake() {
-		TranAnim.Play("BlinkWakeUp");
-	}
+	//public void BlinkWake() {
+	//	TranAnim.Play("BlinkWakeUp");
+	//}
 }

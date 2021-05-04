@@ -20,9 +20,9 @@ public class SaveImageScript : MonoBehaviour {
 	private Animator TranAnim;
 
 	private void Awake() {
-		UICanvas = GameObject.Find("UICanvas");
+		UICanvas = GameObject.Find("Main Canvas");
 
-		TransitionController = GameObject.Find("Transition Controller").gameObject;
+		TransitionController = GameObject.Find("Transition Controller");
 		TranAnim = TransitionController.GetComponent<Animator>();
 
 	}

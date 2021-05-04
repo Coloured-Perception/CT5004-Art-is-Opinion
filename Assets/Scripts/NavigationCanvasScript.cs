@@ -16,13 +16,19 @@ public class NavigationCanvasScript : MonoBehaviour {
 	}
 
 	public void ChangeScene() {
-		//Debug.Log(gameObject.name);
+		Debug.Log(gameObject.name + "  name");
 		cameraShutterScript.toScene = this.gameObject.name;
+		Debug.Log(cameraShutterScript.toScene + "  set");
+
 	}
 	public void Move() {
 		//Debug.Log(gameObject.name);
-		cameraAnim.enabled = true;
-		cameraAnim.Play(this.gameObject.name);
+		if (gameObject.name == "SLtoP" && PlayerPrefs.GetInt("portraitLevel") == 0) {
+
+		} else {
+			cameraAnim.enabled = true;
+			cameraAnim.Play(this.gameObject.name);
+		}
 	}
 
 }
