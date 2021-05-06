@@ -79,5 +79,46 @@ public class DialogueList : MonoBehaviour {
 			string[] shortTimeDescriptions = { "Not much effort here", "You finished that in the time it takes for me to finish a sketch!", "You've obviously had a lot of practice to be that quick", "I would have preferred if you put a bit more of an effort in", "It's lacking some details... but still looks cool!" };
 			reviewDescriptions.AddRange(shortTimeDescriptions);
 		}
+
+		// Colour related reactions & descriptions
+		int coloursUsed = PlayerPrefs.GetInt("ColoursUsed");
+		if (coloursUsed == 1) {
+			string[] monochromeReactions = { "Monochrome? Nice choice." };
+			reactions.AddRange(monochromeReactions);
+		} else if (coloursUsed > 3 && coloursUsed < 9) {
+			string[] someColoursReactions = { "ooooh! The colours look great!" };
+			reactions.AddRange(someColoursReactions);
+
+			string[] someColoursDescriptions = { "Love the use of colour." };
+			reviewDescriptions.AddRange(someColoursDescriptions);
+		} else if (coloursUsed == 10) {
+			string[] allColoursReactions = { "Whoa! That's very bright!", "You had fun with that one, didn't you?", "I can see the whole rainbow!" };
+			reactions.AddRange(allColoursReactions);
+
+			string[] allColoursDescriptions = { "This is a very dramatic use of colour." };
+			reviewDescriptions.AddRange(allColoursDescriptions);
+		}
+
+		// Brush shape related reactions & descriptions
+		int brushesUsed = PlayerPrefs.GetInt("BrushesUsed");
+		if (brushesUsed == 1) {
+			string[] oneBrushReactions = { "You did all that with one brush?" };
+			reactions.AddRange(oneBrushReactions);
+
+			string[] oneBrushDescriptions = { "I love the consistent texture.", "Very little contrast in textures there." };
+			reviewDescriptions.AddRange(oneBrushDescriptions);
+		} else if (brushesUsed > 5 && brushesUsed < 45) {
+			string[] someBrushesUsedReactions = { "You got some cool textures there," };
+			reactions.AddRange(someBrushesUsedReactions);
+
+			string[] someBrushesUsedDescriptions = { "Some nice variations going on there.", "Those bits you done with the other brush really sticks out." };
+			reviewDescriptions.AddRange(someBrushesUsedDescriptions);
+		} else if (brushesUsed == 47) {
+			string[] allBrushesReactions = { "Wow! There's a lot going on there.", "I can see every brush stroke!" };
+			reactions.AddRange(allBrushesReactions);
+
+			string[] allBrushesDescriptions = { "Everything's getting lost in the range of textures.", "The textures are so vibrant." };
+			reviewDescriptions.AddRange(allBrushesDescriptions);
+		}
 	}
 }

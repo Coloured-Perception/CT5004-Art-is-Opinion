@@ -14,8 +14,6 @@ public class ReviewArtScript : MonoBehaviour {
 	/// Get's information on what previous scene was
 	/// </summary>
 	private void Awake() {
-		Debug.Log("Time: " + PlayerPrefs.GetInt("PaintTime"));
-
 		lastScene = PlayerPrefs.GetString("LastScene", null);
 	}
 

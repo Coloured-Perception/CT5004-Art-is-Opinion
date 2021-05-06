@@ -43,7 +43,8 @@ namespace unitycoder_MobilePaint {
 		public bool connectBrushStokes = true;  // if brush moves too fast, then connect them with line. NOTE! Disable this if you are painting to custom mesh
 
 		// Default settings for brush
-		public Color32 paintColor = new Color32(255, 0, 0, 255);    // Colour: Red
+		//public Color32 paintColor = new Color32(255, 0, 0, 255);    // Colour: Red
+		public Color32 paintColor = new Color32(255, 255, 255, 255);
 		public int brushSize = 24;
 		public int brushSizeMin = 10;
 		public int brushSizeMax = 64;
@@ -192,6 +193,8 @@ namespace unitycoder_MobilePaint {
 
 		// zoom pan
 		private bool isZoomingOrPanning = false;
+
+		public PaintDetailsScript paintDetails;
 
 		void Awake() {
 			//isEyeTracker = settingsScript.isTobii;	// Changes eye-tracking to be same as player picked option
@@ -495,6 +498,17 @@ namespace unitycoder_MobilePaint {
 							Debug.LogError("Unknown drawMode");
 							break;
 					}
+
+					if (!paintDetails.coloursUsed.Contains(paintColor)) {
+						paintDetails.coloursUsed.Add(paintColor);
+						//Debug.Log(paintDetails.coloursUsed.Count);
+					}
+
+					if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+						paintDetails.brushesUsed.Add(selectedBrush);
+						//Debug.Log(paintDetails.brushesUsed.Count);
+					}
+
 					textureNeedsUpdate = true;
 				}
 
@@ -617,6 +631,16 @@ namespace unitycoder_MobilePaint {
 					default:    // unknown DrawMode
 						Debug.LogError("Unknown drawMode");
 						break;
+				}
+
+				if (!paintDetails.coloursUsed.Contains(paintColor)) {
+					paintDetails.coloursUsed.Add(paintColor);
+					//Debug.Log(paintDetails.coloursUsed.Count);
+				}
+
+				if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+					paintDetails.brushesUsed.Add(selectedBrush);
+					//Debug.Log(paintDetails.brushesUsed.Count);
 				}
 				textureNeedsUpdate = true;
 			}
