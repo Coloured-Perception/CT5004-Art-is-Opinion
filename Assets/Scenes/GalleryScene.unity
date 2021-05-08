@@ -5511,6 +5511,72 @@ Transform:
   m_Father: {fileID: 472727524}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 75.14101, y: 46.555, z: 90.00001}
+--- !u!1 &117175117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 117175119}
+  - component: {fileID: 117175118}
+  m_Layer: 0
+  m_Name: GazeAwareGallery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &117175118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117175117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81268d7221bee2346849d02ed5114ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntranceButton: {fileID: 826573344}
+  TableButton: {fileID: 1756226901}
+  MagazineButton: {fileID: 641535653}
+  StillLifeButton: {fileID: 373224394}
+  PortraitButton: {fileID: 738273581}
+  TutorialButton: {fileID: 162627877}
+  ShopButton: {fileID: 1085921221}
+  EtoSLButton: {fileID: 850796182}
+  SLtoEButton: {fileID: 1466672079}
+  EtoRButton: {fileID: 1743826153}
+  RtoEButton: {fileID: 527722595}
+  RtoOButton: {fileID: 2025957490}
+  OtoRButton: {fileID: 1366731305}
+  SLtoPButton: {fileID: 233447503}
+  PtoSLButton: {fileID: 455563577}
+  EtoFPButton: {fileID: 650799728}
+  FPtoEButton: {fileID: 1688353323}
+  FLtoRButton: {fileID: 896373994}
+  RtoFLButton: {fileID: 227738383}
+  FLtoFPButton: {fileID: 421769314}
+  FPtoFLButton: {fileID: 0}
+  transitionController: {fileID: 902581726}
+  mainCam: {fileID: 875175375}
+--- !u!4 &117175119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117175117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.1624956, y: 1.9346385, z: 7.6876507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &129751540
 GameObject:
   m_ObjectHideFlags: 0
@@ -6541,7 +6607,8 @@ GameObject:
   - component: {fileID: 227738387}
   - component: {fileID: 227738386}
   - component: {fileID: 227738385}
-  m_Layer: 5
+  - component: {fileID: 227738389}
+  m_Layer: 0
   m_Name: RtoFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6672,6 +6739,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227738383}
   m_CullTransparentMesh: 0
+--- !u!65 &227738389
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227738383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 4.09, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &233447503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6685,7 +6765,8 @@ GameObject:
   - component: {fileID: 233447507}
   - component: {fileID: 233447506}
   - component: {fileID: 233447505}
-  m_Layer: 5
+  - component: {fileID: 233447509}
+  m_Layer: 0
   m_Name: SLtoP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6816,6 +6897,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233447503}
   m_CullTransparentMesh: 0
+--- !u!65 &233447509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233447503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 4.13, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &242943871
 GameObject:
   m_ObjectHideFlags: 0
@@ -7873,7 +7967,8 @@ GameObject:
   - component: {fileID: 421769318}
   - component: {fileID: 421769317}
   - component: {fileID: 421769316}
-  m_Layer: 5
+  - component: {fileID: 421769320}
+  m_Layer: 0
   m_Name: FPtoFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8004,6 +8099,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421769314}
   m_CullTransparentMesh: 0
+--- !u!65 &421769320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421769314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.32, y: 4.03, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &432871034
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,7 +8204,8 @@ GameObject:
   - component: {fileID: 455563581}
   - component: {fileID: 455563580}
   - component: {fileID: 455563579}
-  m_Layer: 5
+  - component: {fileID: 455563583}
+  m_Layer: 0
   m_Name: PtoSL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8227,6 +8336,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455563577}
   m_CullTransparentMesh: 0
+--- !u!65 &455563583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455563577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 4.13, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &462917991
 GameObject:
   m_ObjectHideFlags: 0
@@ -8582,7 +8704,8 @@ GameObject:
   - component: {fileID: 527722599}
   - component: {fileID: 527722598}
   - component: {fileID: 527722597}
-  m_Layer: 5
+  - component: {fileID: 527722601}
+  m_Layer: 0
   m_Name: RtoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8713,6 +8836,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527722595}
   m_CullTransparentMesh: 0
+--- !u!65 &527722601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527722595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.98, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &536209741
 GameObject:
   m_ObjectHideFlags: 0
@@ -14613,7 +14749,8 @@ GameObject:
   - component: {fileID: 650799732}
   - component: {fileID: 650799731}
   - component: {fileID: 650799730}
-  m_Layer: 5
+  - component: {fileID: 650799734}
+  m_Layer: 0
   m_Name: EtoFP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14744,6 +14881,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650799728}
   m_CullTransparentMesh: 0
+--- !u!65 &650799734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650799728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.66, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &666648498
 GameObject:
   m_ObjectHideFlags: 0
@@ -16236,7 +16386,8 @@ GameObject:
   - component: {fileID: 850796186}
   - component: {fileID: 850796185}
   - component: {fileID: 850796184}
-  m_Layer: 5
+  - component: {fileID: 850796188}
+  m_Layer: 0
   m_Name: EtoSL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16367,6 +16518,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850796182}
   m_CullTransparentMesh: 0
+--- !u!65 &850796188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850796182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &851364855
 GameObject:
   m_ObjectHideFlags: 0
@@ -16462,7 +16626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &855727526
 Transform:
   m_ObjectHideFlags: 0
@@ -16499,7 +16663,7 @@ MonoBehaviour:
   speed: 1
   isTobii: 0
   continuousRotate: 0
-  cam: {fileID: 0}
+  cam: {fileID: 875175375}
 --- !u!1 &856328509
 GameObject:
   m_ObjectHideFlags: 0
@@ -16838,7 +17002,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: afb3a51e958c3894293186e10ddddda6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -16923,7 +17087,8 @@ GameObject:
   - component: {fileID: 896373998}
   - component: {fileID: 896373997}
   - component: {fileID: 896373996}
-  m_Layer: 5
+  - component: {fileID: 896374000}
+  m_Layer: 0
   m_Name: FLtoR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17054,6 +17219,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896373994}
   m_CullTransparentMesh: 0
+--- !u!65 &896374000
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896373994}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 4.09, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &902101063
 GameObject:
   m_ObjectHideFlags: 0
@@ -17262,8 +17440,19 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 305648664235076648, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66ee66d395e55ad4f9ae927ba00ef3c1, type: 3}
+--- !u!1 &902581726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 305648664235076649, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 902581725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &916329635
 GameObject:
   m_ObjectHideFlags: 0
@@ -25548,7 +25737,8 @@ GameObject:
   - component: {fileID: 1366731309}
   - component: {fileID: 1366731308}
   - component: {fileID: 1366731307}
-  m_Layer: 5
+  - component: {fileID: 1366731311}
+  m_Layer: 0
   m_Name: OtoR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25701,6 +25891,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366731305}
   m_CullTransparentMesh: 0
+--- !u!65 &1366731311
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366731305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 3.25, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1372891377
 GameObject:
   m_ObjectHideFlags: 0
@@ -26654,7 +26857,8 @@ GameObject:
   - component: {fileID: 1466672083}
   - component: {fileID: 1466672082}
   - component: {fileID: 1466672081}
-  m_Layer: 5
+  - component: {fileID: 1466672085}
+  m_Layer: 0
   m_Name: SLtoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26785,6 +26989,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466672079}
   m_CullTransparentMesh: 0
+--- !u!65 &1466672085
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466672079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1489477809
 GameObject:
   m_ObjectHideFlags: 0
@@ -26877,7 +27094,8 @@ GameObject:
   - component: {fileID: 1490141508}
   - component: {fileID: 1490141507}
   - component: {fileID: 1490141506}
-  m_Layer: 5
+  - component: {fileID: 1490141510}
+  m_Layer: 0
   m_Name: FLtoFP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27008,6 +27226,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490141504}
   m_CullTransparentMesh: 0
+--- !u!65 &1490141510
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490141504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.32, y: 4.03, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1527161279
 GameObject:
   m_ObjectHideFlags: 0
@@ -32837,6 +33068,60 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1682301548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682301550}
+  - component: {fileID: 1682301549}
+  m_Layer: 0
+  m_Name: RotateCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1682301549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682301548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7d6b322058ef946a18a86cdb16b6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headGazeContribution: 0
+  maxAngleX: 0
+  maxAngleY: 360
+  minAngleX: 0
+  minAngleY: -360
+  sensitivity: 5
+  responsiveness: 1
+  speed: 1
+  isTobii: 0
+  continuousRotate: 0
+  cam: {fileID: 875175375}
+--- !u!4 &1682301550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682301548}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.35376, y: 19.811981, z: 2.1244764}
+  m_LocalScale: {x: 0.59013, y: 0.59013, z: 0.59013}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683796372
 GameObject:
   m_ObjectHideFlags: 0
@@ -32929,7 +33214,8 @@ GameObject:
   - component: {fileID: 1688353327}
   - component: {fileID: 1688353326}
   - component: {fileID: 1688353325}
-  m_Layer: 5
+  - component: {fileID: 1688353329}
+  m_Layer: 0
   m_Name: FPtoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33060,6 +33346,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688353323}
   m_CullTransparentMesh: 0
+--- !u!65 &1688353329
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688353323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.66, y: 4, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1689778453
 GameObject:
   m_ObjectHideFlags: 0
@@ -33870,7 +34169,8 @@ GameObject:
   - component: {fileID: 1743826157}
   - component: {fileID: 1743826156}
   - component: {fileID: 1743826155}
-  m_Layer: 5
+  - component: {fileID: 1743826159}
+  m_Layer: 0
   m_Name: EtoR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34001,6 +34301,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743826153}
   m_CullTransparentMesh: 0
+--- !u!65 &1743826159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743826153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.98, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1752457464
 GameObject:
   m_ObjectHideFlags: 0
@@ -36082,7 +36395,8 @@ GameObject:
   - component: {fileID: 2025957494}
   - component: {fileID: 2025957493}
   - component: {fileID: 2025957492}
-  m_Layer: 5
+  - component: {fileID: 2025957496}
+  m_Layer: 0
   m_Name: RtoO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36235,6 +36549,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025957490}
   m_CullTransparentMesh: 0
+--- !u!65 &2025957496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025957490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 3.25, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2029170841
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,7 +113,8 @@ public class CameraShutterScript : MonoBehaviour {
 				tutorialDialogeManager.StartDialogue();
 				PlayerPrefs.SetInt("portraitLevel", 2);
 			}
-		}
+            CameraAnim.applyRootMotion = true;
+        }
 		PlayerPrefs.SetInt("fromOutside", 0);
 		gameObject.SetActive(false);
 	}

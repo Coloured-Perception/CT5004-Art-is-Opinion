@@ -211,7 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 7.9, y: 0, z: 0}
 --- !u!95 &75766444
 Animator:
@@ -1634,7 +1634,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 16442aff80b9b164aa42093e2e2b3a7c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 16442aff80b9b164aa42093e2e2b3a7c,
         type: 3}
@@ -1925,6 +1925,8 @@ MonoBehaviour:
   buttonTemplate: {fileID: 11400000, guid: 48c213150402ad94183fe2d1a86eefc2, type: 3}
   brushSizeScript: {fileID: 1350818534}
   panel: {fileID: 679784042}
+  isEyeTracker: 0
+  mainCam: {fileID: 0}
   padding: 30
   brushPreview: {fileID: 2028367486}
   sizeReference: 0
@@ -2724,7 +2726,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 13b917ec47950764e9bb319cd90cd420,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 13b917ec47950764e9bb319cd90cd420,
         type: 3}
@@ -4230,7 +4232,7 @@ RectTransform:
   m_GameObject: {fileID: 2028367486}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -1.6029468}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 1591035111}
   m_RootOrder: 1
@@ -4274,7 +4276,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028367486}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &2028367490
 MonoBehaviour:
   m_ObjectHideFlags: 0

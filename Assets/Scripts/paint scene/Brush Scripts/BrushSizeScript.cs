@@ -1,78 +1,152 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace unitycoder_MobilePaint {
-	public class BrushSizeScript : MonoBehaviour {
+namespace unitycoder_MobilePaint
+{
+    /// <summary>
+    /// This class is used to change the size of a custom brush and the brush preview
+    /// </summary>
+    public class BrushSizeScript : MonoBehaviour
+    {
+        // Size boundaries for brush
+        private int maxDifference = 3;
+        private int minDifference = -2;
+        private int sizeDifference;
+        private string PreviewName;
+        public int customSize;
 
-		private int maxBrush = 5;
-		private int minBrush = 0;
-		private string PreviewName;
-		public int customSize;
-		[SerializeField]
-		GameObject brushPreview;
-		MobilePaint mobilePaint;
-		public CustomBrushesUI customBrushesUI;
+        [SerializeField]
+        GameObject brushPreview;
 
-		void Start() {
-			mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager
-			customSize = 2;
-		}
+        MobilePaint mobilePaint;
+        public CustomBrushesUI customBrushesUI;
 
-		/// <summary>
-		/// changes the brush preview
-		/// 6 is the number of sizes for each brush
-		/// note that the custom brushes are listed on DrawingPlaneCanvas 
-		/// and the element numbers are listed in the reverse order of the sprite numbers 
-		/// to add new brushes just copy and paste the last else if and change the name and multiplyer 
-		/// </summary>
-		public void DecreaseBrushSize() {
-			if (customSize > minBrush) {
-				customSize -= 1;
-				PreviewName = brushPreview.GetComponent<RawImage>().texture.name;
+        /// <summary>
+        /// Gets reference to MobilePaint script (and it's methods) through PaintManager.
+        ///	Assigns initial values for brush
+        /// </summary>
+        void Start()
+        {
+            mobilePaint = PaintManager.mobilePaint; // Gets reference to mobilePaint through PaintManager
+            customSize = 2;
+            mobilePaint.selectedBrush = 2;
+            mobilePaint.ReadCurrentCustomBrush();   // Tell mobile paint to read custom brush pixel data
+            mobilePaint.SetDrawModeShapes();
+        }
 
-				if (PreviewName.StartsWith("Circle")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 0 + customSize];
-				} else if (PreviewName.StartsWith("Square")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 1 + customSize];
-				} else if (PreviewName.StartsWith("Soft")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 2 + customSize];
-				} else if (PreviewName.StartsWith("Splater")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 3 + customSize];
-				} else if (PreviewName.StartsWith("Spoty")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 4 + customSize];
-				} else if (PreviewName.StartsWith("Dots")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 5 + customSize];
-				} else if (PreviewName.StartsWith("Angled Splat")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 6 + customSize];
-				} else if (PreviewName.StartsWith("Sharp Stones")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 7 + customSize];
-				}
-			}
-		}
+        /// <summary>
+        /// When called, custom brush and it's preview will decrease in size by set amount
+        /// </summary>
+        public void DecreaseBrushSize()
+        {
+            if (sizeDifference > minDifference)
+            {
+                sizeDifference -= 1;
+                PreviewName = brushPreview.GetComponent<RawImage>().texture.name;
 
-		public void IncreaseBrushSize() {
-			if (customSize < maxBrush) {
-				customSize += 1;
-				PreviewName = brushPreview.GetComponent<RawImage>().texture.name;
+                if (PreviewName.StartsWith("Circle"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 0 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Square"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 1 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Soft"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 2 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Splater"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 3 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Spoty"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Dots"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Angled Splat"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                else if (PreviewName.StartsWith("Sharp Stones"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale / 1.4f;
+                }
+                customSize -= 1;
+                mobilePaint.selectedBrush -= 1;
+                mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+                mobilePaint.SetDrawModeShapes();
+            }
+        }
 
-				if (PreviewName.StartsWith("Circle")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 0 + customSize];
-				} else if (PreviewName.StartsWith("Square")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 1 + customSize];
-				} else if (PreviewName.StartsWith("Soft")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 2 + customSize];
-				} else if (PreviewName.StartsWith("Splater")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 3 + customSize];
-				} else if (PreviewName.StartsWith("Spoty")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 4 + customSize];
-				} else if (PreviewName.StartsWith("Dots")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 5 + customSize];
-				} else if (PreviewName.StartsWith("Angled Splat")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 6 + customSize];
-				} else if (PreviewName.StartsWith("Sharp Stones")) {
-					brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[ 6 * 7 + customSize];
-				}
-			}
-		}
-	}
+        /// <summary>
+        /// When called, custom brush and it's preview will increase in size by set amount
+        /// </summary>
+        public void IncreaseBrushSize()
+        {
+
+            if (sizeDifference < maxDifference)
+            {
+                sizeDifference += 1;
+                PreviewName = brushPreview.GetComponent<RawImage>().texture.name;
+
+                if (PreviewName.StartsWith("Circle"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 0 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Square"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 1 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Soft"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 2 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Splater"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 3 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Spoty"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 4 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Dots"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 5 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Angled Splat"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 6 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                else if (PreviewName.StartsWith("Sharp Stones"))
+                {
+                    brushPreview.GetComponent<RawImage>().texture = mobilePaint.customBrushes[2 + 6 * 7 + sizeDifference];
+                    brushPreview.transform.localScale = brushPreview.transform.localScale * 1.4f;
+                }
+                customSize += 1;
+                mobilePaint.selectedBrush += 1;
+                mobilePaint.ReadCurrentCustomBrush();   // tell mobile paint to read custom brush pixel data
+                mobilePaint.SetDrawModeShapes();
+            }
+        }
+    }
 }
