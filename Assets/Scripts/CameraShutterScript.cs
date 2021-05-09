@@ -130,6 +130,9 @@ public class CameraShutterScript : MonoBehaviour {
 			PlayerPrefs.SetInt("fromTutorial", 1);
 			toScene = "Gallery";
 		}
+		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+			toScene = "Street";
+		}
 		//Debug.Log(toScene);
 		SceneManager.LoadScene(toScene + "Scene");
 	}

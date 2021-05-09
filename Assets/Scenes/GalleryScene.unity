@@ -5559,8 +5559,8 @@ MonoBehaviour:
   FPtoEButton: {fileID: 1688353323}
   FLtoRButton: {fileID: 896373994}
   RtoFLButton: {fileID: 227738383}
-  FLtoFPButton: {fileID: 421769314}
-  FPtoFLButton: {fileID: 0}
+  FLtoFPButton: {fileID: 1490141504}
+  FPtoFLButton: {fileID: 421769314}
   transitionController: {fileID: 902581726}
   mainCam: {fileID: 875175375}
 --- !u!4 &117175119
@@ -6748,7 +6748,7 @@ BoxCollider:
   m_GameObject: {fileID: 227738383}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.25, y: 4.09, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6906,7 +6906,7 @@ BoxCollider:
   m_GameObject: {fileID: 233447503}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5, y: 4.13, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7632,7 +7632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581726}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -7643,7 +7643,7 @@ MonoBehaviour:
           m_StringArgument: BlinkClose
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 373224396}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -7654,7 +7654,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581727}
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
@@ -8108,7 +8108,7 @@ BoxCollider:
   m_GameObject: {fileID: 421769314}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.32, y: 4.03, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8345,7 +8345,7 @@ BoxCollider:
   m_GameObject: {fileID: 455563577}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5, y: 4.13, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8845,7 +8845,7 @@ BoxCollider:
   m_GameObject: {fileID: 527722595}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 3.98, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -14664,7 +14664,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581726}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -14675,7 +14675,7 @@ MonoBehaviour:
           m_StringArgument: BlinkClose
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 641535655}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -14686,7 +14686,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581727}
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
@@ -14890,7 +14890,7 @@ BoxCollider:
   m_GameObject: {fileID: 650799728}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.66, y: 4, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -15587,7 +15587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581726}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -15598,7 +15598,7 @@ MonoBehaviour:
           m_StringArgument: BlinkClose
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 738273583}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -15609,7 +15609,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581727}
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
@@ -15907,11 +15907,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
     - target: {fileID: -2580401976822039993, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_IsActive
@@ -15932,26 +15927,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
-    - target: {fileID: -2812103571984967175, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 143a8ebbbed3c2f418ee4be434ab8c8e, type: 2}
-    - target: {fileID: 4387354725402107531, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d0e114a65a0bef244b26f4f1fa3aab66, type: 2}
-    - target: {fileID: 7452408553526103673, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
-    - target: {fileID: 4339022492661094619, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dcc8fbe57763cf84d9d3e88e70d72551, type: 2}
     - target: {fileID: -4872030283175369165, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_IsActive
@@ -15967,6 +15942,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2812103571984967175, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 143a8ebbbed3c2f418ee4be434ab8c8e, type: 2}
+    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
+    - target: {fileID: 4387354725402107531, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d0e114a65a0bef244b26f4f1fa3aab66, type: 2}
+    - target: {fileID: 7452408553526103673, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
+    - target: {fileID: 4339022492661094619, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dcc8fbe57763cf84d9d3e88e70d72551, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3b9f43d418a6349b2c2e45f489c569, type: 3}
 --- !u!1 &758898181
@@ -16289,7 +16289,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581726}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -16300,7 +16300,7 @@ MonoBehaviour:
           m_StringArgument: BlinkClose
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 826573349}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -16311,7 +16311,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581727}
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
@@ -16527,7 +16527,7 @@ BoxCollider:
   m_GameObject: {fileID: 850796182}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.45, y: 4, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16982,13 +16982,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875175370}
-  m_LocalRotation: {x: -0, y: 0.5885536, z: -0, w: 0.8084582}
-  m_LocalPosition: {x: -5.57, y: 1.7, z: 8.76}
+  m_LocalRotation: {x: 0, y: 0.34201995, z: -0, w: -0.93969274}
+  m_LocalPosition: {x: -3.77, y: 1.7, z: 6.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 72.109, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -400, z: 0}
 --- !u!95 &875175372
 Animator:
   serializedVersion: 3
@@ -17228,7 +17228,7 @@ BoxCollider:
   m_GameObject: {fileID: 896373994}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.25, y: 4.09, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -17450,6 +17450,12 @@ PrefabInstance:
 --- !u!1 &902581726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 305648664235076649, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 902581725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &902581727 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 305648664235076660, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
     type: 3}
   m_PrefabInstance: {fileID: 902581725}
   m_PrefabAsset: {fileID: 0}
@@ -25831,7 +25837,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1366731307}
-        m_MethodName: ChangeScene
+        m_MethodName: Move
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25900,7 +25906,7 @@ BoxCollider:
   m_GameObject: {fileID: 1366731305}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.5, y: 3.25, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -26998,7 +27004,7 @@ BoxCollider:
   m_GameObject: {fileID: 1466672079}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.45, y: 4, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -27235,7 +27241,7 @@ BoxCollider:
   m_GameObject: {fileID: 1490141504}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.32, y: 4.03, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -33355,7 +33361,7 @@ BoxCollider:
   m_GameObject: {fileID: 1688353323}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.66, y: 4, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -34310,7 +34316,7 @@ BoxCollider:
   m_GameObject: {fileID: 1743826153}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 3.98, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -34488,7 +34494,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581726}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -34499,7 +34505,7 @@ MonoBehaviour:
           m_StringArgument: BlinkClose
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1756226903}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -34510,7 +34516,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 902581727}
         m_MethodName: Play
         m_Mode: 5
         m_Arguments:
@@ -36489,7 +36495,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 2025957492}
-        m_MethodName: ChangeScene
+        m_MethodName: Move
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36558,7 +36564,7 @@ BoxCollider:
   m_GameObject: {fileID: 2025957490}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.5, y: 3.25, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}

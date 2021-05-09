@@ -252,6 +252,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 305648664235076648, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1564965142757605059, guid: 66ee66d395e55ad4f9ae927ba00ef3c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66ee66d395e55ad4f9ae927ba00ef3c1, type: 3}
@@ -397,10 +402,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis scelerisque
-    ipsum, at semper tellus. Pellentesque nec lobortis felis. Etiam posuere at dui
-    auctor varius. Nulla tempor, purus sit amet tincidunt efficitur, sem est rutrum
-    nunc, vitae varius orci libero id nulla.
+  m_Text: 
 --- !u!222 &118338818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1002,7 +1004,7 @@ GameObject:
   - component: {fileID: 544408817}
   m_Layer: 5
   m_Name: Gallery Canvas
-  m_TagString: Untagged
+  m_TagString: PortraitGallery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2052,6 +2054,8 @@ MonoBehaviour:
   speech: []
   request: []
   dogSpeech: []
+  reactions: []
+  reviewDescriptions: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,7 +7463,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Fgrettsglig Huyfukyf '
+  m_Text: 
 --- !u!222 &1238478247
 CanvasRenderer:
   m_ObjectHideFlags: 0

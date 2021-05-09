@@ -21,7 +21,7 @@ public class BackToStreetScript : MonoBehaviour {
 	///// but the scene change is not dependent on it
 	///// </summary>
 	//public void DontSave() {
-	//	cameraShutterScript.CameraClose();
+	//	//cameraShutterScript.CameraClose();
 	//	sceneChangeWait = 2;
 	//}
 

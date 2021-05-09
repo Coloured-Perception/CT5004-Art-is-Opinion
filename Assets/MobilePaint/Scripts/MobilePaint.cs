@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using Tobii.Gaming;
+using UnityEngine.SceneManagement;
 
 namespace unitycoder_MobilePaint {
 	public enum DrawMode {
@@ -23,56 +24,57 @@ namespace unitycoder_MobilePaint {
 	[RequireComponent(typeof(MeshRenderer))]
 	public class MobilePaint : MonoBehaviour {
 		// Declaring variables related to Tobii eye-tracker input
-		List<GazePoint> gazePoint;  // A list of co-ordinates where the player is looking
+		[Header("Tobii Eye-tracking")]
 		public bool isEyeTracker = true;    // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker
-		bool isGazing = true;   // Used to say whether the player is looking at a point long enough
+		bool isGazing = true;               // Used to say whether the player is looking at a point long enough
+		List<GazePoint> gazePoint;          // A list of co-ordinates where the player is looking
 		Vector2 filteredPoint;
 
 		[Header("Mouse or Touch")]
 		public bool enableTouch = false;
 
 		[Space(10)]
-		public LayerMask paintLayerMask = 1 << 0; // to which layer our paint canvas is at (used in raycast)
+		public LayerMask paintLayerMask = 1 << 0;   // to which layer our paint canvas is at (used in raycast)
 
-		public bool createCanvasMesh = false; // default canvas is full screen quad, if disabled existing mesh is used
+		public bool createCanvasMesh = false;   // default canvas is full screen quad, if disabled existing mesh is used
 
-		public RectTransform referenceArea; // we will match the size of this reference object
-		private float canvasScaleFactor = 1; // canvas scaling factor (will be taken from Canvas)
+		public RectTransform referenceArea;     // we will match the size of this reference object
+		private float canvasScaleFactor = 1;    // canvas scaling factor (will be taken from Canvas)
 
 		[Header("Brush Settings")]
-		public bool connectBrushStokes = true; // if brush moves too fast, then connect them with line. NOTE! Disable this if you are painting to custom mesh
+		public bool connectBrushStokes = true;  // if brush moves too fast, then connect them with line. NOTE! Disable this if you are painting to custom mesh
 
 		// Default settings for brush
-		public Color32 paintColor = new Color32(255, 0, 0, 255); // Colour: Red
+		public Color32 paintColor = new Color32(255, 32, 32, 32);   // Colour: Black
 		public int brushSize = 24;
 		public int brushSizeMin = 10;
 		public int brushSizeMax = 64;
 
 		// cached calculations
-		public bool hiQualityBrush = false; // Draw more brush strokes when moving NOTE: this is slow on mobiles!
-		private int brushSizeX1 = 48; // << 1
-		private int brushSizeXbrushSize = 576; // x*x
-		private int brushSizeX4 = 96; // << 2
-		private int brushSizeDiv4 = 6; // >> 2 == /4
+		public bool hiQualityBrush = false;     // Draw more brush strokes when moving NOTE: this is slow on mobiles!
+		private int brushSizeX1 = 48;           // << 1
+		private int brushSizeXbrushSize = 576;  // x*x
+		private int brushSizeX4 = 96;           // << 2
+		private int brushSizeDiv4 = 6;          // >> 2 == /4
 
-		public bool realTimeTexUpdate = true; // if set to true, ignore textureUpdateSpeed, and always update when textureNeedsUpdate gets set to true when drawing
+		public bool realTimeTexUpdate = true;   // if set to true, ignore textureUpdateSpeed, and always update when textureNeedsUpdate gets set to true when drawing
 		public float textureUpdateSpeed = 0.1f; // how often texture should be updated (0 = no delay, 1 = every one seconds)
 		private float nextTextureUpdate = 0;
 
-		public bool useAdditiveColors = false; // true = alpha adds up slowly, false = 1 click will instantly set alpha to brush or paint color alpha value
+		public bool useAdditiveColors = false;  // true = alpha adds up slowly, false = 1 click will instantly set alpha to brush or paint color alpha value
 
-		public float brushAlphaStrength = 0.01f; // multiplier to soften brush additive alpha, 0.1f is nice & smooth, 1 = faster
-		private float brushAlphaStrengthVal = 0.01f; // cached calculation
+		public float brushAlphaStrength = 0.01f;        // multiplier to soften brush additive alpha, 0.1f is nice & smooth, 1 = faster
+		private float brushAlphaStrengthVal = 0.01f;    // cached calculation
 		private float alphaLerpVal = 0.1f;
 		private float brushAlphaLerpVal = 0.1f;
 
 		[Header("Options")]
-		public DrawMode drawMode = DrawMode.Default; // drawing modes: 0 = Default, 1 = custom brush, 2 = floodfill
-		public bool useLockArea = false; // locking mask: only paint in area of the color that your click first
-		public bool useMaskLayerOnly = false; // if true, only check pixels from mask layer, not from the painted texture
-		public bool smoothenMaskEdges = false; // less white edges with mask
+		public DrawMode drawMode = DrawMode.Default;    // drawing modes: 0 = Default, 1 = custom brush, 2 = floodfill
+		public bool useLockArea = false;                // locking mask: only paint in area of the color that your click first
+		public bool useMaskLayerOnly = false;           // if true, only check pixels from mask layer, not from the painted texture
+		public bool smoothenMaskEdges = false;          // less white edges with mask
 		public bool useThreshold = false;
-		public byte paintThreshold = 128; // 0 = only exact match, 255 = match anything
+		public byte paintThreshold = 128;               // 0 = only exact match, 255 = match anything
 
 		// ERASER
 		[Space(10)]
@@ -80,18 +82,18 @@ namespace unitycoder_MobilePaint {
 
 		// AREA FILL CALCULATIONS
 		[Space(10)]
-		public bool getAreaSize = false; // NOTE: to use this, someone has to listen the event AreaWasPainted (see scene "scene_MobilePaint_LockingMaskWithAreaCalculation")
+		public bool getAreaSize = false;    // NOTE: to use this, someone has to listen the event AreaWasPainted (see scene "scene_MobilePaint_LockingMaskWithAreaCalculation")
 		int initialX = 0;
 		int initialY = 0;
 		public delegate void AreaWasPainted(int fullArea, int filledArea, float percentageFilled, Vector3 point);
 		public event AreaWasPainted AreaPaintedEvent;
 
-		private byte[] lockMaskPixels; // locking mask pixels
+		private byte[] lockMaskPixels;  // locking mask pixels
 
-		public bool canDrawOnBlack = true; // to stop filling on mask black lines, FIXME: not working if its not pure black...
+		public bool canDrawOnBlack = true;  // to stop filling on mask black lines, FIXME: not working if its not pure black...
 
-		public Vector2 canvasSizeAdjust = new Vector2(0, 0); // this means, "ScreenResolution.xy+screenSizeAdjust.xy" (use only minus values, to add un-drawable border on right or bottom)
-		public string targetTexture = "_MainTex"; // target texture for this material shader (usually _MainTex)
+		public Vector2 canvasSizeAdjust = new Vector2(0, 0);    // this means, "ScreenResolution.xy+screenSizeAdjust.xy" (use only minus values, to add un-drawable border on right or bottom)
+		public string targetTexture = "_MainTex";               // target texture for this material shader (usually _MainTex)
 		public FilterMode filterMode = FilterMode.Point;
 
 		// canvas clear color
@@ -104,9 +106,9 @@ namespace unitycoder_MobilePaint {
 		[Header("Custom Brushes")]
 		public bool useCustomBrushes = false;
 		public Texture2D[] customBrushes;
-		public bool overrideCustomBrushColor = false; // uses paint color instead of brush texture color
-		public bool useCustomBrushAlpha = true; // true = use alpha from brush, false = use alpha from current paint color
-		public int selectedBrush = 0; // currently selected brush index
+		public bool overrideCustomBrushColor = false;   // uses paint color instead of brush texture color
+		public bool useCustomBrushAlpha = true;         // true = use alpha from brush, false = use alpha from current paint color
+		public int selectedBrush = 0;                   // currently selected brush index
 
 		private byte[] customBrushBytes;
 		private int customBrushWidth;
@@ -125,13 +127,13 @@ namespace unitycoder_MobilePaint {
 
 		[Header("Line Drawing")]
 		public Transform previewLineCircle;
-		Transform previewLineCircleStart; // clone for start of circle
-		Transform previewLineCircleEnd; // clone for end of circle
+		Transform previewLineCircleStart;       // clone for start of circle
+		Transform previewLineCircleEnd;         // clone for end of circle
 		bool haveStartedLine = false;
 		int firstClickX = 0;
 		int firstClickY = 0;
 		LineRenderer lineRenderer;
-		public bool snapLinesToGrid = false; // while drawing lines
+		public bool snapLinesToGrid = false;    // while drawing lines
 		public int gridResolution = 128;
 		int gridSize = 10;
 
@@ -141,43 +143,43 @@ namespace unitycoder_MobilePaint {
 		private const float BASE_HEIGHT = 480;
 
 		//	*** private variables, no need to touch ***
-		private byte[] pixels; // byte array for texture painting, this is the image that we paint into.
-		private byte[] maskPixels; // byte array for mask texture
+		private byte[] pixels;      // byte array for texture painting, this is the image that we paint into.
+		private byte[] maskPixels;  // byte array for mask texture
 		private byte[] clearPixels; // byte array for clearing texture
 
-		private Texture2D drawingTexture; // texture that we paint into (it gets updated from pixels[] array when painted)
+		private Texture2D drawingTexture;   // texture that we paint into (it gets updated from pixels[] array when painted)
 
 		[Header("Overrides")]
-		public float resolutionScaler = 1.0f; // 1 means screen resolution, 0.5f means half the screen resolution
+		public float resolutionScaler = 1.0f;   // 1 means screen resolution, 0.5f means half the screen resolution
 		public bool overrideResolution = false;
 		public int overrideWidth = 1024;
 		public int overrideHeight = 768;
 
 		private int texWidth;
 		private int texHeight;
-		private Touch touch; // touch reference
-		private bool wasTouching = false; // in previous frame we had touch
-		private Camera cam; // main camera reference
+		private Touch touch;                // touch reference
+		private bool wasTouching = false;   // in previous frame we had touch
+		private Camera cam;                 // main camera reference
 		private Renderer myRenderer;
 
 		private RaycastHit hit;
 		private bool wentOutside = false;
 
-		private bool usingClearingImage = false; // did we have initial texture as maintexture, then use it as clear pixels array
+		private bool usingClearingImage = false;    // did we have initial texture as maintexture, then use it as clear pixels array
 
-		private Vector2 pixelUV; // with mouse
+		private Vector2 pixelUV;    // with mouse
 		private Vector2 pixelUVOld; // with mouse
 
-		private Vector2[] pixelUVs; // mobiles
-		private Vector2[] pixelUVOlds; // mobiles
+		private Vector2[] pixelUVs;     // mobiles
+		private Vector2[] pixelUVOlds;  // mobiles
 
 		[HideInInspector]
 		public bool textureNeedsUpdate = false; // if we have modified texture
 
 		[Header("Misc")]
 		public bool undoEnabled = false;
-		private List<byte[]> undoPixels; // undo buffer(s)
-		private int maxUndoBuffers = 10; // how many undo buffers are kept in memory
+		private List<byte[]> undoPixels;    // undo buffer(s)
+		private int maxUndoBuffers = 10;    // how many undo buffers are kept in memory
 		public GameObject userInterface;
 		public bool hideUIWhilePainting = false;
 		private bool isUIVisible = true;
@@ -191,12 +193,14 @@ namespace unitycoder_MobilePaint {
 		// zoom pan
 		private bool isZoomingOrPanning = false;
 
+		public PaintDetailsScript paintDetails;
+
 		void Awake() {
 			// cache components
 			cam = Camera.main;
 			myRenderer = GetComponent<Renderer>();
 
-			if (gameObject.GetComponent<MeshCollider>() == null) gameObject.AddComponent<MeshCollider>();
+			if (gameObject.GetComponent<MeshCollider>() == null) { gameObject.AddComponent<MeshCollider>(); }
 
 			GameObject go = GameObject.Find("EventSystem");
 			if (go == null) {
@@ -211,9 +215,11 @@ namespace unitycoder_MobilePaint {
 			gazePoint = new List<GazePoint>();
 		}
 
-		// all startup validations will be moved here
+		/// <summary>
+		/// All startup validations will be moved here
+		/// </summary>
 		void StartupValidation() {
-			if (cam == null) Debug.LogError("MainCamera not founded, you must have 1 camera active & tagged as MainCamera", gameObject);
+			if (cam == null) { Debug.LogError("MainCamera not founded, you must have 1 camera active & tagged as MainCamera", gameObject); }
 
 			if (userInterface == null) {
 				if (hideUIWhilePainting) {
@@ -239,12 +245,12 @@ namespace unitycoder_MobilePaint {
 				if (maskTex == null) {
 					Debug.LogWarning("maskImage is not assigned. Setting 'useMaskImage' to false", gameObject);
 					useMaskImage = false;
-					if (overrideResolution) Debug.LogWarning("overrideResolution cannot be used, when useMaskImage is true", gameObject);
+					if (overrideResolution) { Debug.LogWarning("overrideResolution cannot be used, when useMaskImage is true", gameObject); }
 				}
 			}
 
 			// check if target texture exists
-			if (!myRenderer.material.HasProperty(targetTexture)) Debug.LogError("Fatal error: Current shader doesn't have a property: '" + targetTexture + "'", gameObject);
+			if (!myRenderer.material.HasProperty(targetTexture)) { Debug.LogError("Fatal error: Current shader doesn't have a property: '" + targetTexture + "'", gameObject); }
 
 			if (getAreaSize) {
 				if (!useThreshold || !useMaskLayerOnly) {
@@ -252,9 +258,7 @@ namespace unitycoder_MobilePaint {
 				}
 			}
 
-			if (paintLayerMask.value == 0) {
-				Debug.LogWarning("paintLayerMask is set to 'nothing', assign same layer where the drawing canvas is", gameObject);
-			}
+			if (paintLayerMask.value == 0) { Debug.LogWarning("paintLayerMask is set to 'nothing', assign same layer where the drawing canvas is", gameObject); }
 
 			// validate & clamp override resolution
 			if (overrideResolution) {
@@ -274,9 +278,11 @@ namespace unitycoder_MobilePaint {
 					eraserMode = EraserMode.BackgroundColor;
 				}
 			}
-		} // StartupValidation()
+		}   // StartupValidation()
 
-		// rebuilds everything and reloads masks,textures..
+		/// <summary>
+		/// Rebuilds everything and reloads masks,textures...
+		/// </summary>
 		public void InitializeEverything() {
 			// for drawing lines preview
 			if (GetComponent<LineRenderer>() != null) {
@@ -288,8 +294,8 @@ namespace unitycoder_MobilePaint {
 
 				if (previewLineCircle) {
 					// spawn rounded circles for linedrawing, if not already in scene
-					if (!previewLineCircleStart) previewLineCircleStart = Instantiate(previewLineCircle) as Transform;
-					if (!previewLineCircleEnd) previewLineCircleEnd = Instantiate(previewLineCircle) as Transform;
+					if (!previewLineCircleStart) { previewLineCircleStart = Instantiate(previewLineCircle) as Transform; }
+					if (!previewLineCircleEnd) { previewLineCircleEnd = Instantiate(previewLineCircle) as Transform; }
 
 					// hide them far away
 					previewLineCircleStart.position = Vector3.one * 99999;
@@ -319,35 +325,37 @@ namespace unitycoder_MobilePaint {
 			// create texture
 			if (useMaskImage) {
 				SetMaskImage(maskTex);
-			} else {  // no mask texture
-					  // overriding will also ignore Resolution Scaler value
+			} else {    // no mask texture
+						// overriding will also ignore Resolution Scaler value
 				if (overrideResolution) {
 					var err = false;
-					if (overrideWidth < 0 || overrideWidth > 4096) err = true;
-					if (overrideHeight < 0 || overrideHeight > 4096) err = true;
-					if (err) Debug.LogError("overrideWidth or overrideWidth is invalid - clamping to 4 or 4096");
+					if (overrideWidth < 0 || overrideWidth > 4096) { err = true; }
+					if (overrideHeight < 0 || overrideHeight > 4096) { err = true; }
+					if (err) { Debug.LogError("overrideWidth or overrideWidth is invalid - clamping to 4 or 4096"); }
 					texWidth = (int)Mathf.Clamp(overrideWidth, 4, 4096);
 					texHeight = (int)Mathf.Clamp(overrideHeight, 4, 4096);
-				} else { // use screen size as texture size
+				} else {    // use screen size as texture size
 					texWidth = (int)(Screen.width * resolutionScaler + canvasSizeAdjust.x);
 					texHeight = (int)(Screen.height * resolutionScaler + canvasSizeAdjust.y);
 				}
 			}
 
 			// we have no texture set for canvas, FIXME: this returns true if called initialize again, since texture gets created after this
-			if (myRenderer.material.GetTexture(targetTexture) == null && !usingClearingImage) // temporary fix by adding && !usingClearingImage
+			if (myRenderer.material.GetTexture(targetTexture) == null && !usingClearingImage)   // temporary fix by adding && !usingClearingImage
 			{
 				// create new texture
-				if (drawingTexture != null) Texture2D.DestroyImmediate(drawingTexture, true); // cleanup old texture
+				if (drawingTexture != null) {
+					Texture2D.DestroyImmediate(drawingTexture, true);   // cleanup old texture
+				}
 				drawingTexture = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
 				myRenderer.material.SetTexture(targetTexture, drawingTexture);
 
 				// init pixels array
 				pixels = new byte[texWidth * texHeight * 4];
-			} else { // we have canvas texture, then use that as clearing texture
+			} else {    // we have canvas texture, then use that as clearing texture
 				usingClearingImage = true;
 
-				if (overrideResolution) Debug.LogWarning("overrideResolution is not used, when canvas texture is assiged to material, we need to use the texture size");
+				if (overrideResolution) { Debug.LogWarning("overrideResolution is not used, when canvas texture is assiged to material, we need to use the texture size"); }
 
 				texWidth = myRenderer.material.GetTexture(targetTexture).width;
 				texHeight = myRenderer.material.GetTexture(targetTexture).height;
@@ -355,7 +363,9 @@ namespace unitycoder_MobilePaint {
 				// init pixels array
 				pixels = new byte[texWidth * texHeight * 4];
 
-				if (drawingTexture != null) Texture2D.DestroyImmediate(drawingTexture, true); // cleanup old texture
+				if (drawingTexture != null) {
+					Texture2D.DestroyImmediate(drawingTexture, true);   // cleanup old texture
+				}
 				drawingTexture = new Texture2D(texWidth, texHeight, TextureFormat.RGBA32, false);
 
 				// we keep current maintex and read it as "clear pixels array" (so when "clear image" is clicked, original texture is restored
@@ -373,24 +383,20 @@ namespace unitycoder_MobilePaint {
 				lockMaskPixels = new byte[texWidth * texHeight * 4];
 			}
 
- 
-
 			// grid for line shapes
 			gridSize = texWidth / gridResolution;
 
 			// init custom brush if used
-			if (useCustomBrushes && drawMode == DrawMode.CustomBrush) ReadCurrentCustomBrush();
+			if (useCustomBrushes && drawMode == DrawMode.CustomBrush) { ReadCurrentCustomBrush(); }
 
 			// whats our final resolution
-			if (debugMode) Debug.Log("Texture resolution:" + texWidth + "x" + texHeight);
+			if (debugMode) { Debug.Log("Texture resolution:" + texWidth + "x" + texHeight); }
 
 			// init undo buffer
-			if (undoEnabled) {
-				undoPixels = new List<byte[]>();
-			}
+			if (undoEnabled) { undoPixels = new List<byte[]>(); }
 
 			ClearImage(updateUndoBuffer: false);
-		} // InitializeEverything
+		}   // InitializeEverything
 
 		/// <summary>
 		/// Function used to allow the player to draw using the Tobii eye-tracker.
@@ -403,8 +409,8 @@ namespace unitycoder_MobilePaint {
 				// TEST: Undo key for desktop
 
 				// mouse is over UI element? then dont paint
-				if (eventSystem.IsPointerOverGameObject()) return;
-				if (eventSystem.currentSelectedGameObject != null) return;
+				if (eventSystem.IsPointerOverGameObject()) { return; }
+				if (eventSystem.currentSelectedGameObject != null) { return; }
 
 				// catch first mousedown
 				//if (Input.GetKeyDown("space")) {
@@ -426,7 +432,7 @@ namespace unitycoder_MobilePaint {
 					// Only if we hit something, then we continue
 					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) { wentOutside = true; return; }
 
-					pixelUVOld = pixelUV; // take previous value, so can compare them
+					pixelUVOld = pixelUV;   // take previous value, so can compare them
 					pixelUV = hit.textureCoord;
 					pixelUV.x *= texWidth;
 					pixelUV.y *= texHeight;
@@ -435,7 +441,7 @@ namespace unitycoder_MobilePaint {
 
 					// lets paint where we hit
 					switch (drawMode) {
-						case DrawMode.Default: // brush
+						case DrawMode.Default:  // brush
 							break;
 
 						case DrawMode.Pattern:
@@ -446,9 +452,7 @@ namespace unitycoder_MobilePaint {
 							break;
 
 						case DrawMode.FloodFill:
-							if (pixelUVOld == pixelUV) break;
-
-
+							if (pixelUVOld == pixelUV) { break; }
 							break;
 
 						case DrawMode.ShapeLines:
@@ -460,13 +464,23 @@ namespace unitycoder_MobilePaint {
 						case DrawMode.Eraser:
 							if (eraserMode == EraserMode.Default) {
 							} else {
-
 							}
 							break;
 
-						default: // unknown DrawMode
+						default:    // unknown DrawMode
 							Debug.LogError("Unknown drawMode");
 							break;
+					}
+
+					if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+						if (!paintDetails.coloursUsed.Contains(paintColor)) {
+							paintDetails.coloursUsed.Add(paintColor);
+							//Debug.Log(paintDetails.coloursUsed.Count);
+						}
+						if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+							paintDetails.brushesUsed.Add(selectedBrush);
+							//Debug.Log(paintDetails.brushesUsed.Count);
+						}
 					}
 
 					textureNeedsUpdate = true;
@@ -474,7 +488,7 @@ namespace unitycoder_MobilePaint {
 
 				if (Input.GetKeyDown("space")) {
 					// take this position as start position
-					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) return;
+					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) { return; }
 
 					pixelUVOld = pixelUV;
 				}
@@ -482,7 +496,7 @@ namespace unitycoder_MobilePaint {
 				// check distance from previous drawing point and connect them with DrawLine
 				if (connectBrushStokes && textureNeedsUpdate) {
 					switch (drawMode) {
-						case DrawMode.Default: // drawing
+						case DrawMode.Default:  // drawing
 							break;
 
 						case DrawMode.CustomBrush:
@@ -498,7 +512,7 @@ namespace unitycoder_MobilePaint {
 							}
 							break;
 
-						default: // other modes
+						default:    // other modes
 							break;
 					}
 					pixelUVOld = pixelUV;
@@ -530,8 +544,6 @@ namespace unitycoder_MobilePaint {
 						}
 						textureNeedsUpdate = true;
 					}
-
-
 				}
 			}
 		}
@@ -542,28 +554,29 @@ namespace unitycoder_MobilePaint {
 			if (isEyeTracker)   // Calls the function for Tobii eye-tracker input
 			{
 				EyeTracker();
-			} else    // Calls the function for Mouse input
-			  {
+			} else {    // Calls the function for Mouse input
 				MousePaint();
 			}
 
 			if (textureNeedsUpdate && (realTimeTexUpdate || Time.time > nextTextureUpdate)) {
 				nextTextureUpdate = Time.time + textureUpdateSpeed;
-
 				UpdateTexture();
 			}
 		}
 
-		// handle mouse events
+		/// <summary>
+		/// Handle mouse events
+		/// </summary>
 		void MousePaint() {
-		
-		
 			// left button is held down, draw
 			if (Input.GetKey("space")) {
 				// Only if we hit something, then we continue
-				if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) { wentOutside = true; return; }
+				if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) {
+					wentOutside = true;
+					return;
+				}
 
-				pixelUVOld = pixelUV; // take previous value, so can compare them
+				pixelUVOld = pixelUV;   // take previous value, so can compare them
 				pixelUV = hit.textureCoord;
 				pixelUV.x *= texWidth;
 				pixelUV.y *= texHeight;
@@ -572,7 +585,7 @@ namespace unitycoder_MobilePaint {
 
 				// lets paint where we hit
 				switch (drawMode) {
-					case DrawMode.Default: // brush
+					case DrawMode.Default:  // brush
 						break;
 
 					case DrawMode.Pattern:
@@ -583,15 +596,12 @@ namespace unitycoder_MobilePaint {
 						break;
 
 					case DrawMode.FloodFill:
-						if (pixelUVOld == pixelUV) break;
-
-
+						if (pixelUVOld == pixelUV) { break; }
 						break;
 
 					case DrawMode.ShapeLines:
 						if (snapLinesToGrid) {
 						} else {
-
 						}
 						break;
 
@@ -601,9 +611,20 @@ namespace unitycoder_MobilePaint {
 						}
 						break;
 
-					default: // unknown DrawMode
+					default:    // unknown DrawMode
 						Debug.LogError("Unknown drawMode");
 						break;
+				}
+
+				if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+					if (!paintDetails.coloursUsed.Contains(paintColor)) {
+						paintDetails.coloursUsed.Add(paintColor);
+						Debug.Log(paintDetails.coloursUsed.Count);
+					}
+					if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+						paintDetails.brushesUsed.Add(selectedBrush);
+						Debug.Log(paintDetails.brushesUsed.Count);
+					}
 				}
 
 				textureNeedsUpdate = true;
@@ -611,7 +632,7 @@ namespace unitycoder_MobilePaint {
 
 			if (Input.GetKeyDown("space")) {
 				// take this position as start position
-				if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) return;
+				if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) { return; }
 
 				pixelUVOld = pixelUV;
 			}
@@ -619,7 +640,7 @@ namespace unitycoder_MobilePaint {
 			// check distance from previous drawing point and connect them with DrawLine
 			if (connectBrushStokes && textureNeedsUpdate) {
 				switch (drawMode) {
-					case DrawMode.Default: // drawing
+					case DrawMode.Default:  // drawing
 						break;
 
 					case DrawMode.CustomBrush:
@@ -635,7 +656,7 @@ namespace unitycoder_MobilePaint {
 						}
 						break;
 
-					default: // other modes
+					default:    // other modes
 						break;
 				}
 				pixelUVOld = pixelUV;
@@ -667,11 +688,9 @@ namespace unitycoder_MobilePaint {
 					}
 					textureNeedsUpdate = true;
 				}
-
 			}
 		}
 
-		
 		void UpdateTexture() {
 			textureNeedsUpdate = false;
 			drawingTexture.LoadRawTextureData(pixels);
@@ -689,16 +708,18 @@ namespace unitycoder_MobilePaint {
 					}
 				} else {
 				}
-			} else { // no threshold
+			} else {    // no threshold
 				if (useMaskLayerOnly) {
-
 				} else {
 				}
 			}
 		}
 
-
-		// actual custom brush painting function
+		/// <summary>
+		/// Actual custom brush painting function
+		/// </summary>
+		/// <param name="px">Current x-position</param>
+		/// <param name="py">Current y-position</param>
 		void DrawCustomBrush(int px, int py) {
 			// get position where we paint
 			int startX = (int)(px - customBrushWidthHalf);
@@ -707,14 +728,14 @@ namespace unitycoder_MobilePaint {
 			if (startX < 0) {
 				startX = 0;
 			} else {
-				if (startX + customBrushWidth >= texWidth) startX = texWidthMinusCustomBrushWidth;
+				if (startX + customBrushWidth >= texWidth) { startX = texWidthMinusCustomBrushWidth; }
 			}
 
-			if (startY < 1)  // TODO: temporary fix, 1 instead of 0
+			if (startY < 1) // TODO: temporary fix, 1 instead of 0
 			{
 				startY = 1;
 			} else {
-				if (startY + customBrushHeight >= texHeight) startY = texHeightMinusCustomBrushHeight;
+				if (startY + customBrushHeight >= texHeight) { startY = texHeightMinusCustomBrushHeight; }
 			}
 
 			int pixel = (texWidth * startY + startX) << 2;
@@ -726,34 +747,34 @@ namespace unitycoder_MobilePaint {
 
 					// we have some color at this brush pixel?
 					if (customBrushBytes[brushPixel + 3] > 0 && (!useLockArea || (useLockArea && lockMaskPixels[pixel] == 1))) {
-						if (useCustomBrushAlpha) // use alpha from brush
+						if (useCustomBrushAlpha)    // use alpha from brush
 						{
 							if (useAdditiveColors) {
-								brushAlphaLerpVal = customBrushBytes[brushPixel + 3] * brushAlphaStrength * 0.01f; // 0.01 is temporary fix so that default brush & custom brush both work
+								brushAlphaLerpVal = customBrushBytes[brushPixel + 3] * brushAlphaStrength * 0.01f;  // 0.01 is temporary fix so that default brush & custom brush both work
 
 								if (overrideCustomBrushColor) {
 									pixels[pixel] = ByteLerp(pixels[pixel], paintColor.r, brushAlphaLerpVal);
 									pixels[pixel + 1] = ByteLerp(pixels[pixel + 1], paintColor.g, brushAlphaLerpVal);
 									pixels[pixel + 2] = ByteLerp(pixels[pixel + 2], paintColor.b, brushAlphaLerpVal);
-								} else { // use paint color instead of brush texture
+								} else {    // use paint color instead of brush texture
 									pixels[pixel] = ByteLerp(pixels[pixel], customBrushBytes[brushPixel], brushAlphaLerpVal);
 									pixels[pixel + 1] = ByteLerp(pixels[pixel + 1], customBrushBytes[brushPixel + 1], brushAlphaLerpVal);
 									pixels[pixel + 2] = ByteLerp(pixels[pixel + 2], customBrushBytes[brushPixel + 2], brushAlphaLerpVal);
 								}
 								pixels[pixel + 3] = ByteLerp(pixels[pixel + 3], paintColor.a, brushAlphaLerpVal);
-							} else { // no additive colors
+							} else {    // no additive colors
 								if (overrideCustomBrushColor) {
 									pixels[pixel] = ByteLerp(pixels[pixel], paintColor.r, brushAlphaLerpVal);
 									pixels[pixel + 1] = ByteLerp(pixels[pixel + 1], paintColor.g, brushAlphaLerpVal);
 									pixels[pixel + 2] = ByteLerp(pixels[pixel + 2], paintColor.b, brushAlphaLerpVal);
-								} else { // use paint color instead of brush texture
+								} else {    // use paint color instead of brush texture
 									pixels[pixel] = customBrushBytes[brushPixel];
 									pixels[pixel + 1] = customBrushBytes[brushPixel + 1];
 									pixels[pixel + 2] = customBrushBytes[brushPixel + 2];
 								}
 								pixels[pixel + 3] = customBrushBytes[brushPixel + 3];
 							}
-						} else { // use paint color alpha
+						} else {    // use paint color alpha
 							if (useAdditiveColors) {
 								if (overrideCustomBrushColor) {
 									pixels[pixel] = ByteLerp(pixels[pixel], paintColor.r, brushAlphaLerpVal);
@@ -765,7 +786,7 @@ namespace unitycoder_MobilePaint {
 									pixels[pixel + 2] = ByteLerp(pixels[pixel + 2], customBrushBytes[brushPixel + 2], brushAlphaLerpVal);
 								}
 								pixels[pixel + 3] = ByteLerp(pixels[pixel + 3], paintColor.a, brushAlphaLerpVal);
-							} else { // no additive colors
+							} else {    // no additive colors
 								if (overrideCustomBrushColor) {
 									pixels[pixel] = ByteLerp(pixels[pixel], paintColor.r, brushAlphaLerpVal);
 									pixels[pixel + 1] = ByteLerp(pixels[pixel + 1], paintColor.g, brushAlphaLerpVal);
@@ -780,33 +801,38 @@ namespace unitycoder_MobilePaint {
 						}
 					}
 					pixel += 4;
-				} // for x
+				}   // for x
 
 				pixel = (texWidth * (startY == 0 ? 1 : startY + y) + startX + 1) * 4;
-			} // for y
-		} // DrawCustomBrush
-		
+			}   // for y
+		}   // DrawCustomBrush
 
-		
-
-		
-
-		// compares if two values are below threshold
+		/// <summary>
+		/// Compares if two values are below threshold
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
 		bool CompareThreshold(byte a, byte b) {
 			if (a < b) { a ^= b; b ^= a; a ^= b; } // http://lab.polygonal.de/?p=81
 			return (a - b) <= paintThreshold;
 		}
 
-		
-
-
+		/// <summary>
+		/// Checks if two colours are the same
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="r">Red</param>
+		/// <param name="g">Green</param>
+		/// <param name="b">Blue</param>
+		/// <returns>true = colours are the same, false = colours are different</returns>
 		bool IsSameColor(Color32 a, byte r, byte g, byte b) {
 			return (a.r == r && a.g == g && a.b == b);
 		}
 
-		
-
-		// get custom brush texture into custombrushpixels array, this needs to be called if custom brush is changed
+		/// <summary>
+		/// Get custom brush texture into custombrushpixels array, this needs to be called if custom brush is changed
+		/// </summary>
 		public void ReadCurrentCustomBrush() {
 			// NOTE: this works only for square brushes
 			customBrushWidth = customBrushes[selectedBrush].width;
@@ -831,9 +857,11 @@ namespace unitycoder_MobilePaint {
 			texHeightMinusCustomBrushHeight = texHeight - customBrushHeight;
 		}
 
-
-
-		// draws single point to this pixel coordinate, with current paint color
+		/// <summary>
+		/// Draws single point to this pixel coordinate, with current paint color
+		/// </summary>
+		/// <param name="x">x-position</param>
+		/// <param name="y">y-position</param>
 		public void DrawPoint(int x, int y) {
 			int pixel = (texWidth * y + x) * 4;
 			pixels[pixel] = paintColor.r;
@@ -842,7 +870,10 @@ namespace unitycoder_MobilePaint {
 			pixels[pixel + 3] = paintColor.a;
 		}
 
-		// draws single point to this pixel array index, with current paint color
+		/// <summary>
+		/// Draws single point to this pixel array index, with current paint color
+		/// </summary>
+		/// <param name="pixel"></param>
 		public void DrawPoint(int pixel) {
 			pixels[pixel] = paintColor.r;
 			pixels[pixel + 1] = paintColor.g;
@@ -850,20 +881,18 @@ namespace unitycoder_MobilePaint {
 			pixels[pixel + 3] = paintColor.a;
 		}
 
-			
 		/// <summary>
 		/// ///////////////////////////////////////////////////////////////////needed otherwise the lines are patchy
 		/// </summary>
 		/// <param name="start"></param>
 		/// <param name="end"></param>
-
 		void DrawLineWithBrush(Vector2 start, Vector2 end) {
 			int x0 = (int)start.x;
 			int y0 = (int)start.y;
 			int x1 = (int)end.x;
 			int y1 = (int)end.y;
 			int tempVal = x1 - x0;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
+			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);	// http://stackoverflow.com/questions/6114099/fast-integer-abs-function
 			tempVal = y1 - y0;
 			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
 			int sx = x0 < x1 ? 1 : -1;
@@ -883,7 +912,7 @@ namespace unitycoder_MobilePaint {
 						DrawCustomBrush(x0, y0);
 					}
 				}
-				if (x0 == x1 && y0 == y1) break;
+				if (x0 == x1 && y0 == y1) { break; }
 				e2 = 2 * err;
 				if (e2 > -dy) {
 					err = err - dy;
@@ -895,17 +924,17 @@ namespace unitycoder_MobilePaint {
 			}
 		}
 
-		
-		
-		
-
-
-		// if this is called, undo buffer gets updated
+		/// <summary>
+		/// If this is called, undo buffer gets updated
+		/// </summary>
 		public void ClearImage() {
 			ClearImage(true);
 		}
 
-		// this override can be called with bool, to disable undo buffer grab
+		/// <summary>
+		/// This override can be called with bool, to disable undo buffer grab
+		/// </summary>
+		/// <param name="updateUndoBuffer"></param>
 		public void ClearImage(bool updateUndoBuffer) {
 			if (undoEnabled && updateUndoBuffer) {
 			}
@@ -926,7 +955,7 @@ namespace unitycoder_MobilePaint {
 
 				UpdateTexture();
 			}
-		} // clear image
+		}	// clear image
 
 		public void ClearImageWithImage() {
 			// fill pixels array with clearpixels array
@@ -935,12 +964,12 @@ namespace unitycoder_MobilePaint {
 			// just assign our clear image array into tex
 			drawingTexture.LoadRawTextureData(clearPixels);
 			drawingTexture.Apply(false);
-		} // clear image
+		}	// clear image
 
 		public void ReadMaskImage() {
 			maskPixels = new byte[texWidth * texHeight * 4];
 
-			int smoothenResolution = 5; // currently fixed value
+			int smoothenResolution = 5;	// currently fixed value
 			int smoothArea = smoothenResolution * smoothenResolution;
 			int smoothCenter = Mathf.FloorToInt(smoothenResolution / 2);
 
@@ -951,18 +980,18 @@ namespace unitycoder_MobilePaint {
 				for (int x = 0; x < texWidth; x++) {
 					if (smoothenMaskEdges) {
 						c = new Color(0, 0, 0, 0);
-						c = maskTex.GetPixel(x, y); // center
+						c = maskTex.GetPixel(x, y);	// center
 
 						if (c.a > 0) {
 							for (int i = 0; i < smoothArea; i++) {
-								int xx = (i / smoothenResolution) | 0; // 0, 0, 0
+								int xx = (i / smoothenResolution) | 0;	// 0, 0, 0
 								int yy = i % smoothenResolution;
 								if (maskTex.GetPixel(x + xx - smoothCenter, y + yy - smoothCenter).a < (255 - paintThreshold) / 255f) {
 									c = new Color(0, 0, 0, 0);
 								}
 							}
 						}
-					} else { // default (works well if texture is "point" filter mode
+					} else {	// default (works well if texture is "point" filter mode
 						c = maskTex.GetPixel(x, y);
 					}
 					maskPixels[pixel] = (byte)(c.r * 255);
@@ -974,7 +1003,9 @@ namespace unitycoder_MobilePaint {
 			}
 		}
 
-		// reads original drawing canvas texture, so than when Clear image is called, we can restore the original pixels
+		/// <summary>
+		/// Reads original drawing canvas texture, so than when Clear image is called, we can restore the original pixels
+		/// </summary>
 		public void ReadClearingImage() {
 			clearPixels = new byte[texWidth * texHeight * 4];
 
@@ -1031,7 +1062,10 @@ namespace unitycoder_MobilePaint {
 			drawMode = DrawMode.Eraser;
 		}
 
-		// returns current image (later: including all layers) as Texture2D
+		/// <summary>
+		/// returns current image (later: including all layers) as Texture2D
+		/// </summary>
+		/// <returns>Texture2D version of image</returns>
 		public Texture2D GetCanvasAsTexture() {
 			var image = new Texture2D((int)(texWidth / resolutionScaler), (int)(texHeight / resolutionScaler), TextureFormat.RGBA32, false);
 
@@ -1042,9 +1076,11 @@ namespace unitycoder_MobilePaint {
 			return image;
 		}
 
-		// returns screenshot as Texture2D
+		/// <summary>
+		/// returns screenshot as Texture2D
+		/// </summary>
+		/// <returns>Texture2D of screenshot</returns>
 		public Texture2D GetScreenshot() {
-
 			cam.Render();
 			Mesh go_Mesh = GetComponent<MeshFilter>().mesh;
 			var topLeft = cam.WorldToScreenPoint(go_Mesh.vertices[0]);
@@ -1054,7 +1090,6 @@ namespace unitycoder_MobilePaint {
 			image.ReadPixels(new Rect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y), 0, 0);
 			image.Apply(false);
 
-
 			return image;
 		}
 
@@ -1062,9 +1097,14 @@ namespace unitycoder_MobilePaint {
 			return (int)(val - val % gridSize);
 		}
 
-		// converts pixel coordinate to world position
+		/// <summary>
+		/// Converts pixel coordinate to world position
+		/// </summary>
+		/// <param name="x">x-position</param>
+		/// <param name="y">y-position</param>
+		/// <returns>World position</returns>
 		public Vector3 PixelToWorld(int x, int y) {
-			Vector3 pixelPos = new Vector3(x, y, 0); // x,y = texture pixel pos
+			Vector3 pixelPos = new Vector3(x, y, 0);	// x,y = texture pixel pos
 
 			float planeWidth = myRenderer.bounds.size.x;
 			float planeHeight = myRenderer.bounds.size.y;
@@ -1075,18 +1115,24 @@ namespace unitycoder_MobilePaint {
 			return new Vector3(localX, localY, 0);
 		}
 
-		// call this to change color, so that other objects get the new color also
+		/// <summary>
+		/// Call this to change color, so that other objects get the new color also
+		/// </summary>
+		/// <param name="newColor">the new colour you are changing the brush to</param>
 		public void SetPaintColor(Color32 newColor) {
 			paintColor = newColor;
 
 			SetBrushAlphaStrength(brushAlphaStrength);
 
-			alphaLerpVal = paintColor.a / brushAlphaStrengthVal; // precalc
+			alphaLerpVal = paintColor.a / brushAlphaStrengthVal;	// precalc
 
 			UpdateLineModePreviewObjects();
 		}
 
-		// set alpha power, good values are usually between 0.1 to 0.001
+		/// <summary>
+		/// Set alpha power, good values are usually between 0.1 to 0.001
+		/// </summary>
+		/// <param name="val"></param>
 		public void SetBrushAlphaStrength(float val) {
 			brushAlphaStrengthVal = 255f / val;
 		}
@@ -1112,7 +1158,10 @@ namespace unitycoder_MobilePaint {
 			return (byte)(value1 + (value2 - value1) * amount);
 		}
 
-		// assigns new mask layer image
+		/// <summary>
+		/// Assigns new mask layer image
+		/// </summary>
+		/// <param name="newTexture"></param>
 		public void SetMaskImage(Texture2D newTexture) {
 			// Check if we have correct material to use mask image (layer)
 			if (myRenderer.material.name.StartsWith("CanvasWithAlpha") || GetComponent<Renderer>().material.name.StartsWith("CanvasDefault")) {
@@ -1132,9 +1181,12 @@ namespace unitycoder_MobilePaint {
 
 				textureNeedsUpdate = true;
 			}
-		} // SetMaskImage
+		}   // SetMaskImage
 
-		// assigns new canvas image
+		/// <summary>
+		/// Assigns new canvas image
+		/// </summary>
+		/// <param name="newTexture"></param>
 		public void SetCanvasImage(Texture2D newTexture) {
 			// NOTE: if new texture is different size, problems will occur when drawing
 			myRenderer.material.SetTexture(targetTexture, newTexture);
@@ -1144,17 +1196,17 @@ namespace unitycoder_MobilePaint {
 
 		public void SetPanZoomMode(bool state) {
 			isZoomingOrPanning = state;
-			this.enabled = isZoomingOrPanning ? false : true; // Disable Update() loop from this script, if zooming or panning
+			this.enabled = isZoomingOrPanning ? false : true;	// Disable Update() loop from this script, if zooming or panning
 		}
 
 		// cleaning up buffers - https://github.com/unitycoder/UnityMobilePaint/issues/10
 		void OnDestroy() {
-			if (drawingTexture != null) Texture2D.DestroyImmediate(drawingTexture, true);
+			if (drawingTexture != null) { Texture2D.DestroyImmediate(drawingTexture, true); }
 			pixels = null;
 			maskPixels = null;
 			clearPixels = null;
 			lockMaskPixels = null;
-			if (undoEnabled) undoPixels.Clear();
+			if (undoEnabled) { undoPixels.Clear(); }
 		}
-	} // class
-} // namespace
+	}	// class
+}	// namespace

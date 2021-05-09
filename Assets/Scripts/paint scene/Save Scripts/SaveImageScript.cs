@@ -1,15 +1,12 @@
-﻿/// <summary>
-/// Name:			SaveImageScript.css
-/// Purpose:		To save an image to a folder
-/// Author:			Kane Adams
-/// Date Created:	06/02/2020
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Saves the image created by player to set filePath so that it can be loaded later.
+/// Author:	Kane Adams
+/// </summary>
 public class SaveImageScript : MonoBehaviour {
 	int numOfPNGs;
 	string filePath;
@@ -19,15 +16,18 @@ public class SaveImageScript : MonoBehaviour {
 	private GameObject UICanvas, TransitionController;
 	private Animator TranAnim;
 
+	public PaintDetailsScript paintTime;
+
 	private void Awake() {
 		UICanvas = GameObject.Find("Main Canvas");
 
-		TransitionController = GameObject.Find("Transition Controller");
-		TranAnim = TransitionController.GetComponent<Animator>();
-
+		//TransitionController = GameObject.Find("Transition Controller");
+		//TranAnim = TransitionController.GetComponent<Animator>();
 	}
 
-	// Start is called before the first frame update
+	/// <summary>
+	/// Creates filePath and finds previous PNGs
+	/// </summary>
 	public void Start() {
 		numOfPNGs = 1;
 		filePath = Application.persistentDataPath;  // Where the image is to be saved
@@ -48,13 +48,14 @@ public class SaveImageScript : MonoBehaviour {
 	/// Calls the co-routine that saves the image that has been drawn (when save button is clicked)
 	/// </summary>
 	public void Save() {
+		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") { paintTime.SaveTime(); }
 		StartCoroutine(CoSave());
 	}
 
 	/// <summary>
 	/// Once the current frame ends, the SaveCamera's image is saved to Assets folder
 	/// </summary>
-	/// <returns>Waits until the endd of the rendered frame</returns>
+	/// <returns>Waits until the end of the rendered frame</returns>
 	private IEnumerator CoSave() {
 		yield return new WaitForEndOfFrame();
 
@@ -66,14 +67,15 @@ public class SaveImageScript : MonoBehaviour {
 
 		byte[] saveData = texture2D.EncodeToPNG();  // Turns the image seen in the SaveCamera to a PNG
 
-		File.WriteAllBytes(filePath + "/SavedImage" + numOfPNGs + ".png", saveData);  // Saves the .PNG to the desired directory
+		File.WriteAllBytes(filePath + "/SavedImage" + numOfPNGs + ".png", saveData);    // Saves the .PNG to the desired directory
 
+		PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
 		ChangeScene();
 	}
 
 	// Coral
 	public void ChangeScene() {
-		TransitionController.gameObject.SetActive(true);
-		TranAnim.Play("Camera Shutter Close Ani");
-	}	
+		//TransitionController.gameObject.SetActive(true);
+		//TranAnim.Play("Camera Shutter Close Ani");
+	}
 }
