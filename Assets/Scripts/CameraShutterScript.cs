@@ -74,8 +74,7 @@ public class CameraShutterScript : MonoBehaviour {
 				tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
 			} else {
 				CharacterCanvas = GameObject.Find("Character Canvas");
-
-				dialogeManager = CharacterCanvas.transform.Find("Character UI").GetComponent<DialogueManager>();
+				dialogeManager = CharacterCanvas.transform.Find("Character UI").GetComponent<DialogueManager>();				
 			}
 			if (PlayerPrefs.GetInt("fromGallery") == 1) {
 				TranAnim.Play("BlinkOpen");
@@ -84,6 +83,7 @@ public class CameraShutterScript : MonoBehaviour {
 			}
 		} else if (SceneManager.GetActiveScene().name == "StillLifePaintScene" || SceneManager.GetActiveScene().name == "PortraitPaintScene") {
 			TranAnim.Play("Camera Shutter Open Ani");
+
 		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			if (PlayerPrefs.GetInt("banana") == 1 || PlayerPrefs.GetInt("apple") == 1) {
@@ -95,7 +95,6 @@ public class CameraShutterScript : MonoBehaviour {
 			TranAnim.Play("Camera Shutter Open Ani");
 		}
 	}
-
 
 	/// <summary>
 	/// animation events -----------------------------------------------------------------------------------------------
@@ -140,6 +139,11 @@ public class CameraShutterScript : MonoBehaviour {
 	public void CameraCloseEnd() {
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			SceneManager.LoadScene("PortraitPaintScene");
+			if (PlayerPrefs.GetInt("fromGallery") == 1) {
+				PlayerPrefs.SetInt("fromGallery", 0);
+				PlayerPrefs.SetInt("fromOutside", 1);
+				PlayerPrefs.SetInt("fromFree", 0);
+			}
 		} else if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
 			if (PlayerPrefs.GetInt("fromGallery") == 1) {
 				PlayerPrefs.SetInt("fromGallery", 0);
@@ -177,6 +181,8 @@ public class CameraShutterScript : MonoBehaviour {
 		CameraAnim.enabled = true;
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			CameraAnim.Play("CameraStreetSceneReaction");
+			dialogeManager.StartDialogue();
+
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			CameraAnim.Play("CameraTableSceneReaction");
 			tableControllerScript.ChangeTables();

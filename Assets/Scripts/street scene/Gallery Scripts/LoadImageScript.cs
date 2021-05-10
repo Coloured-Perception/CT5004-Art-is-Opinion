@@ -32,6 +32,8 @@ public class LoadImageScript : MonoBehaviour {
 		string filePath = Application.persistentDataPath;   // Where the images are stored
 		string individualFilePath;                          // The file directory of a specific image to load
 
+		Debug.Log(filePath);
+
 		List<string> PNGImages = new List<string>();    // Stores all PNG files
 		RawImage[] paintings = { painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10 };
 		Texture loadedTexture;

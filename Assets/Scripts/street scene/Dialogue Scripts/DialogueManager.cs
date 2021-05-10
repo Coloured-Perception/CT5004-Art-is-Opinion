@@ -9,14 +9,14 @@ using Tobii.Gaming;
 /// </summary>
 public class DialogueManager : MonoBehaviour {
 	//MattP
-	public Button continueButton;
-	Vector3 continuePos;
-	Rect continueRect;
+	//public Button continueButton;
+	//Vector3 continuePos;
+	//Rect continueRect;
 
-	float continueXMin;
-	float continueXMax;
-	float continueYMin;
-	float continueYMax;
+	//float continueXMin;
+	//float continueXMax;
+	//float continueYMin;
+	//float continueYMax;
 
 	float timeBeforeClick;
 	float timeBetweenClicks = 1;
@@ -65,6 +65,12 @@ public class DialogueManager : MonoBehaviour {
 		nameText = GameObject.Find("Name").GetComponent<Text>();
 		dialogueText = GameObject.Find("Dialogue").GetComponent<Text>();
 		speech = new Queue<string>();
+
+		if (PlayerPrefs.GetInt("fromGallery") == 1) {
+
+		} else {
+			CharacterAnim.Play("CharacterReactionIn");
+		}
 	}
 
 	/// <summary>
@@ -78,6 +84,11 @@ public class DialogueManager : MonoBehaviour {
 	public void YesButton() {
 		TransitionController.gameObject.SetActive(true);
 		TranAnim.Play("Camera Shutter Close Ani");
+	}
+
+	public void NextButton() {
+		CharacterAnim.Play("CharacterReactionOut");
+		appearWait = Random.Range(2, 4);
 	}
 
 	/// <summary>
@@ -138,8 +149,8 @@ public class DialogueManager : MonoBehaviour {
 			}
 			nameText.text = dialogue.name;
 			PlayerPrefs.SetString("PersonName", nameText.text);
+			CharacterAnim.Play("CharacterIn");
 		}
-		CharacterAnim.Play("CharacterIn");
 	}
 
 	/// <summary>
@@ -167,7 +178,7 @@ public class DialogueManager : MonoBehaviour {
 			}
 		}
 		speech.Enqueue(randomSentence);
-			textWait = 0.3f;
+		textWait = 0.3f;
 	}
 
 	private void Update() {
@@ -188,21 +199,21 @@ public class DialogueManager : MonoBehaviour {
 		//MattP
 		timeBetweenClicks -= Time.deltaTime;
 
-		continuePos = continueButton.transform.position;
-		continueRect = continueButton.GetComponent<RectTransform>().rect;
+		//continuePos = continueButton.transform.position;
+		//continueRect = continueButton.GetComponent<RectTransform>().rect;
 
-		continueXMin = continueRect.xMin;
-		continueXMax = continueRect.xMax;
-		continueYMin = continueRect.yMin;
-		continueYMax = continueRect.yMax;
+		//continueXMin = continueRect.xMin;
+		//continueXMax = continueRect.xMax;
+		//continueYMin = continueRect.yMin;
+		//continueYMax = continueRect.yMax;
 
 		Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
 		filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
-		if ((continuePos.x + continueXMin) < filteredPoint.x && filteredPoint.x < (continuePos.x + continueXMax) && (continuePos.y + continueYMin) < filteredPoint.y && filteredPoint.y < (continuePos.y + continueYMax) && timeBetweenClicks <= 0) {
-			//		DisplayNextSentence();
-			timeBeforeClick = timeBetweenClicks;
-		}
+		//if ((continuePos.x + continueXMin) < filteredPoint.x && filteredPoint.x < (continuePos.x + continueXMax) && (continuePos.y + continueYMin) < filteredPoint.y && filteredPoint.y < (continuePos.y + continueYMax) && timeBetweenClicks <= 0) {
+		//	//		DisplayNextSentence();
+		//	timeBeforeClick = timeBetweenClicks;
+		//}
 	}
 
 	void ReactionDialogue() {

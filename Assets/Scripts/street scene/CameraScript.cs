@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour {
 	public GameObject MenuUI;
 	public GameObject GalleryUI;
 	public Vector3 GalleryCanvas;
-	private Animator CameraAnim, TableUIAnim;
+	private Animator CameraAnim, TableUIAnim; //CharacterAnim;
 	DialogueManager dialogueManager;
 	TableControllerScript tableControllerScript;
 
@@ -24,6 +24,11 @@ public class CameraScript : MonoBehaviour {
 
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			dialogueManager = GameObject.Find("Character UI").GetComponent<DialogueManager>();
+			if (PlayerPrefs.GetInt("fromGallery") == 1) {
+
+			} else {
+
+			}
 			CameraAnim.Play("CameraStreetSceneStart");
 
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
