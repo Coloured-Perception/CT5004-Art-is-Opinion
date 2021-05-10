@@ -6,6 +6,7 @@ using Tobii.Gaming;
 
 public class GazeAwareTutorial : MonoBehaviour
 {
+    public bool isEyeTracker;
     public Button nextButton;
     public Button yesButton;
     public Button noButton;
@@ -53,56 +54,60 @@ public class GazeAwareTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camRect = mainCam.pixelRect;
-        timeBetweenClicks -= Time.deltaTime;
-        //Only click buttons if spacebar is down
-        if (Input.GetKey("space"))
+        if(isEyeTracker)
         {
-            nextPos = nextButton.transform.position;
-            yesPos = yesButton.transform.position;
-            noPos = noButton.transform.position;
-
-            nextRect = nextButton.GetComponent<RectTransform>().rect;
-            yesRect = yesButton.GetComponent<RectTransform>().rect;
-            noRect = noButton.GetComponent<RectTransform>().rect;
-
-            nextXMin = nextRect.xMin;
-            nextXMax = nextRect.xMax;
-            nextYMin = nextRect.yMin;
-            nextYMax = nextRect.yMax;
-
-            yesXMin = yesRect.xMin;
-            yesXMax = yesRect.xMax;
-            yesYMin = yesRect.yMin;
-            yesYMax = yesRect.yMax;
-
-            noXMin = noRect.xMin;
-            noXMax = noRect.xMax;
-            noYMin = noRect.yMin;
-            noYMax = noRect.yMax;
-
-            Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-            gazePoint.x *= camRect.width;
-            gazePoint.y *= camRect.height;
-            filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
-
-            if ((nextPos.x + nextXMin) < filteredPoint.x && filteredPoint.x < (nextPos.x + nextXMax) && (nextPos.y + nextYMin) < filteredPoint.y && filteredPoint.y < (nextPos.y + nextYMax) && timeBetweenClicks <= 0 && nextButton.IsActive())
+            camRect = mainCam.pixelRect;
+            timeBetweenClicks -= Time.deltaTime;
+            //Only click buttons if spacebar is down
+            if (Input.GetKey("space"))
             {
-                tutorialManager.GetComponent<TutorialManager>().NextButtonClicked();
-                timeBeforeClick = timeBetweenClicks;
-            }
+                nextPos = nextButton.transform.position;
+                yesPos = yesButton.transform.position;
+                noPos = noButton.transform.position;
 
-            if ((yesPos.x + yesXMin) < filteredPoint.x && filteredPoint.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPoint.y && filteredPoint.y < (yesPos.y + yesYMax) && timeBetweenClicks <= 0 && yesButton.IsActive())
-            {
-                tutorialManager.GetComponent<TutorialManager>().YesButtonClick();
-                timeBeforeClick = timeBetweenClicks;
-            }
+                nextRect = nextButton.GetComponent<RectTransform>().rect;
+                yesRect = yesButton.GetComponent<RectTransform>().rect;
+                noRect = noButton.GetComponent<RectTransform>().rect;
 
-            if ((noPos.x + noXMin) < filteredPoint.x && filteredPoint.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPoint.y && filteredPoint.y < (noPos.y + noYMax) && timeBetweenClicks <= 0 && noButton.IsActive())
-            {
-                tutorialManager.GetComponent<TutorialManager>().NoButtonClick();
-                timeBeforeClick = timeBetweenClicks;
+                nextXMin = nextRect.xMin;
+                nextXMax = nextRect.xMax;
+                nextYMin = nextRect.yMin;
+                nextYMax = nextRect.yMax;
+
+                yesXMin = yesRect.xMin;
+                yesXMax = yesRect.xMax;
+                yesYMin = yesRect.yMin;
+                yesYMax = yesRect.yMax;
+
+                noXMin = noRect.xMin;
+                noXMax = noRect.xMax;
+                noYMin = noRect.yMin;
+                noYMax = noRect.yMax;
+
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x *= camRect.width;
+                gazePoint.y *= camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+
+                if ((nextPos.x + nextXMin) < filteredPoint.x && filteredPoint.x < (nextPos.x + nextXMax) && (nextPos.y + nextYMin) < filteredPoint.y && filteredPoint.y < (nextPos.y + nextYMax) && timeBetweenClicks <= 0 && nextButton.IsActive())
+                {
+                    tutorialManager.GetComponent<TutorialManager>().NextButtonClicked();
+                    timeBeforeClick = timeBetweenClicks;
+                }
+
+                if ((yesPos.x + yesXMin) < filteredPoint.x && filteredPoint.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPoint.y && filteredPoint.y < (yesPos.y + yesYMax) && timeBetweenClicks <= 0 && yesButton.IsActive())
+                {
+                    tutorialManager.GetComponent<TutorialManager>().YesButtonClick();
+                    timeBeforeClick = timeBetweenClicks;
+                }
+
+                if ((noPos.x + noXMin) < filteredPoint.x && filteredPoint.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPoint.y && filteredPoint.y < (noPos.y + noYMax) && timeBetweenClicks <= 0 && noButton.IsActive())
+                {
+                    tutorialManager.GetComponent<TutorialManager>().NoButtonClick();
+                    timeBeforeClick = timeBetweenClicks;
+                }
             }
         }
+
     }
 }

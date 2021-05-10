@@ -6,7 +6,7 @@ using Tobii.Gaming;
 
 public class GazeAwareTable : MonoBehaviour
 {
-
+    public bool isEyeTracker;
     public GameObject Gallery;
     public Button yesButton;
     public Button noButton;
@@ -48,61 +48,64 @@ public class GazeAwareTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Only click buttons if spacebar is down
-        if (Input.GetKey("space"))
+        if(isEyeTracker)
         {
-            camRect = mainCam.pixelRect;
-            timeBetweenClicks -= Time.deltaTime;
-            //Find position and size in x and y directions of the buttons
-            yesPos = yesButton.transform.position;
-            noPos = noButton.transform.position;
-            yesRect = yesButton.GetComponent<RectTransform>().rect;
-            noRect = noButton.GetComponent<RectTransform>().rect;
-
-            yesXMin = yesRect.xMin;
-            yesXMax = yesRect.xMax;
-            yesYMin = yesRect.yMin;
-            yesYMax = yesRect.yMax;
-
-            noXMin = noRect.xMin;
-            noXMax = noRect.xMax;
-            noYMin = noRect.yMin;
-            noYMax = noRect.yMax;
-
-            Vector2 gazePointViewport = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-            gazePointViewport.x *= camRect.width;
-            gazePointViewport.y *= camRect.height;
-            filteredPointViewport = Vector2.Lerp(filteredPointViewport, gazePointViewport, 0.5f);
-
-            if ((yesPos.x + yesXMin) < filteredPointViewport.x && filteredPointViewport.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPointViewport.y && filteredPointViewport.y < (yesPos.y + yesYMax) && timeBetweenClicks <= 0)
+            //Only click buttons if spacebar is down
+            if (Input.GetKey("space"))
             {
-                tableController.GetComponent<TableControllerScript>().TickButton();
-                timeBeforeClick = timeBetweenClicks;
-            }
+                camRect = mainCam.pixelRect;
+                timeBetweenClicks -= Time.deltaTime;
+                //Find position and size in x and y directions of the buttons
+                yesPos = yesButton.transform.position;
+                noPos = noButton.transform.position;
+                yesRect = yesButton.GetComponent<RectTransform>().rect;
+                noRect = noButton.GetComponent<RectTransform>().rect;
 
-            if ((noPos.x + noXMin) < filteredPointViewport.x && filteredPointViewport.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPointViewport.y && filteredPointViewport.y < (noPos.y + noYMax) && timeBetweenClicks <= 0)
-            {
-                tableController.GetComponent<TableControllerScript>().ChangeTables();
-                timeBeforeClick = timeBetweenClicks;
-            }
+                yesXMin = yesRect.xMin;
+                yesXMax = yesRect.xMax;
+                yesYMin = yesRect.yMin;
+                yesYMax = yesRect.yMax;
 
-            Vector2 gazePointScreen = TobiiAPI.GetGazePoint().Screen;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-            filteredPointScreen = Vector2.Lerp(filteredPointScreen, gazePointScreen, 0.5f);
+                noXMin = noRect.xMin;
+                noXMax = noRect.xMax;
+                noYMin = noRect.yMin;
+                noYMax = noRect.yMax;
 
-            Ray ray = mainCam.ScreenPointToRay(filteredPointViewport);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
-            {
-                objHit = hit.transform.gameObject;
-            }
+                Vector2 gazePointViewport = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePointViewport.x *= camRect.width;
+                gazePointViewport.y *= camRect.height;
+                filteredPointViewport = Vector2.Lerp(filteredPointViewport, gazePointViewport, 0.5f);
 
-            if (timeBetweenClicks <= 0)
-            {
-                if (GameObject.ReferenceEquals(objHit, Gallery))
+                if ((yesPos.x + yesXMin) < filteredPointViewport.x && filteredPointViewport.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPointViewport.y && filteredPointViewport.y < (yesPos.y + yesYMax) && timeBetweenClicks <= 0)
                 {
-                    transitionController.SetActive(true);
-                    Gallery.GetComponent<NavigationCanvasScript>().ChangeScene();
-                    transitionController.GetComponent<Animator>().Play("BlinkClose");
+                    tableController.GetComponent<TableControllerScript>().TickButton();
                     timeBeforeClick = timeBetweenClicks;
+                }
+
+                if ((noPos.x + noXMin) < filteredPointViewport.x && filteredPointViewport.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPointViewport.y && filteredPointViewport.y < (noPos.y + noYMax) && timeBetweenClicks <= 0)
+                {
+                    tableController.GetComponent<TableControllerScript>().ChangeTables();
+                    timeBeforeClick = timeBetweenClicks;
+                }
+
+                Vector2 gazePointScreen = TobiiAPI.GetGazePoint().Screen;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                filteredPointScreen = Vector2.Lerp(filteredPointScreen, gazePointScreen, 0.5f);
+
+                Ray ray = mainCam.ScreenPointToRay(filteredPointViewport);
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+                {
+                    objHit = hit.transform.gameObject;
+                }
+
+                if (timeBetweenClicks <= 0)
+                {
+                    if (GameObject.ReferenceEquals(objHit, Gallery))
+                    {
+                        transitionController.SetActive(true);
+                        Gallery.GetComponent<NavigationCanvasScript>().ChangeScene();
+                        transitionController.GetComponent<Animator>().Play("BlinkClose");
+                        timeBeforeClick = timeBetweenClicks;
+                    }
                 }
             }
         }

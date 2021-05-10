@@ -4,6 +4,8 @@ using Tobii.Gaming;
 
 namespace unitycoder_MobilePaint {
 	public class GazeAwareButtons : MonoBehaviour {
+
+        public bool isEyeTracker = false;
 		public GameObject optionsCanvas;
 		public GameObject paintCanvas;
 		public Button increaseSizeButton;
@@ -81,92 +83,97 @@ namespace unitycoder_MobilePaint {
 		}
 
 		private void Update() {
-			//Only click buttons if spacebar is down
-			if (Input.GetKey("space")) {
-				timeBetweenClicks -= Time.deltaTime;
-				//Find position and size in x and y directions of the buttons
-				increasePos = increaseSizeButton.transform.position;
-				decreasePos = decreaseSizeButton.transform.position;
-				clearPos = clearImageButton.transform.position;
-				finishPos = finishButton.transform.position;
-				savePos = saveButton.transform.position;
-				notSavePos = notSaveButton.transform.position;
 
-				increaseRect = increaseSizeButton.GetComponent<RectTransform>().rect;
-				decreaseRect = decreaseSizeButton.GetComponent<RectTransform>().rect;
-				clearRect = clearImageButton.GetComponent<RectTransform>().rect;
-				finishRect = finishButton.GetComponent<RectTransform>().rect;
-				saveRect = saveButton.GetComponent<RectTransform>().rect;
-				notSaveRect = notSaveButton.GetComponent<RectTransform>().rect;
+            if(isEyeTracker)
+            {
 
-				increaseXMin = increaseRect.xMin;
-				increaseXMax = increaseRect.xMax;
-				increaseYMin = increaseRect.yMin;
-				increaseYMax = increaseRect.yMax;
+			    //Only click buttons if spacebar is down
+			    if (Input.GetKey("space")) {
+				    timeBetweenClicks -= Time.deltaTime;
+				    //Find position and size in x and y directions of the buttons
+				    increasePos = increaseSizeButton.transform.position;
+				    decreasePos = decreaseSizeButton.transform.position;
+				    clearPos = clearImageButton.transform.position;
+				    finishPos = finishButton.transform.position;
+				    savePos = saveButton.transform.position;
+				    notSavePos = notSaveButton.transform.position;
 
-				decreaseXMin = decreaseRect.xMin;
-				decreaseXMax = decreaseRect.xMax;
-				decreaseYMin = decreaseRect.yMin;
-				decreaseYMax = decreaseRect.yMax;
+				    increaseRect = increaseSizeButton.GetComponent<RectTransform>().rect;
+				    decreaseRect = decreaseSizeButton.GetComponent<RectTransform>().rect;
+				    clearRect = clearImageButton.GetComponent<RectTransform>().rect;
+				    finishRect = finishButton.GetComponent<RectTransform>().rect;
+				    saveRect = saveButton.GetComponent<RectTransform>().rect;
+				    notSaveRect = notSaveButton.GetComponent<RectTransform>().rect;
 
-				clearXMin = clearRect.xMin;
-				clearXMax = clearRect.xMax;
-				clearYMin = clearRect.yMin;
-				clearYMax = clearRect.yMax;
+				    increaseXMin = increaseRect.xMin;
+				    increaseXMax = increaseRect.xMax;
+				    increaseYMin = increaseRect.yMin;
+				    increaseYMax = increaseRect.yMax;
 
-				finishXMin = finishRect.xMin;
-				finishXMax = finishRect.xMax;
-				finishYMin = finishRect.yMin;
-				finishYMax = finishRect.yMax;
+				    decreaseXMin = decreaseRect.xMin;
+				    decreaseXMax = decreaseRect.xMax;
+				    decreaseYMin = decreaseRect.yMin;
+				    decreaseYMax = decreaseRect.yMax;
 
-				saveXMin = saveRect.xMin;
-				saveXMax = saveRect.xMax;
-				saveYMin = saveRect.yMin;
-				saveYMax = saveRect.yMax;
+				    clearXMin = clearRect.xMin;
+				    clearXMax = clearRect.xMax;
+				    clearYMin = clearRect.yMin;
+				    clearYMax = clearRect.yMax;
 
-				notSaveXMin = notSaveRect.xMin;
-				notSaveXMax = notSaveRect.xMax;
-				notSaveYMin = notSaveRect.yMin;
-				notSaveYMax = notSaveRect.yMax;
+				    finishXMin = finishRect.xMin;
+				    finishXMax = finishRect.xMax;
+				    finishYMin = finishRect.yMin;
+				    finishYMax = finishRect.yMax;
 
-				Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
-				//Find if buttons are active and whether the eye is looking at them and space is down, do button code.
-				if (paintCanvas.activeInHierarchy) {
-					if ((increasePos.x + increaseXMin) < filteredPoint.x && filteredPoint.x < (increasePos.x + increaseXMax) && (increasePos.y + increaseYMin) < filteredPoint.y && filteredPoint.y < (increasePos.y + increaseYMax) && timeBetweenClicks <= 0) {
-						IncreaseBrushSize();
-						timeBeforeClick = timeBetweenClicks;
-					}
+				    saveXMin = saveRect.xMin;
+				    saveXMax = saveRect.xMax;
+				    saveYMin = saveRect.yMin;
+				    saveYMax = saveRect.yMax;
 
-					if ((decreasePos.x + decreaseXMin) < filteredPoint.x && filteredPoint.x < (decreasePos.x + decreaseXMax) && (decreasePos.y + decreaseYMin) < filteredPoint.y && filteredPoint.y < (decreasePos.y + decreaseYMax) && timeBetweenClicks <= 0) {
-						DecreaseBrushSize();
-						timeBeforeClick = timeBetweenClicks;
-					}
+				    notSaveXMin = notSaveRect.xMin;
+				    notSaveXMax = notSaveRect.xMax;
+				    notSaveYMin = notSaveRect.yMin;
+				    notSaveYMax = notSaveRect.yMax;
 
-					if ((clearPos.x + clearXMin) < filteredPoint.x && filteredPoint.x < (clearPos.x + clearXMax) && (clearPos.y + clearYMin) < filteredPoint.y && filteredPoint.y < (clearPos.y + clearYMax) && timeBetweenClicks <= 0) {
-						mobilePaint.ClearImage();
-						timeBeforeClick = timeBetweenClicks;
-					}
+				    Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+				    filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+				    //Find if buttons are active and whether the eye is looking at them and space is down, do button code.
+				    if (paintCanvas.activeInHierarchy) {
+					    if ((increasePos.x + increaseXMin) < filteredPoint.x && filteredPoint.x < (increasePos.x + increaseXMax) && (increasePos.y + increaseYMin) < filteredPoint.y && filteredPoint.y < (increasePos.y + increaseYMax) && timeBetweenClicks <= 0) {
+						    IncreaseBrushSize();
+						    timeBeforeClick = timeBetweenClicks;
+					    }
 
-					if ((finishPos.x + finishXMin) < filteredPoint.x && filteredPoint.x < (finishPos.x + finishXMax) && (finishPos.y + finishYMin) < filteredPoint.y && filteredPoint.y < (finishPos.y + finishYMax) && timeBetweenClicks <= 0) {
-						paintCanvas.SetActive(false);
-						optionsCanvas.SetActive(true);
-						timeBeforeClick = timeBetweenClicks;
-					}
-				}
-				if (optionsCanvas.activeInHierarchy) {
-					if ((savePos.x + saveXMin) < filteredPoint.x && filteredPoint.x < (savePos.x + saveXMax) && (savePos.y + saveYMin) < filteredPoint.y && filteredPoint.y < (savePos.y + saveYMax) && timeBetweenClicks <= 0) {
-						saveButton.GetComponent<SaveImageScript>().Save();
-						cameraShutterClose.SetActive(true);
-						timeBeforeClick = timeBetweenClicks;
-					}
-					if ((notSavePos.x + notSaveXMin) < filteredPoint.x && filteredPoint.x < (notSavePos.x + notSaveXMax) && (notSavePos.y + notSaveYMin) < filteredPoint.y && filteredPoint.y < (notSavePos.y + notSaveYMax) && timeBetweenClicks <= 0) {
-						saveButton.GetComponent<SaveImageScript>().ChangeScene();
-						cameraShutterClose.SetActive(true);
-						timeBeforeClick = timeBetweenClicks;
-					}
-				}
-			}
+					    if ((decreasePos.x + decreaseXMin) < filteredPoint.x && filteredPoint.x < (decreasePos.x + decreaseXMax) && (decreasePos.y + decreaseYMin) < filteredPoint.y && filteredPoint.y < (decreasePos.y + decreaseYMax) && timeBetweenClicks <= 0) {
+						    DecreaseBrushSize();
+						    timeBeforeClick = timeBetweenClicks;
+					    }
+
+					    if ((clearPos.x + clearXMin) < filteredPoint.x && filteredPoint.x < (clearPos.x + clearXMax) && (clearPos.y + clearYMin) < filteredPoint.y && filteredPoint.y < (clearPos.y + clearYMax) && timeBetweenClicks <= 0) {
+						    mobilePaint.ClearImage();
+						    timeBeforeClick = timeBetweenClicks;
+					    }
+
+					    if ((finishPos.x + finishXMin) < filteredPoint.x && filteredPoint.x < (finishPos.x + finishXMax) && (finishPos.y + finishYMin) < filteredPoint.y && filteredPoint.y < (finishPos.y + finishYMax) && timeBetweenClicks <= 0) {
+						    paintCanvas.SetActive(false);
+						    optionsCanvas.SetActive(true);
+						    timeBeforeClick = timeBetweenClicks;
+					    }
+				    }
+				    if (optionsCanvas.activeInHierarchy) {
+					    if ((savePos.x + saveXMin) < filteredPoint.x && filteredPoint.x < (savePos.x + saveXMax) && (savePos.y + saveYMin) < filteredPoint.y && filteredPoint.y < (savePos.y + saveYMax) && timeBetweenClicks <= 0) {
+						    saveButton.GetComponent<SaveImageScript>().Save();
+						    cameraShutterClose.SetActive(true);
+						    timeBeforeClick = timeBetweenClicks;
+					    }
+					    if ((notSavePos.x + notSaveXMin) < filteredPoint.x && filteredPoint.x < (notSavePos.x + notSaveXMax) && (notSavePos.y + notSaveYMin) < filteredPoint.y && filteredPoint.y < (notSavePos.y + notSaveYMax) && timeBetweenClicks <= 0) {
+						    saveButton.GetComponent<SaveImageScript>().ChangeScene();
+						    cameraShutterClose.SetActive(true);
+						    timeBeforeClick = timeBetweenClicks;
+					    }
+				    }
+			    }
+            }
 		}
 
 		// Changes the size of the brush by 5
