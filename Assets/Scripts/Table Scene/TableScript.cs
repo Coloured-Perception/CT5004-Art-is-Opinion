@@ -44,7 +44,7 @@ public class TableScript : MonoBehaviour
                 float randX = Random.Range(-randFruit * 0.1f + 0.2f * i, -randFruit * 0.1f + 0.2f * i + 0.2f);
                 float randZ = Random.Range(-randFruit * 0.1f / 2, randFruit * 0.1f / 2);
 
-                GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.x + randX, gameObject.transform.position.y + 0.65f, gameObject.transform.position.z + randZ), Quaternion.identity) as GameObject;
+                GameObject fruit = Instantiate(FruitPreFab, new Vector3(gameObject.transform.position.y + randZ, gameObject.transform.position.x + randX, /*gameObject.transform.position.z + randZ*/1.3f), Quaternion.Euler(180, 120, 60)) as GameObject;
 
                 fruit.transform.parent = transform;
                 randscale = Random.Range(0.07f, 0.085f);
