@@ -53,7 +53,7 @@ public class LoadImageScript : MonoBehaviour {
 				PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
 				numOfPNGs++;
 			} else {
-				Debug.Log("UHOH! Big DUDU!");
+				Debug.Log("UHOH! Big DUDU!"); 
 				if (File.Exists(filePath + "/SavedImage" + (numOfPNGs + 1) + ".png")) {
 					File.Move("SavedImage" + (numOfPNGs + 1), "SavedImage" + numOfPNGs);
 				}

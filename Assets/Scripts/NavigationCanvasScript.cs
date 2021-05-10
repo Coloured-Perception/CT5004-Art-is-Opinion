@@ -29,6 +29,7 @@ public class NavigationCanvasScript : MonoBehaviour {
 			
 		} else {
 			cameraAnim.enabled = true;
+			cameraAnim.applyRootMotion = false;
 			cameraAnim.Play(this.gameObject.name);
 		}
 	}

@@ -14,18 +14,17 @@ public class ChangePersonPaintScript : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		//if (PlayerPrefs.GetInt("intro") == 0) {
+		if (PlayerPrefs.GetInt("intro") == 0) {
 
-		//	if (TutorialDialogeManager.sentenceNumber < 17) {
-		//		personImage.sprite = Banana;
+			if (TutorialDialogeManager.sentenceNumber < 17) {
+				personImage.sprite = Banana;
 
-		//	} else {
-		//		personImage.sprite = Apple;
+			} else {
+				personImage.sprite = Apple;
 
-		//	}
-		//} else {
-		//	personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
-		//}
-		personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+			}
+		} else {
+			personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+		}
 	}
 }

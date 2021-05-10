@@ -19,25 +19,15 @@ public class CameraScript : MonoBehaviour {
 	TableControllerScript tableControllerScript;
 
 	private void Awake() {
-
 		CameraAnim = gameObject.GetComponent<Animator>();
-
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			dialogueManager = GameObject.Find("Character UI").GetComponent<DialogueManager>();
-			if (PlayerPrefs.GetInt("fromGallery") == 1) {
-
-			} else {
-
-			}
-			CameraAnim.Play("CameraStreetSceneStart");
-
+				CameraAnim.Play("CameraStreetSceneStart");
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
 			TableUIAnim = GameObject.Find("TableUI").GetComponent<Animator>();
-
 			CameraAnim.Play("CameraStreetSceneStart");
-
-		}		
+		}
 	}
 
 	/// <summary>
@@ -66,24 +56,22 @@ public class CameraScript : MonoBehaviour {
 			dialogueManager.ChangeImage();
 
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
-	//		tableControllerScript.ChangeTables();
+			//		tableControllerScript.ChangeTables();
 			TableUIAnim.Play("ShowTableUI");
-
 		}
 		CameraAnim.enabled = false;
 	}
 	public void CameraReactionEnd() {
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
-
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
-	//		tableControllerScript.ChangeTables();
+			//		tableControllerScript.ChangeTables();
 			TableUIAnim.Play("ShowTableUI");
-
 		}
 		CameraAnim.enabled = false;
 	}
 
 	public void NavEnd() {
+		CameraAnim.applyRootMotion = true;
 		CameraAnim.enabled = false;
 	}
 
