@@ -432,56 +432,62 @@ namespace unitycoder_MobilePaint {
 					// Only if we hit something, then we continue
 					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) { wentOutside = true; return; }
 
-					pixelUVOld = pixelUV;   // take previous value, so can compare them
-					pixelUV = hit.textureCoord;
-					pixelUV.x *= texWidth;
-					pixelUV.y *= texHeight;
+                    GameObject objHit = hit.transform.gameObject;
 
-					if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
+                    if (objHit.GetComponent<MobilePaint>() != null)
+                    {
 
-					// lets paint where we hit
-					switch (drawMode) {
-						case DrawMode.Default:  // brush
-							break;
+                        pixelUVOld = pixelUV;   // take previous value, so can compare them
+					    pixelUV = hit.textureCoord;
+					    pixelUV.x *= texWidth;
+					    pixelUV.y *= texHeight;
 
-						case DrawMode.Pattern:
-							break;
+					    if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
 
-						case DrawMode.CustomBrush:
-							DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
-							break;
+					    // lets paint where we hit
+					    switch (drawMode) {
+						    case DrawMode.Default:  // brush
+							    break;
 
-						case DrawMode.FloodFill:
-							if (pixelUVOld == pixelUV) { break; }
-							break;
+						    case DrawMode.Pattern:
+							    break;
 
-						case DrawMode.ShapeLines:
-							if (snapLinesToGrid) {
-							} else {
-							}
-							break;
+						    case DrawMode.CustomBrush:
+							    DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
+							    break;
 
-						case DrawMode.Eraser:
-							if (eraserMode == EraserMode.Default) {
-							} else {
-							}
-							break;
+						    case DrawMode.FloodFill:
+							    if (pixelUVOld == pixelUV) { break; }
+							    break;
 
-						default:    // unknown DrawMode
-							Debug.LogError("Unknown drawMode");
-							break;
-					}
+						    case DrawMode.ShapeLines:
+							    if (snapLinesToGrid) {
+							    } else {
+							    }
+							    break;
 
-					if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-						if (!paintDetails.coloursUsed.Contains(paintColor)) {
-							paintDetails.coloursUsed.Add(paintColor);
-							//Debug.Log(paintDetails.coloursUsed.Count);
-						}
-						if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
-							paintDetails.brushesUsed.Add(selectedBrush);
-							//Debug.Log(paintDetails.brushesUsed.Count);
-						}
-					}
+						    case DrawMode.Eraser:
+							    if (eraserMode == EraserMode.Default) {
+							    } else {
+							    }
+							    break;
+
+						    default:    // unknown DrawMode
+							    Debug.LogError("Unknown drawMode");
+							    break;
+					    }
+
+					    if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+						    if (!paintDetails.coloursUsed.Contains(paintColor)) {
+							    paintDetails.coloursUsed.Add(paintColor);
+							    //Debug.Log(paintDetails.coloursUsed.Count);
+						    }
+						    if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+							    paintDetails.brushesUsed.Add(selectedBrush);
+							    //Debug.Log(paintDetails.brushesUsed.Count);
+						    }
+					    }
+                    }
 
 					textureNeedsUpdate = true;
 				}
@@ -576,58 +582,63 @@ namespace unitycoder_MobilePaint {
 					return;
 				}
 
-				pixelUVOld = pixelUV;   // take previous value, so can compare them
-				pixelUV = hit.textureCoord;
-				pixelUV.x *= texWidth;
-				pixelUV.y *= texHeight;
+                GameObject objHit = hit.transform.gameObject;
 
-				if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
+                if (objHit.GetComponent<MobilePaint>() != null)
+                {
+                    pixelUVOld = pixelUV;   // take previous value, so can compare them
+				    pixelUV = hit.textureCoord;
+				    pixelUV.x *= texWidth;
+				    pixelUV.y *= texHeight;
 
-				// lets paint where we hit
-				switch (drawMode) {
-					case DrawMode.Default:  // brush
-						break;
+				    if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
 
-					case DrawMode.Pattern:
-						break;
+				    // lets paint where we hit
+				    switch (drawMode) {
+					    case DrawMode.Default:  // brush
+						    break;
 
-					case DrawMode.CustomBrush:
-						DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
-						break;
+					    case DrawMode.Pattern:
+						    break;
 
-					case DrawMode.FloodFill:
-						if (pixelUVOld == pixelUV) { break; }
-						break;
+					    case DrawMode.CustomBrush:
+						    DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
+						    break;
 
-					case DrawMode.ShapeLines:
-						if (snapLinesToGrid) {
-						} else {
-						}
-						break;
+					    case DrawMode.FloodFill:
+						    if (pixelUVOld == pixelUV) { break; }
+						    break;
 
-					case DrawMode.Eraser:
-						if (eraserMode == EraserMode.Default) {
-						} else {
-						}
-						break;
+					    case DrawMode.ShapeLines:
+						    if (snapLinesToGrid) {
+						    } else {
+						    }
+						    break;
 
-					default:    // unknown DrawMode
-						Debug.LogError("Unknown drawMode");
-						break;
-				}
+					    case DrawMode.Eraser:
+						    if (eraserMode == EraserMode.Default) {
+						    } else {
+						    }
+						    break;
 
-				if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-					if (!paintDetails.coloursUsed.Contains(paintColor)) {
-						paintDetails.coloursUsed.Add(paintColor);
-						Debug.Log(paintDetails.coloursUsed.Count);
-					}
-					if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
-						paintDetails.brushesUsed.Add(selectedBrush);
-						Debug.Log(paintDetails.brushesUsed.Count);
-					}
-				}
+					    default:    // unknown DrawMode
+						    Debug.LogError("Unknown drawMode");
+						    break;
+				    }
 
-				textureNeedsUpdate = true;
+				    if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+					    if (!paintDetails.coloursUsed.Contains(paintColor)) {
+						    paintDetails.coloursUsed.Add(paintColor);
+						    Debug.Log(paintDetails.coloursUsed.Count);
+					    }
+					    if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+						    paintDetails.brushesUsed.Add(selectedBrush);
+						    Debug.Log(paintDetails.brushesUsed.Count);
+					    }
+				    }
+
+				    textureNeedsUpdate = true;
+                }
 			}
 
 			if (Input.GetKeyDown("space")) {
