@@ -24,5 +24,6 @@ public class ChangePersonPaintScript : MonoBehaviour {
 		} else {
 			personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 		}
+		//personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 	}
 }

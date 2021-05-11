@@ -97,7 +97,7 @@ public class DialogueManager : MonoBehaviour {
 	/// </summary>
 	public void ChangeImage() {
 		Debug.Log(lastScene);
-		if (PlayerPrefs.GetInt("fromGallery") == 0) { 
+		if (/*PlayerPrefs.GetInt("fromGallery") == 0*/lastScene == "PortraitPaintScene") {
 			if (PlayerPrefs.GetInt("IsSpecialPerson") == 1) {
 				myImageComponent.sprite = specialImages[PlayerPrefs.GetInt("Person")];
 			} else {

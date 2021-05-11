@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		PlayerPrefs.SetInt("intro", 1);    // remove later 
+		//PlayerPrefs.SetInt("intro", 0);    // remove later 
 		//PlayerPrefs.SetInt("banana", 0);    // remove later 
 		//PlayerPrefs.SetInt("apple", 0);    // remove later
 
