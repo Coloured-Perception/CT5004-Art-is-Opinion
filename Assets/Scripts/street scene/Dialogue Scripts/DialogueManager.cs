@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour {
 		if (PlayerPrefs.GetInt("fromGallery") == 1) {
 
 		} else {
+			Debug.Log("hdkhdku");
 			CharacterAnim.Play("CharacterReactionIn");
 		}
 	}
@@ -95,7 +96,8 @@ public class DialogueManager : MonoBehaviour {
 	/// choses a random character
 	/// </summary>
 	public void ChangeImage() {
-		if (lastScene == "PortraitPaintScene") {
+		Debug.Log(lastScene);
+		if (PlayerPrefs.GetInt("fromGallery") == 0) { 
 			if (PlayerPrefs.GetInt("IsSpecialPerson") == 1) {
 				myImageComponent.sprite = specialImages[PlayerPrefs.GetInt("Person")];
 			} else {

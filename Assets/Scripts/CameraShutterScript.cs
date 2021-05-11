@@ -26,12 +26,12 @@ public class CameraShutterScript : MonoBehaviour {
 		///set the variable to 1 in the scene transition from street scene and 
 		///then change it back to 0 once the new scene is loaded 
 
-		//Debug.Log(PlayerPrefs.GetInt("fromGallery") + "    Gall A");
-		//Debug.Log(PlayerPrefs.GetInt("fromOutside") + "    Out A");
-		//Debug.Log(PlayerPrefs.GetInt("fromFree") + "    Free A");
-		//Debug.Log(PlayerPrefs.GetInt("fromTutorial") + "    Tu A");
+		Debug.Log(PlayerPrefs.GetInt("fromGallery") + "    Gall A");
+		Debug.Log(PlayerPrefs.GetInt("fromOutside") + "    Out A");
+		Debug.Log(PlayerPrefs.GetInt("fromFree") + "    Free A");
+		Debug.Log(PlayerPrefs.GetInt("fromTutorial") + "    Tu A");
 
-		//PlayerPrefs.SetInt("portraitLevel", 1);    /// remove later   
+		PlayerPrefs.SetInt("portraitLevel", 2);    /// remove later   
 
 		TranAnim = gameObject.GetComponent<Animator>();
 		CameraAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
@@ -71,6 +71,7 @@ public class CameraShutterScript : MonoBehaviour {
 			}
 
 		} else if (SceneManager.GetActiveScene().name == "TableScene" || SceneManager.GetActiveScene().name == "StreetScene") {
+			Debug.Log("gegeghehh");
 			if (SceneManager.GetActiveScene().name == "TableScene") {
 				tableControllerScript = GameObject.Find("TableController").GetComponent<TableControllerScript>();
 			} else {
@@ -86,11 +87,12 @@ public class CameraShutterScript : MonoBehaviour {
 			if (PlayerPrefs.GetInt("fromGallery") == 1) {
 				FreeDrawModel.gameObject.SetActive(true);
 				OtherDrawModel.gameObject.SetActive(false);
+				TranAnim.Play("BlinkOpen");
 			} else {
-				//FreeDrawModel.gameObject.SetActive(false);
-				//OtherDrawModel.gameObject.SetActive(true);
+				FreeDrawModel.gameObject.SetActive(false);
+				OtherDrawModel.gameObject.SetActive(true);
+				TranAnim.Play("Camera Shutter Open Ani");
 			}
-			TranAnim.Play("Camera Shutter Open Ani");
 
 		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
@@ -102,6 +104,17 @@ public class CameraShutterScript : MonoBehaviour {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			TranAnim.Play("Camera Shutter Open Ani");
 		}
+	}
+
+
+	public void transitionDecide() {
+		if (SceneManager.GetActiveScene().name == "StillLifePaintScene" || SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+			if (PlayerPrefs.GetInt("fromGallery") == 1) {
+				TranAnim.Play("BlinkClose");
+			} else {
+				TranAnim.Play("Camera Shutter Close Ani");
+			}
+		} 
 	}
 
 	/// <summary>
@@ -138,10 +151,10 @@ public class CameraShutterScript : MonoBehaviour {
 			toScene = "Gallery";
 		}
 		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-			toScene = "Street";
+			toScene = "Gallery";
 		}
 		if (SceneManager.GetActiveScene().name == "StillLifePaintScene") {
-			toScene = "Table";
+			toScene = "Gallery";
 		}
 		//Debug.Log(toScene);
 		SceneManager.LoadScene(toScene + "Scene");
@@ -207,8 +220,8 @@ public class CameraShutterScript : MonoBehaviour {
 			}
 			tutorialDialogeManager.StartDialogue();
 		}
-		//PlayerPrefs.SetInt("fromGallery", 0);
-		//	PlayerPrefs.SetInt("fromOutside", 0);
+		PlayerPrefs.SetInt("fromGallery", 0);
+		PlayerPrefs.SetInt("fromOutside", 0);
 		PlayerPrefs.SetInt("fromFree", 0);
 
 		gameObject.SetActive(false);

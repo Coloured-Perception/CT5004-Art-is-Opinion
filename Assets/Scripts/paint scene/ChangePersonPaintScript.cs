@@ -18,10 +18,8 @@ public class ChangePersonPaintScript : MonoBehaviour {
 
 			if (TutorialDialogeManager.sentenceNumber < 17) {
 				personImage.sprite = Banana;
-
 			} else {
 				personImage.sprite = Apple;
-
 			}
 		} else {
 			personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
