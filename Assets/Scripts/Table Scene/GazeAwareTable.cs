@@ -6,7 +6,8 @@ using Tobii.Gaming;
 
 public class GazeAwareTable : MonoBehaviour
 {
-    public bool isEyeTracker;
+    public GameObject isEyeTracker;
+    public GameObject tobiiTime;
     public GameObject Gallery;
     public Button yesButton;
     public Button noButton;
@@ -34,27 +35,18 @@ public class GazeAwareTable : MonoBehaviour
     public Camera mainCam;
     Rect camRect;
 
-    float timeBeforeClick;
-    float timeBetweenClicks = 1;
-
     Vector2 filteredPointViewport;
     Vector2 filteredPointScreen;
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeBeforeClick = timeBetweenClicks;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(isEyeTracker)
+        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
         {
             //Only click buttons if spacebar is down
             if (Input.GetKey("space"))
             {
                 camRect = mainCam.pixelRect;
-                timeBetweenClicks -= Time.deltaTime;
                 //Find position and size in x and y directions of the buttons
                 yesPos = yesButton.transform.position;
                 noPos = noButton.transform.position;
@@ -76,16 +68,16 @@ public class GazeAwareTable : MonoBehaviour
                 gazePointViewport.y *= camRect.height;
                 filteredPointViewport = Vector2.Lerp(filteredPointViewport, gazePointViewport, 0.5f);
 
-                if ((yesPos.x + yesXMin) < filteredPointViewport.x && filteredPointViewport.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPointViewport.y && filteredPointViewport.y < (yesPos.y + yesYMax) && timeBetweenClicks <= 0)
+                if ((yesPos.x + yesXMin) < filteredPointViewport.x && filteredPointViewport.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPointViewport.y && filteredPointViewport.y < (yesPos.y + yesYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                 {
                     tableController.GetComponent<TableControllerScript>().TickButton();
-                    timeBeforeClick = timeBetweenClicks;
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
 
-                if ((noPos.x + noXMin) < filteredPointViewport.x && filteredPointViewport.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPointViewport.y && filteredPointViewport.y < (noPos.y + noYMax) && timeBetweenClicks <= 0)
+                if ((noPos.x + noXMin) < filteredPointViewport.x && filteredPointViewport.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPointViewport.y && filteredPointViewport.y < (noPos.y + noYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                 {
                     tableController.GetComponent<TableControllerScript>().ChangeTables();
-                    timeBeforeClick = timeBetweenClicks;
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
 
                 Vector2 gazePointScreen = TobiiAPI.GetGazePoint().Screen;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
@@ -97,14 +89,14 @@ public class GazeAwareTable : MonoBehaviour
                     objHit = hit.transform.gameObject;
                 }
 
-                if (timeBetweenClicks <= 0)
+                if (tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                 {
                     if (GameObject.ReferenceEquals(objHit, Gallery))
                     {
                         transitionController.SetActive(true);
                         Gallery.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                 }
             }

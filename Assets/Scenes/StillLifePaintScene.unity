@@ -2176,8 +2176,9 @@ MonoBehaviour:
   buttonTemplate: {fileID: 11400000, guid: 48c213150402ad94183fe2d1a86eefc2, type: 3}
   brushSizeScript: {fileID: 1027146321}
   panel: {fileID: 743898665}
-  isEyeTracker: 0
-  mainCam: {fileID: 0}
+  tobiiTime: {fileID: 1465941354}
+  isEyeTracker: {fileID: 1465941354}
+  mainCam: {fileID: 75766442}
   padding: 30
   brushPreview: {fileID: 1004215098}
   sizeReference: 0
@@ -2684,7 +2685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -3316,7 +3317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: {fileID: 1465941354}
+  tobiiTime: {fileID: 1465941354}
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2
@@ -3331,7 +3333,7 @@ MonoBehaviour:
   brushSizeMin: 1
   brushSizeMax: 64
   hiQualityBrush: 1
-  realTimeTexUpdate: 0
+  realTimeTexUpdate: 1
   textureUpdateSpeed: 0.125
   useAdditiveColors: 1
   brushAlphaStrength: 0.12
@@ -3678,6 +3680,11 @@ PrefabInstance:
     - target: {fileID: 305648664235076648, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 305648664235076648, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 305648664235076663, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
@@ -4254,6 +4261,8 @@ GameObject:
   - component: {fileID: 1465941357}
   - component: {fileID: 1465941356}
   - component: {fileID: 1465941355}
+  - component: {fileID: 1465941358}
+  - component: {fileID: 1465941359}
   m_Layer: 0
   m_Name: GazeAware
   m_TagString: Untagged
@@ -4273,17 +4282,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb50571ed9574b94c86b49b8198290d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: {fileID: 1465941354}
+  tobiiTime: {fileID: 1465941354}
   optionsCanvas: {fileID: 1076385137}
   paintCanvas: {fileID: 1315405404}
+  brushSize: {fileID: 1027146319}
+  transitionController: {fileID: 1352899301}
   increaseSizeButton: {fileID: 2083908396}
   decreaseSizeButton: {fileID: 509316262}
   clearImageButton: {fileID: 1759114631}
   finishButton: {fileID: 997273333}
   saveButton: {fileID: 1757921791}
   notSaveButton: {fileID: 288863938}
+  customBrushes: {fileID: 51908929}
+  customBrushesPanel: {fileID: 743898665}
   saveCamera: {fileID: 2084494063}
-  cameraShutterClose: {fileID: 0}
+  mainCam: {fileID: 75766442}
 --- !u!114 &1465941356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4296,8 +4310,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908b8ed46b63a34c8d18e57e55a51b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
-  colourPanel: {fileID: 0}
+  preview: {fileID: 1004215098}
+  tobiiTime: {fileID: 1465941354}
+  isEyeTracker: {fileID: 1465941354}
+  colorpickers:
+  - {fileID: 1443019601}
+  - {fileID: 35897022}
+  - {fileID: 1373803860}
+  - {fileID: 193463264}
+  - {fileID: 1077331090}
+  - {fileID: 1317255710}
+  - {fileID: 1297824971}
+  - {fileID: 1135311152}
+  - {fileID: 100334705}
+  - {fileID: 671731841}
 --- !u!4 &1465941357
 Transform:
   m_ObjectHideFlags: 0
@@ -4312,6 +4338,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465941358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465941354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dbd805f5ce8a340822ab9f5ae645f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenClicks: 1
+  timeBeforeClick: 0
+--- !u!114 &1465941359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465941354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEyeTracker: 1
 --- !u!1 &1522817668
 GameObject:
   m_ObjectHideFlags: 0
@@ -4788,7 +4841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: {fileID: 1465941354}
+  tobiiTime: {fileID: 1465941354}
   enableTouch: 0
   paintLayerMask:
     serializedVersion: 2
@@ -4803,7 +4857,7 @@ MonoBehaviour:
   brushSizeMin: 1
   brushSizeMax: 64
   hiQualityBrush: 1
-  realTimeTexUpdate: 0
+  realTimeTexUpdate: 1
   textureUpdateSpeed: 0.125
   useAdditiveColors: 1
   brushAlphaStrength: 0.12

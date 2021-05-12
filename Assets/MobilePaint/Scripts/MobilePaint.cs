@@ -25,9 +25,10 @@ namespace unitycoder_MobilePaint {
 	public class MobilePaint : MonoBehaviour {
 		// Declaring variables related to Tobii eye-tracker input
 		[Header("Tobii Eye-tracking")]
-		public bool isEyeTracker = true;    // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker
+		public GameObject isEyeTracker;   // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker
 		bool isGazing = true;               // Used to say whether the player is looking at a point long enough
-		List<GazePoint> gazePoint;          // A list of co-ordinates where the player is looking
+        public GameObject tobiiTime;
+        List<GazePoint> gazePoint;          // A list of co-ordinates where the player is looking
 		Vector2 filteredPoint;
 
 		[Header("Mouse or Touch")]
@@ -428,7 +429,7 @@ namespace unitycoder_MobilePaint {
 				//}
 
 				// left button is held down, draw
-				if (Input.GetKey("space")) {
+				if (Input.GetKey("space") && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick < 0) {
 					// Only if we hit something, then we continue
 					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) { wentOutside = true; return; }
 
@@ -557,7 +558,7 @@ namespace unitycoder_MobilePaint {
 		// *** MAINLOOP ***
 		void Update() {
 			// Checks to see what type of input the player is using
-			if (isEyeTracker)   // Calls the function for Tobii eye-tracker input
+			if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)   // Calls the function for Tobii eye-tracker input
 			{
 				EyeTracker();
 			} else {    // Calls the function for Mouse input

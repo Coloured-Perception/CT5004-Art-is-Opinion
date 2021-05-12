@@ -1,66 +1,85 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Tobii.Gaming;
 
-public class GazeAwareColour : MonoBehaviour {
-	public static Color newColor { get; private set; }
-    public bool isEyeTracker;
-	public GameObject colourPanel;
-	Vector3 panelPos;
-	Rect panelRect;
+namespace unitycoder_MobilePaint
+{
+        public class GazeAwareColour : MonoBehaviour {
 
-	float panelXMin;
-	float panelXMax;
-	float panelYMin;
-	float panelYMax;
+        MobilePaint mobilePaint;
+        public GameObject preview;
+        public GameObject tobiiTime;
+        public GameObject isEyeTracker;
 
-	float timeBeforeClick;
-	float timeBetweenClicks = 1;
-	Vector2 filteredPoint;
+        public Button[] colorpickers;
+        Vector3[] Positions;
+        Rect[] rects;
+        float[] XMin;
+        float[] XMax;
+        float[] YMin;
+        float[] YMax;
 
-	// Update is called once per frame
-	void Update() {
+	    Vector2 filteredPoint;
 
-        if(isEyeTracker)
+        void Awake()
         {
-		    //Only click if spacebar is down
-		    if (Input.GetKey("space")) {
-			    timeBetweenClicks -= Time.deltaTime;
+            mobilePaint = PaintManager.mobilePaint;
 
-			    //Find position and size in x and y directions of the buttons
-			    panelPos = colourPanel.transform.position;
-			    panelRect = colourPanel.GetComponent<RectTransform>().rect;
-
-			    panelXMin = panelRect.xMin;
-			    panelXMax = panelRect.xMax;
-			    panelYMin = panelRect.yMin;
-			    panelYMax = panelRect.yMax;
-
-			    Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-			    filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
-			    //If player is looknig at the colour panel, select pixel colour of area looked at as brush colour
-			    if ((panelPos.x + panelXMin) < filteredPoint.x && filteredPoint.x < (panelPos.x + panelXMax) && (panelPos.y + panelYMin) < filteredPoint.y && filteredPoint.y < (panelPos.y + panelYMax) && timeBetweenClicks <= 0) {
-				    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				    RaycastHit hit;
-
-				    if (Physics.Raycast(ray, out hit)) {
-					    ColorPicker picker = hit.collider.GetComponent<ColorPicker>();
-
-					    if (picker != null) {
-						    Renderer rend = hit.transform.GetComponent<Renderer>();
-						    MeshCollider meshCollider = hit.collider as MeshCollider;
-
-						    if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null) { return; }
-
-						    Texture2D tex = rend.material.mainTexture as Texture2D;
-						    Vector2 pixelUV = hit.textureCoord;
-						    pixelUV.x *= tex.width;
-						    pixelUV.y *= tex.height;
-						    newColor = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-					    }
-				    }
-				    timeBeforeClick = timeBetweenClicks;
-			    }
-		    }
+            if (mobilePaint == null) Debug.LogError("No MobilePaint assigned at " + transform.name, gameObject);
+            if (colorpickers.Length < 1) Debug.LogWarning("No colorpickers assigned at " + transform.name, gameObject);
         }
-	}
+
+        private void Start()
+        {
+            Positions = new Vector3[colorpickers.Length];
+            rects = new Rect[colorpickers.Length];
+            XMin = new float[colorpickers.Length];
+            XMax = new float[colorpickers.Length];
+            YMin = new float[colorpickers.Length];
+            YMax = new float[colorpickers.Length];
+
+        }
+        // Update is called once per frame
+        void Update() {
+
+            if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+            {
+                for (int i = 0; i < colorpickers.Length; i++)
+                {
+                    Positions[i] = colorpickers[i].transform.position;
+                    rects[i] = colorpickers[i].GetComponent<RectTransform>().rect;
+                    XMin[i] = rects[i].xMin;
+                    XMax[i] = rects[i].xMax;
+                    YMin[i] = rects[i].yMin;
+                    YMax[i] = rects[i].yMax;
+                }
+
+
+                //Only click if spacebar is down
+                if (Input.GetKey("space")) {
+                    
+
+			        Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+			        filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
+
+                    for (int i = 0; i < colorpickers.Length; i++)
+                    {
+                        if ((Positions[i].x + XMin[i]) < filteredPoint.x && filteredPoint.x < (Positions[i].x + XMax[i]) && (Positions[i].y + YMin[i]) < filteredPoint.y && filteredPoint.y < (Positions[i].y + YMax[i]) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
+                        {
+                            Color newColor = colorpickers[i].gameObject.GetComponent<Image>().color;
+
+                            preview.gameObject.GetComponent<RawImage>().color = newColor; // set current color image
+
+                            // send new color
+                            mobilePaint.SetPaintColor(newColor);
+                            tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                        }
+                    }
+
+                }
+            }
+	    }
+    }
 }

@@ -17,6 +17,7 @@ namespace unitycoder_MobilePaint
         public BrushSizeScript brushSizeScript;
         public GameObject panel;
         Button[] newButton;
+        public GameObject tobiiTime;
         Vector3[] Positions;
         Rect[] rects;
         float[] XMin;
@@ -25,12 +26,10 @@ namespace unitycoder_MobilePaint
         float[] YMax;
         GameObject[] children;
 
-        public bool isEyeTracker;
+        public GameObject isEyeTracker;
         public Camera mainCam;
         Rect camRect;
 
-        float timeBeforeClick;
-        float timeBetweenClicks = 1;
         int brushSizeLast = 100;    // any number that cant actually be the size 
 
         Vector2 filteredPoint;
@@ -46,7 +45,6 @@ namespace unitycoder_MobilePaint
 
         void Start()
         {
-            timeBeforeClick = timeBetweenClicks;
             newButton = new Button[mobilePaint.customBrushes.Length];
             if (mobilePaint == null) { Debug.LogError("No MobilePaint assigned at " + transform.name); }
             if (buttonTemplate == null) { Debug.LogError("No buttonTemplate assigned at " + transform.name); }
@@ -112,10 +110,9 @@ namespace unitycoder_MobilePaint
                 YMax = new float[newButton.Length];
             }
 
-            if (isEyeTracker)
+            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
             {
                 camRect = mainCam.pixelRect;
-                timeBeforeClick -= Time.deltaTime;
 
                 Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
                 gazePoint.x *= camRect.width;
@@ -137,10 +134,11 @@ namespace unitycoder_MobilePaint
 
                         if (Input.GetKey("space"))
                         {
-                            if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && timeBeforeClick <= 0)
+                            if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                             {
                                 SetCustomBrush(loopPos);
-                                timeBeforeClick = timeBetweenClicks;
+                                tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                                mobilePaint.textureNeedsUpdate = true;
                                 break;
                             }
                         }
