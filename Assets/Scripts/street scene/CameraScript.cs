@@ -68,7 +68,8 @@ public class CameraScript : MonoBehaviour {
 			TableUIAnim.Play("ShowTableUI");
 		}
 		CameraAnim.enabled = false;
-	}
+        CameraAnim.applyRootMotion = true;
+    }
 
 	public void NavEnd() {
 		CameraAnim.applyRootMotion = true;

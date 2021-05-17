@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7d6b322058ef946a18a86cdb16b6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headGazeContribution: 0
+  headGazeContribution: 1
   maxAngleX: 45
   maxAngleY: 135
   minAngleX: -45
@@ -1877,8 +1877,8 @@ MonoBehaviour:
   sensitivity: 5
   responsiveness: 1
   speed: 1
-  isTobii: 0
-  continuousRotate: 0
+  isEyeTracker: {fileID: 1312286892}
+  continuousRotate: 1
   cam: {fileID: 913380753}
 --- !u!4 &900863960
 Transform:
@@ -3213,6 +3213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1312286893}
   - component: {fileID: 1312286894}
+  - component: {fileID: 1312286896}
+  - component: {fileID: 1312286895}
   m_Layer: 0
   m_Name: GazeAwareTutorial
   m_TagString: Untagged
@@ -3246,11 +3248,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d633d0af3bf8d48affe1f62df664ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEyeTracker: {fileID: 1312286892}
+  tobiiTime: {fileID: 1312286892}
   nextButton: {fileID: 1516637460}
   yesButton: {fileID: 550832319}
   noButton: {fileID: 950715839}
   mainCam: {fileID: 913380753}
   tutorialManager: {fileID: 2056827685}
+--- !u!114 &1312286895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312286892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dbd805f5ce8a340822ab9f5ae645f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenClicks: 1
+  timeBeforeClick: 0
+--- !u!114 &1312286896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312286892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEyeTracker: 1
 --- !u!1 &1313390172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,7 +3369,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.19e-43, y: 6e-44, z: 0, w: 4e-45}
+  m_BoundingSphereOverride: {x: 2.3509887e-38, y: 0, z: 0, w: 2.1e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4553,7 +4584,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1, y: 6e-45, z: 0, w: 8.9641366e+30}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4608,6 +4639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toScene: 
+  FreeDrawModel: {fileID: 0}
+  OtherDrawModel: {fileID: 0}
 --- !u!95 &1864905713
 Animator:
   serializedVersion: 3
@@ -4991,6 +5024,8 @@ MonoBehaviour:
   speech: []
   request: []
   dogSpeech: []
+  reactions: []
+  reviewDescriptions: []
 --- !u!114 &2056827687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,6 +5064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9fe5497cf2ac44cbb3fdb1eb6dbd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialTest: 1
 --- !u!1 &2059974686
 GameObject:
   m_ObjectHideFlags: 0

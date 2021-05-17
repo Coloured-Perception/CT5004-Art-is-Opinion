@@ -23,10 +23,10 @@ namespace unitycoder_MobilePaint {
 	[RequireComponent(typeof(MeshFilter))]
 	[RequireComponent(typeof(MeshRenderer))]
 	public class MobilePaint : MonoBehaviour {
-		// Declaring variables related to Tobii eye-tracker input
+        public GameObject customBrushPanel;
+        // Declaring variables related to Tobii eye-tracker input
 		[Header("Tobii Eye-tracking")]
-		public GameObject isEyeTracker;   // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker
-		bool isGazing = true;               // Used to say whether the player is looking at a point long enough
+		public GameObject isEyeTracker;   // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker           // Used to say whether the player is looking at a point long enough
         public GameObject tobiiTime;
         List<GazePoint> gazePoint;          // A list of co-ordinates where the player is looking
 		Vector2 filteredPoint;
@@ -406,7 +406,7 @@ namespace unitycoder_MobilePaint {
 			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker
 			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
-			if (isGazing) {
+			if (!customBrushPanel.activeInHierarchy) {
 				// TEST: Undo key for desktop
 
 				// mouse is over UI element? then dont paint
@@ -576,7 +576,7 @@ namespace unitycoder_MobilePaint {
 		/// </summary>
 		void MousePaint() {
 			// left button is held down, draw
-			if (Input.GetKey("space")) {
+			if (Input.GetKey("space") && !customBrushPanel.activeInHierarchy) {
 				// Only if we hit something, then we continue
 				if (!Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, paintLayerMask)) {
 					wentOutside = true;

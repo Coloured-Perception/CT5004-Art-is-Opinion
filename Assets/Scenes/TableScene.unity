@@ -605,6 +605,8 @@ GameObject:
   m_Component:
   - component: {fileID: 258872068}
   - component: {fileID: 258872067}
+  - component: {fileID: 258872070}
+  - component: {fileID: 258872069}
   m_Layer: 0
   m_Name: GazeAwareTable
   m_TagString: Untagged
@@ -624,7 +626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81fcb8abf9ab9c149bab1d28b247ecf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 0
+  isEyeTracker: {fileID: 258872066}
+  tobiiTime: {fileID: 258872066}
   Gallery: {fileID: 408047578}
   yesButton: {fileID: 171569894}
   noButton: {fileID: 1349633869}
@@ -645,6 +648,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258872069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258872066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dbd805f5ce8a340822ab9f5ae645f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenClicks: 1
+  timeBeforeClick: 0
+--- !u!114 &258872070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258872066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEyeTracker: 1
 --- !u!1001 &295915041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,11 +1330,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
     - target: {fileID: 7724802589919496549, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1320,6 +1345,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.9803175
       objectReference: {fileID: 0}
+    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
     - target: {fileID: -6480062557994582748, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1634,8 +1664,8 @@ MonoBehaviour:
   sensitivity: 1
   responsiveness: 1
   speed: 1
-  isTobii: 0
-  continuousRotate: 0
+  isEyeTracker: {fileID: 258872066}
+  continuousRotate: 1
   cam: {fileID: 140658143}
 --- !u!4 &1043509326
 Transform:

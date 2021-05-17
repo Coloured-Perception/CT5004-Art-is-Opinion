@@ -33,26 +33,19 @@ public class GazeAwareGallery : MonoBehaviour
     public Camera mainCam;
     //Rect camRect;
 
-    float timeBeforeClick;
-    float timeBetweenClicks = 1;
-
     Vector2 filteredPoint;
 
-    public bool isEyeTracker = false;
+    public GameObject isEyeTracker;
+    public GameObject tobiiTime;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        timeBeforeClick = timeBetweenClicks;
-    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (isEyeTracker)
+        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
         {
-
-            timeBetweenClicks -= Time.deltaTime;
             if (Input.GetKey("space"))
             {
                 //camRect = mainCam.pixelRect;
@@ -68,49 +61,49 @@ public class GazeAwareGallery : MonoBehaviour
                     objHit = hit.transform.gameObject;
                 }
 
-                if (timeBetweenClicks <= 0)
+                if (tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                 {
                     if (GameObject.ReferenceEquals(objHit, EntranceButton))
                     {
                         transitionController.SetActive(true);
                         EntranceButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, TableButton))
                     {
                         transitionController.SetActive(true);
                         TableButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, MagazineButton))
                     {
                         transitionController.SetActive(true);
                         MagazineButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, StillLifeButton))
                     {
                         transitionController.SetActive(true);
                         StillLifeButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, PortraitButton))
                     {
                         transitionController.SetActive(true);
                         PortraitButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, TutorialButton))
                     {
                         transitionController.SetActive(true);
                         TutorialButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     //else if (GameObject.ReferenceEquals(objHit, OptionsButton))
                     //{
@@ -124,77 +117,77 @@ public class GazeAwareGallery : MonoBehaviour
                         transitionController.SetActive(true);
                         ShopButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, EtoSLButton))
                     {
                         EtoSLButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, SLtoEButton))
                     {
                         SLtoEButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, EtoRButton))
                     {
                         EtoRButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, RtoEButton))
                     {
                         RtoEButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, RtoOButton))
                     {
                         RtoOButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, OtoRButton))
                     {
                         OtoRButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, SLtoPButton))
                     {
                         SLtoPButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, PtoSLButton))
                     {
                         PtoSLButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, EtoFPButton))
                     {
                         EtoFPButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, FPtoEButton))
                     {
                         FPtoEButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, FLtoRButton))
                     {
                         FLtoRButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, RtoFLButton))
                     {
                         RtoFLButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, FLtoFPButton))
                     {
                         FLtoFPButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                     else if (GameObject.ReferenceEquals(objHit, FPtoFLButton))
                     {
                         FPtoFLButton.GetComponent<NavigationCanvasScript>().Move();
-                        timeBeforeClick = timeBetweenClicks;
+                        tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                     }
                 }
             }

@@ -134,7 +134,7 @@ namespace unitycoder_MobilePaint
 
                         if (Input.GetKey("space"))
                         {
-                            if ((Positions[loopPos].x + XMin[loopPos]) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos]) && (Positions[loopPos].y + YMin[loopPos]) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos]) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
+                            if ((Positions[loopPos].x + XMin[loopPos] - (padding/2)) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos] + (padding / 2)) && (Positions[loopPos].y + YMin[loopPos] - (padding / 2)) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos] + (padding / 2)) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
                             {
                                 SetCustomBrush(loopPos);
                                 tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;

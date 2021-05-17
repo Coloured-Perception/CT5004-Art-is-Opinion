@@ -4,19 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using Tobii.Gaming;
 
-public class GazeAwareTutorial : MonoBehaviour
+public class GazeAwareStreet : MonoBehaviour
 {
+
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
     public Button nextButton;
     public Button yesButton;
     public Button noButton;
+    public GameObject Gallery;
+
+    public GameObject dialogueManager;
 
     public Camera mainCam;
 
     Rect camRect;
 
-    public GameObject tutorialManager;
+    GameObject objHit;
+    public GameObject transitionController;
 
     Vector3 nextPos;
     Vector3 yesPos;
@@ -42,11 +47,17 @@ public class GazeAwareTutorial : MonoBehaviour
     float noYMax;
 
     Vector2 filteredPoint;
+    Vector2 filteredPointScreen;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
         {
             camRect = mainCam.pixelRect;
             //Only click buttons if spacebar is down
@@ -82,23 +93,39 @@ public class GazeAwareTutorial : MonoBehaviour
 
                 if ((nextPos.x + nextXMin) < filteredPoint.x && filteredPoint.x < (nextPos.x + nextXMax) && (nextPos.y + nextYMin) < filteredPoint.y && filteredPoint.y < (nextPos.y + nextYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && nextButton.IsActive())
                 {
-                    tutorialManager.GetComponent<TutorialManager>().NextButtonClicked();
+                    dialogueManager.GetComponent<DialogueManager>().NextButton();
                     tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
 
                 if ((yesPos.x + yesXMin) < filteredPoint.x && filteredPoint.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPoint.y && filteredPoint.y < (yesPos.y + yesYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && yesButton.IsActive())
                 {
-                    tutorialManager.GetComponent<TutorialManager>().YesButtonClick();
+                    dialogueManager.GetComponent<DialogueManager>().YesButton();
                     tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
 
                 if ((noPos.x + noXMin) < filteredPoint.x && filteredPoint.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPoint.y && filteredPoint.y < (noPos.y + noYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && noButton.IsActive())
                 {
-                    tutorialManager.GetComponent<TutorialManager>().NoButtonClick();
+                    dialogueManager.GetComponent<DialogueManager>().NoButton();
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                }
+
+                Vector2 gazePointScreen = TobiiAPI.GetGazePoint().Screen;
+                filteredPointScreen = Vector2.Lerp(filteredPointScreen, gazePointScreen, 0.5f);
+                Ray ray = mainCam.ScreenPointToRay(filteredPoint);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+                {
+                    objHit = hit.transform.gameObject;
+                }
+
+                if (GameObject.ReferenceEquals(objHit, Gallery))
+                {
+                    transitionController.SetActive(true);
+                    Gallery.GetComponent<NavigationCanvasScript>().ChangeScene();
+                    transitionController.GetComponent<Animator>().Play("BlinkClose");
                     tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
             }
         }
-
     }
 }

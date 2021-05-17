@@ -2768,6 +2768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customBrushPanel: {fileID: 679784042}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0
@@ -4228,6 +4229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329d585c217af74f8e7769cad76c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customBrushPanel: {fileID: 679784042}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0
