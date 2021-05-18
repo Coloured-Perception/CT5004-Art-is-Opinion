@@ -2300,17 +2300,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2084494065}
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &584843067
@@ -2720,9 +2709,9 @@ MonoBehaviour:
   buttonTemplate: {fileID: 11400000, guid: 48c213150402ad94183fe2d1a86eefc2, type: 3}
   brushSizeScript: {fileID: 2134768476}
   panel: {fileID: 679784042}
-  tobiiTime: {fileID: 0}
-  isEyeTracker: {fileID: 0}
-  mainCam: {fileID: 0}
+  tobiiTime: {fileID: 1465941354}
+  isEyeTracker: {fileID: 1465941354}
+  mainCam: {fileID: 75766442}
   padding: 30
   brushPreview: {fileID: 98621555}
   sizeReference: 0
@@ -4429,7 +4418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
 --- !u!114 &1465941360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6559,7 +6548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &2084494063
 Camera:
   m_ObjectHideFlags: 0

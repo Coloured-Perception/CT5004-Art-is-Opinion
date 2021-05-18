@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -17,7 +16,7 @@ public class TutorialManager : MonoBehaviour {
 	GameObject Map, MapStill, MapStillDraw, MapFreeDraw, MapOffice, MapEntrance, MapPortrait;
 	GameObject PaintTutorial, PaintTutorial1, PaintTutorial2, PaintTutorial3, PaintTutorial4;
 
-    public bool tutorialTest;
+	public bool tutorialTest;
 
 	private Animator CuratorAnim, CameraAnim, TranAnim, LookPromptsAnim, TutorialObjAnim, PaintCanvasAnim, CameraCanvasAnim, TableUIAnim, MapAnim, PaintTutorialAnim;
 
@@ -35,21 +34,21 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-        //Help with testing tutorial in unity
-        if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
-        {
-		    
-            if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
-            {
-                PlayerPrefs.SetInt("banana", 0);    // remove later 
-                PlayerPrefs.SetInt("apple", 0);
-                PlayerPrefs.SetInt("intro", 0);// remove later
-            }
-            else if (PlayerPrefs.GetInt("intro") == 1)
-            {
-                PlayerPrefs.SetInt("intro", 0);// remove later
-            }
-        }
+		//Help with testing tutorial in unity
+		if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest) {
+
+			if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1) {
+				PlayerPrefs.SetInt("banana", 0);    // remove later 
+				PlayerPrefs.SetInt("apple", 0);
+				PlayerPrefs.SetInt("intro", 0);     // remove later
+			} else if (PlayerPrefs.GetInt("intro") == 1) {
+				PlayerPrefs.SetInt("intro", 0);     // remove later
+			}
+		}
+
+		//PlayerPrefs.SetInt("banana", 0);    // remove later 
+		//PlayerPrefs.SetInt("apple", 0);
+		//PlayerPrefs.SetInt("intro", 0);     // remove later
 
 		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
@@ -164,7 +163,7 @@ public class TutorialManager : MonoBehaviour {
 				Transparent = Canvas.transform.Find("Transparent").gameObject;
 				OfficeButton = GameObject.Find("Tutorial");
 
-				
+
 
 				if (PlayerPrefs.GetInt("portraitLevel") == 1) {
 					Map = TutorialUI.transform.Find("Map Tutorial").gameObject;
@@ -172,7 +171,7 @@ public class TutorialManager : MonoBehaviour {
 					MapEntrance = Map.transform.Find("Map P Entrance").gameObject;
 					MapOffice = Map.transform.Find("Map P Office").gameObject;
 					MapAnim = Map.gameObject.GetComponent<Animator>();
-				
+
 
 					TutorialUI.gameObject.SetActive(true);
 					Transparent.gameObject.SetActive(true);

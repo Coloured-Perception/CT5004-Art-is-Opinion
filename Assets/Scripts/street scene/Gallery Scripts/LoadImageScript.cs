@@ -11,6 +11,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class Loads previously saved PNGs/paintings (from select filePath) onto RawImage game objects that act as painting frames.
@@ -31,6 +32,28 @@ public class LoadImageScript : MonoBehaviour {
 		int numOfPNGs = 1;                                  // Used to load the last PNG in the folder (loads "SavedImage" + numOfPNGs)
 		string filePath = Application.persistentDataPath;   // Where the images are stored
 		string individualFilePath;                          // The file directory of a specific image to load
+		string fileName = "PortraitImage";
+
+		// Checks whether the folders needed to save different images are available, otherwise it creates them
+		if (Directory.Exists(filePath + "/Portraits")) {
+			Debug.Log("Portrait folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/Portraits");
+		}
+		if (Directory.Exists(filePath + "/StillLifes")) {
+			Debug.Log("Still-life folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/StillLifes");
+		}
+
+		if (SceneManager.GetActiveScene().name == "StreetScene") {
+			filePath += "/Portraits";
+			fileName = "/PortraitImage";
+			Debug.Log("Portrait");
+		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+			filePath += "/StillLifes";
+			fileName = "/StillImage";
+		}
 
 		Debug.Log(filePath);
 
@@ -48,14 +71,14 @@ public class LoadImageScript : MonoBehaviour {
 
 		// Goes through each file within the array, if the file extension is a '.png', numOfPNGs increments
 		foreach (FileInfo file in fileInfo) {
-			if (File.Exists(filePath + "/SavedImage" + numOfPNGs + ".png")) {
-				//Debug.Log("Yay!");
-				PNGImages.Add(filePath + "/SavedImage" + numOfPNGs + ".png");   // Stores only the png files
+			if (File.Exists(filePath + fileName + numOfPNGs + ".png")) {
+				Debug.Log("Yay!");
+				PNGImages.Add(filePath + fileName + numOfPNGs + ".png");   // Stores only the png files
 				numOfPNGs++;
 			} else {
-				Debug.Log("UHOH! Big DUDU!"); 
-				if (File.Exists(filePath + "/SavedImage" + (numOfPNGs + 1) + ".png")) {
-					File.Move("SavedImage" + (numOfPNGs + 1), "SavedImage" + numOfPNGs);
+				Debug.Log("UHOH! Big DUDU!");
+				if (File.Exists(filePath + fileName + (numOfPNGs + 1) + ".png")) {
+					File.Move(fileName + (numOfPNGs + 1), fileName + numOfPNGs);
 				}
 			}
 		}
@@ -83,7 +106,7 @@ public class LoadImageScript : MonoBehaviour {
 						Debug.Log(uwr.error);
 					} else {
 						loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-				//		Debug.Log("Succesfully loaded texture!");
+						//		Debug.Log("Succesfully loaded texture!");
 					}
 					paintings[i].texture = loadedTexture;
 				}

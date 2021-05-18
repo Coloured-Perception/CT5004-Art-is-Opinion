@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class SaveImageScript : MonoBehaviour {
 	int numOfPNGs;
 	string filePath;
+	string fileName;
 
 	public RenderTexture SaveTexture;
 
@@ -32,6 +33,34 @@ public class SaveImageScript : MonoBehaviour {
 		numOfPNGs = 1;
 		filePath = Application.persistentDataPath;  // Where the image is to be saved
 
+		// Checks whether the folders needed to save different images are available, otherwise it creates them
+		if (Directory.Exists(filePath + "/Table")) {
+			Debug.Log("Table folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/Table");
+		}
+		if (Directory.Exists(filePath + "/Portraits")) {
+			Debug.Log("Portrait folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/Portraits");
+		}
+		if (Directory.Exists(filePath + "/StillLifes")) {
+			Debug.Log("Still-life folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/StillLifes");
+		}
+
+		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+			filePath += "/Portraits";
+			fileName = "/PortraitImage";
+		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+			filePath += "/Table";
+			fileName = "/FruitImage";
+		} else if (SceneManager.GetActiveScene().name == "StillLifePaintingScene") {
+			filePath += "/StillLifes";
+			fileName = "/StillImage";
+		}
+
 		// Stores the info on what is saved in the filePath to an array
 		DirectoryInfo info = new DirectoryInfo(filePath);
 		FileInfo[] fileInfo = info.GetFiles();
@@ -48,7 +77,9 @@ public class SaveImageScript : MonoBehaviour {
 	/// Calls the co-routine that saves the image that has been drawn (when save button is clicked)
 	/// </summary>
 	public void Save() {
-		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") { paintTime.SaveTime(); }
+		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+			paintTime.SaveTime();
+		}
 		StartCoroutine(CoSave());
 	}
 
@@ -67,7 +98,11 @@ public class SaveImageScript : MonoBehaviour {
 
 		byte[] saveData = texture2D.EncodeToPNG();  // Turns the image seen in the SaveCamera to a PNG
 
-		File.WriteAllBytes(filePath + "/SavedImage" + numOfPNGs + ".png", saveData);    // Saves the .PNG to the desired directory
+		if (SceneManager.GetActiveScene().name == "TableScene") {
+			File.WriteAllBytes(filePath + fileName + ".png", saveData);    // Saves the .PNG to the desired directory
+		} else {
+			File.WriteAllBytes(filePath + fileName + numOfPNGs + ".png", saveData);    // Saves the .PNG to the desired directory
+		}
 
 		PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
 		ChangeScene();

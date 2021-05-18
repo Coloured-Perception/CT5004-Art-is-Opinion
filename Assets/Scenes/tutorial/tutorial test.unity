@@ -1871,9 +1871,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headGazeContribution: 1
   maxAngleX: 45
-  maxAngleY: 135
+  maxAngleY: 360
   minAngleX: -45
-  minAngleY: 45
+  minAngleY: -360
   sensitivity: 5
   responsiveness: 1
   speed: 1
@@ -3281,7 +3281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
 --- !u!1 &1313390172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,7 +3369,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.3509887e-38, y: 0, z: 0, w: 2.1e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -3.406414e-11}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4584,7 +4584,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 5.14e-43, y: 7.17e-43, z: 0, w: 1.502e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -5622,7 +5622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
 --- !u!1 &129751540
 GameObject:
   m_ObjectHideFlags: 0
@@ -7156,6 +7156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9fe5497cf2ac44cbb3fdb1eb6dbd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialTest: 0
 --- !u!1 &290924314
 GameObject:
   m_ObjectHideFlags: 0

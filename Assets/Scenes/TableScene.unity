@@ -498,6 +498,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1312364181}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &171569895
@@ -674,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b216d01cf5895545a87f2ad6672fa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEyeTracker: 1
+  isEyeTracker: 0
 --- !u!1001 &295915041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1330,6 +1341,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
     - target: {fileID: 7724802589919496549, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1345,11 +1361,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.9803175
       objectReference: {fileID: 0}
-    - target: {fileID: 5884719773537258021, guid: 0b3b9f43d418a6349b2c2e45f489c569,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 726d68e015d6a0c4783f8ad34b31448b, type: 2}
     - target: {fileID: -6480062557994582748, guid: 0b3b9f43d418a6349b2c2e45f489c569,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2156,13 +2167,14 @@ GameObject:
   - component: {fileID: 1312364180}
   - component: {fileID: 1312364179}
   - component: {fileID: 1312364178}
+  - component: {fileID: 1312364181}
   m_Layer: 0
   m_Name: SaveFruitCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1312364178
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2204,7 +2216,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: a54ec0b3217a7d34ca0cb26b36819f81, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -2228,6 +2240,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312364181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312364177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d8de5941e32884a883db88ff24f9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SaveTexture: {fileID: 8400000, guid: a54ec0b3217a7d34ca0cb26b36819f81, type: 2}
+  paintTime: {fileID: 0}
 --- !u!1 &1349633867
 GameObject:
   m_ObjectHideFlags: 0
