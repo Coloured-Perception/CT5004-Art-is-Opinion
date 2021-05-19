@@ -7,6 +7,11 @@
 
 using UnityEngine;
 
+/// <summary>
+/// Changes the character in the Paint Scene to match the person in the Street Scene
+/// If the tutorial, chooses the fruit that should appear in Still Life Paint Scene
+/// Author: Kane Adams, edited by Coral Weston
+/// </summary>
 public class ChangePersonPaintScript : MonoBehaviour {
 	public SpriteRenderer personImage;  // The player image that changes
 	public Sprite Banana;

@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// this script controlls the intro tutorial
+/// this script controls the intro tutorial
 /// </summary>
 public class TutorialManager : MonoBehaviour {
 

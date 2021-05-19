@@ -7,43 +7,34 @@ using UnityEngine.UI;
 
 /// <summary>
 /// This class loads the image of the fruit assortment from the table scene
+/// Author: Kane Adams
 /// </summary>
 public class LoadFruitScript : MonoBehaviour {
-	public RawImage fruitImage;
-	//Texture loadedTexture;
-	//string filePath;
+	public GameObject fruit;
+	private Sprite fruitSprite;
 
-	//private void Awake() {
-	//	Debug.Log("Function Called");
+	private void Start() {
+		if (Directory.Exists(Application.persistentDataPath + "/Table")) {
+			Debug.Log("Table folder");
+		} else {
+			Directory.CreateDirectory(Application.persistentDataPath + "/Table");
+		}
 
-	//	if (Directory.Exists(Application.persistentDataPath + "/Table")) {
-	//		Debug.Log("Table folder");
-	//	} else {
-	//		Directory.CreateDirectory(Application.persistentDataPath + "/Table");
-	//	}
+		string filePath = Application.persistentDataPath + "//Table/FruitImage.png";
+		ScreenCapture.CaptureScreenshot(filePath);
+		fruitSprite = LoadSprite(filePath);
+		fruit.GetComponent<SpriteRenderer>().sprite = fruitSprite;
+	}
 
-	//	filePath = Application.persistentDataPath + "/Table/FruitImage.png";
-	//}
-
-	///// <summary>
-	///// Loads the image saved in the folder
-	///// </summary>
-	///// <returns></returns>
-	//private IEnumerator Start() {
-	//	using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(filePath)) {
-	//		yield return uwr.SendWebRequest();
-
-	//		if (uwr.isNetworkError || uwr.isHttpError) {
-	//			loadedTexture = null;
-	//			Debug.Log("Error loading texture.");
-	//			Debug.Log(uwr.error);
-	//		} else {
-	//			loadedTexture = DownloadHandlerTexture.GetContent(uwr);
-	//			Debug.Log("Successfully loaded texture!");
-	//		}
-	//		fruitImage.texture = loadedTexture;
-	//	}
-	//}
-
-	//public Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
+	private Sprite LoadSprite(string a_filePath) {
+		if (string.IsNullOrEmpty(a_filePath)) { return null; }
+		if (System.IO.File.Exists(a_filePath)) {
+			byte[] bytes = System.IO.File.ReadAllBytes(a_filePath);
+			Texture2D texture = new Texture2D(1, 1);
+			texture.LoadImage(bytes);
+			Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+			return sprite;
+		}
+		return null;
+	}
 }
