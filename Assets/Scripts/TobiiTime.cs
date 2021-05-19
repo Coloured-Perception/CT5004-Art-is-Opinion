@@ -16,6 +16,7 @@ public class TobiiTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeBeforeClick -= Time.deltaTime;
+        if(timeBeforeClick > 0)
+            timeBeforeClick -= Time.deltaTime;
     }
 }

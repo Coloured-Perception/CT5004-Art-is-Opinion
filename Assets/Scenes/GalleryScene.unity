@@ -5326,7 +5326,7 @@ GameObject:
   - component: {fileID: 101633220}
   - component: {fileID: 101633219}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Tobii
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34270,7 +34270,7 @@ GameObject:
   - component: {fileID: 1719482780}
   - component: {fileID: 1719482779}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
