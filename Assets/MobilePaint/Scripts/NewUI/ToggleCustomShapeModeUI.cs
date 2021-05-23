@@ -28,7 +28,7 @@ namespace unitycoder_MobilePaint
 
 		public void SetMode()
 		{
-			if (GetComponent<Toggle>().isOn)
+			if (!customBrushPanel.activeInHierarchy)
 			{
 				customBrushPanel.SetActive(true);
 				//mobilePaint.SetDrawModeShapes();
