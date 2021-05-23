@@ -19,6 +19,7 @@ public class ChangePersonPaintScript : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
+		Debug.Log(PlayerPrefs.GetInt("intro") + "  intro");
 		if (PlayerPrefs.GetInt("intro") == 0) {
 
 			if (TutorialDialogeManager.sentenceNumber < 17) {

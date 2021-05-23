@@ -17,6 +17,8 @@ public class TutorialManager : MonoBehaviour {
 	GameObject PaintTutorial, PaintTutorial1, PaintTutorial2, PaintTutorial3, PaintTutorial4;
 
 	public bool tutorialTest;
+	int colourPreview;
+
 
 	private Animator CuratorAnim, CameraAnim, TranAnim, LookPromptsAnim, TutorialObjAnim, PaintCanvasAnim, CameraCanvasAnim, TableUIAnim, MapAnim, PaintTutorialAnim;
 
@@ -34,20 +36,20 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
 
-		//Help with testing tutorial in unity
-		if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest) {
+		////Help with testing tutorial in unity
+		//if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest) {
 
-			if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1) {
-				PlayerPrefs.SetInt("banana", 0);    // remove later 
-				PlayerPrefs.SetInt("apple", 0);
-				PlayerPrefs.SetInt("intro", 0);     // remove later
-			} else if (PlayerPrefs.GetInt("intro") == 1) {
-				PlayerPrefs.SetInt("intro", 0);     // remove later
-			}
-		}
+		//	if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1) {
+		//		PlayerPrefs.SetInt("banana", 0);    // remove later 
+		//		PlayerPrefs.SetInt("apple", 0);
+		//		PlayerPrefs.SetInt("intro", 0);     // remove later
+		//	} else if (PlayerPrefs.GetInt("intro") == 1) {
+		//		PlayerPrefs.SetInt("intro", 0);     // remove later
+		//	}
+		//}
 
 		//PlayerPrefs.SetInt("banana", 0);    // remove later 
-		//PlayerPrefs.SetInt("apple", 0);
+		//PlayerPrefs.SetInt("apple", 0);     // remove later
 		//PlayerPrefs.SetInt("intro", 0);     // remove later
 
 		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
@@ -147,6 +149,8 @@ public class TutorialManager : MonoBehaviour {
 
 				if (PlayerPrefs.GetInt("banana") == 0) {
 					CuratorAnim.Play("CuratorB");
+					PaintCanvasAnim.Play("ShowBrushPreview");
+
 
 				} else if (PlayerPrefs.GetInt("apple") == 0) {
 					CuratorAnim.Play("CuratorT");
@@ -284,11 +288,10 @@ public class TutorialManager : MonoBehaviour {
 
 			} else if (TutorialDialogeManager.sentenceNumber == 31) {
 				PaintCanvasAnim.Play("ShowBrushSize");
-				//	CuratorAnim.Play("CuratorTSNext");
+					CuratorAnim.Play("CuratorTNextH");
 
 			} else if (TutorialDialogeManager.sentenceNumber == 32) {
 				///change the next button to the brush size
-				//	CuratorAnim.Play("CuratorTHNext");
 			} else if (TutorialDialogeManager.sentenceNumber == 33) {
 				CuratorAnim.Play("CuratorTtoTI");
 				PaintCanvasAnim.Play("MakeFinishInteractableA");
@@ -397,9 +400,9 @@ public class TutorialManager : MonoBehaviour {
 		if (TutorialDialogeManager.sentenceNumber == 12) {
 			CameraAnim.Play("CameraEaselToTable");
 			CuratorAnim.Play("CuratorTNextS");
+			tutorialDialogeManager.StartDialogue();
 
 		}
-		tutorialDialogeManager.StartDialogue();
 	}
 	public void TopButtonClick() {
 		//Debug.Log("top" + TutorialDialogeManager.sentenceNumber);
@@ -408,6 +411,17 @@ public class TutorialManager : MonoBehaviour {
 			tutorialDialogeManager.StartDialogue();
 			CuratorAnim.Play("CuratorBNextS");
 		}
+	}
+	public void ColourPrieviewClick() {
+		//Debug.Log("top" + TutorialDialogeManager.sentenceNumber);
+		if (TutorialDialogeManager.sentenceNumber == 32) {
+			colourPreview += 1;
+			if (colourPreview == 3) {   ///////////////////////////////////////////// change this to 2 when the bug where you have to click it twice to get the menu up is fixed 
+				tutorialDialogeManager.StartDialogue();
+				CuratorAnim.Play("CuratorTNextS");
+			}
+		}
+		Debug.Log("kykdutcduk~");
 	}
 
 	public void FinishedButtonClick() {

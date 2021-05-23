@@ -44,13 +44,13 @@ public class DialogList : MonoBehaviour {
 			/// show banana painting 
 			"Hey, not bad. I've displayed it over there. A few more paintings and we'll have this place ready.", "Not much colour or texture though. I think if I give you some better stuff you'd use it well. Let's try again with an apple.", " ",
 			/// how to paint apple
-			"let me just get you your colours.", "Below there are various colours for you to choose from. Try changing the colour of your paint", "You can make some much better stuff with that. Oh also here are some different brushes.",
-			"Change the brush shape by selecting the brush preview and change the size of the brush by clicking the arrows.", "Ok you seem to know what youre doing now, give me a call if you need help.",  " ",
+			"Let me just get you your colours.", "Below there are various colours for you to choose from. Try changing the colour of your paint.", "You can make some much better stuff with that. Oh also here are some different brushes.",
+			"Change the size of the brush by clicking the arrows and change the brush shape by selecting the brush preview. Try clicking the brush prieview now.", "Ok you seem to know what youre doing now, give me a call if you need help.",  " ",
 			/// show apple painting and map
 			"That looks great next to the other painting. Well you probably know what you're doing now. Oh! I should give you your own painting space.", "Here I'll show on your museum map where to go.",
-			"We are currently in the still life display room as I'm sure you already know", "Everything you need for now will be in the restricted area here. You'll have option to paint more and change any settings.",
-			"Over here I'll set up some space for you to continue painting still life works.", "Oh, I can set up a free style area as well so you can paint whatever your heart desires.",
-			"If you need me my office is here, just knock on the door.", "I've got to go now but I'll come check on you later. Bye.", " ",
+			"We are currently in the Still Life Display Room as I'm sure you already know.", "Everything you need for now will be in the Restricted Area here. You'll have option to paint more and change any settings.",
+			"Over here I'll set up some space for you to continue painting Still Life works.", "Oh, I can set up a Free Style area as well so you can paint whatever your heart desires.",
+			"If you need me my Office is here, just knock on the door.", "I've got to go now but I'll come check on you later. Bye.", " ",
 		
 			/// banana painting help
 			"Need a bit of help?", "Ok no worries.", "Sure. \nLook at the fruit or the canvas and hold your select button to paint. To change between the fruit image and the canvas, select the button at the top.",
