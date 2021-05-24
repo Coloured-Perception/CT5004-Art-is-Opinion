@@ -90,8 +90,8 @@ public class GazeAwareTutorial : MonoBehaviour
                 {
                     tutorialManager.GetComponent<TutorialManager>().YesButtonClick();
                     tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
-                }
-
+                }     
+           
                 if ((noPos.x + noXMin) < filteredPoint.x && filteredPoint.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPoint.y && filteredPoint.y < (noPos.y + noYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && noButton.IsActive())
                 {
                     tutorialManager.GetComponent<TutorialManager>().NoButtonClick();

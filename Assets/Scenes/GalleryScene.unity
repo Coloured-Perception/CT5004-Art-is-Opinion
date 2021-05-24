@@ -34038,7 +34038,7 @@ MonoBehaviour:
   minAngleX: 0
   minAngleY: -360
   sensitivity: 5
-  responsiveness: 1
+  responsiveness: 0.5
   speed: 1
   isEyeTracker: {fileID: 117175117}
   continuousRotate: 1

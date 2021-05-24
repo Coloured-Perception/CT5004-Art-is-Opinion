@@ -4339,6 +4339,7 @@ GameObject:
   - component: {fileID: 1465941355}
   - component: {fileID: 1465941359}
   - component: {fileID: 1465941358}
+  - component: {fileID: 1465941361}
   m_Layer: 0
   m_Name: GazeAware
   m_TagString: Untagged
@@ -4458,6 +4459,23 @@ MonoBehaviour:
   nextButton: {fileID: 1183505761}
   yesButton: {fileID: 1939698902}
   noButton: {fileID: 515302360}
+  mainCam: {fileID: 75766442}
+  tutorialManager: {fileID: 483529153}
+--- !u!114 &1465941361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465941354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dbc2ae12d2aa548ba6a023b3a8bd7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonTop: {fileID: 1657612338}
+  isEyeTracker: {fileID: 1465941354}
+  tobiiTime: {fileID: 1465941354}
   mainCam: {fileID: 75766442}
   tutorialManager: {fileID: 483529153}
 --- !u!1 &1508798969
@@ -5198,6 +5216,7 @@ GameObject:
   - component: {fileID: 1657612342}
   - component: {fileID: 1657612341}
   - component: {fileID: 1657612340}
+  - component: {fileID: 1657612343}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -5237,7 +5256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5329,6 +5348,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657612338}
   m_CullTransparentMesh: 0
+--- !u!65 &1657612343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657612338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 26.93, y: 16.6, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1675293998
 GameObject:
   m_ObjectHideFlags: 0

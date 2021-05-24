@@ -64,7 +64,7 @@ public class CameraShutterScript : MonoBehaviour {
 				Portrait.gameObject.SetActive(false);
 			} else {
 				// portrait level block disabled
-				GalleryModel = GameObject.Find("Gallery version 6");
+				GalleryModel = GameObject.Find("Gallery version 8");
 				Construction = GalleryModel.transform.Find("Construction").gameObject;
 				Portrait = Construction.transform.Find("Portrait").gameObject;
 				Portrait.gameObject.SetActive(false);

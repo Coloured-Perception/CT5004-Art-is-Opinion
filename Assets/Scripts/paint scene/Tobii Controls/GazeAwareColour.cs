@@ -66,7 +66,7 @@ namespace unitycoder_MobilePaint
 
                     for (int i = 0; i < colorpickers.Length; i++)
                     {
-                        if ((Positions[i].x + XMin[i]) < filteredPoint.x && filteredPoint.x < (Positions[i].x + XMax[i]) && (Positions[i].y + YMin[i]) < filteredPoint.y && filteredPoint.y < (Positions[i].y + YMax[i]) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0)
+                        if ((Positions[i].x + XMin[i]) < filteredPoint.x && filteredPoint.x < (Positions[i].x + XMax[i]) && (Positions[i].y + YMin[i]) < filteredPoint.y && filteredPoint.y < (Positions[i].y + YMax[i]) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && colorpickers[i].IsActive())
                         {
                             Color newColor = colorpickers[i].gameObject.GetComponent<Image>().color;
 
