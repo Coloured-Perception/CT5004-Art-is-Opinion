@@ -9,9 +9,9 @@ public class GazeAwareStreet : MonoBehaviour
 
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
-    public Button nextButton;
-    public Button yesButton;
-    public Button noButton;
+    public GameObject nextButton;
+    public GameObject yesButton;
+    public GameObject noButton;
     public GameObject Gallery;
 
     public GameObject dialogueManager;
@@ -86,28 +86,12 @@ public class GazeAwareStreet : MonoBehaviour
                 noYMin = noRect.yMin;
                 noYMax = noRect.yMax;
 
-                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-                gazePoint.x *= camRect.width;
-                gazePoint.y *= camRect.height;
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                //gazePoint.x *= camRect.width;
+                //gazePoint.y *= camRect.height;
                 filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
-                if ((nextPos.x + nextXMin) < filteredPoint.x && filteredPoint.x < (nextPos.x + nextXMax) && (nextPos.y + nextYMin) < filteredPoint.y && filteredPoint.y < (nextPos.y + nextYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && nextButton.IsActive())
-                {
-                    dialogueManager.GetComponent<DialogueManager>().NextButton();
-                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
-                }
-
-                if ((yesPos.x + yesXMin) < filteredPoint.x && filteredPoint.x < (yesPos.x + yesXMax) && (yesPos.y + yesYMin) < filteredPoint.y && filteredPoint.y < (yesPos.y + yesYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && yesButton.IsActive())
-                {
-                    dialogueManager.GetComponent<DialogueManager>().YesButton();
-                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
-                }
-
-                if ((noPos.x + noXMin) < filteredPoint.x && filteredPoint.x < (noPos.x + noXMax) && (noPos.y + noYMin) < filteredPoint.y && filteredPoint.y < (noPos.y + noYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0 && noButton.IsActive())
-                {
-                    dialogueManager.GetComponent<DialogueManager>().NoButton();
-                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
-                }
+                
 
                 Vector2 gazePointScreen = TobiiAPI.GetGazePoint().Screen;
                 filteredPointScreen = Vector2.Lerp(filteredPointScreen, gazePointScreen, 0.5f);
@@ -123,6 +107,21 @@ public class GazeAwareStreet : MonoBehaviour
                     transitionController.SetActive(true);
                     Gallery.GetComponent<NavigationCanvasScript>().ChangeScene();
                     transitionController.GetComponent<Animator>().Play("BlinkClose");
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                }
+                else if (GameObject.ReferenceEquals(objHit, noButton))
+                {
+                    dialogueManager.GetComponent<DialogueManager>().NoButton();
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                }
+                else if (GameObject.ReferenceEquals(objHit, yesButton))
+                {
+                    dialogueManager.GetComponent<DialogueManager>().YesButton();
+                    tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
+                }
+                else if (GameObject.ReferenceEquals(objHit, nextButton))
+                {
+                    dialogueManager.GetComponent<DialogueManager>().NextButton();
                     tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
                 }
             }
