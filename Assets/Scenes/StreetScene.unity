@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 295924243}
   - component: {fileID: 295924242}
   - component: {fileID: 295924241}
+  - component: {fileID: 295924244}
   m_Layer: 5
   m_Name: No Button
   m_TagString: Untagged
@@ -771,6 +772,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295924239}
   m_CullTransparentMesh: 0
+--- !u!65 &295924244
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295924239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &394633654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6851,6 +6865,7 @@ GameObject:
   - component: {fileID: 1007764023}
   - component: {fileID: 1007764022}
   - component: {fileID: 1007764021}
+  - component: {fileID: 1007764024}
   m_Layer: 5
   m_Name: Yes Button
   m_TagString: Untagged
@@ -6971,6 +6986,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007764019}
   m_CullTransparentMesh: 0
+--- !u!65 &1007764024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007764019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!224 &1012565505 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1564965142799746665, guid: 66ee66d395e55ad4f9ae927ba00ef3c1,
@@ -7120,9 +7148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEyeTracker: {fileID: 1089443555}
   tobiiTime: {fileID: 1089443555}
-  nextButton: {fileID: 1174112922}
-  yesButton: {fileID: 1007764021}
-  noButton: {fileID: 295924241}
+  nextButton: {fileID: 1174112920}
+  yesButton: {fileID: 1007764019}
+  noButton: {fileID: 295924239}
   Gallery: {fileID: 567498850}
   dialogueManager: {fileID: 904126166}
   mainCam: {fileID: 963194227}
@@ -7296,6 +7324,7 @@ GameObject:
   - component: {fileID: 1174112924}
   - component: {fileID: 1174112923}
   - component: {fileID: 1174112922}
+  - component: {fileID: 1174112925}
   m_Layer: 5
   m_Name: Next Button
   m_TagString: Untagged
@@ -7416,6 +7445,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174112920}
   m_CullTransparentMesh: 0
+--- !u!65 &1174112925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174112920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1238478244
 GameObject:
   m_ObjectHideFlags: 0
