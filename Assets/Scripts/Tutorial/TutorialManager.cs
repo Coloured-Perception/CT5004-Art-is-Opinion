@@ -36,20 +36,20 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
         ////Help with testing tutorial in unity
-        if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
-        {
+        //if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
+        //{
 
-            if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
-            {
-                PlayerPrefs.SetInt("banana", 0);    // remove later 
-                PlayerPrefs.SetInt("apple", 0);
-                PlayerPrefs.SetInt("intro", 0);     // remove later
-            }
-            else if (PlayerPrefs.GetInt("intro") == 1)
-            {
-                PlayerPrefs.SetInt("intro", 0);     // remove later
-            }
-        }
+        //    if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
+        //    {
+        //        PlayerPrefs.SetInt("banana", 0);    // remove later 
+        //        PlayerPrefs.SetInt("apple", 0);
+        //        PlayerPrefs.SetInt("intro", 0);     // remove later
+        //    }
+        //    else if (PlayerPrefs.GetInt("intro") == 1)
+        //    {
+        //        PlayerPrefs.SetInt("intro", 0);     // remove later
+        //    }
+        //}
 
 
         //PlayerPrefs.SetInt("banana", 0);    // remove later 

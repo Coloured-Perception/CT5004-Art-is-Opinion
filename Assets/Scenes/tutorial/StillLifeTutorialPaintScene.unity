@@ -2713,7 +2713,7 @@ MonoBehaviour:
   isEyeTracker: {fileID: 1465941354}
   mainCam: {fileID: 75766442}
   padding: 30
-  brushPreview: {fileID: 98621555}
+  brushPreview: {fileID: 1143907798}
   sizeReference: 0
 --- !u!1 &730362074
 GameObject:
@@ -4476,6 +4476,14 @@ MonoBehaviour:
   buttonTop: {fileID: 1657612338}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
+  brushSize: {fileID: 2134768474}
+  transitionController: {fileID: 339531242}
+  increaseSizeButton: {fileID: 1185881104}
+  decreaseSizeButton: {fileID: 1729296522}
+  clearImageButton: {fileID: 572441716}
+  finishButton: {fileID: 584843066}
+  customBrushes: {fileID: 98621555}
+  customBrushesPanel: {fileID: 679784042}
   mainCam: {fileID: 75766442}
   tutorialManager: {fileID: 483529153}
 --- !u!1 &1508798969

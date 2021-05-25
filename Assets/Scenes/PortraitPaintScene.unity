@@ -3568,7 +3568,17 @@ MonoBehaviour:
   preview: {fileID: 2028367486}
   tobiiTime: {fileID: 1465941354}
   isEyeTracker: {fileID: 1465941354}
-  colorpickers: []
+  colorpickers:
+  - {fileID: 2004714594}
+  - {fileID: 1911819394}
+  - {fileID: 421540246}
+  - {fileID: 834233169}
+  - {fileID: 2092938915}
+  - {fileID: 559797990}
+  - {fileID: 1274681682}
+  - {fileID: 1816036229}
+  - {fileID: 517002463}
+  - {fileID: 741941387}
 --- !u!4 &1465941357
 Transform:
   m_ObjectHideFlags: 0
