@@ -56,7 +56,7 @@ public class SaveImageScript : MonoBehaviour {
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			filePath += "/Table";
 			fileName = "/FruitImage";
-		} else if (SceneManager.GetActiveScene().name == "StillLifePaintingScene") {
+		} else if (SceneManager.GetActiveScene().name == "StillLifePaintScene" || SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
 			filePath += "/StillLifes";
 			fileName = "/StillImage";
 		}
@@ -80,6 +80,9 @@ public class SaveImageScript : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
 			paintTime.SaveTime();
 		}
+		int numOfPaintings = PlayerPrefs.GetInt("PaintingAmount");
+		numOfPaintings++;
+		PlayerPrefs.SetInt("PaintingAmount", numOfPaintings);
 		StartCoroutine(CoSave());
 	}
 

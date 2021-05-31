@@ -23,12 +23,12 @@ namespace unitycoder_MobilePaint {
 	[RequireComponent(typeof(MeshFilter))]
 	[RequireComponent(typeof(MeshRenderer))]
 	public class MobilePaint : MonoBehaviour {
-        public GameObject customBrushPanel;
-        // Declaring variables related to Tobii eye-tracker input
+		public GameObject customBrushPanel;
+		// Declaring variables related to Tobii eye-tracker input
 		[Header("Tobii Eye-tracking")]
-		public GameObject isEyeTracker;   // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker           // Used to say whether the player is looking at a point long enough
-        public GameObject tobiiTime;
-        List<GazePoint> gazePoint;          // A list of co-ordinates where the player is looking
+		public GameObject isEyeTracker; // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker	// Used to say whether the player is looking at a point long enough
+		public GameObject tobiiTime;
+		List<GazePoint> gazePoint;      // A list of co-ordinates where the player is looking
 		Vector2 filteredPoint;
 
 		[Header("Mouse or Touch")]
@@ -185,6 +185,8 @@ namespace unitycoder_MobilePaint {
 		public bool hideUIWhilePainting = false;
 		private bool isUIVisible = true;
 
+		public GameObject brushHintUI;
+
 		// Debug mode, outputs debug info when used
 		public bool debugMode = false;
 
@@ -208,6 +210,14 @@ namespace unitycoder_MobilePaint {
 				Debug.LogError("GameObject EventSystem is missing from scene, will have problems with the UI", gameObject);
 			} else {
 				eventSystem = go.GetComponent<EventSystem>();
+			}
+
+			if (SceneManager.GetActiveScene().name != "StillLifeTutorialPaintScene") {
+				if (PlayerPrefs.GetInt("PaintingAmount") <= 5) {
+					brushHintUI.SetActive(true);
+				} else {
+					brushHintUI.SetActive(false);
+				}
 			}
 
 			StartupValidation();
@@ -403,7 +413,7 @@ namespace unitycoder_MobilePaint {
 		/// Function used to allow the player to draw using the Tobii eye-tracker.
 		/// </summary>
 		void EyeTracker() {
-			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;  // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker
+			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen; // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker
 			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 			if (!customBrushPanel.activeInHierarchy) {
@@ -433,62 +443,61 @@ namespace unitycoder_MobilePaint {
 					// Only if we hit something, then we continue
 					if (!Physics.Raycast(cam.ScreenPointToRay(filteredPoint), out hit, Mathf.Infinity, paintLayerMask)) { wentOutside = true; return; }
 
-                    GameObject objHit = hit.transform.gameObject;
+					GameObject objHit = hit.transform.gameObject;
 
-                    if (objHit.GetComponent<MobilePaint>() != null)
-                    {
+					if (objHit.GetComponent<MobilePaint>() != null) {
 
-                        pixelUVOld = pixelUV;   // take previous value, so can compare them
-					    pixelUV = hit.textureCoord;
-					    pixelUV.x *= texWidth;
-					    pixelUV.y *= texHeight;
+						pixelUVOld = pixelUV;   // take previous value, so can compare them
+						pixelUV = hit.textureCoord;
+						pixelUV.x *= texWidth;
+						pixelUV.y *= texHeight;
 
-					    if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
+						if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
 
-					    // lets paint where we hit
-					    switch (drawMode) {
-						    case DrawMode.Default:  // brush
-							    break;
+						// lets paint where we hit
+						switch (drawMode) {
+							case DrawMode.Default:  // brush
+								break;
 
-						    case DrawMode.Pattern:
-							    break;
+							case DrawMode.Pattern:
+								break;
 
-						    case DrawMode.CustomBrush:
-							    DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
-							    break;
+							case DrawMode.CustomBrush:
+								DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
+								break;
 
-						    case DrawMode.FloodFill:
-							    if (pixelUVOld == pixelUV) { break; }
-							    break;
+							case DrawMode.FloodFill:
+								if (pixelUVOld == pixelUV) { break; }
+								break;
 
-						    case DrawMode.ShapeLines:
-							    if (snapLinesToGrid) {
-							    } else {
-							    }
-							    break;
+							case DrawMode.ShapeLines:
+								if (snapLinesToGrid) {
+								} else {
+								}
+								break;
 
-						    case DrawMode.Eraser:
-							    if (eraserMode == EraserMode.Default) {
-							    } else {
-							    }
-							    break;
+							case DrawMode.Eraser:
+								if (eraserMode == EraserMode.Default) {
+								} else {
+								}
+								break;
 
-						    default:    // unknown DrawMode
-							    Debug.LogError("Unknown drawMode");
-							    break;
-					    }
+							default:    // unknown DrawMode
+								Debug.LogError("Unknown drawMode");
+								break;
+						}
 
-					    if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-						    if (!paintDetails.coloursUsed.Contains(paintColor)) {
-							    paintDetails.coloursUsed.Add(paintColor);
-							    //Debug.Log(paintDetails.coloursUsed.Count);
-						    }
-						    if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
-							    paintDetails.brushesUsed.Add(selectedBrush);
-							    //Debug.Log(paintDetails.brushesUsed.Count);
-						    }
-					    }
-                    }
+						if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+							if (!paintDetails.coloursUsed.Contains(paintColor)) {
+								paintDetails.coloursUsed.Add(paintColor);
+								//Debug.Log(paintDetails.coloursUsed.Count);
+							}
+							if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+								paintDetails.brushesUsed.Add(selectedBrush);
+								//Debug.Log(paintDetails.brushesUsed.Count);
+							}
+						}
+					}
 
 					textureNeedsUpdate = true;
 				}
@@ -583,63 +592,62 @@ namespace unitycoder_MobilePaint {
 					return;
 				}
 
-                GameObject objHit = hit.transform.gameObject;
+				GameObject objHit = hit.transform.gameObject;
 
-                if (objHit.GetComponent<MobilePaint>() != null)
-                {
-                    pixelUVOld = pixelUV;   // take previous value, so can compare them
-				    pixelUV = hit.textureCoord;
-				    pixelUV.x *= texWidth;
-				    pixelUV.y *= texHeight;
+				if (objHit.GetComponent<MobilePaint>() != null) {
+					pixelUVOld = pixelUV;   // take previous value, so can compare them
+					pixelUV = hit.textureCoord;
+					pixelUV.x *= texWidth;
+					pixelUV.y *= texHeight;
 
-				    if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
+					if (wentOutside) { pixelUVOld = pixelUV; wentOutside = false; }
 
-				    // lets paint where we hit
-				    switch (drawMode) {
-					    case DrawMode.Default:  // brush
-						    break;
+					// lets paint where we hit
+					switch (drawMode) {
+						case DrawMode.Default:  // brush
+							break;
 
-					    case DrawMode.Pattern:
-						    break;
+						case DrawMode.Pattern:
+							break;
 
-					    case DrawMode.CustomBrush:
-						    DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
-						    break;
+						case DrawMode.CustomBrush:
+							DrawCustomBrush((int)pixelUV.x, (int)pixelUV.y);
+							break;
 
-					    case DrawMode.FloodFill:
-						    if (pixelUVOld == pixelUV) { break; }
-						    break;
+						case DrawMode.FloodFill:
+							if (pixelUVOld == pixelUV) { break; }
+							break;
 
-					    case DrawMode.ShapeLines:
-						    if (snapLinesToGrid) {
-						    } else {
-						    }
-						    break;
+						case DrawMode.ShapeLines:
+							if (snapLinesToGrid) {
+							} else {
+							}
+							break;
 
-					    case DrawMode.Eraser:
-						    if (eraserMode == EraserMode.Default) {
-						    } else {
-						    }
-						    break;
+						case DrawMode.Eraser:
+							if (eraserMode == EraserMode.Default) {
+							} else {
+							}
+							break;
 
-					    default:    // unknown DrawMode
-						    Debug.LogError("Unknown drawMode");
-						    break;
-				    }
+						default:    // unknown DrawMode
+							Debug.LogError("Unknown drawMode");
+							break;
+					}
 
-				    if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-					    if (!paintDetails.coloursUsed.Contains(paintColor)) {
-						    paintDetails.coloursUsed.Add(paintColor);
-						    Debug.Log(paintDetails.coloursUsed.Count);
-					    }
-					    if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
-						    paintDetails.brushesUsed.Add(selectedBrush);
-						    Debug.Log(paintDetails.brushesUsed.Count);
-					    }
-				    }
+					if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
+						if (!paintDetails.coloursUsed.Contains(paintColor)) {
+							paintDetails.coloursUsed.Add(paintColor);
+							Debug.Log(paintDetails.coloursUsed.Count);
+						}
+						if (!paintDetails.brushesUsed.Contains(selectedBrush)) {
+							paintDetails.brushesUsed.Add(selectedBrush);
+							Debug.Log(paintDetails.brushesUsed.Count);
+						}
+					}
 
-				    textureNeedsUpdate = true;
-                }
+					textureNeedsUpdate = true;
+				}
 			}
 
 			if (Input.GetKeyDown("space")) {
@@ -904,7 +912,7 @@ namespace unitycoder_MobilePaint {
 			int x1 = (int)end.x;
 			int y1 = (int)end.y;
 			int tempVal = x1 - x0;
-			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);	// http://stackoverflow.com/questions/6114099/fast-integer-abs-function
+			int dx = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31); // http://stackoverflow.com/questions/6114099/fast-integer-abs-function
 			tempVal = y1 - y0;
 			int dy = (tempVal + (tempVal >> 31)) ^ (tempVal >> 31);
 			int sx = x0 < x1 ? 1 : -1;
@@ -967,7 +975,7 @@ namespace unitycoder_MobilePaint {
 
 				UpdateTexture();
 			}
-		}	// clear image
+		}   // clear image
 
 		public void ClearImageWithImage() {
 			// fill pixels array with clearpixels array
@@ -976,12 +984,12 @@ namespace unitycoder_MobilePaint {
 			// just assign our clear image array into tex
 			drawingTexture.LoadRawTextureData(clearPixels);
 			drawingTexture.Apply(false);
-		}	// clear image
+		}   // clear image
 
 		public void ReadMaskImage() {
 			maskPixels = new byte[texWidth * texHeight * 4];
 
-			int smoothenResolution = 5;	// currently fixed value
+			int smoothenResolution = 5; // currently fixed value
 			int smoothArea = smoothenResolution * smoothenResolution;
 			int smoothCenter = Mathf.FloorToInt(smoothenResolution / 2);
 
@@ -992,18 +1000,18 @@ namespace unitycoder_MobilePaint {
 				for (int x = 0; x < texWidth; x++) {
 					if (smoothenMaskEdges) {
 						c = new Color(0, 0, 0, 0);
-						c = maskTex.GetPixel(x, y);	// center
+						c = maskTex.GetPixel(x, y); // center
 
 						if (c.a > 0) {
 							for (int i = 0; i < smoothArea; i++) {
-								int xx = (i / smoothenResolution) | 0;	// 0, 0, 0
+								int xx = (i / smoothenResolution) | 0;  // 0, 0, 0
 								int yy = i % smoothenResolution;
 								if (maskTex.GetPixel(x + xx - smoothCenter, y + yy - smoothCenter).a < (255 - paintThreshold) / 255f) {
 									c = new Color(0, 0, 0, 0);
 								}
 							}
 						}
-					} else {	// default (works well if texture is "point" filter mode
+					} else {    // default (works well if texture is "point" filter mode
 						c = maskTex.GetPixel(x, y);
 					}
 					maskPixels[pixel] = (byte)(c.r * 255);
@@ -1116,7 +1124,7 @@ namespace unitycoder_MobilePaint {
 		/// <param name="y">y-position</param>
 		/// <returns>World position</returns>
 		public Vector3 PixelToWorld(int x, int y) {
-			Vector3 pixelPos = new Vector3(x, y, 0);	// x,y = texture pixel pos
+			Vector3 pixelPos = new Vector3(x, y, 0);    // x,y = texture pixel pos
 
 			float planeWidth = myRenderer.bounds.size.x;
 			float planeHeight = myRenderer.bounds.size.y;
@@ -1136,7 +1144,7 @@ namespace unitycoder_MobilePaint {
 
 			SetBrushAlphaStrength(brushAlphaStrength);
 
-			alphaLerpVal = paintColor.a / brushAlphaStrengthVal;	// precalc
+			alphaLerpVal = paintColor.a / brushAlphaStrengthVal;    // precalc
 
 			UpdateLineModePreviewObjects();
 		}
@@ -1208,7 +1216,7 @@ namespace unitycoder_MobilePaint {
 
 		public void SetPanZoomMode(bool state) {
 			isZoomingOrPanning = state;
-			this.enabled = isZoomingOrPanning ? false : true;	// Disable Update() loop from this script, if zooming or panning
+			this.enabled = isZoomingOrPanning ? false : true;   // Disable Update() loop from this script, if zooming or panning
 		}
 
 		// cleaning up buffers - https://github.com/unitycoder/UnityMobilePaint/issues/10
@@ -1220,5 +1228,5 @@ namespace unitycoder_MobilePaint {
 			lockMaskPixels = null;
 			if (undoEnabled) { undoPixels.Clear(); }
 		}
-	}	// class
-}	// namespace
+	}   // class
+}   // namespace

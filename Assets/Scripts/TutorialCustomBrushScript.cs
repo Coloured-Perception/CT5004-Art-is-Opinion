@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialCustomBrushScript : MonoBehaviour {
 	TutorialManager tutorialManager;
@@ -15,7 +16,8 @@ public class TutorialCustomBrushScript : MonoBehaviour {
 
 	void TaskOnClick() {
 		Debug.Log("You have clicked the button!");
-		tutorialManager.ColourPrieviewClick();
-
+		if (SceneManager.GetActiveScene().name == "stillLifeTutorialPaintScene") {
+			tutorialManager.ColourPrieviewClick();
+		}
 	}
 }

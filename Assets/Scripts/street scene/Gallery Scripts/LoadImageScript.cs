@@ -1,11 +1,4 @@
-﻿/// <summary>
-/// Name:           LoadImageScript.css
-/// Purpose:        To load .PNG images from resource folder in assets into a scene
-/// Author:         Kane Adams
-/// Date Created:   22/03/2020
-/// </summary>
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -45,14 +38,30 @@ public class LoadImageScript : MonoBehaviour {
 		} else {
 			Directory.CreateDirectory(filePath + "/StillLifes");
 		}
+		if (Directory.Exists(filePath + "/Table")) {
+			Debug.Log("Table folder");
+		} else {
+			Directory.CreateDirectory(filePath + "/Table");
+		}
 
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			filePath += "/Portraits";
 			fileName = "/PortraitImage";
-			Debug.Log("Portrait");
+			if (galleryBoard.tag == "Easel") {
+				if (PlayerPrefs.GetString("LastScene") == "PortraitPaintScene") {
+					numOfImages = 1;
+				} else {
+					numOfImages = 0;
+					gameObject.SetActive(false);
+				}
+			} else {
+				numOfImages = 10;
+			}
+
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			filePath += "/StillLifes";
 			fileName = "/StillImage";
+			numOfImages = 6;
 		}
 
 		Debug.Log(filePath);
@@ -87,7 +96,7 @@ public class LoadImageScript : MonoBehaviour {
 
 		// After all the player's drawings our added to list, if there are still less than number of required images, add default image to list
 		while (numOfPNGs <= numOfImages) {
-			PNGImages.Add(Application.dataPath + "/CPProfile.png");
+			PNGImages.Add(Application.dataPath + "/TransparentImage.png");
 			numOfPNGs++;
 		}
 		PNGImages.Reverse();    // Reverses array have last object loaded first

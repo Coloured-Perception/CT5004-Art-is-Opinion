@@ -1,11 +1,4 @@
-﻿/// <summary>
-/// Name:           ChangePersonPaintScript.cs
-/// Purpose:        Changes the character in the Paint scene to match the person in the street scene
-/// Author:         Kane Adams
-/// Date Created:   25/04/2020
-/// </summary>
-
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Changes the character in the Paint Scene to match the person in the Street Scene
@@ -19,17 +12,22 @@ public class ChangePersonPaintScript : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		Debug.Log(PlayerPrefs.GetInt("intro") + "  intro");
-		if (PlayerPrefs.GetInt("intro") == 0) {
-
-			if (TutorialDialogeManager.sentenceNumber < 17) {
-				personImage.sprite = Banana;
-			} else {
-				personImage.sprite = Apple;
-			}
+		Debug.Log(PlayerPrefs.GetString("LastScene"));
+		if (PlayerPrefs.GetString("LastScene") == "GalleryScene") {
+			personImage.sprite = null;
 		} else {
-			personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+			Debug.Log(PlayerPrefs.GetInt("intro") + "  intro");
+			if (PlayerPrefs.GetInt("intro") == 0) {
+
+				if (TutorialDialogeManager.sentenceNumber < 17) {
+					personImage.sprite = Banana;
+				} else {
+					personImage.sprite = Apple;
+				}
+			} else {
+				personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
+			}
+			//personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 		}
-		//personImage.sprite = DialogueManager.personInstance.myImageComponent.sprite;
 	}
 }

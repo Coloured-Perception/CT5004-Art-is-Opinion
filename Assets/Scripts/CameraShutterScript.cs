@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 /// this class sets when the camera shutter animations should be activated 
 /// </summary>
 public class CameraShutterScript : MonoBehaviour {
-
 	float timeWait;
 	public string toScene;
 	Animator TranAnim, CameraAnim;
@@ -35,7 +34,6 @@ public class CameraShutterScript : MonoBehaviour {
 
 		TranAnim = gameObject.GetComponent<Animator>();
 		CameraAnim = GameObject.Find("Main Camera").GetComponent<Animator>();
-
 
 		if (SceneManager.GetActiveScene().name == "GalleryScene") {
 			if (PlayerPrefs.GetInt("fromOutside") == 1) {
@@ -99,7 +97,6 @@ public class CameraShutterScript : MonoBehaviour {
 			if (PlayerPrefs.GetInt("banana") == 1 || PlayerPrefs.GetInt("apple") == 1) {
 				TranAnim.Play("Camera Shutter Open Ani");
 			}
-
 		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			TranAnim.Play("Camera Shutter Open Ani");
@@ -114,7 +111,7 @@ public class CameraShutterScript : MonoBehaviour {
 			} else {
 				TranAnim.Play("Camera Shutter Close Ani");
 			}
-		} 
+		}
 	}
 
 	/// <summary>
@@ -138,6 +135,7 @@ public class CameraShutterScript : MonoBehaviour {
 		PlayerPrefs.SetInt("fromOutside", 0);
 		gameObject.SetActive(false);
 	}
+
 	/// <summary>
 	/// Blink closed is used to change area scenes. "from" pref is set depending on current scene
 	/// </summary>
@@ -161,6 +159,8 @@ public class CameraShutterScript : MonoBehaviour {
 	}
 
 	public void CameraCloseEnd() {
+		PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 			SceneManager.LoadScene("PortraitPaintScene");
 			if (PlayerPrefs.GetInt("fromGallery") == 1) {
@@ -198,8 +198,6 @@ public class CameraShutterScript : MonoBehaviour {
 			SceneManager.LoadScene(toScene + "tutorial test");
 		}
 	}
-
-
 
 	public void CameraOpenEnd() {
 		CameraAnim.enabled = true;
@@ -249,12 +247,9 @@ public class CameraShutterScript : MonoBehaviour {
 	}
 
 
-
-
-
-
 	public void CameraClose() {
 	}
+
 	public void CameraBoth() {
 	}
 
@@ -265,6 +260,7 @@ public class CameraShutterScript : MonoBehaviour {
 	public void BlinkSleep() {
 		TranAnim.Play("BlinkSleep");
 	}
+
 	//public void BlinkWake() {
 	//	TranAnim.Play("BlinkWakeUp");
 	//}

@@ -13,24 +13,30 @@ public class NavigationCanvasScript : MonoBehaviour {
 		camera = GameObject.Find("Main Camera");
 		cameraShutterScript = transitionController.GetComponent<CameraShutterScript>();
 		cameraAnim = camera.GetComponent<Animator>();
+		if (PlayerPrefs.GetInt("PaintingAmount") < 5) {
+			if (gameObject.name == "Street" || gameObject.name == "PortraitPaint") {
+				gameObject.SetActive(false);
+			}
+		}
 	}
 
 	public void ChangeScene() {
 		Debug.Log(gameObject.name + "  name");
-		cameraShutterScript.toScene = this.gameObject.name;
+		cameraShutterScript.toScene = gameObject.name;
 		Debug.Log(cameraShutterScript.toScene + "  set");
 
 	}
+
 	public void Move() {
 		//Debug.Log(gameObject.name);
 		if (gameObject.name == "SLtoP" && PlayerPrefs.GetInt("portraitLevel") == 0) {
 
 		} else if (gameObject.name == "Street" && PlayerPrefs.GetInt("portraitLevel") == 0) {
-			
+
 		} else {
 			cameraAnim.enabled = true;
 			cameraAnim.applyRootMotion = false;
-			cameraAnim.Play(this.gameObject.name);
+			cameraAnim.Play(gameObject.name);
 		}
 	}
 }

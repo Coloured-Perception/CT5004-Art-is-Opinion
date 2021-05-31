@@ -14,16 +14,20 @@ public class LoadFruitScript : MonoBehaviour {
 	private Sprite fruitSprite;
 
 	private void Start() {
-		if (Directory.Exists(Application.persistentDataPath + "/Table")) {
-			Debug.Log("Table folder");
+		if (PlayerPrefs.GetString("LastScene") == "GalleryScene") {
+			fruit.GetComponent<SpriteRenderer>().sprite = null;
 		} else {
-			Directory.CreateDirectory(Application.persistentDataPath + "/Table");
-		}
+			if (Directory.Exists(Application.persistentDataPath + "/Table")) {
+				Debug.Log("Table folder");
+			} else {
+				Directory.CreateDirectory(Application.persistentDataPath + "/Table");
+			}
 
-		string filePath = Application.persistentDataPath + "//Table/FruitImage.png";
-		ScreenCapture.CaptureScreenshot(filePath);
-		fruitSprite = LoadSprite(filePath);
-		fruit.GetComponent<SpriteRenderer>().sprite = fruitSprite;
+			string filePath = Application.persistentDataPath + "//Table/FruitImage.png";
+			ScreenCapture.CaptureScreenshot(filePath);
+			fruitSprite = LoadSprite(filePath);
+			fruit.GetComponent<SpriteRenderer>().sprite = fruitSprite;
+		}
 	}
 
 	private Sprite LoadSprite(string a_filePath) {

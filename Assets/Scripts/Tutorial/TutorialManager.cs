@@ -35,34 +35,36 @@ public class TutorialManager : MonoBehaviour {
 	/// if the intro is stopped part way through and the game reopened the text wont line up with the scene
 	/// </summary>
 	private void Awake() {
-        ////Help with testing tutorial in unity
-        //if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
-        //{
+		////Help with testing tutorial in unity
+		//if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
+		//{
 
-        //    if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
-        //    {
-        //        PlayerPrefs.SetInt("banana", 0);    // remove later 
-        //        PlayerPrefs.SetInt("apple", 0);
-        //        PlayerPrefs.SetInt("intro", 0);     // remove later
-        //    }
-        //    else if (PlayerPrefs.GetInt("intro") == 1)
-        //    {
-        //        PlayerPrefs.SetInt("intro", 0);     // remove later
-        //    }
-        //}
+		//    if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
+		//    {
+		//        PlayerPrefs.SetInt("banana", 0);    // remove later 
+		//        PlayerPrefs.SetInt("apple", 0);
+		//        PlayerPrefs.SetInt("intro", 0);     // remove later
+		//    }
+		//    else if (PlayerPrefs.GetInt("intro") == 1)
+		//    {
+		//        PlayerPrefs.SetInt("intro", 0);     // remove later
+		//    }
+		//}
 
+		// These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
+		//PlayerPrefs.SetInt("banana", 0);            // remove later 
+		//PlayerPrefs.SetInt("apple", 0);             // remove later
+		//PlayerPrefs.SetInt("intro", 0);             // remove later
+		//PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
 
-        //PlayerPrefs.SetInt("banana", 0);    // remove later 
-        //PlayerPrefs.SetInt("apple", 0);     // remove later
-        //PlayerPrefs.SetInt("intro", 0);     // remove later
+		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
-        //PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
+		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
+		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
+		//Debug.Log(PlayerPrefs.GetInt("apple") + " a");
+		Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
 
-        //Debug.Log(PlayerPrefs.GetInt("intro") + " i");
-        //Debug.Log(PlayerPrefs.GetInt("banana") + " b");
-        //Debug.Log(PlayerPrefs.GetInt("apple") + " a");
-
-        if (PlayerPrefs.GetInt("intro") == 0) {
+		if (PlayerPrefs.GetInt("intro") == 0) {
 			/// we need a title scene
 
 			///  if the intro and therefore the tutprial has been completed at the begining of the game,
@@ -292,7 +294,7 @@ public class TutorialManager : MonoBehaviour {
 
 			} else if (TutorialDialogeManager.sentenceNumber == 31) {
 				PaintCanvasAnim.Play("ShowBrushSize");
-					CuratorAnim.Play("CuratorTNextH");
+				CuratorAnim.Play("CuratorTNextH");
 
 			} else if (TutorialDialogeManager.sentenceNumber == 32) {
 				///change the next button to the brush size
@@ -420,7 +422,7 @@ public class TutorialManager : MonoBehaviour {
 		//Debug.Log("top" + TutorialDialogeManager.sentenceNumber);
 		if (TutorialDialogeManager.sentenceNumber == 32) {
 			colourPreview += 1;
-			if (colourPreview == 3) {   ///////////////////////////////////////////// change this to 2 when the bug where you have to click it twice to get the menu up is fixed 
+			if (colourPreview == 2) {   ///////////////////////////////////////////// change this to 2 when the bug where you have to click it twice to get the menu up is fixed 
 				tutorialDialogeManager.StartDialogue();
 				CuratorAnim.Play("CuratorTNextS");
 			}

@@ -2966,7 +2966,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1588038884}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -3671,6 +3682,7 @@ MonoBehaviour:
   undoEnabled: 0
   userInterface: {fileID: 353257471}
   hideUIWhilePainting: 0
+  brushHintUI: {fileID: 1588038884}
   debugMode: 0
   paintDetails: {fileID: 0}
 --- !u!4 &1259777975 stripped
@@ -5287,6 +5299,7 @@ MonoBehaviour:
   undoEnabled: 0
   userInterface: {fileID: 353257471}
   hideUIWhilePainting: 1
+  brushHintUI: {fileID: 1588038884}
   debugMode: 0
   paintDetails: {fileID: 0}
 --- !u!23 &1977844135
@@ -5533,11 +5546,11 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.8
-    height: 1
+    width: 0.75
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 50
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5562,13 +5575,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084494061}
-  m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
-  m_LocalPosition: {x: 55, y: 15, z: -100}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 298, y: 384, z: -591.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!114 &2084494065
 MonoBehaviour:
   m_ObjectHideFlags: 0
