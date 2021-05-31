@@ -32,7 +32,7 @@ public class DialogList : MonoBehaviour {
 			///intro  0
 			" ", "Hey!", "Wake up!", " ", "What do you think you're doing sleeping on the job? You're meant to be a security guard! Look around, all the paintings have been stolen!", " ",
 			"The gallery is meant to open soon, what are we going to do?", "You have to replace some of these artworks, starting with some still life depictions. I'll just say the rest of the rooms are under construction.",
-			"Do you know how to paint?", "Brilliant, come find me in my office if you want any help. Everything you need is in the restricted area.", "Ok, let me show you how.", 
+			"Do you know how to paint?", "Brilliant, come find me in my office if you want any help. Everything you need is in the restricted area. I'll Come find you when you add 5 paintings to the gallery.", "Ok, let me show you how.", 
 			/// how to paint banana   11  next 10
 			"First look at the canvas and select it.", " ",  "Great, here, I'll arrange a table top still life for you to draw. For now let's stick with this banana.", " ",
 			" ", "Here is where you paint.", "In front of you is the banana and on the left there is a canvas. To paint, you can either trace the banana's shape with your eyes or draw freestyle on the canvas.",
@@ -50,7 +50,7 @@ public class DialogList : MonoBehaviour {
 			"That looks great next to the other painting. Well you probably know what you're doing now. Oh! I should give you your own painting space.", "Here I'll show on your museum map where to go.",
 			"We are currently in the Still Life Display Room as I'm sure you already know.", "Everything you need for now will be in the Restricted Area here. You'll have option to paint more and change any settings.",
 			"Over here I'll set up some space for you to continue painting Still Life works.", "Oh, I can set up a Free Style area as well so you can paint whatever your heart desires.",
-			"If you need me my Office is here, just knock on the door.", "I've got to go now but I'll come check on you later. Bye.", " ",
+			"If you need me my Office is here, just knock on the door.", "I've got to go now but I'll come check on you later once you've added 5 paintings to the gallery. Bye.", " ",
 		
 			/// banana painting help
 			"Need a bit of help?", "Ok no worries.", "Sure. \nLook at the fruit or the canvas and hold your select button to paint. To change between the fruit image and the canvas, select the button at the top.",
