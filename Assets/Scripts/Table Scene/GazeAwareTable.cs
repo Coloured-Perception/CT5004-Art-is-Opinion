@@ -9,6 +9,7 @@ public class GazeAwareTable : MonoBehaviour
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
     public GameObject Gallery;
+    public GameObject escOptions;
     public Button yesButton;
     public Button noButton;
     public GameObject tableController;
@@ -41,7 +42,7 @@ public class GazeAwareTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
         {
             //Only click buttons if spacebar is down
             if (Input.GetKey("space"))

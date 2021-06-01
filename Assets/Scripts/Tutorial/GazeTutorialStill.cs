@@ -12,6 +12,7 @@ namespace unitycoder_MobilePaint
         GameObject objHit;
         public GameObject isEyeTracker;
         public GameObject tobiiTime;
+        public GameObject escOptions;
         public GameObject brushSize;
         public GameObject transitionController;
         public Button increaseSizeButton;
@@ -84,7 +85,7 @@ namespace unitycoder_MobilePaint
         // Update is called once per frame
         void Update()
         {
-            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
             {
                 if (Input.GetKey("space"))
                 {

@@ -37,6 +37,7 @@ public class GazeAwareGallery : MonoBehaviour
 
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
+    public GameObject escOptions;
 
     // Start is called before the first frame update
 
@@ -44,7 +45,7 @@ public class GazeAwareGallery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
         {
             if (Input.GetKey("space"))
             {

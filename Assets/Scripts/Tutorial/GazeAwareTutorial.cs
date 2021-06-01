@@ -8,6 +8,7 @@ public class GazeAwareTutorial : MonoBehaviour
 {
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
+    public GameObject escOptions;
     public Button nextButton;
     public Button yesButton;
     public Button noButton;
@@ -46,7 +47,7 @@ public class GazeAwareTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+        if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
         {
             camRect = mainCam.pixelRect;
             //Only click buttons if spacebar is down

@@ -1708,6 +1708,146 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517002461}
   m_CullTransparentMesh: 0
+--- !u!1001 &527148268
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8998112822917149933, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Name
+      value: EscOptionsCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 75766442}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: isEyeTracker
+      value: 
+      objectReference: {fileID: 1465941354}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: tobiiTime
+      value: 
+      objectReference: {fileID: 1465941354}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b, type: 3}
+--- !u!1 &527148269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5356605209859714272, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 527148268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &559797988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBrushPanel: {fileID: 679784042}
+  escOptions: {fileID: 527148269}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0
@@ -3540,6 +3681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
+  escOptions: {fileID: 527148269}
   optionsCanvas: {fileID: 1076385137}
   paintCanvas: {fileID: 115009137}
   brushSize: {fileID: 1350818532}
@@ -3569,6 +3711,7 @@ MonoBehaviour:
   preview: {fileID: 2028367486}
   tobiiTime: {fileID: 1465941354}
   isEyeTracker: {fileID: 1465941354}
+  escOptions: {fileID: 527148269}
   colorpickers:
   - {fileID: 2004714594}
   - {fileID: 1911819394}
@@ -4524,6 +4667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBrushPanel: {fileID: 679784042}
+  escOptions: {fileID: 527148269}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0

@@ -12,6 +12,7 @@ namespace unitycoder_MobilePaint
         public GameObject preview;
         public GameObject tobiiTime;
         public GameObject isEyeTracker;
+        public GameObject escOptions;
 
         public Button[] colorpickers;
         Vector3[] Positions;
@@ -44,7 +45,7 @@ namespace unitycoder_MobilePaint
         // Update is called once per frame
         void Update() {
 
-            if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+            if(isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
             {
                 for (int i = 0; i < colorpickers.Length; i++)
                 {

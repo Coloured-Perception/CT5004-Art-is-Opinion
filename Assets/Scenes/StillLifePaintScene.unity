@@ -3578,6 +3578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBrushPanel: {fileID: 743898665}
+  escOptions: {fileID: 1357822519}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0
@@ -4139,6 +4140,146 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1304683485}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1357822518
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8998112822917149933, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Name
+      value: EscOptionsCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600805729140703203, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 75766442}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: isEyeTracker
+      value: 
+      objectReference: {fileID: 1465941354}
+    - target: {fileID: 1883693445650302945, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+        type: 3}
+      propertyPath: tobiiTime
+      value: 
+      objectReference: {fileID: 1465941354}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b, type: 3}
+--- !u!1 &1357822519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5356605209859714272, guid: 8d6d3a15aeae5c24ca50043cb0cd1e2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1357822518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1367465606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,6 +4292,7 @@ GameObject:
   - component: {fileID: 1367465610}
   - component: {fileID: 1367465609}
   - component: {fileID: 1367465608}
+  - component: {fileID: 1367465611}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4271,6 +4413,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367465606}
   m_CullTransparentMesh: 0
+--- !u!65 &1367465611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367465606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 27.01, y: 17.6, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1373803858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4523,6 +4678,7 @@ GameObject:
   - component: {fileID: 1465941357}
   - component: {fileID: 1465941356}
   - component: {fileID: 1465941355}
+  - component: {fileID: 1465941360}
   - component: {fileID: 1465941358}
   - component: {fileID: 1465941359}
   m_Layer: 0
@@ -4546,6 +4702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
+  escOptions: {fileID: 1357822519}
   optionsCanvas: {fileID: 1076385137}
   paintCanvas: {fileID: 1315405404}
   brushSize: {fileID: 1027146319}
@@ -4575,6 +4732,7 @@ MonoBehaviour:
   preview: {fileID: 1004215098}
   tobiiTime: {fileID: 1465941354}
   isEyeTracker: {fileID: 1465941354}
+  escOptions: {fileID: 1357822519}
   colorpickers:
   - {fileID: 1443019601}
   - {fileID: 35897022}
@@ -4627,6 +4785,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEyeTracker: 0
+--- !u!114 &1465941360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465941354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ceec746f49c43bcf3bec35904fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonTop: {fileID: 1367465606}
+  isEyeTracker: {fileID: 1465941354}
+  tobiiTime: {fileID: 1465941354}
+  escOptions: {fileID: 1357822519}
+  mainCam: {fileID: 75766442}
 --- !u!1 &1522817668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5237,6 +5412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customBrushPanel: {fileID: 743898665}
+  escOptions: {fileID: 1357822519}
   isEyeTracker: {fileID: 1465941354}
   tobiiTime: {fileID: 1465941354}
   enableTouch: 0

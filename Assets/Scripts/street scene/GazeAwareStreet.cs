@@ -9,6 +9,7 @@ public class GazeAwareStreet : MonoBehaviour
 
     public GameObject isEyeTracker;
     public GameObject tobiiTime;
+    public GameObject escOptions;
     public GameObject nextButton;
     public GameObject yesButton;
     public GameObject noButton;
@@ -57,7 +58,7 @@ public class GazeAwareStreet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+        if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
         {
             camRect = mainCam.pixelRect;
             //Only click buttons if spacebar is down

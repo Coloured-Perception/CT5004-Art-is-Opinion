@@ -24,6 +24,7 @@ namespace unitycoder_MobilePaint {
 	[RequireComponent(typeof(MeshRenderer))]
 	public class MobilePaint : MonoBehaviour {
 		public GameObject customBrushPanel;
+        public GameObject escOptions;
 		// Declaring variables related to Tobii eye-tracker input
 		[Header("Tobii Eye-tracking")]
 		public GameObject isEyeTracker; // Whether the player is using Tobii eye-tracker, Turn false to test without eye-tracker	// Used to say whether the player is looking at a point long enough
@@ -416,7 +417,7 @@ namespace unitycoder_MobilePaint {
 			Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen; // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker
 			filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
-			if (!customBrushPanel.activeInHierarchy) {
+			if (!customBrushPanel.activeInHierarchy && !escOptions.activeInHierarchy) {
 				// TEST: Undo key for desktop
 
 				// mouse is over UI element? then dont paint

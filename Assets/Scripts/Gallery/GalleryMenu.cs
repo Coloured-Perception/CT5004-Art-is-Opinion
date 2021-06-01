@@ -15,6 +15,7 @@ public class GalleryMenu : MonoBehaviour {
 
 	public GameObject isEyeTracker;
 	public GameObject tobiiTime;
+    public GameObject escOptions;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -23,7 +24,7 @@ public class GalleryMenu : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker) {
+		if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy) {
 			if (Input.GetKey("space")) {
 				//camRect = mainCam.pixelRect;
 

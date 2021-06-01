@@ -7,6 +7,7 @@ namespace unitycoder_MobilePaint {
 
         public GameObject isEyeTracker;
         public GameObject tobiiTime;
+        public GameObject escOptions;
         public GameObject optionsCanvas;
 		public GameObject paintCanvas;
         public GameObject brushSize;
@@ -94,7 +95,7 @@ namespace unitycoder_MobilePaint {
 		}
 
 		private void Update() {
-            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && !escOptions.activeInHierarchy)
             {
                 camRect = mainCam.pixelRect;
                 //Only click buttons if spacebar is down
