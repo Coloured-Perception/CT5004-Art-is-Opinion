@@ -45,18 +45,18 @@ public class TutorialManager : MonoBehaviour {
         }
         Canvas = GameObject.Find("Main Canvas");
         TutorialUI = Canvas.transform.Find("Tutorial UI").gameObject;
-        // These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
-        //PlayerPrefs.SetInt("banana", 0);            // remove later 
-        //PlayerPrefs.SetInt("apple", 0);             // remove later
-        //PlayerPrefs.SetInt("intro", 0);             // remove later
-        PlayerPrefs.SetInt("PaintingAmount", 7);    // remove later
+		// These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
+		//PlayerPrefs.SetInt("banana", 0);            // remove later 
+		//PlayerPrefs.SetInt("apple", 0);             // remove later
+		//PlayerPrefs.SetInt("intro", 0);             // remove later
+		//PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
 
-        //PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
+		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
-        //Debug.Log(PlayerPrefs.GetInt("intro") + " i");
-        //Debug.Log(PlayerPrefs.GetInt("banana") + " b");
-        //Debug.Log(PlayerPrefs.GetInt("apple") + " a");
-        Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
+		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
+		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
+		//Debug.Log(PlayerPrefs.GetInt("apple") + " a");
+		Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
 
 		if (PlayerPrefs.GetInt("intro") == 0) {
 			/// we need a title scene

@@ -14,7 +14,7 @@ public class LoadImageScript : MonoBehaviour {
 	public GameObject galleryBoard;
 
 	// The different painting frames that can have an image loaded onto
-	public RawImage painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10;
+	public RawImage painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10, painting11, painting12, painting13, painting14, painting15;
 
 	/// <summary>
 	/// Goes through the saved PNGs and loads the most recent ones
@@ -27,24 +27,27 @@ public class LoadImageScript : MonoBehaviour {
 		string individualFilePath;                          // The file directory of a specific image to load
 		string fileName = "PortraitImage";
 
-		// Checks whether the folders needed to save different images are available, otherwise it creates them
-		if (Directory.Exists(filePath + "/Portraits")) {
-			Debug.Log("Portrait folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/Portraits");
-		}
-		if (Directory.Exists(filePath + "/StillLifes")) {
-			Debug.Log("Still-life folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/StillLifes");
-		}
-		if (Directory.Exists(filePath + "/Table")) {
-			Debug.Log("Table folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/Table");
-		}
+		//// Checks whether the folders needed to save different images are available, otherwise it creates them
+		//if (Directory.Exists(filePath + "/Portraits")) {
+		//	Debug.Log("Portrait folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/Portraits");
+		//}
+		//if (Directory.Exists(filePath + "/StillLifes")) {
+		//	Debug.Log("Still-life folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/StillLifes");
+		//}
+		//if (Directory.Exists(filePath + "/Table")) {
+		//	Debug.Log("Table folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/Table");
+		//}
 
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
+			if (!Directory.Exists(filePath + "/Portraits")) {
+				Directory.CreateDirectory(filePath + "/Portraits");
+			}
 			filePath += "/Portraits";
 			fileName = "/PortraitImage";
 			if (galleryBoard.tag == "Easel") {
@@ -57,17 +60,54 @@ public class LoadImageScript : MonoBehaviour {
 			} else {
 				numOfImages = 10;
 			}
-
-		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+		}
+		if (SceneManager.GetActiveScene().name == "TableScene") {
+			if (!Directory.Exists(filePath + "/StillLifes")) {
+				Directory.CreateDirectory(filePath + "/StillLifes");
+			}
 			filePath += "/StillLifes";
 			fileName = "/StillImage";
 			numOfImages = 6;
+		}
+		if (SceneManager.GetActiveScene().name == "GalleryScene") {
+			if (galleryBoard.tag == "Portraits") {
+				if (!Directory.Exists(filePath + "/Portraits")) {
+					Directory.CreateDirectory(filePath + "/Portraits");
+				}
+				filePath += "/Portraits";
+				fileName = "/PortraitImage";
+			} else if (galleryBoard.tag == "PortraitsFreeDraw") {
+				if (!Directory.Exists(filePath + "/FreedrawPortraits")) {   // Adds Free draw portraits folder if it doesn't exist
+					Directory.CreateDirectory(filePath + "/FreedrawPortraits");
+				}
+				filePath += "/FreedrawPortraits";
+				fileName = "/FreedrawPortraits";
+			} else if (galleryBoard.tag == "StillLifes") {
+				if (!Directory.Exists(filePath + "/StillLifes")) {
+					Directory.CreateDirectory(filePath + "/StillLifes");
+				}
+				filePath += "/StillLifes";
+				fileName = "/StillImage";
+			} else if (galleryBoard.tag == "Landscapes") {
+				if (!Directory.Exists(filePath + "/Landscapes")) {
+					Directory.CreateDirectory(filePath + "/Landscapes");
+				}
+				filePath += "/Landscapes";
+				fileName = "/Landscapes";
+			} else if (galleryBoard.tag == "LandscapesFreeDraw") {
+				if (!Directory.Exists(filePath + "/FreedrawLandscapes")) {
+					Directory.CreateDirectory(filePath + "/FreedrawLandscapes");
+				}
+				filePath += "/FreedrawLandscapes";
+				fileName = "/FreedrawLandscapes";
+			}
+			numOfImages = 15;
 		}
 
 		Debug.Log(filePath);
 
 		List<string> PNGImages = new List<string>();    // Stores all PNG files
-		RawImage[] paintings = { painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10 };
+		RawImage[] paintings = { painting1, painting2, painting3, painting4, painting5, painting6, painting7, painting8, painting9, painting10, painting11, painting12, painting13, painting14, painting15 };
 		Texture loadedTexture;
 
 		// Stores the info on what is saved in the filePath to an array

@@ -140,6 +140,8 @@ public class CameraShutterScript : MonoBehaviour {
 	/// Blink closed is used to change area scenes. "from" pref is set depending on current scene
 	/// </summary>
 	public void BlinkCloseEnd() {
+		PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+
 		if (SceneManager.GetActiveScene().name == "GalleryScene") {
 			PlayerPrefs.SetInt("fromGallery", 1);
 		} else if (SceneManager.GetActiveScene().name == "StreetScene") {

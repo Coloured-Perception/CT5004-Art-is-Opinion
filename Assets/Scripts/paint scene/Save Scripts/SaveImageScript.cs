@@ -22,6 +22,10 @@ public class SaveImageScript : MonoBehaviour {
 	private void Awake() {
 		UICanvas = GameObject.Find("Main Canvas");
 
+		if (PlayerPrefs.GetInt("banana") != 1) {
+			gameObject.SetActive(false);
+		}
+
 		//TransitionController = GameObject.Find("Transition Controller");
 		//TranAnim = TransitionController.GetComponent<Animator>();
 	}
@@ -33,32 +37,57 @@ public class SaveImageScript : MonoBehaviour {
 		numOfPNGs = 1;
 		filePath = Application.persistentDataPath;  // Where the image is to be saved
 
-		// Checks whether the folders needed to save different images are available, otherwise it creates them
-		if (Directory.Exists(filePath + "/Table")) {
-			Debug.Log("Table folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/Table");
-		}
-		if (Directory.Exists(filePath + "/Portraits")) {
-			Debug.Log("Portrait folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/Portraits");
-		}
-		if (Directory.Exists(filePath + "/StillLifes")) {
-			Debug.Log("Still-life folder");
-		} else {
-			Directory.CreateDirectory(filePath + "/StillLifes");
-		}
+		//// Checks whether the folders needed to save different images are available, otherwise it creates them
+		//if (Directory.Exists(filePath + "/Table")) {
+		//	Debug.Log("Table folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/Table");
+		//}
+		//if (Directory.Exists(filePath + "/Portraits")) {
+		//	Debug.Log("Portrait folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/Portraits");
+		//}
+		//if (Directory.Exists(filePath + "/StillLifes")) {
+		//	Debug.Log("Still-life folder");
+		//} else {
+		//	Directory.CreateDirectory(filePath + "/StillLifes");
+		//}
 
 		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
-			filePath += "/Portraits";
-			fileName = "/PortraitImage";
+			if (PlayerPrefs.GetString("LastScene") == "GalleryScene") {
+				if (!Directory.Exists(filePath + "/FreedrawPortraits")) {   // Adds Free draw portraits folder if it doesn't exist
+					Directory.CreateDirectory(filePath + "/FreedrawPortraits");
+				}
+				filePath += "/FreedrawPortraits";
+				fileName = "/FreedrawPortraits";
+			} else {
+				if (!Directory.Exists(filePath + "/Portraits")) {
+					Directory.CreateDirectory(filePath + "/Portraits");
+				}
+				filePath += "/Portraits";
+				fileName = "/PortraitImage";
+			}
+		} else if (SceneManager.GetActiveScene().name == "StillLifePaintScene" || SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
+			if (PlayerPrefs.GetString("LastScene") == "GalleryScene") {
+				if (!Directory.Exists(filePath + "/FreedrawStillLifes")) {
+					Directory.CreateDirectory(filePath + "/FreedrawStillLifes");
+				}
+				filePath += "/FreedrawStillLifes";
+				fileName = "/FreedrawStillLifeImage";
+			} else {
+				if (!Directory.Exists(filePath + "/StillLifes")) {
+					Directory.CreateDirectory(filePath + "/StillLifes");
+				}
+				filePath += "/StillLifes";
+				fileName = "/StillImage";
+			}
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
+			if (!Directory.Exists(filePath + "/Table")) {
+				Directory.CreateDirectory(filePath + "/Table");
+			}
 			filePath += "/Table";
 			fileName = "/FruitImage";
-		} else if (SceneManager.GetActiveScene().name == "StillLifePaintScene" || SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
-			filePath += "/StillLifes";
-			fileName = "/StillImage";
 		}
 
 		// Stores the info on what is saved in the filePath to an array
@@ -80,9 +109,7 @@ public class SaveImageScript : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name == "PortraitPaintScene") {
 			paintTime.SaveTime();
 		}
-		int numOfPaintings = PlayerPrefs.GetInt("PaintingAmount");
-		numOfPaintings++;
-		PlayerPrefs.SetInt("PaintingAmount", numOfPaintings);
+		PlayerPrefs.SetInt("PaintingAmount", PlayerPrefs.GetInt("PaintingAmount") + 1);
 		StartCoroutine(CoSave());
 	}
 

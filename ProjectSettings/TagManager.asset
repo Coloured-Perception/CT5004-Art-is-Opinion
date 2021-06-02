@@ -7,6 +7,12 @@ TagManager:
   - Table
   - PortraitGallery
   - Easel
+  - Portraits
+  - PortraitsFreeDraw
+  - StillLifes
+  - Landscapes
+  - LandscapesFreeDraw
+  - FreeDrawPortraits
   layers:
   - Default
   - TransparentFX

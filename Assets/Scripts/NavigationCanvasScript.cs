@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NavigationCanvasScript : MonoBehaviour {
 	GameObject transitionController;
@@ -21,10 +22,11 @@ public class NavigationCanvasScript : MonoBehaviour {
 	}
 
 	public void ChangeScene() {
+		PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+
 		Debug.Log(gameObject.name + "  name");
 		cameraShutterScript.toScene = gameObject.name;
 		Debug.Log(cameraShutterScript.toScene + "  set");
-
 	}
 
 	public void Move() {
