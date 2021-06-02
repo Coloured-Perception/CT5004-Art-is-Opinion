@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Tobii.Gaming;
 
 public class GazeAwareStillLife : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GazeAwareStillLife : MonoBehaviour
 
     public Camera mainCam;
     Vector2 filteredPoint;
+    Rect camRect;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,11 @@ public class GazeAwareStillLife : MonoBehaviour
         {
             if (Input.GetKey("space"))
             {
+                camRect = mainCam.pixelRect;
+                Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+                gazePoint.x *= camRect.width;
+                gazePoint.y *= camRect.height;
+                filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
                 Ray ray = mainCam.ScreenPointToRay(filteredPoint);
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
                 {

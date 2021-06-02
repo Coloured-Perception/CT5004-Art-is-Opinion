@@ -35,34 +35,27 @@ public class TutorialManager : MonoBehaviour {
 	/// if the intro is stopped part way through and the game reopened the text wont line up with the scene
 	/// </summary>
 	private void Awake() {
-		////Help with testing tutorial in unity
-		//if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
-		//{
+        ////Help with testing tutorial in unity
+        if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
+        {
 
-		//    if (PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 1 && PlayerPrefs.GetInt("intro") == 1)
-		//    {
-		//        PlayerPrefs.SetInt("banana", 0);    // remove later 
-		//        PlayerPrefs.SetInt("apple", 0);
-		//        PlayerPrefs.SetInt("intro", 0);     // remove later
-		//    }
-		//    else if (PlayerPrefs.GetInt("intro") == 1)
-		//    {
-		//        PlayerPrefs.SetInt("intro", 0);     // remove later
-		//    }
-		//}
+                PlayerPrefs.SetInt("banana", 0);    // remove later 
+                PlayerPrefs.SetInt("apple", 0);
+                PlayerPrefs.SetInt("intro", 0);     // remove later
+        }
 
-		// These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
-		//PlayerPrefs.SetInt("banana", 0);            // remove later 
-		//PlayerPrefs.SetInt("apple", 0);             // remove later
-		//PlayerPrefs.SetInt("intro", 0);             // remove later
-													//PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
+        // These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
+        //PlayerPrefs.SetInt("banana", 0);            // remove later 
+        //PlayerPrefs.SetInt("apple", 0);             // remove later
+        //PlayerPrefs.SetInt("intro", 0);             // remove later
+        //PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
 
-		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
+        //PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
-		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
-		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
-		//Debug.Log(PlayerPrefs.GetInt("apple") + " a");
-		Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
+        //Debug.Log(PlayerPrefs.GetInt("intro") + " i");
+        //Debug.Log(PlayerPrefs.GetInt("banana") + " b");
+        //Debug.Log(PlayerPrefs.GetInt("apple") + " a");
+        Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
 
 		if (PlayerPrefs.GetInt("intro") == 0) {
 			/// we need a title scene

@@ -3825,7 +3825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEyeTracker: {fileID: 1312286892}
   tobiiTime: {fileID: 1312286892}
-  escOptions: {fileID: 0}
+  escOptions: {fileID: 1231922974}
   nextButton: {fileID: 1516637460}
   yesButton: {fileID: 550832319}
   noButton: {fileID: 950715839}
@@ -5835,7 +5835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9fe5497cf2ac44cbb3fdb1eb6dbd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialTest: 1
+  tutorialTest: 0
 --- !u!1 &2059974686
 GameObject:
   m_ObjectHideFlags: 0
