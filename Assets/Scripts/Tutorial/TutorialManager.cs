@@ -36,19 +36,20 @@ public class TutorialManager : MonoBehaviour {
 	/// </summary>
 	private void Awake() {
         ////Help with testing tutorial in unity
-        if (SceneManager.GetActiveScene().name == "tutorial test" && tutorialTest)
+        if (SceneManager.GetActiveScene().name == "tutorial testScene" && tutorialTest)
         {
 
                 PlayerPrefs.SetInt("banana", 0);    // remove later 
                 PlayerPrefs.SetInt("apple", 0);
                 PlayerPrefs.SetInt("intro", 0);     // remove later
         }
-
+        Canvas = GameObject.Find("Main Canvas");
+        TutorialUI = Canvas.transform.Find("Tutorial UI").gameObject;
         // These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
         //PlayerPrefs.SetInt("banana", 0);            // remove later 
         //PlayerPrefs.SetInt("apple", 0);             // remove later
         //PlayerPrefs.SetInt("intro", 0);             // remove later
-        //PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
+        PlayerPrefs.SetInt("PaintingAmount", 7);    // remove later
 
         //PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
@@ -65,7 +66,7 @@ public class TutorialManager : MonoBehaviour {
 			///  the player clicks the cross when he asks "do you know how to paint?" ?
 
 
-			if (SceneManager.GetActiveScene().name == "tutorial test") {
+			if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 				tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 				cameraShutterScript = GameObject.Find("Transition Controller").GetComponent<CameraShutterScript>();
 				Canvas = GameObject.Find("Main Canvas");
@@ -197,7 +198,7 @@ public class TutorialManager : MonoBehaviour {
 	public void NextButtonClicked() {
 		Debug.Log("next" + TutorialDialogeManager.sentenceNumber);
 
-		if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("banana") == 0) {
+		if (SceneManager.GetActiveScene().name == "tutorial testScene" && PlayerPrefs.GetInt("banana") == 0) {
 			if (TutorialDialogeManager.sentenceNumber == 2) {
 				CuratorAnim.Play("BoxHideInCentre");
 				//cameraShutterScript.BlinkWake();
@@ -230,7 +231,7 @@ public class TutorialManager : MonoBehaviour {
 				TableUIAnim.Play("TableUIShow");
 			}
 
-		} else if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 0) {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene" && PlayerPrefs.GetInt("banana") == 1 && PlayerPrefs.GetInt("apple") == 0) {
 			if (TutorialDialogeManager.sentenceNumber == 27) {
 				TableUI.gameObject.SetActive(true);
 				CuratorAnim.Play("CuratorTtoTI");
@@ -238,7 +239,7 @@ public class TutorialManager : MonoBehaviour {
 				TableUIAnim.Play("TableUIShow");
 			}
 
-		} else if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("apple") == 1) {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene" && PlayerPrefs.GetInt("apple") == 1) {
 			if (TutorialDialogeManager.sentenceNumber == 35) {
 				Map.gameObject.SetActive(true);
 				MapAnim.Play("MapTutorialIn");
@@ -349,7 +350,7 @@ public class TutorialManager : MonoBehaviour {
 	public void YesButtonClick() {
 		Debug.Log("yes" + TutorialDialogeManager.sentenceNumber);
 
-		if (SceneManager.GetActiveScene().name == "tutorial test") {
+		if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 			if (TutorialDialogeManager.sentenceNumber == 8) {
 				CuratorAnim.Play("CuratorCNextSYesHNoH");
 			} else if (TutorialDialogeManager.sentenceNumber == 14) {
@@ -377,7 +378,7 @@ public class TutorialManager : MonoBehaviour {
 	public void NoButtonClick() {
 		Debug.Log("no" + TutorialDialogeManager.sentenceNumber);
 
-		if (SceneManager.GetActiveScene().name == "tutorial test") {
+		if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 			if (TutorialDialogeManager.sentenceNumber == 8) {
 				CuratorAnim.Play("CuratorCNextSYesHNoH");
 				tutorialDialogeManager.StartDialogue();
@@ -499,4 +500,15 @@ public class TutorialManager : MonoBehaviour {
 	public void MoveTable() {
 		TutorialObjAnim.Play("TableTutorialMoveIn");
 	}
+
+    public void SetInts0()
+    {
+        PlayerPrefs.SetInt("intro", 0);
+        PlayerPrefs.SetInt("banana", 0);
+        PlayerPrefs.SetInt("apple", 0);
+    }
+    public void SetIntAmount()
+    {
+        PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
+    }
 }

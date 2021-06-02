@@ -92,7 +92,7 @@ public class CameraShutterScript : MonoBehaviour {
 				TranAnim.Play("Camera Shutter Open Ani");
 			}
 
-		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			if (PlayerPrefs.GetInt("banana") == 1 || PlayerPrefs.GetInt("apple") == 1) {
 				TranAnim.Play("Camera Shutter Open Ani");
@@ -144,7 +144,7 @@ public class CameraShutterScript : MonoBehaviour {
 			PlayerPrefs.SetInt("fromGallery", 1);
 		} else if (SceneManager.GetActiveScene().name == "StreetScene") {
 			PlayerPrefs.SetInt("fromOutside", 1);
-		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 			PlayerPrefs.SetInt("fromTutorial", 1);
 			toScene = "Gallery";
 		}
@@ -192,10 +192,10 @@ public class CameraShutterScript : MonoBehaviour {
 			PlayerPrefs.SetInt("fromGallery", 1);
 			PlayerPrefs.SetInt("fromOutside", 0);
 			SceneManager.LoadScene(toScene + "Scene");
-		} else if (SceneManager.GetActiveScene().name == "tutorial test") {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene") {
 			SceneManager.LoadScene("StillLifeTutorialPaintScene");
 		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
-			SceneManager.LoadScene(toScene + "tutorial test");
+			SceneManager.LoadScene(toScene + "tutorial testScene");
 		}
 	}
 
@@ -208,7 +208,7 @@ public class CameraShutterScript : MonoBehaviour {
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
 			CameraAnim.Play("CameraTableSceneReaction");
 			tableControllerScript.ChangeTables();
-		} else if (SceneManager.GetActiveScene().name == "tutorial test" && PlayerPrefs.GetInt("banana") != 0) {
+		} else if (SceneManager.GetActiveScene().name == "tutorial testScene" && PlayerPrefs.GetInt("banana") != 0) {
 			tutorialDialogeManager.StartDialogue();
 
 

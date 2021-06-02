@@ -5866,9 +5866,10 @@ GameObject:
   - component: {fileID: 162627882}
   - component: {fileID: 162627881}
   - component: {fileID: 162627880}
+  - component: {fileID: 162627883}
   - component: {fileID: 162627879}
   m_Layer: 5
-  m_Name: Tutorial
+  m_Name: tutorial test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5950,7 +5951,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 260013747}
-        m_MethodName: OfficeButtonClick
+        m_MethodName: SetInts0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5958,6 +5959,39 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 902581726}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 162627883}
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 902581727}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BlinkClose
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -5999,6 +6033,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162627877}
   m_CullTransparentMesh: 0
+--- !u!114 &162627883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162627877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6412a2142ee3c934088a4b10a7ef9f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &174880185
 GameObject:
   m_ObjectHideFlags: 0
@@ -6672,6 +6718,11 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3219908593794931748, guid: 2bd48b1d8e593374b97c74f6dece9385,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d76bf35cdde79e4d955640614b519c7, type: 2}
     - target: {fileID: 2011166172800023990, guid: 2bd48b1d8e593374b97c74f6dece9385,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6877,11 +6928,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3219908593794931748, guid: 2bd48b1d8e593374b97c74f6dece9385,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8d76bf35cdde79e4d955640614b519c7, type: 2}
     - target: {fileID: -8238185521266198344, guid: 2bd48b1d8e593374b97c74f6dece9385,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28795,7 +28841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1389640591
 RectTransform:
   m_ObjectHideFlags: 0
