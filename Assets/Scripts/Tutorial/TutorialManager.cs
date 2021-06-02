@@ -55,7 +55,7 @@ public class TutorialManager : MonoBehaviour {
 		//PlayerPrefs.SetInt("banana", 0);            // remove later 
 		//PlayerPrefs.SetInt("apple", 0);             // remove later
 		//PlayerPrefs.SetInt("intro", 0);             // remove later
-		//PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
+													//PlayerPrefs.SetInt("PaintingAmount", 0);    // remove later
 
 		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 

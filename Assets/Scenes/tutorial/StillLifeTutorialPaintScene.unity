@@ -503,8 +503,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -522,13 +521,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85816272}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0006699674, w: 0.99999976}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0, y: 0, z: 0.00067195913, w: 0.99999976}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalScale: {x: 0.19467598, y: 0.27011216, z: 1}
   m_Children: []
   m_Father: {fileID: 1977844137}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.07700001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.077}
 --- !u!1 &98621555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personImage: {fileID: 901279087}
-  Banana: {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  Banana: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
   Apple: {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
 --- !u!23 &284005613
 MeshRenderer:
@@ -2726,6 +2725,7 @@ MonoBehaviour:
   padding: 30
   brushPreview: {fileID: 1143907798}
   sizeReference: 0
+  customBrushes: []
 --- !u!1 &730362074
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,8 +3279,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3298,13 +3297,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901279086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0, y: 0, z: 0.00067195913, w: 0.99999976}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalScale: {x: 0.19467598, y: 0.27011216, z: 1}
   m_Children: []
   m_Father: {fileID: 284005615}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.077}
 --- !u!1 &901511390
 GameObject:
   m_ObjectHideFlags: 0
@@ -6413,7 +6412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personImage: {fileID: 85816273}
-  Banana: {fileID: 4916003595109132380, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  Banana: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
   Apple: {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
 --- !u!114 &1977844134
 MonoBehaviour:

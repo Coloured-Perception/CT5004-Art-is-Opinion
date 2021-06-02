@@ -8,8 +8,9 @@ public class TutorialCustomBrushScript : MonoBehaviour {
 	TutorialManager tutorialManager;
 
 	private void Awake() {
-		tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
-
+		if (SceneManager.GetActiveScene().name == "stillLifeTutorialPaintScene") {
+			tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
+		}
 		Button btn = this.GetComponent<Button>(); //Grabs the button component
 		btn.onClick.AddListener(TaskOnClick); //Adds a listner on the button
 	}
