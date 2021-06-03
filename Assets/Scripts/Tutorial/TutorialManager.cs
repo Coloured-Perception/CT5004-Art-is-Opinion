@@ -45,11 +45,15 @@ public class TutorialManager : MonoBehaviour {
         }
         Canvas = GameObject.Find("Main Canvas");
         TutorialUI = Canvas.transform.Find("Tutorial UI").gameObject;
-		// These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
-		//PlayerPrefs.SetInt("banana", 0);            // remove later 
-		//PlayerPrefs.SetInt("apple", 0);             // remove later
-		//PlayerPrefs.SetInt("intro", 0);             // remove later
-		PlayerPrefs.SetInt("PaintingAmount", 7);    // remove later
+        // These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
+        if (SceneManager.GetActiveScene().name == "Gallery Scene")
+        {
+
+            PlayerPrefs.SetInt("banana", 1);    // remove later 
+            PlayerPrefs.SetInt("apple", 1);
+            PlayerPrefs.SetInt("intro", 1);     // remove later
+        }    // remove later
+        PlayerPrefs.SetInt("PaintingAmount", 7);    // remove later
 
 		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
