@@ -196,7 +196,7 @@ namespace unitycoder_MobilePaint {
 				    if (optionsCanvas.activeInHierarchy) {
 					    if ((savePos.x + saveXMin) < filteredPoint.x && filteredPoint.x < (savePos.x + saveXMax) && (savePos.y + saveYMin) < filteredPoint.y && filteredPoint.y < (savePos.y + saveYMax) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0) {
                             transitionController.SetActive(true);
-                            saveButton.GetComponent<SaveImageScript>().Save();
+                            saveCamera.GetComponent<SaveImageScript>().Save();
                             transitionController.GetComponent<CameraShutterScript>().transitionDecide();
                             //cameraShutterClose.SetActive(true);
                             tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
