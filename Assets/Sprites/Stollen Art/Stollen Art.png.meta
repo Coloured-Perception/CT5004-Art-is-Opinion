@@ -5,6 +5,30 @@ TextureImporter:
   - first:
       213: 2881003771516261005
     second: Stollen Art_0
+  - first:
+      213: 247305690728680467
+    second: Stollen Art_1
+  - first:
+      213: -8937453974896906526
+    second: Stollen Art_2
+  - first:
+      213: -4854326499317580448
+    second: Stollen Art_3
+  - first:
+      213: -5614448155178971759
+    second: Stollen Art_4
+  - first:
+      213: 539954508753803867
+    second: Stollen Art_5
+  - first:
+      213: -4848687590318985459
+    second: Stollen Art_6
+  - first:
+      213: -7042572149426254881
+    second: Stollen Art_7
+  - first:
+      213: 8861079476795627297
+    second: Stollen Art_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -101,6 +125,132 @@ TextureImporter:
       name: Stollen Art_0
       rect:
         serializedVersion: 2
+        x: 0
+        y: 552
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c576cc25060d34da501a9b4bd19255
+      internalID: 2881003771516261005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 552
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbb6e775f2fccdb41afc4924bc09a8d8
+      internalID: 247305690728680467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 552
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4758116bbad88734ea4b37d1b3040ad7
+      internalID: -8937453974896906526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 552
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e90820403daff4f844d058703fb24c
+      internalID: -4854326499317580448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa45c25180ee78642922d171e6feb90e
+      internalID: -5614448155178971759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 368
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b081dae9e84f904469d9d07f52ff3e44
+      internalID: 539954508753803867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_6
+      rect:
+        serializedVersion: 2
         x: 512
         y: 368
         width: 256
@@ -112,8 +262,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b49d46ef69aa81548ac87496facff7ed
-      internalID: 2881003771516261005
+      spriteID: ae4898e5059e35d40a0e7f8a3b8aecd9
+      internalID: -4848687590318985459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 368
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4b7217c5b66a544873b18c3ffd30e8
+      internalID: -7042572149426254881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stollen Art_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0dbd3a2b9ec5f4469ee197720f2ff93
+      internalID: 8861079476795627297
       vertices: []
       indices: 
       edges: []
