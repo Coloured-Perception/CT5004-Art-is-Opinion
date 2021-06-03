@@ -2556,9 +2556,9 @@ MonoBehaviour:
   maxAngleY: 360
   minAngleX: 0
   minAngleY: -360
-  sensitivity: 5
+  sensitivity: 500
   responsiveness: 1
-  speed: 1
+  speed: 100
   isEyeTracker: {fileID: 1312286892}
   escOptions: {fileID: 1231922974}
   continuousRotate: 1

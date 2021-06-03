@@ -48,8 +48,8 @@ public class RotateCamera : MonoBehaviour
 
                     if (continuousRotate)
                     {                        
-                        xSpeed = (headPoseAngle.x + gazePointAngle.x) * sensitivity;
-                        ySpeed = (headPoseAngle.y + gazePointAngle.y) * sensitivity;
+                        xSpeed = (headPoseAngle.x + gazePointAngle.x) * sensitivity * Time.deltaTime;
+                        ySpeed = (headPoseAngle.y + gazePointAngle.y) * sensitivity * Time.deltaTime;
 
                         ContinuousRotate(xSpeed,ySpeed);
                     }
@@ -115,19 +115,19 @@ public class RotateCamera : MonoBehaviour
 
                 if (Input.GetKey("up"))
                 {
-                    xSpeed -= 1;
+                    xSpeed -= speed*Time.deltaTime;
                 }
                 if (Input.GetKey("down"))
                 {
-                    xSpeed += 1;
+                    xSpeed += speed * Time.deltaTime;
                 }
                 if (Input.GetKey("left"))
                 {
-                    ySpeed -= 1;
+                    ySpeed -= speed * Time.deltaTime;
                 }
                 if (Input.GetKey("right"))
                 {
-                    ySpeed += 1;
+                    ySpeed += speed * Time.deltaTime;
                 }
 
                 ContinuousRotate(xSpeed, ySpeed);

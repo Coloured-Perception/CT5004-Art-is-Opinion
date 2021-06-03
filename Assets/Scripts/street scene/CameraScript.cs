@@ -60,7 +60,8 @@ public class CameraScript : MonoBehaviour {
 			TableUIAnim.Play("ShowTableUI");
 		}
 		CameraAnim.enabled = false;
-	}
+        CameraAnim.applyRootMotion = true;
+    }
 	public void CameraReactionEnd() {
 		if (SceneManager.GetActiveScene().name == "StreetScene") {
 		} else if (SceneManager.GetActiveScene().name == "TableScene") {
