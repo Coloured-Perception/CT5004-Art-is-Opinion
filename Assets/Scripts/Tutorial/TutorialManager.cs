@@ -46,21 +46,14 @@ public class TutorialManager : MonoBehaviour {
         Canvas = GameObject.Find("Main Canvas");
         TutorialUI = Canvas.transform.Find("Tutorial UI").gameObject;
         // These lines of code are used to reset the tutorial, make sure to recomment them agter the tutorial is reset
-        if (SceneManager.GetActiveScene().name == "Gallery Scene")
-        {
+        
+        //PlayerPrefs.SetInt("PaintingAmount", 0);
+        //PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
 
-            PlayerPrefs.SetInt("banana", 1);    // remove later 
-            PlayerPrefs.SetInt("apple", 1);
-            PlayerPrefs.SetInt("intro", 1);     // remove later
-        }    // remove later
-        PlayerPrefs.SetInt("PaintingAmount", 7);    // remove later
-
-		//PlayerPrefs.SetInt("portraitLevel", 0);    // remove later
-
-		//Debug.Log(PlayerPrefs.GetInt("intro") + " i");
-		//Debug.Log(PlayerPrefs.GetInt("banana") + " b");
-		//Debug.Log(PlayerPrefs.GetInt("apple") + " a");
-		Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
+        //Debug.Log(PlayerPrefs.GetInt("intro") + " i");
+        //Debug.Log(PlayerPrefs.GetInt("banana") + " b");
+        //Debug.Log(PlayerPrefs.GetInt("apple") + " a");
+        Debug.Log("Number of Paintings: " + PlayerPrefs.GetInt("PaintingAmount"));
 
 		if (PlayerPrefs.GetInt("intro") == 0) {
 			/// we need a title scene
@@ -199,7 +192,7 @@ public class TutorialManager : MonoBehaviour {
 		Debug.Log(TutorialDialogeManager.sentenceNumber);
 	}
 
-	public void NextButtonClicked() {
+    public void NextButtonClicked() {
 		Debug.Log("next" + TutorialDialogeManager.sentenceNumber);
 
 		if (SceneManager.GetActiveScene().name == "tutorial testScene" && PlayerPrefs.GetInt("banana") == 0) {

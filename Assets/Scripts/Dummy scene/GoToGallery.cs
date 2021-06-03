@@ -11,7 +11,9 @@ public class GoToGallery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerPrefs.SetInt("banana", 1);    // remove later 
+        PlayerPrefs.SetInt("apple", 1);
+        PlayerPrefs.SetInt("intro", 1);     // remove later
     }
 
     // Update is called once per frame

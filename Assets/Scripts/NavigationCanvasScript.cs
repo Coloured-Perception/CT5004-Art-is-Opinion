@@ -14,11 +14,11 @@ public class NavigationCanvasScript : MonoBehaviour {
 		camera = GameObject.Find("Main Camera");
 		cameraShutterScript = transitionController.GetComponent<CameraShutterScript>();
 		cameraAnim = camera.GetComponent<Animator>();
-		if (PlayerPrefs.GetInt("PaintingAmount") < 5) {
-			if (gameObject.name == "Street" || gameObject.name == "PortraitPaint") {
-				gameObject.SetActive(false);
-			}
-		}
+		//if (PlayerPrefs.GetInt("PaintingAmount") < 5) {
+		//	if (gameObject.name == "Street" || gameObject.name == "PortraitPaint") {
+		//		gameObject.SetActive(false);
+		//	}
+		//}
 	}
 
 	public void ChangeScene() {
