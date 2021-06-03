@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personImage: {fileID: 901279087}
   Banana: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
-  Apple: {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  Apple: {fileID: 21300000, guid: f215a36c74f507f40b84b81f76b7a5b5, type: 3}
 --- !u!23 &284005613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7206,7 +7206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personImage: {fileID: 85816273}
   Banana: {fileID: 21300000, guid: c4a4f0f72ba5a4749aff2ba48d9df2c1, type: 3}
-  Apple: {fileID: -1992854424092581858, guid: c3c3b43ac2f04194d92b374c3062c22b, type: 3}
+  Apple: {fileID: 21300000, guid: f215a36c74f507f40b84b81f76b7a5b5, type: 3}
 --- !u!114 &1977844134
 MonoBehaviour:
   m_ObjectHideFlags: 0
