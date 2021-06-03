@@ -16,7 +16,6 @@ namespace unitycoder_MobilePaint {
 		public GameObject panel;
 		Button[] newButton;
 		public GameObject tobiiTime;
-        Navigation nav = new Navigation();
 		Vector3[] Positions;
 		Rect[] rects;
 		float[] XMin;
@@ -87,10 +86,10 @@ namespace unitycoder_MobilePaint {
 					var index = i;
 
 					// Fix dots image to look correct and be in correct position
-					//if (i >= 30 && i <= 35) {
-					//	newButton[i].transform.localScale = new Vector3(newButton[i].transform.localScale.x / 5, newButton[i].transform.localScale.y, newButton[i].transform.localScale.z);
-					//	newButton[i].transform.position = new Vector3(newButton[i].transform.position.x, newButton[i].transform.position.y + 25, newButton[i].transform.position.z);
-					//}
+					if (i >= 30 && i <= 35) {
+						newButton[i].transform.localScale = new Vector3(newButton[i].transform.localScale.x / 5, newButton[i].transform.localScale.y, newButton[i].transform.localScale.z);
+						newButton[i].transform.position = new Vector3(newButton[i].transform.position.x, newButton[i].transform.position.y + 25, newButton[i].transform.position.z);
+					}
 
 					// event listener for button clicks, pass custom brush array index number as parameter
 					newButton[i].onClick.AddListener(delegate { this.SetCustomBrush(index); });
@@ -104,20 +103,19 @@ namespace unitycoder_MobilePaint {
 				YMin = new float[newButton.Length];
 				YMax = new float[newButton.Length];
 			}
-            nav.mode = Navigation.Mode.None;
+
 			if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker) {
 				camRect = mainCam.pixelRect;
 
-				Vector2 gazePoint = TobiiAPI.GetGazePoint().Screen;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
-				//gazePoint.x *= camRect.width;
-				//gazePoint.y *= camRect.height;
-				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.1f);
+				Vector2 gazePoint = TobiiAPI.GetGazePoint().Viewport;   // Fetches the current co-ordinates on the screen that the player is looking at via the eye-tracker           
+				gazePoint.x *= camRect.width;
+				gazePoint.y *= camRect.height;
+				filteredPoint = Vector2.Lerp(filteredPoint, gazePoint, 0.5f);
 
 				int loopPos = 0;
 				foreach (Button brush in newButton) {
 					if (brush) {
-                        //MattP
-                        newButton[loopPos].navigation = nav;
+						//MattP
 						Positions[loopPos] = newButton[loopPos].transform.position;
 						rects[loopPos] = newButton[loopPos].GetComponent<RectTransform>().rect;
 						XMin[loopPos] = rects[loopPos].xMin;
@@ -126,10 +124,10 @@ namespace unitycoder_MobilePaint {
 						YMax[loopPos] = rects[loopPos].yMax;
 
 						if (Input.GetKey("space")) {
-							if ((Positions[loopPos].x + XMin[loopPos] - (padding * 2)) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos] + (padding * 2)) && (Positions[loopPos].y + YMin[loopPos] - (padding)) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos] + (padding)) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0) {
+							if ((Positions[loopPos].x + XMin[loopPos] - (padding / 2)) < filteredPoint.x && filteredPoint.x < (Positions[loopPos].x + XMax[loopPos] + (padding / 2)) && (Positions[loopPos].y + YMin[loopPos] - (padding / 2)) < filteredPoint.y && filteredPoint.y < (Positions[loopPos].y + YMax[loopPos] + (padding / 2)) && tobiiTime.GetComponent<TobiiTime>().timeBeforeClick <= 0) {
 								SetCustomBrush(loopPos);
 								tobiiTime.GetComponent<TobiiTime>().timeBeforeClick = tobiiTime.GetComponent<TobiiTime>().timeBetweenClicks;
-								//mobilePaint.textureNeedsUpdate = true;
+								mobilePaint.textureNeedsUpdate = true;
 								break;
 							}
 						}
