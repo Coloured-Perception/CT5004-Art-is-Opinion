@@ -29,6 +29,7 @@ public class GazeAwareGallery : MonoBehaviour
 
     GameObject objHit;
     public GameObject transitionController;
+    public GameObject tutorialManager;
 
     public Camera mainCam;
     //Rect camRect;
@@ -101,6 +102,7 @@ public class GazeAwareGallery : MonoBehaviour
                     }
                     else if (GameObject.ReferenceEquals(objHit, TutorialButton))
                     {
+                        tutorialManager.GetComponent<TutorialManager>().SetInts0();
                         transitionController.SetActive(true);
                         TutorialButton.GetComponent<NavigationCanvasScript>().ChangeScene();
                         transitionController.GetComponent<Animator>().Play("BlinkClose");
