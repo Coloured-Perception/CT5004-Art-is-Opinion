@@ -14,6 +14,8 @@ public class RotateCamera : MonoBehaviour
     public float responsiveness;
     public float speed;
     public GameObject isEyeTracker;
+    public bool isEyeTracker5;
+
     public GameObject escOptions;
 
     public bool continuousRotate;
@@ -33,7 +35,7 @@ public class RotateCamera : MonoBehaviour
     {
         if(cam.GetComponent<Animator>().applyRootMotion == true && !escOptions.activeInHierarchy)
         {
-            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker)
+            if (isEyeTracker.GetComponent<isEyeTrackerUsed>().isEyeTracker && isEyeTracker5)
             {
 
                 UserPresence isPresent = TobiiAPI.GetUserPresence();
