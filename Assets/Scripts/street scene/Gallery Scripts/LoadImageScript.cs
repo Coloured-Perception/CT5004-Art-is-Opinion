@@ -136,7 +136,8 @@ public class LoadImageScript : MonoBehaviour {
 
 		// After all the player's drawings our added to list, if there are still less than number of required images, add default image to list
 		while (numOfPNGs <= numOfImages) {
-			PNGImages.Add(Application.dataPath + "/TransparentImage.png");
+			PNGImages.Add(Application.dataPath + "/Textures/TransparentImage.png");
+			//PNGImages.Add(null);
 			numOfPNGs++;
 		}
 		PNGImages.Reverse();    // Reverses array have last object loaded first
