@@ -8804,7 +8804,7 @@ GameObject:
   - component: {fileID: 4877859799643338459}
   - component: {fileID: 1039194594365023887}
   m_Layer: 5
-  m_Name: Options Canvas
+  m_Name: Sign Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8833,6 +8833,8 @@ RectTransform:
   - {fileID: 5313960941307935699}
   - {fileID: 4026166579250515943}
   - {fileID: 461251951561811229}
+  - {fileID: 8333342807747341807}
+  - {fileID: 2686217917892974487}
   m_Father: {fileID: 531810979680595554}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -30399,6 +30401,85 @@ Transform:
   m_Father: {fileID: 7693487083304982270}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7766105066172763029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2686217917892974487}
+  - component: {fileID: 1094101068569034547}
+  - component: {fileID: 1968622398577475382}
+  m_Layer: 5
+  m_Name: Text (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2686217917892974487
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766105066172763029}
+  m_LocalRotation: {x: -0, y: -0.70369, z: -0, w: -0.71050715}
+  m_LocalPosition: {x: 0, y: 0, z: 2.491}
+  m_LocalScale: {x: 0.0052500046, y: 0.00525, z: 0.0050000027}
+  m_Children: []
+  m_Father: {fileID: 1502910917786676301}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: -270.552, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.2670002, y: 2.4708}
+  m_SizeDelta: {x: 175.5807, y: 58.6614}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1094101068569034547
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766105066172763029}
+  m_CullTransparentMesh: 0
+--- !u!114 &1968622398577475382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766105066172763029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fdb85c4d58be0394d93fe30180bb86b9, type: 3}
+    m_FontSize: 18
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 0.8
+  m_Text: 'This Gallery Is Deadicated to:'
 --- !u!1 &7775729149729206678
 GameObject:
   m_ObjectHideFlags: 0
@@ -32598,6 +32679,86 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &8524606750571650716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8333342807747341807}
+  - component: {fileID: 3090471780243761355}
+  - component: {fileID: 1543888185997889591}
+  m_Layer: 5
+  m_Name: Text (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8333342807747341807
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524606750571650716}
+  m_LocalRotation: {x: -0, y: -0.70369, z: -0, w: -0.71050715}
+  m_LocalPosition: {x: 0, y: 0, z: 2.491}
+  m_LocalScale: {x: 0.005250003, y: 0.00525, z: 0.005000003}
+  m_Children: []
+  m_Father: {fileID: 1502910917786676301}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: -270.552, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.267, y: 1.9357}
+  m_SizeDelta: {x: 175.5807, y: 199.0495}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3090471780243761355
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524606750571650716}
+  m_CullTransparentMesh: 0
+--- !u!114 &1543888185997889591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524606750571650716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fdb85c4d58be0394d93fe30180bb86b9, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 0.6
+  m_Text: "\nCoral Weston - \t\tDesigner/Artist\n\nKane Adams - \t\tPrgorammer\n\nMatt
+    Penmore - \t\tTobii Programmer\n\nGeorge Martin -\t\t Audio Designer"
 --- !u!1 &8533618602241066725
 GameObject:
   m_ObjectHideFlags: 0
