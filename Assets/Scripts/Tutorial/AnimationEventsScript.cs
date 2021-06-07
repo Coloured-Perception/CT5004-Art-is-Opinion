@@ -9,6 +9,7 @@ public class AnimationEventsScript : MonoBehaviour {
 	TutorialDialogeManager tutorialDialogeManager;
 	CameraShutterScript cameraShutterScript;
 	GameObject Canvas, TransitionParent;
+	public Animator GalleryAnim;
 
 	private void Awake() {
 		tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
@@ -18,6 +19,7 @@ public class AnimationEventsScript : MonoBehaviour {
 			tutorialDialogeManager = Canvas.transform.Find("Tutorial UI").GetComponent<TutorialDialogeManager>();
 			TransitionParent = Canvas.transform.Find("Transition Parent").gameObject;
 			cameraShutterScript = TransitionParent.transform.Find("Transition Controller").GetComponent<CameraShutterScript>();
+
 
 		} else {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
@@ -53,5 +55,8 @@ public class AnimationEventsScript : MonoBehaviour {
 		cameraShutterScript.CameraClose();
 	}
 
-	
+	public void DoorOpen() {
+		GalleryAnim.Play("DoorOpen");
+
+	}
 }

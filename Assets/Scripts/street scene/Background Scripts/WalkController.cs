@@ -24,7 +24,7 @@ public class WalkController : MonoBehaviour {
 			if (z > 7f) {
 				z += 5.3f;
 			}
-			Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, 0, z), Quaternion.identity);
+			Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(startX, -0.2f, z), Quaternion.identity);
 		}
 
 		for (int i = 0; i < 6; i++) {
@@ -49,9 +49,9 @@ public class WalkController : MonoBehaviour {
 				}
 				location = Random.Range(0, 2);
 				if (location == 0) {
-					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(-15, 0, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(-15, -0.2f, z), Quaternion.identity);
 				} else {
-					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(15, 0, z), Quaternion.identity);
+					Prefabs = GameObject.Instantiate(peoplePrefabs[Random.Range(0, peoplePrefabs.Count)], new Vector3(15, -0.2f, z), Quaternion.identity);
 				}
 				timeWaitPeople = Random.Range(1, 3);
 			}
