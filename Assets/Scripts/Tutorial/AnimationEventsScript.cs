@@ -12,7 +12,9 @@ public class AnimationEventsScript : MonoBehaviour {
 	public Animator GalleryAnim;
 
 	private void Awake() {
-		tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
+		if (SceneManager.GetActiveScene().name != "TitleScene") {
+			tutorialManager = GameObject.Find("dialoge manager").GetComponent<TutorialManager>();
+		}
 
 		if (SceneManager.GetActiveScene().name == "GalleryScene") {
 			Canvas = GameObject.Find("Main Canvas");
@@ -21,7 +23,7 @@ public class AnimationEventsScript : MonoBehaviour {
 			cameraShutterScript = TransitionParent.transform.Find("Transition Controller").GetComponent<CameraShutterScript>();
 
 
-		} else {
+		} else if (SceneManager.GetActiveScene().name != "TitleScene") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			cameraShutterScript = GameObject.Find("Transition Controller").GetComponent<CameraShutterScript>();
 		}

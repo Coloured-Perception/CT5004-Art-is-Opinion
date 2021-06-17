@@ -29,6 +29,8 @@ public class CameraShutterScript : MonoBehaviour {
 		Debug.Log(PlayerPrefs.GetInt("fromOutside") + "    Out A");
 		Debug.Log(PlayerPrefs.GetInt("fromFree") + "    Free A");
 		Debug.Log(PlayerPrefs.GetInt("fromTutorial") + "    Tu A");
+		Debug.Log(PlayerPrefs.GetInt("fromTitle") + "    Title A");
+
 
 		PlayerPrefs.SetInt("portraitLevel", 2);    /// remove later   
 
@@ -46,6 +48,9 @@ public class CameraShutterScript : MonoBehaviour {
 				CameraAnim.Play("CameraTutorialStart");
 				TranAnim.Play("BlinkOpen");
 				PlayerPrefs.SetInt("fromTutorial", 0);
+			} else if (PlayerPrefs.GetInt("fromTitle") == 1) {
+				CameraAnim.Play("CameraGallerySceneEnter");
+				PlayerPrefs.SetInt("fromTitle", 0);
 			} else {
 				CameraAnim.Play("CameraRestrictedStart");
 				TranAnim.Play("BlinkOpen");
@@ -100,6 +105,14 @@ public class CameraShutterScript : MonoBehaviour {
 		} else if (SceneManager.GetActiveScene().name == "StillLifeTutorialPaintScene") {
 			tutorialDialogeManager = GameObject.Find("dialoge manager").GetComponent<TutorialDialogeManager>();
 			TranAnim.Play("Camera Shutter Open Ani");
+
+		} else if (SceneManager.GetActiveScene().name == "TitleScene") {
+			PlayerPrefs.SetInt("fromGallery", 0);
+			PlayerPrefs.SetInt("fromOutside", 0);
+			PlayerPrefs.SetInt("fromFree", 0);
+			PlayerPrefs.SetInt("fromTutorial", 0);
+			PlayerPrefs.SetInt("fromTitle", 1);
+			TranAnim.Play("BlinkOpen");
 		}
 	}
 
